@@ -1,0 +1,264 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > DataSourcesSectionKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.settings</a>
+</div>
+
+<h1>Coverage Summary for Class: DataSourcesSectionKt (today.sweetspot.ui.settings)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">DataSourcesSectionKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/54)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/65)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/770)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.ui.settings
+&nbsp;
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.Spacer
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.foundation.layout.width
+&nbsp;import androidx.compose.material.icons.Icons
+&nbsp;import androidx.compose.material.icons.filled.KeyboardArrowDown
+&nbsp;import androidx.compose.material.icons.filled.KeyboardArrowUp
+&nbsp;import androidx.compose.material3.Icon
+&nbsp;import androidx.compose.material3.IconButton
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Switch
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.material3.TextButton
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import today.sweetspot.R
+&nbsp;import today.sweetspot.data.api.DataSource
+&nbsp;
+&nbsp;/**
+&nbsp; * Data sources settings section for configuring API priority order.
+&nbsp; *
+&nbsp; * Shows each available source with a toggle switch and up/down reorder buttons.
+&nbsp; * Sources maintain their position when toggled — disabling a source does not move it.
+&nbsp; * The last enabled source&#39;s switch is disabled to prevent disabling all sources.
+&nbsp; * A &quot;Reset to defaults&quot; button appears when the configuration differs from zone defaults.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;internal fun DataSourcesSection(
+&nbsp;    sourceOrder: List&lt;String&gt;?,
+&nbsp;    disabledSources: Set&lt;String&gt;,
+&nbsp;    availableSources: List&lt;DataSource&gt;,
+&nbsp;    onSourceOrderChanged: (List&lt;String&gt;) -&gt; Unit,
+&nbsp;    onDisabledSourcesChanged: (Set&lt;String&gt;) -&gt; Unit,
+&nbsp;    onResetSourceOrder: () -&gt; Unit
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    val defaults = availableSources.map { it.id }</b>
+<b class="nc">&nbsp;    val displayOrder = sourceOrder?.filter { id -&gt; availableSources.any { it.id == id } } ?: defaults</b>
+<b class="nc">&nbsp;    val enabledIds = displayOrder.filter { it !in disabledSources }</b>
+&nbsp;
+<b class="nc">&nbsp;    Text(</b>
+<b class="nc">&nbsp;        text = stringResource(R.string.settings_data_sources),</b>
+<b class="nc">&nbsp;        style = MaterialTheme.typography.labelLarge,</b>
+<b class="nc">&nbsp;        color = MaterialTheme.colorScheme.primary,</b>
+<b class="nc">&nbsp;        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)</b>
+&nbsp;    )
+&nbsp;
+<b class="nc">&nbsp;    Text(</b>
+<b class="nc">&nbsp;        text = stringResource(R.string.settings_data_sources_description),</b>
+<b class="nc">&nbsp;        style = MaterialTheme.typography.bodySmall,</b>
+<b class="nc">&nbsp;        color = MaterialTheme.colorScheme.onSurfaceVariant,</b>
+<b class="nc">&nbsp;        modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 8.dp)</b>
+&nbsp;    )
+&nbsp;
+<b class="nc">&nbsp;    displayOrder.forEachIndexed { index, sourceId -&gt;</b>
+<b class="nc">&nbsp;        val source = availableSources.find { it.id == sourceId } ?: return@forEachIndexed</b>
+<b class="nc">&nbsp;        val isEnabled = sourceId !in disabledSources</b>
+<b class="nc">&nbsp;        val isLastEnabled = isEnabled &amp;&amp; enabledIds.size == 1</b>
+&nbsp;
+<b class="nc">&nbsp;        Row(</b>
+<b class="nc">&nbsp;            modifier = Modifier</b>
+<b class="nc">&nbsp;                .fillMaxWidth()</b>
+<b class="nc">&nbsp;                .padding(horizontal = 16.dp, vertical = 4.dp),</b>
+<b class="nc">&nbsp;            verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            Switch(</b>
+<b class="nc">&nbsp;                checked = isEnabled,</b>
+<b class="nc">&nbsp;                onCheckedChange = { checked -&gt;</b>
+<b class="nc">&nbsp;                    if (checked) {</b>
+<b class="nc">&nbsp;                        onDisabledSourcesChanged(disabledSources - sourceId)</b>
+<b class="nc">&nbsp;                    } else if (!isLastEnabled) {</b>
+<b class="nc">&nbsp;                        onDisabledSourcesChanged(disabledSources + sourceId)</b>
+&nbsp;                    }
+&nbsp;                },
+<b class="nc">&nbsp;                enabled = !isLastEnabled</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Spacer(modifier = Modifier.width(12.dp))</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = source.displayName,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge,</b>
+<b class="nc">&nbsp;                modifier = Modifier.weight(1f),</b>
+<b class="nc">&nbsp;                color = if (isEnabled) MaterialTheme.colorScheme.onSurface</b>
+<b class="nc">&nbsp;                        else MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;            IconButton(</b>
+<b class="nc">&nbsp;                onClick = {</b>
+<b class="nc">&nbsp;                    if (index &gt; 0) {</b>
+<b class="nc">&nbsp;                        val reordered = displayOrder.toMutableList()</b>
+<b class="nc">&nbsp;                        reordered.removeAt(index)</b>
+<b class="nc">&nbsp;                        reordered.add(index - 1, sourceId)</b>
+<b class="nc">&nbsp;                        onSourceOrderChanged(reordered)</b>
+&nbsp;                    }
+&nbsp;                },
+<b class="nc">&nbsp;                enabled = index &gt; 0</b>
+&nbsp;            ) {
+&nbsp;                Icon(
+&nbsp;                    imageVector = Icons.Default.KeyboardArrowUp,
+&nbsp;                    contentDescription = stringResource(R.string.cd_move_up)
+&nbsp;                )
+&nbsp;            }
+<b class="nc">&nbsp;            IconButton(</b>
+<b class="nc">&nbsp;                onClick = {</b>
+<b class="nc">&nbsp;                    if (index &lt; displayOrder.size - 1) {</b>
+<b class="nc">&nbsp;                        val reordered = displayOrder.toMutableList()</b>
+<b class="nc">&nbsp;                        reordered.removeAt(index)</b>
+<b class="nc">&nbsp;                        reordered.add(index + 1, sourceId)</b>
+<b class="nc">&nbsp;                        onSourceOrderChanged(reordered)</b>
+&nbsp;                    }
+&nbsp;                },
+<b class="nc">&nbsp;                enabled = index &lt; displayOrder.size - 1</b>
+&nbsp;            ) {
+&nbsp;                Icon(
+&nbsp;                    imageVector = Icons.Default.KeyboardArrowDown,
+&nbsp;                    contentDescription = stringResource(R.string.cd_move_down)
+&nbsp;                )
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (sourceOrder != null || disabledSources.isNotEmpty()) {</b>
+<b class="nc">&nbsp;        val isCustomized = (sourceOrder != null &amp;&amp; sourceOrder != defaults) || disabledSources.isNotEmpty()</b>
+<b class="nc">&nbsp;        if (isCustomized) {</b>
+<b class="nc">&nbsp;            TextButton(</b>
+<b class="nc">&nbsp;                onClick = onResetSourceOrder,</b>
+<b class="nc">&nbsp;                modifier = Modifier.padding(horizontal = 16.dp)</b>
+&nbsp;            ) {
+&nbsp;                Text(stringResource(R.string.settings_reset_defaults))
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 20:31</div>
+</div>
+</body>
+</html>
