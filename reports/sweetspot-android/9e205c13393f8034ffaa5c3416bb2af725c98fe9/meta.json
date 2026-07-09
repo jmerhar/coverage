@@ -1,0 +1,34 @@
+{
+  "project": "sweetspot-android",
+  "sha": "9e205c13393f8034ffaa5c3416bb2af725c98fe9",
+  "short_sha": "9e205c1339",
+  "committed_at": "2026-07-09T19:43:35Z",
+  "message": "ci: gate coverage via XML report script, not koverVerifyDebug",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/9e205c13393f8034ffaa5c3416bb2af725c98fe9",
+  "reports": [
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "82.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}
