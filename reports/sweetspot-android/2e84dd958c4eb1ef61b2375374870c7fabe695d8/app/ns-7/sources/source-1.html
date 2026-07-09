@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > ColorKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.theme</a>
+</div>
+
+<h1>Coverage Summary for Class: ColorKt (today.sweetspot.ui.theme)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ColorKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/47)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/47)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/188)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.ui.theme
+&nbsp;
+&nbsp;import androidx.compose.ui.graphics.Color
+&nbsp;
+&nbsp;// Bar chart colours — always fixed regardless of dynamic colour
+<b class="nc">&nbsp;val Blue = Color(0xFF4A90D9)</b>
+<b class="nc">&nbsp;val Green = Color(0xFF27AE60)</b>
+<b class="nc">&nbsp;val Purple = Color(0xFF9B59B6)</b>
+&nbsp;
+&nbsp;// Light palette
+<b class="nc">&nbsp;val md_theme_light_primary = Color(0xFF2C5F9B)</b>
+<b class="nc">&nbsp;val md_theme_light_onPrimary = Color(0xFFFFFFFF)</b>
+<b class="nc">&nbsp;val md_theme_light_primaryContainer = Color(0xFFD4E3FF)</b>
+<b class="nc">&nbsp;val md_theme_light_onPrimaryContainer = Color(0xFF001C3A)</b>
+<b class="nc">&nbsp;val md_theme_light_secondary = Color(0xFF1B7D46)</b>
+<b class="nc">&nbsp;val md_theme_light_onSecondary = Color(0xFFFFFFFF)</b>
+<b class="nc">&nbsp;val md_theme_light_secondaryContainer = Color(0xFFA8F5C3)</b>
+<b class="nc">&nbsp;val md_theme_light_onSecondaryContainer = Color(0xFF002111)</b>
+<b class="nc">&nbsp;val md_theme_light_error = Color(0xFFBA1A1A)</b>
+<b class="nc">&nbsp;val md_theme_light_onError = Color(0xFFFFFFFF)</b>
+<b class="nc">&nbsp;val md_theme_light_errorContainer = Color(0xFFFFDAD6)</b>
+<b class="nc">&nbsp;val md_theme_light_onErrorContainer = Color(0xFF410002)</b>
+<b class="nc">&nbsp;val md_theme_light_background = Color(0xFFF8F9FF)</b>
+<b class="nc">&nbsp;val md_theme_light_onBackground = Color(0xFF191C20)</b>
+<b class="nc">&nbsp;val md_theme_light_surface = Color(0xFFF8F9FF)</b>
+<b class="nc">&nbsp;val md_theme_light_onSurface = Color(0xFF191C20)</b>
+<b class="nc">&nbsp;val md_theme_light_surfaceVariant = Color(0xFFE0E2EC)</b>
+<b class="nc">&nbsp;val md_theme_light_onSurfaceVariant = Color(0xFF44474E)</b>
+<b class="nc">&nbsp;val md_theme_light_outline = Color(0xFF74777F)</b>
+<b class="nc">&nbsp;val md_theme_light_outlineVariant = Color(0xFFC4C6D0)</b>
+<b class="nc">&nbsp;val md_theme_light_surfaceContainerLow = Color(0xFFF2F3FA)</b>
+<b class="nc">&nbsp;val md_theme_light_surfaceContainer = Color(0xFFECEDF4)</b>
+&nbsp;
+&nbsp;// Dark palette
+<b class="nc">&nbsp;val md_theme_dark_primary = Color(0xFFA5C8FF)</b>
+<b class="nc">&nbsp;val md_theme_dark_onPrimary = Color(0xFF00315E)</b>
+<b class="nc">&nbsp;val md_theme_dark_primaryContainer = Color(0xFF0E4780)</b>
+<b class="nc">&nbsp;val md_theme_dark_onPrimaryContainer = Color(0xFFD4E3FF)</b>
+<b class="nc">&nbsp;val md_theme_dark_secondary = Color(0xFF8DD8A8)</b>
+<b class="nc">&nbsp;val md_theme_dark_onSecondary = Color(0xFF003921)</b>
+<b class="nc">&nbsp;val md_theme_dark_secondaryContainer = Color(0xFF005232)</b>
+<b class="nc">&nbsp;val md_theme_dark_onSecondaryContainer = Color(0xFFA8F5C3)</b>
+<b class="nc">&nbsp;val md_theme_dark_error = Color(0xFFFFB4AB)</b>
+<b class="nc">&nbsp;val md_theme_dark_onError = Color(0xFF690005)</b>
+<b class="nc">&nbsp;val md_theme_dark_errorContainer = Color(0xFF93000A)</b>
+<b class="nc">&nbsp;val md_theme_dark_onErrorContainer = Color(0xFFFFDAD6)</b>
+<b class="nc">&nbsp;val md_theme_dark_background = Color(0xFF111318)</b>
+<b class="nc">&nbsp;val md_theme_dark_onBackground = Color(0xFFE1E2E9)</b>
+<b class="nc">&nbsp;val md_theme_dark_surface = Color(0xFF111318)</b>
+<b class="nc">&nbsp;val md_theme_dark_onSurface = Color(0xFFE1E2E9)</b>
+<b class="nc">&nbsp;val md_theme_dark_surfaceVariant = Color(0xFF44474E)</b>
+<b class="nc">&nbsp;val md_theme_dark_onSurfaceVariant = Color(0xFFC4C6D0)</b>
+<b class="nc">&nbsp;val md_theme_dark_outline = Color(0xFF8E9099)</b>
+<b class="nc">&nbsp;val md_theme_dark_outlineVariant = Color(0xFF44474E)</b>
+<b class="nc">&nbsp;val md_theme_dark_surfaceContainerLow = Color(0xFF191C20)</b>
+<b class="nc">&nbsp;val md_theme_dark_surfaceContainer = Color(0xFF1D2024)</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 19:46</div>
+</div>
+</body>
+</html>
