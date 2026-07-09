@@ -2,7 +2,7 @@
   "project": "sweetspot-android",
   "sha": "672f801667ee14dacfbd2f76f299656d539c217f",
   "short_sha": "672f801667",
-  "committed_at": "2026-07-09T14:18:36Z",
+  "committed_at": "2026-07-09T15:39:43Z",
   "message": "test(wear): isolate Data Layer glue behind WearSync; cover WearViewModel (26% \u2192 ~95%)",
   "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/672f801667ee14dacfbd2f76f299656d539c217f",
   "reports": [
