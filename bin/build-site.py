@@ -42,6 +42,24 @@ STYLE = (
     "</style>"
 )
 
+# Timestamps are emitted in UTC (see ts_span) with the raw ISO in data-utc. This rewrites each to
+# the visitor's local time (with its zone abbreviation) and moves the UTC value into the tooltip,
+# clearly labelled. Without JS, the UTC text remains visible and labelled.
+SCRIPT = """<script>
+(function () {
+  var opts = {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'};
+  document.querySelectorAll('.ts').forEach(function (el) {
+    var d = new Date(el.getAttribute('data-utc'));
+    if (isNaN(d.getTime())) return;
+    var local = d.toLocaleString('sv-SE', opts);            // ISO-like "2026-07-09 13:24"
+    var tz = new Intl.DateTimeFormat(undefined, {timeZoneName:'short'})
+      .formatToParts(d).find(function (p) { return p.type === 'timeZoneName'; });
+    el.textContent = tz ? local + ' ' + tz.value : local;
+    el.title = d.toLocaleString('sv-SE', Object.assign({timeZone:'UTC'}, opts)) + ' UTC';
+  });
+})();
+</script>"""
+
 _PCT = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*%\s*$")
 
 
@@ -53,7 +71,7 @@ def page(title, body):
     return (
         "<!doctype html><html lang=en><meta charset=utf-8>"
         "<meta name=viewport content='width=device-width,initial-scale=1'>"
-        f"<title>{esc(title)}</title>{STYLE}{body}"
+        f"<title>{esc(title)}</title>{STYLE}{body}{SCRIPT}"
     )
 
 
@@ -72,8 +90,13 @@ def fmt_date(iso):
         return esc(iso)
 
 
-def date_cell(iso, extra=""):
-    return f"<td class='nowrap muted{extra}'><span title='{esc(iso)}'>{fmt_date(iso)}</span></td>"
+def ts_span(iso):
+    """A timestamp shown as UTC (labelled) by default; JS rewrites it to local time on load."""
+    return f"<span class=ts data-utc='{esc(iso)}'>{fmt_date(iso)}&nbsp;UTC</span>"
+
+
+def date_cell(iso):
+    return f"<td class='nowrap muted'>{ts_span(iso)}</td>"
 
 
 def _pct_class(value):
@@ -176,8 +199,7 @@ def build_commit(root, project, commits, i):
         f"{project} @ {short(c)}",
         f"<nav>{' · '.join(nav)}</nav>"
         f"<h1>{esc(project)} <small>@ {commit_ref}</small></h1>"
-        f"<p class=muted>{esc(c.get('message', ''))}<br>"
-        f"<span title='{esc(c.get('committed_at', ''))}'>{fmt_date(c.get('committed_at', ''))}</span></p>"
+        f"<p class=muted>{esc(c.get('message', ''))}<br>{ts_span(c.get('committed_at', ''))}</p>"
         "<table><tr><th class=nowrap>Report</th><th class=nowrap>Coverage</th></tr>"
         + report_rows + "</table>"))
 
