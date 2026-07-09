@@ -16,19 +16,33 @@ Usage: ``build-site.py [reports-dir]``  (default: ``reports``)
 import html
 import json
 import os
+import re
 import sys
+from datetime import datetime, timezone
 
 ROOT = sys.argv[1] if len(sys.argv) > 1 else "reports"
 
 STYLE = (
-    "<style>body{font-family:system-ui,-apple-system,sans-serif;max-width:820px;margin:2.5rem auto;"
-    "padding:0 1rem;color:#191c20}h1{font-size:1.5rem}h1 small{font-weight:normal}"
+    "<style>"
+    "body{font-family:system-ui,-apple-system,sans-serif;max-width:860px;margin:2.5rem auto;"
+    "padding:0 1rem;color:#191c20}"
+    "h1{font-size:1.5rem}h1 small{font-weight:normal}"
     "table{border-collapse:collapse;width:100%;margin:1rem 0}"
     "th,td{text-align:left;padding:.5rem .75rem;border-bottom:1px solid #e2e4ea;vertical-align:top}"
+    "th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#57606a}"
     "a{color:#4A90D9;text-decoration:none}a:hover{text-decoration:underline}"
-    "code{background:#f0f2f5;padding:.1rem .35rem;border-radius:4px;font-size:.9em}"
-    ".muted{color:#666}nav{font-size:.9rem;margin-bottom:1rem}</style>"
+    "code{background:#f0f2f5;padding:.1rem .4rem;border-radius:5px;font-size:.9em}"
+    ".muted{color:#666}nav{font-size:.9rem;margin-bottom:1rem}"
+    ".nowrap{white-space:nowrap}"
+    "td.msg{width:100%}"                       # message column absorbs the slack; the rest stay put
+    ".metric{display:inline-block;white-space:nowrap;background:#f0f2f5;border-radius:6px;"
+    "padding:.1rem .5rem;margin:.1rem .25rem .1rem 0;font-size:.85em}"
+    ".metric .k{color:#57606a}.metric b{font-weight:600}"
+    ".good{color:#1a7f37}.mid{color:#9a6700}.low{color:#cf222e}"
+    "</style>"
 )
+
+_PCT = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*%\s*$")
 
 
 def esc(s):
@@ -47,6 +61,43 @@ def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         f.write(content)
+
+
+def fmt_date(iso):
+    """ISO-8601 -> 'YYYY-MM-DD HH:MM' (UTC). Falls back to the raw string if unparseable."""
+    try:
+        dt = datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+        return dt.astimezone(timezone.utc).strftime("%Y-%m-%d&nbsp;%H:%M")
+    except (ValueError, TypeError):
+        return esc(iso)
+
+
+def date_cell(iso, extra=""):
+    return f"<td class='nowrap muted{extra}'><span title='{esc(iso)}'>{fmt_date(iso)}</span></td>"
+
+
+def _pct_class(value):
+    m = _PCT.match(str(value))
+    if not m:
+        return ""
+    n = float(m.group(1))
+    return "good" if n >= 80 else "mid" if n >= 50 else "low"
+
+
+def metric_pills(metrics):
+    """Render a metrics map as pills; percentages get a subtle good/mid/low colour."""
+    if not metrics:
+        return "<span class=muted>—</span>"
+    pills = []
+    for k, v in metrics.items():
+        cls = _pct_class(v)
+        val = f"<b class={cls}>{esc(v)}</b>" if cls else f"<b>{esc(v)}</b>"
+        pills.append(f"<span class=metric><span class=k>{esc(k)}</span> {val}</span>")
+    return "".join(pills)
+
+
+def short(commit):
+    return commit.get("short_sha") or commit["sha"][:10]
 
 
 def load_projects(root):
@@ -68,26 +119,18 @@ def load_projects(root):
     return projects
 
 
-def metrics_str(metrics, bold=False):
-    fmt = "{} <b>{}</b>" if bold else "{} {}"
-    return " · ".join(fmt.format(esc(k), esc(v)) for k, v in metrics.items())
-
-
-def short(commit):
-    return commit.get("short_sha") or commit["sha"][:10]
-
-
 def build_root(root, projects):
     rows = "".join(
-        f"<tr><td><a href='{esc(p)}/'>{esc(p)}</a></td><td>{len(cs)}</td>"
-        f"<td class=muted>{esc(cs[0].get('committed_at', ''))}</td></tr>"
+        f"<tr><td class=nowrap><a href='{esc(p)}/'>{esc(p)}</a></td>"
+        f"<td class=nowrap>{len(cs)}</td>{date_cell(cs[0].get('committed_at', ''))}</tr>"
         for p, cs in sorted(projects.items())
     ) or "<tr><td colspan=3 class=muted>No projects yet.</td></tr>"
     write(os.path.join(root, "index.html"), page(
         "Coverage reports",
         "<h1>Coverage reports</h1>"
         "<p class=muted>Per-commit code-coverage reports, one section per project.</p>"
-        "<table><tr><th>Project</th><th>Commits</th><th>Latest</th></tr>" + rows + "</table>"))
+        "<table><tr><th class=nowrap>Project</th><th class=nowrap>Commits</th>"
+        "<th class=nowrap>Latest</th></tr>" + rows + "</table>"))
 
 
 def build_project(root, project, commits):
@@ -95,10 +138,10 @@ def build_project(root, project, commits):
     for c in commits:
         primary = c["reports"][0].get("metrics", {}) if c.get("reports") else {}
         rows += (
-            f"<tr><td><a href='{esc(c['sha'])}/'><code>{esc(short(c))}</code></a></td>"
-            f"<td>{esc(c.get('message', ''))}</td>"
-            f"<td class=muted>{esc(c.get('committed_at', ''))}</td>"
-            f"<td class=muted>{metrics_str(primary)}</td></tr>"
+            f"<tr><td class=nowrap><a href='{esc(c['sha'])}/'><code>{esc(short(c))}</code></a></td>"
+            f"<td class=msg>{esc(c.get('message', ''))}</td>"
+            f"{date_cell(c.get('committed_at', ''))}"
+            f"<td class=nowrap>{metric_pills(primary)}</td></tr>"
         )
     write(os.path.join(root, project, "index.html"), page(
         f"{project} — coverage",
@@ -106,16 +149,16 @@ def build_project(root, project, commits):
         f"<h1>{esc(project)}</h1>"
         f"<p class=muted>{len(commits)} commit(s), newest first. "
         "The coverage column summarises the first report.</p>"
-        "<table><tr><th>Commit</th><th>Message</th><th>Date</th><th>Coverage</th></tr>"
-        + rows + "</table>"))
+        "<table><tr><th class=nowrap>Commit</th><th>Message</th>"
+        "<th class=nowrap>Date</th><th class=nowrap>Coverage</th></tr>" + rows + "</table>"))
 
 
 def build_commit(root, project, commits, i):
     c = commits[i]
     reports = c.get("reports", [])
     report_rows = "".join(
-        f"<tr><td><a href='{esc(r['path'])}/index.html'>{esc(r['name'])}</a></td>"
-        f"<td>{metrics_str(r.get('metrics', {}), bold=True)}</td></tr>"
+        f"<tr><td class=nowrap><a href='{esc(r['path'])}/index.html'>{esc(r['name'])}</a></td>"
+        f"<td>{metric_pills(r.get('metrics', {}))}</td></tr>"
         for r in reports
     ) or "<tr><td colspan=2 class=muted>No reports.</td></tr>"
 
@@ -133,8 +176,10 @@ def build_commit(root, project, commits, i):
         f"{project} @ {short(c)}",
         f"<nav>{' · '.join(nav)}</nav>"
         f"<h1>{esc(project)} <small>@ {commit_ref}</small></h1>"
-        f"<p class=muted>{esc(c.get('message', ''))}<br>{esc(c.get('committed_at', ''))}</p>"
-        "<table><tr><th>Report</th><th>Coverage</th></tr>" + report_rows + "</table>"))
+        f"<p class=muted>{esc(c.get('message', ''))}<br>"
+        f"<span title='{esc(c.get('committed_at', ''))}'>{fmt_date(c.get('committed_at', ''))}</span></p>"
+        "<table><tr><th class=nowrap>Report</th><th class=nowrap>Coverage</th></tr>"
+        + report_rows + "</table>"))
 
 
 def main():
