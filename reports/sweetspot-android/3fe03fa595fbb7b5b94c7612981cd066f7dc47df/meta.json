@@ -1,0 +1,34 @@
+{
+  "project": "sweetspot-android",
+  "sha": "3fe03fa595fbb7b5b94c7612981cd066f7dc47df",
+  "short_sha": "3fe03fa595",
+  "committed_at": "2026-07-09T16:16:23Z",
+  "message": "fix(test): make deadline-unreachable test timezone-independent to stop CI hang",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/3fe03fa595fbb7b5b94c7612981cd066f7dc47df",
+  "reports": [
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "88.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "82.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}
