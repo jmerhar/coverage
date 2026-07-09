@@ -1,0 +1,293 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > MainActivityKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot</a>
+</div>
+
+<h1>Coverage Summary for Class: MainActivityKt (today.sweetspot)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainActivityKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/411)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot
+&nbsp;
+&nbsp;import android.os.Bundle
+&nbsp;import androidx.activity.compose.BackHandler
+&nbsp;import androidx.activity.compose.setContent
+&nbsp;import androidx.activity.enableEdgeToEdge
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import androidx.appcompat.app.AppCompatDelegate
+&nbsp;import androidx.compose.material3.AlertDialog
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.material3.TextButton
+&nbsp;import androidx.compose.runtime.collectAsState
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.lifecycle.ViewModelProvider
+&nbsp;import today.sweetspot.data.api.DataSources
+&nbsp;import today.sweetspot.ui.PaywallScreen
+&nbsp;import today.sweetspot.ui.settings.SettingsScreen
+&nbsp;import today.sweetspot.ui.SweetSpotScreen
+&nbsp;import today.sweetspot.ui.theme.SweetSpotTheme
+&nbsp;import today.sweetspot.data.repository.SettingsRepository
+&nbsp;
+&nbsp;/**
+&nbsp; * Entry point for the phone app.
+&nbsp; *
+&nbsp; * Hosts the [SweetSpotTheme] and switches between [SweetSpotScreen] and [SettingsScreen]
+&nbsp; * based on [SweetSpotViewModel] state. Also shows a one-time stats opt-in dialog.
+&nbsp; * Re-queries subscription state on every resume to detect expiry.
+&nbsp; */
+&nbsp;class MainActivity : AppCompatActivity() {
+&nbsp;
+&nbsp;    private val viewModel: SweetSpotViewModel by lazy {
+&nbsp;        ViewModelProvider(this)[SweetSpotViewModel::class.java]
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+&nbsp;        super.onCreate(savedInstanceState)
+&nbsp;        enableEdgeToEdge()
+&nbsp;
+&nbsp;        // Apply stored theme before setContent so the first frame uses the correct mode
+&nbsp;        val themeMode = ThemeMode.fromKey(SettingsRepository(this).getThemeMode())
+&nbsp;        AppCompatDelegate.setDefaultNightMode(themeMode.nightMode)
+&nbsp;
+&nbsp;        setContent {
+&nbsp;            SweetSpotTheme {
+&nbsp;                val vm = viewModel
+&nbsp;                val state by vm.uiState.collectAsState()
+&nbsp;
+&nbsp;                when {
+&nbsp;                    state.showPaywall -&gt; {
+&nbsp;                        PaywallScreen(
+&nbsp;                            productPrice = state.productPrice,
+&nbsp;                            onPurchaseClicked = { vm.onPurchaseClicked(this@MainActivity) },
+&nbsp;                            onRestorePurchases = vm::onRestorePurchases
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    state.showSettings -&gt; {
+&nbsp;                        BackHandler { vm.onHideSettings() }
+&nbsp;                        SettingsScreen(
+&nbsp;                            themeMode = state.themeMode,
+&nbsp;                            onThemeModeChanged = vm::onThemeModeChanged,
+&nbsp;                            currentTimeZoneId = state.timeZoneId,
+&nbsp;                            isUsingDefaultTimezone = state.isUsingDefaultTimezone,
+&nbsp;                            onTimezoneSelected = vm::onTimezoneSelected,
+&nbsp;                            appliances = state.appliances,
+&nbsp;                            onAddAppliance = vm::onAddAppliance,
+&nbsp;                            onUpdateAppliance = vm::onUpdateAppliance,
+&nbsp;                            onDeleteAppliance = vm::onDeleteAppliance,
+&nbsp;                            evHomeChargerKw = state.evHomeChargerKw,
+&nbsp;                            evDefaultTargetSoc = state.evDefaultTargetSoc,
+&nbsp;                            onEvHomeChargerChanged = vm::onEvHomeChargerChanged,
+&nbsp;                            onEvDefaultTargetChanged = vm::onEvDefaultTargetChanged,
+&nbsp;                            searchVehicles = vm::searchEvVehicles,
+&nbsp;                            onAddVehicle = vm::onAddVehicle,
+&nbsp;                            countryCode = state.countryCode,
+&nbsp;                            priceZone = state.priceZone,
+&nbsp;                            countries = state.countries,
+&nbsp;                            onCountrySelected = vm::onCountrySelected,
+&nbsp;                            onPriceZoneSelected = vm::onPriceZoneSelected,
+&nbsp;                            sourceOrder = state.sourceOrder,
+&nbsp;                            disabledSources = state.disabledSources,
+&nbsp;                            availableSources = DataSources.defaultsForZone(state.priceZone?.id ?: &quot;&quot;),
+&nbsp;                            onSourceOrderChanged = vm::onSourceOrderChanged,
+&nbsp;                            onDisabledSourcesChanged = vm::onDisabledSourcesChanged,
+&nbsp;                            onResetSourceOrder = vm::onResetSourceOrder,
+&nbsp;                            onLanguageChanged = vm::onLanguageChanged,
+&nbsp;                            onClearCache = vm::onClearCache,
+&nbsp;                            isStatsEnabled = state.isStatsEnabled,
+&nbsp;                            onStatsEnabledChanged = vm::onStatsEnabledChanged,
+&nbsp;                            isUnlocked = state.isUnlocked,
+&nbsp;                            trialDaysRemaining = state.trialDaysRemaining,
+&nbsp;                            productPrice = state.productPrice,
+&nbsp;                            onPurchaseClicked = { vm.onPurchaseClicked(this@MainActivity) },
+&nbsp;                            devOptionsEnabled = state.devOptionsEnabled,
+&nbsp;                            isCooldownDisabled = state.isCooldownDisabled,
+&nbsp;                            onDevOptionsUnlocked = vm::onDevOptionsUnlocked,
+&nbsp;                            onDevResetUnlock = vm::onDevResetUnlock,
+&nbsp;                            onDevCooldownDisabledChanged = vm::onDevCooldownDisabledChanged,
+&nbsp;                            isDevUnlocked = state.isDevUnlocked,
+&nbsp;                            onDevUnlockChanged = vm::onDevUnlockChanged,
+&nbsp;                            onDevResetStatsTimer = vm::onDevResetStatsTimer,
+&nbsp;                            timeOverrideMs = state.timeOverrideMs,
+&nbsp;                            onDevTimeOverrideChanged = vm::onDevTimeOverrideChanged,
+&nbsp;                            useProductionLogo = state.useProductionLogo,
+&nbsp;                            onDevUseProductionLogoChanged = vm::onDevUseProductionLogoChanged,
+&nbsp;                            onBack = vm::onHideSettings
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    else -&gt; {
+&nbsp;                        SweetSpotScreen(viewModel = vm)
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                // Overlay dialogs shown on any screen (except the paywall)
+&nbsp;                if (!state.showPaywall) {
+&nbsp;                    ThankYouDialog(state, vm)
+&nbsp;                    StatsPromptDialog(state, vm)
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onResume() {
+&nbsp;        super.onResume()
+&nbsp;        viewModel.onResume()
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;/** Shows a thank-you dialog after a successful in-app purchase. */
+&nbsp;@Composable
+<b class="nc">&nbsp;private fun ThankYouDialog(state: UiState, vm: SweetSpotViewModel) {</b>
+<b class="nc">&nbsp;    if (!state.showThankYou) return</b>
+<b class="nc">&nbsp;    AlertDialog(</b>
+<b class="nc">&nbsp;        onDismissRequest = vm::onThankYouDismissed,</b>
+&nbsp;        title = { Text(stringResource(R.string.thank_you_title)) },
+&nbsp;        text = { Text(stringResource(R.string.thank_you_message)) },
+<b class="nc">&nbsp;        confirmButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = vm::onThankYouDismissed) {</b>
+&nbsp;                Text(stringResource(android.R.string.ok))
+&nbsp;            }
+&nbsp;        }
+&nbsp;    )
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;/** Shows a one-time opt-in prompt for anonymous API statistics. */
+&nbsp;@Composable
+<b class="nc">&nbsp;private fun StatsPromptDialog(state: UiState, vm: SweetSpotViewModel) {</b>
+<b class="nc">&nbsp;    if (!state.showStatsPrompt) return</b>
+<b class="nc">&nbsp;    AlertDialog(</b>
+<b class="nc">&nbsp;        onDismissRequest = vm::onStatsPromptDismissed,</b>
+&nbsp;        title = { Text(stringResource(R.string.stats_prompt_title)) },
+&nbsp;        text = { Text(stringResource(R.string.stats_prompt_message)) },
+<b class="nc">&nbsp;        confirmButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = vm::onStatsPromptEnabled) {</b>
+&nbsp;                Text(stringResource(R.string.stats_prompt_enable))
+&nbsp;            }
+&nbsp;        },
+<b class="nc">&nbsp;        dismissButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = vm::onStatsPromptDismissed) {</b>
+&nbsp;                Text(stringResource(R.string.stats_prompt_dismiss))
+&nbsp;            }
+&nbsp;        }
+&nbsp;    )
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 20:31</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > DeveloperSectionKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.settings</a>
+</div>
+
+<h1>Coverage Summary for Class: DeveloperSectionKt (today.sweetspot.ui.settings)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">DeveloperSectionKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/64)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/163)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1943)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;AssignedValueIsNeverRead&quot;)
+&nbsp;
+&nbsp;package today.sweetspot.ui.settings
+&nbsp;
+&nbsp;import androidx.compose.foundation.ExperimentalFoundationApi
+&nbsp;import androidx.compose.foundation.clickable
+&nbsp;import androidx.compose.foundation.combinedClickable
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.material3.DatePicker
+&nbsp;import androidx.compose.material3.DatePickerDialog
+&nbsp;import androidx.compose.material3.ExperimentalMaterial3Api
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Switch
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.material3.TextButton
+&nbsp;import androidx.compose.material3.TimePicker
+&nbsp;import androidx.compose.material3.rememberDatePickerState
+&nbsp;import androidx.compose.material3.rememberTimePickerState
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.mutableLongStateOf
+&nbsp;import androidx.compose.runtime.mutableStateOf
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.setValue
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZonedDateTime
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;import today.sweetspot.BuildConfig
+&nbsp;
+&nbsp;/**
+&nbsp; * Hidden developer options section with reset buttons and toggles for testing.
+&nbsp; *
+&nbsp; * Shown persistently once unlocked via 7-tap on the version number.
+&nbsp; *
+&nbsp; * @param isCooldownDisabled Whether the API fetch cooldown is currently bypassed.
+&nbsp; * @param onCooldownDisabledChanged Called when the cooldown toggle changes.
+&nbsp; * @param isDevUnlocked Whether the developer-only subscription bypass is enabled.
+&nbsp; * @param onDevUnlockChanged Called when the subscription bypass toggle changes.
+&nbsp; * @param onResetUnlock Called when the developer taps &quot;Reset unlock state&quot;. Should return a confirmation message.
+&nbsp; * @param onResetStatsTimer Called when the developer taps &quot;Reset stats timer&quot;. Should return a confirmation message.
+&nbsp; * @param timeOverrideMs Current time override as epoch millis, or `null` if using real time.
+&nbsp; * @param onTimeOverrideChanged Called with epoch millis to set, or `null` to clear the override.
+&nbsp; * @param timeZoneId Current timezone for displaying the override datetime.
+&nbsp; * @param useProductionLogo Whether the production logo is shown instead of the debug logo.
+&nbsp; * @param onUseProductionLogoChanged Called when the production logo toggle changes.
+&nbsp; */
+&nbsp;@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+&nbsp;@Composable
+&nbsp;internal fun DeveloperSection(
+&nbsp;    isCooldownDisabled: Boolean,
+&nbsp;    onCooldownDisabledChanged: (Boolean) -&gt; Unit,
+&nbsp;    isDevUnlocked: Boolean,
+&nbsp;    onDevUnlockChanged: (Boolean) -&gt; Unit,
+&nbsp;    onResetUnlock: () -&gt; Unit,
+&nbsp;    onResetStatsTimer: () -&gt; Unit,
+&nbsp;    timeOverrideMs: Long?,
+&nbsp;    onTimeOverrideChanged: (Long?) -&gt; Unit,
+&nbsp;    timeZoneId: ZoneId,
+&nbsp;    useProductionLogo: Boolean,
+&nbsp;    onUseProductionLogoChanged: (Boolean) -&gt; Unit
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    Text(</b>
+<b class="nc">&nbsp;        text = &quot;Developer&quot;,</b>
+<b class="nc">&nbsp;        style = MaterialTheme.typography.labelLarge,</b>
+<b class="nc">&nbsp;        color = MaterialTheme.colorScheme.error,</b>
+<b class="nc">&nbsp;        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)</b>
+&nbsp;    )
+&nbsp;
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = Modifier</b>
+<b class="nc">&nbsp;            .fillMaxWidth()</b>
+<b class="nc">&nbsp;            .clickable(onClick = { onDevUnlockChanged(!isDevUnlocked) })</b>
+<b class="nc">&nbsp;            .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;Bypass subscription&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;Disable the paywall on this device (and the watch)&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        Switch(</b>
+<b class="nc">&nbsp;            checked = isDevUnlocked,</b>
+<b class="nc">&nbsp;            onCheckedChange = onDevUnlockChanged</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    DevActionRow(</b>
+<b class="nc">&nbsp;        label = &quot;Reset unlock state&quot;,</b>
+<b class="nc">&nbsp;        description = &quot;Clears local unlock flag, re-enables paywall&quot;,</b>
+<b class="nc">&nbsp;        onClick = onResetUnlock</b>
+&nbsp;    )
+&nbsp;
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = Modifier</b>
+<b class="nc">&nbsp;            .fillMaxWidth()</b>
+<b class="nc">&nbsp;            .clickable(onClick = { onCooldownDisabledChanged(!isCooldownDisabled) })</b>
+<b class="nc">&nbsp;            .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;Disable API cooldown&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;Skip the 5-minute rate limit between API requests&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        Switch(</b>
+<b class="nc">&nbsp;            checked = isCooldownDisabled,</b>
+<b class="nc">&nbsp;            onCheckedChange = onCooldownDisabledChanged</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    DevActionRow(</b>
+<b class="nc">&nbsp;        label = &quot;Reset stats timer&quot;,</b>
+<b class="nc">&nbsp;        description = &quot;Allows immediate stats reporting&quot;,</b>
+<b class="nc">&nbsp;        onClick = onResetStatsTimer</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    // --- Time override ---
+&nbsp;
+<b class="nc">&nbsp;    var showDatePicker by remember { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var pickedDateMs by remember { mutableLongStateOf(0L) }</b>
+<b class="nc">&nbsp;    var showTimePicker by remember { mutableStateOf(false) }</b>
+&nbsp;
+<b class="nc">&nbsp;    val overrideLabel = if (timeOverrideMs != null) {</b>
+<b class="nc">&nbsp;        val zdt = Instant.ofEpochMilli(timeOverrideMs).atZone(timeZoneId)</b>
+<b class="nc">&nbsp;        zdt.format(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm&quot;))</b>
+&nbsp;    } else {
+<b class="nc">&nbsp;        &quot;Off&quot;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = Modifier</b>
+<b class="nc">&nbsp;            .fillMaxWidth()</b>
+<b class="nc">&nbsp;            .combinedClickable(</b>
+<b class="nc">&nbsp;                onClick = { showDatePicker = true },</b>
+<b class="nc">&nbsp;                onLongClick = { onTimeOverrideChanged(null) }</b>
+&nbsp;            )
+<b class="nc">&nbsp;            .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;Time override&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = overrideLabel,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                color = if (timeOverrideMs != null) MaterialTheme.colorScheme.error</b>
+<b class="nc">&nbsp;                        else MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showDatePicker) {</b>
+<b class="nc">&nbsp;        val initialMs = timeOverrideMs ?: System.currentTimeMillis()</b>
+<b class="nc">&nbsp;        val datePickerState = rememberDatePickerState(initialSelectedDateMillis = initialMs)</b>
+<b class="nc">&nbsp;        DatePickerDialog(</b>
+<b class="nc">&nbsp;            onDismissRequest = { showDatePicker = false },</b>
+<b class="nc">&nbsp;            confirmButton = {</b>
+<b class="nc">&nbsp;                TextButton(onClick = {</b>
+<b class="nc">&nbsp;                    val selectedMs = datePickerState.selectedDateMillis</b>
+<b class="nc">&nbsp;                    if (selectedMs != null) {</b>
+<b class="nc">&nbsp;                        pickedDateMs = selectedMs</b>
+<b class="nc">&nbsp;                        showDatePicker = false</b>
+<b class="nc">&nbsp;                        showTimePicker = true</b>
+&nbsp;                    }
+&nbsp;                }) { Text(&quot;Next&quot;) }
+&nbsp;            },
+<b class="nc">&nbsp;            dismissButton = {</b>
+<b class="nc">&nbsp;                TextButton(onClick = { showDatePicker = false }) { Text(&quot;Cancel&quot;) }</b>
+<b class="nc">&nbsp;                if (timeOverrideMs != null) {</b>
+<b class="nc">&nbsp;                    TextButton(onClick = {</b>
+<b class="nc">&nbsp;                        onTimeOverrideChanged(null)</b>
+<b class="nc">&nbsp;                        showDatePicker = false</b>
+&nbsp;                    }) { Text(&quot;Clear&quot;) }
+<b class="nc">&nbsp;                }</b>
+&nbsp;            }
+<b class="nc">&nbsp;        ) {</b>
+<b class="nc">&nbsp;            DatePicker(state = datePickerState)</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showTimePicker) {</b>
+<b class="nc">&nbsp;        val existing = if (timeOverrideMs != null) {</b>
+<b class="nc">&nbsp;            Instant.ofEpochMilli(timeOverrideMs).atZone(timeZoneId)</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            ZonedDateTime.now(timeZoneId)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        val timePickerState = rememberTimePickerState(</b>
+<b class="nc">&nbsp;            initialHour = existing.hour,</b>
+<b class="nc">&nbsp;            initialMinute = existing.minute,</b>
+<b class="nc">&nbsp;            is24Hour = true</b>
+&nbsp;        )
+<b class="nc">&nbsp;        DatePickerDialog(</b>
+<b class="nc">&nbsp;            onDismissRequest = { showTimePicker = false },</b>
+<b class="nc">&nbsp;            confirmButton = {</b>
+<b class="nc">&nbsp;                TextButton(onClick = {</b>
+&nbsp;                    // Combine the picked date (UTC midnight) with the picked time in the user&#39;s timezone
+<b class="nc">&nbsp;                    val dateAtUtcMidnight = Instant.ofEpochMilli(pickedDateMs).atZone(ZoneId.of(&quot;UTC&quot;)).toLocalDate()</b>
+<b class="nc">&nbsp;                    val combined = dateAtUtcMidnight</b>
+<b class="nc">&nbsp;                        .atTime(timePickerState.hour, timePickerState.minute)</b>
+<b class="nc">&nbsp;                        .atZone(timeZoneId)</b>
+<b class="nc">&nbsp;                    onTimeOverrideChanged(combined.toInstant().toEpochMilli())</b>
+<b class="nc">&nbsp;                    showTimePicker = false</b>
+&nbsp;                }) { Text(&quot;Set&quot;) }
+&nbsp;            },
+<b class="nc">&nbsp;            dismissButton = {</b>
+<b class="nc">&nbsp;                TextButton(onClick = { showTimePicker = false }) { Text(&quot;Cancel&quot;) }</b>
+&nbsp;            }
+<b class="nc">&nbsp;        ) {</b>
+<b class="nc">&nbsp;            TimePicker(state = timePickerState)</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (BuildConfig.DEBUG) {</b>
+<b class="nc">&nbsp;        Row(</b>
+<b class="nc">&nbsp;            modifier = Modifier</b>
+<b class="nc">&nbsp;                .fillMaxWidth()</b>
+<b class="nc">&nbsp;                .clickable(onClick = { onUseProductionLogoChanged(!useProductionLogo) })</b>
+<b class="nc">&nbsp;                .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;            verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = &quot;Production logo&quot;,</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;                )
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = &quot;Show the release app icon instead of the debug one&quot;,</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                    color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;                )
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            Switch(</b>
+<b class="nc">&nbsp;                checked = useProductionLogo,</b>
+<b class="nc">&nbsp;                onCheckedChange = onUseProductionLogoChanged</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;/** A single developer action row with label, description, and tap handler. */
+&nbsp;@Composable
+<b class="nc">&nbsp;internal fun DevActionRow(label: String, description: String, onClick: () -&gt; Unit) {</b>
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = Modifier</b>
+<b class="nc">&nbsp;            .fillMaxWidth()</b>
+<b class="nc">&nbsp;            .clickable(onClick = onClick)</b>
+<b class="nc">&nbsp;            .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = label,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = description,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 20:31</div>
+</div>
+</body>
+</html>
