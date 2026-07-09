@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > BiddingZone</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: BiddingZone (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">BiddingZone</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;/**
+&nbsp; * EIC codes for European bidding zones on the ENTSO-E Transparency Platform.
+&nbsp; *
+&nbsp; * Each constant maps a short country/zone identifier to the official
+&nbsp; * Energy Identification Code (EIC) used across European energy markets
+&nbsp; * (ENTSO-E, EPEX SPOT, Nord Pool, etc.).
+&nbsp; */
+&nbsp;object BiddingZone {
+&nbsp;    // Western Europe
+&nbsp;    const val NL = &quot;10YNL----------L&quot;
+&nbsp;    const val BE = &quot;10YBE----------2&quot;
+&nbsp;    const val FR = &quot;10YFR-RTE------C&quot;
+&nbsp;    const val DE_LU = &quot;10Y1001A1001A82H&quot;
+&nbsp;    const val AT = &quot;10YAT-APG------L&quot;
+&nbsp;    const val CH = &quot;10YCH-SWISSGRIDZ&quot;
+&nbsp;
+&nbsp;    // Iberian Peninsula
+&nbsp;    const val ES = &quot;10YES-REE------0&quot;
+&nbsp;    const val PT = &quot;10YPT-REN------W&quot;
+&nbsp;
+&nbsp;    // Central Europe
+&nbsp;    const val PL = &quot;10YPL-AREA-----S&quot;
+&nbsp;    const val CZ = &quot;10YCZ-CEPS-----N&quot;
+&nbsp;    const val SK = &quot;10YSK-SEPS-----K&quot;
+&nbsp;    const val HU = &quot;10YHU-MAVIR----U&quot;
+&nbsp;
+&nbsp;    // Nordic
+&nbsp;    const val DK1 = &quot;10YDK-1--------W&quot;
+&nbsp;    const val DK2 = &quot;10YDK-2--------M&quot;
+&nbsp;    const val FI = &quot;10YFI-1--------U&quot;
+&nbsp;    const val NO1 = &quot;10YNO-1--------2&quot;
+&nbsp;    const val NO2 = &quot;10YNO-2--------T&quot;
+&nbsp;    const val NO3 = &quot;10YNO-3--------J&quot;
+&nbsp;    const val NO4 = &quot;10YNO-4--------9&quot;
+&nbsp;    const val NO5 = &quot;10Y1001A1001A48H&quot;
+&nbsp;    const val SE1 = &quot;10Y1001A1001A44P&quot;
+&nbsp;    const val SE2 = &quot;10Y1001A1001A45N&quot;
+&nbsp;    const val SE3 = &quot;10Y1001A1001A46L&quot;
+&nbsp;    const val SE4 = &quot;10Y1001A1001A47J&quot;
+&nbsp;
+&nbsp;    // Baltic
+&nbsp;    const val EE = &quot;10Y1001A1001A39I&quot;
+&nbsp;    const val LV = &quot;10YLV-1001A00074&quot;
+&nbsp;    const val LT = &quot;10YLT-1001A0008Q&quot;
+&nbsp;
+&nbsp;    // Southeastern Europe
+&nbsp;    const val BG = &quot;10YCA-BULGARIA-R&quot;
+&nbsp;    const val GR = &quot;10YGR-HTSO-----Y&quot;
+&nbsp;    const val HR = &quot;10YHR-HEP------M&quot;
+&nbsp;    const val RO = &quot;10YRO-TEL------P&quot;
+&nbsp;    const val SI = &quot;10YSI-ELES-----O&quot;
+&nbsp;    const val RS = &quot;10YCS-SERBIATSOV&quot;
+&nbsp;    const val ME = &quot;10YCS-CG-TSO---S&quot;
+&nbsp;    const val MK = &quot;10YMK-MEPSO----8&quot;
+&nbsp;
+&nbsp;    // Italy
+&nbsp;    const val IT_NORD = &quot;10Y1001A1001A73I&quot;
+&nbsp;    const val IT_CNOR = &quot;10Y1001A1001A70O&quot;
+&nbsp;    const val IT_CSUD = &quot;10Y1001A1001A71M&quot;
+&nbsp;    const val IT_SUD = &quot;10Y1001A1001A788&quot;
+&nbsp;    const val IT_CALA = &quot;10Y1001C--00096J&quot;
+&nbsp;    const val IT_SICI = &quot;10Y1001A1001A75E&quot;
+&nbsp;    const val IT_SARD = &quot;10Y1001A1001A74G&quot;
+&nbsp;    // Ireland (all-island Single Electricity Market)
+&nbsp;    const val IE_SEM = &quot;10Y1001A1001A59C&quot;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 20:55</div>
+</div>
+</body>
+</html>
