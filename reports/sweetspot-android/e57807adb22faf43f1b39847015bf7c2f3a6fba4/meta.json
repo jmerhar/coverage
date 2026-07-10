@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "e57807adb22faf43f1b39847015bf7c2f3a6fba4",
+  "short_sha": "e57807adb2",
+  "committed_at": "2026-07-10T20:59:01Z",
+  "message": "docs: deep-dive on automating the NL supplier-tariff feed",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/e57807adb22faf43f1b39847015bf7c2f3a6fba4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "82.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}
