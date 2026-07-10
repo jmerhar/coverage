@@ -179,9 +179,15 @@ def build_project(root, project, commits):
 def build_commit(root, project, commits, i):
     c = commits[i]
     reports = c.get("reports", [])
+    # A report with a `path` links to its HTML; one without (e.g. a computed "total" summary row) is
+    # rendered as plain text — it contributes metrics only.
     report_rows = "".join(
-        f"<tr><td class=nowrap><a href='{esc(r['path'])}/index.html'>{esc(r['name'])}</a></td>"
-        f"<td>{metric_pills(r.get('metrics', {}))}</td></tr>"
+        (
+            f"<tr><td class=nowrap><a href='{esc(r['path'])}/index.html'>{esc(r['name'])}</a></td>"
+            if r.get("path")
+            else f"<tr><td class=nowrap>{esc(r['name'])}</td>"
+        )
+        + f"<td>{metric_pills(r.get('metrics', {}))}</td></tr>"
         for r in reports
     ) or "<tr><td colspan=2 class=muted>No reports.</td></tr>"
 

@@ -62,14 +62,18 @@ This is all this repo needs to know about a report — no coverage-tool specific
   "message": "commit subject",
   "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/4187057…",
   "reports": [
+    { "name": "total",  "metrics": { "line": "97.4%", "branch": "90.1%" } },
     { "name": "shared", "path": "shared", "metrics": { "line": "99.6%", "branch": "88.8%" } },
-    { "name": "app",    "path": "app",    "metrics": { "line": "15.7%", "branch": "6.8%" } }
+    { "name": "app",    "path": "app",    "metrics": { "line": "99.0%", "branch": "82.5%" } }
   ]
 }
 ```
 
 `metrics` is a free-form label→value map, rendered as-is — so different tools/languages can report
-whatever numbers they have.
+whatever numbers they have. `path` is **optional**: omit it for a metrics-only summary row (e.g. a
+computed "total" across modules), which the site renders as plain text with no link. The project
+index summarises each commit with its **first** report's metrics, so list a "total" entry first if
+you want a combined headline (otherwise the first module's numbers are shown).
 
 ## Onboarding a new project
 
