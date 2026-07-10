@@ -1,0 +1,295 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > SpotHintaApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: SpotHintaApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpotHintaApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (190/190)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SpotHintaApi$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SpotHintaApi$parse$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (191/191)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import kotlinx.serialization.SerialName
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import java.time.Instant
+&nbsp;import java.time.OffsetDateTime
+&nbsp;import java.time.ZoneId
+&nbsp;
+&nbsp;/**
+&nbsp; * A single price entry from the Spot-Hinta.fi API response.
+&nbsp; *
+&nbsp; * @property dateTime ISO-8601 timestamp string with offset (e.g. `2025-01-15T12:00:00+02:00` or `Z`).
+&nbsp; * @property priceNoTax Electricity price in EUR/kWh (no tax).
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;internal data class SpotHintaPriceEntry(
+&nbsp;    @SerialName(&quot;DateTime&quot;) val dateTime: String,
+&nbsp;    @SerialName(&quot;PriceNoTax&quot;) val priceNoTax: Double
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Client for the Spot-Hinta.fi day-ahead price API.
+&nbsp; *
+&nbsp; * Covers 15 Nordic and Baltic bidding zones (FI, SE1–SE4, DK1–DK2, NO1–NO5, EE, LV, LT)
+&nbsp; * with 15-minute resolution. Prices are already in EUR/kWh — no unit conversion needed.
+&nbsp; * No authentication required.
+&nbsp; *
+&nbsp; * The API always returns today&#39;s and tomorrow&#39;s prices (when available) — there are
+&nbsp; * no `from`/`to` date parameters.
+&nbsp; *
+&nbsp; * @param region Spot-Hinta.fi region code (matches SweetSpot zone IDs exactly).
+&nbsp; */
+&nbsp;class SpotHintaApi(
+<b class="fc">&nbsp;    private val region: String,</b>
+<b class="fc">&nbsp;    private val client: OkHttpClient = sharedHttpClient</b>
+&nbsp;) : PriceFetcher {
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /** Zone IDs covered by the Spot-Hinta.fi API (region codes match zone IDs directly). */
+<b class="fc">&nbsp;        val ZONES: Set&lt;String&gt; = setOf(</b>
+<b class="fc">&nbsp;            &quot;FI&quot;, &quot;SE1&quot;, &quot;SE2&quot;, &quot;SE3&quot;, &quot;SE4&quot;,</b>
+<b class="fc">&nbsp;            &quot;DK1&quot;, &quot;DK2&quot;,</b>
+<b class="fc">&nbsp;            &quot;NO1&quot;, &quot;NO2&quot;, &quot;NO3&quot;, &quot;NO4&quot;, &quot;NO5&quot;,</b>
+<b class="fc">&nbsp;            &quot;EE&quot;, &quot;LV&quot;, &quot;LT&quot;</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches and parses electricity prices from the Spot-Hinta.fi API.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (unused — API always returns today+tomorrow).
+&nbsp;     * @param to End of the requested period (unused — API always returns today+tomorrow).
+&nbsp;     * @param timeZoneId Timezone to convert timestamps to local time.
+&nbsp;     * @return A [FetchResult] with sorted 15-minute price slots and source &quot;Spot-Hinta.fi&quot;.
+&nbsp;     * @throws RuntimeException if the HTTP request fails.
+&nbsp;     */
+&nbsp;    override fun fetchPrices(from: Instant, to: Instant, timeZoneId: ZoneId): FetchResult {
+<b class="fc">&nbsp;        return FetchResult(parse(fetchRaw(), timeZoneId), &quot;Spot-Hinta.fi&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches raw JSON from the Spot-Hinta.fi API.
+&nbsp;     *
+&nbsp;     * @return Raw JSON response body (a top-level array of price entries).
+&nbsp;     * @throws RuntimeException if the HTTP request fails or the body is empty.
+&nbsp;     */
+&nbsp;    fun fetchRaw(): String {
+<b class="fc">&nbsp;        val url = &quot;https://api.spot-hinta.fi/TodayAndDayForward?region=$region&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        val request = Request.Builder().url(url).get().build()</b>
+<b class="fc">&nbsp;        return client.newCall(request).execute().use { response -&gt;</b>
+<b class="fc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="fc">&nbsp;                throw HttpException(response.code, &quot;Spot-Hinta.fi API returned ${response.code}&quot;)</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses raw Spot-Hinta.fi JSON into a sorted list of [PriceSlot] entries.
+&nbsp;     *
+&nbsp;     * Timestamps include timezone offsets (e.g. `+02:00`, `+03:00`, or `Z`) and are
+&nbsp;     * converted to the configured timezone via [OffsetDateTime.parse].
+&nbsp;     *
+&nbsp;     * @param raw Raw JSON string from [fetchRaw] (top-level array).
+&nbsp;     * @param timeZoneId Timezone to convert timestamps to local time.
+&nbsp;     * @return Chronologically sorted list of 15-minute price slots.
+&nbsp;     */
+&nbsp;    fun parse(raw: String, timeZoneId: ZoneId): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        val parsed = json.decodeFromString&lt;List&lt;SpotHintaPriceEntry&gt;&gt;(raw)</b>
+<b class="fc">&nbsp;        return parsed.map { entry -&gt;</b>
+<b class="fc">&nbsp;            val odt = OffsetDateTime.parse(entry.dateTime)</b>
+<b class="fc">&nbsp;            val time = odt.atZoneSameInstant(timeZoneId)</b>
+<b class="fc">&nbsp;            PriceSlot(time = time, price = entry.priceNoTax, durationMinutes = 15)</b>
+<b class="fc">&nbsp;        }.sortedBy { it.time }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-09 19:00</div>
+</div>
+</body>
+</html>
