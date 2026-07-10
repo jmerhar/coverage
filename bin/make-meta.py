@@ -12,12 +12,18 @@ Usage::
 
 ``reports.json`` is a JSON array describing each published report, e.g.::
 
-    [{"name": "shared", "path": "shared", "metrics": {"line": "99.6%", "branch": "88.8%"}}, ...]
+    [{"name": "total",  "metrics": {"line": "97.4%", "branch": "90.1%"}},
+     {"name": "shared", "path": "shared", "metrics": {"line": "99.6%", "branch": "88.8%"}}, ...]
 
     - name:    display label
-    - path:    subdirectory (relative to the commit dir) holding that report's index.html
+    - path:    OPTIONAL subdirectory (relative to the commit dir) holding that report's index.html.
+               Omit it for a metrics-only summary row (e.g. a computed "total" across modules): the
+               site renders such an entry as plain text with its metrics, without a link.
     - metrics: free-form label -> value map, rendered as-is. Any keys work, so different tools and
                languages can report whatever metrics they have.
+
+The project index summarises each commit with its FIRST report's metrics, so a project that wants a
+combined headline should list its "total" entry first.
 """
 import argparse
 import json
