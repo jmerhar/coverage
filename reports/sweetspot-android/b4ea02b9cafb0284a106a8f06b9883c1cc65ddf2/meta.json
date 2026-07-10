@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "b4ea02b9cafb0284a106a8f06b9883c1cc65ddf2",
+  "short_sha": "b4ea02b9ca",
+  "committed_at": "2026-07-10T15:36:25Z",
+  "message": "ci: lead the coverage manifest with a combined total entry",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/b4ea02b9cafb0284a106a8f06b9883c1cc65ddf2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "82.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}
