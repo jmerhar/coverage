@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > CachedTariff</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: CachedTariff (today.sweetspot.data.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CachedTariff</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.repository
+&nbsp;
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import today.sweetspot.data.api.TariffApi
+&nbsp;import today.sweetspot.data.api.TariffFetcher
+&nbsp;import today.sweetspot.data.cache.TariffCache
+&nbsp;import today.sweetspot.model.SupplierTariffs
+&nbsp;import java.time.Clock
+&nbsp;
+&nbsp;/**
+&nbsp; * A usable tariff feed with the time it was fetched.
+&nbsp; *
+&nbsp; * @property tariff The parsed, usable feed.
+&nbsp; * @property fetchedAtMs Epoch millis when it was fetched (the ViewModel uses this to decide whether to
+&nbsp; *   show the &quot;data may be out of date&quot; warning).
+&nbsp; */
+<b class="fc">&nbsp;data class CachedTariff(</b>
+<b class="fc">&nbsp;    val tariff: SupplierTariffs,</b>
+<b class="fc">&nbsp;    val fetchedAtMs: Long</b>
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Provides a country&#39;s all-in tariff feed, backed by [TariffCache].
+&nbsp; *
+&nbsp; * The repository holds **no scheduling** — the caller (ViewModel) decides *when* to [refresh]
+&nbsp; * (piggybacked on the spot-price fetch, on a country change, or to bootstrap when nothing is cached).
+&nbsp; * A cached copy is served regardless of age; staleness only affects the UI warning, computed by the
+&nbsp; * caller from [CachedTariff.fetchedAtMs]. All-in is unavailable only when there is no usable cached
+&nbsp; * feed at all.
+&nbsp; *
+&nbsp; * @param cache Raw-JSON cache keyed by country code.
+&nbsp; * @param fetcher Fetches the raw feed from the network.
+&nbsp; * @param clock Clock for stamping fetch times (injectable for testing).
+&nbsp; */
+&nbsp;class TariffRepository(
+&nbsp;    private val cache: TariffCache,
+&nbsp;    private val fetcher: TariffFetcher = TariffApi(),
+&nbsp;    private val clock: Clock = Clock.systemUTC()
+&nbsp;) {
+&nbsp;
+&nbsp;    private val json = Json { ignoreUnknownKeys = true }
+&nbsp;
+&nbsp;    /** Parses the cached feed for a country; returns it only when usable, else null. No network. */
+&nbsp;    fun cached(countryCode: String): CachedTariff? {
+&nbsp;        val raw = cache.read(countryCode) ?: return null
+&nbsp;        val tariff = parseUsable(raw.raw) ?: return null
+&nbsp;        return CachedTariff(tariff, raw.fetchedAtMs)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches a fresh feed and caches it when usable, returning it. On any failure — network error,
+&nbsp;     * non-200, unparseable body, or `usable:false` — the existing cache is left untouched (keep
+&nbsp;     * last-good) and the current [cached] value is returned, so a bad refresh never worsens the data.
+&nbsp;     */
+&nbsp;    fun refresh(countryCode: String): CachedTariff? {
+&nbsp;        return try {
+&nbsp;            val raw = fetcher.fetchRaw(countryCode)
+&nbsp;            val tariff = parseUsable(raw) ?: return cached(countryCode)
+&nbsp;            val now = clock.millis()
+&nbsp;            cache.write(countryCode, raw, now)
+&nbsp;            CachedTariff(tariff, now)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            cached(countryCode)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Parses raw JSON to [SupplierTariffs], returning it only if `usable`, else null on any problem. */
+&nbsp;    private fun parseUsable(raw: String): SupplierTariffs? = try {
+&nbsp;        json.decodeFromString&lt;SupplierTariffs&gt;(raw).takeIf { it.usable }
+&nbsp;    } catch (_: Exception) {
+&nbsp;        null
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-12 19:34</div>
+</div>
+</body>
+</html>
