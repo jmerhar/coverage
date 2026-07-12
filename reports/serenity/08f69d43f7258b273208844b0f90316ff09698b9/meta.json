@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "08f69d43f7258b273208844b0f90316ff09698b9",
+  "short_sha": "08f69d43f7",
+  "committed_at": "2026-07-12T21:08:44Z",
+  "message": "docs: sync README/CLAUDE with the Web front-controller layer and coverage",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/08f69d43f7258b273208844b0f90316ff09698b9",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "92.1%",
+        "methods": "79.8%"
+      }
+    }
+  ]
+}
