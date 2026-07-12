@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "dbbcd29a42226231466f6d2fd660684eb41a5b1b",
+  "short_sha": "dbbcd29a42",
+  "committed_at": "2026-07-12T18:43:49Z",
+  "message": "ci: bump actions/checkout to v6 (drops the Node 20 deprecation warning)",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/dbbcd29a42226231466f6d2fd660684eb41a5b1b",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "38.3%",
+        "methods": "72.9%"
+      }
+    }
+  ]
+}
