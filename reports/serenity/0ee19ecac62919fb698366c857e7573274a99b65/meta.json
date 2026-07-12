@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "0ee19ecac62919fb698366c857e7573274a99b65",
+  "short_sha": "0ee19ecac6",
+  "committed_at": "2026-07-12T21:37:49Z",
+  "message": "ci: add Codecov Test Analytics via a JUnit report upload",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/0ee19ecac62919fb698366c857e7573274a99b65",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}
