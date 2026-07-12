@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > StatsRecord</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.stats</a>
+</div>
+
+<h1>Coverage Summary for Class: StatsRecord (today.sweetspot.data.stats)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">StatsRecord</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/37)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">StatsRecord$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/27)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (168/168)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (34/34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (205/205)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.stats
+&nbsp;
+&nbsp;import java.io.ByteArrayOutputStream
+&nbsp;import java.io.DataInputStream
+&nbsp;import java.io.DataOutputStream
+&nbsp;import java.io.EOFException
+&nbsp;
+&nbsp;/**
+&nbsp; * A single API request outcome for stats collection.
+&nbsp; *
+&nbsp; * Records the result of one price-fetching attempt, including which zone and source
+&nbsp; * were used, whether it succeeded, what category of error occurred on failure,
+&nbsp; * and how long the request took.
+&nbsp; *
+&nbsp; * @property epochSecond UTC timestamp of when the request was made.
+&nbsp; * @property zone Bidding zone identifier (e.g. &quot;NL&quot;, &quot;DE_LU&quot;).
+&nbsp; * @property source Data source identifier (e.g. &quot;entsoe&quot;, &quot;energyzero&quot;).
+&nbsp; * @property device Device type: &quot;phone&quot; or &quot;watch&quot;.
+&nbsp; * @property success Whether the request returned usable price data.
+&nbsp; * @property errorCategory Empty string for success, or a category like &quot;TIMEOUT&quot;, &quot;HTTP_503&quot;, etc.
+&nbsp; * @property durationMs Wall-clock time of the request in milliseconds.
+&nbsp; */
+&nbsp;data class StatsRecord(
+<b class="fc">&nbsp;    val epochSecond: Long,</b>
+<b class="fc">&nbsp;    val zone: String,</b>
+<b class="fc">&nbsp;    val source: String,</b>
+<b class="fc">&nbsp;    val device: String,</b>
+<b class="fc">&nbsp;    val success: Boolean,</b>
+<b class="fc">&nbsp;    val errorCategory: String,</b>
+<b class="fc">&nbsp;    val durationMs: Long = 0</b>
+&nbsp;) {
+&nbsp;    companion object {
+&nbsp;        /**
+&nbsp;         * Writes a single [StatsRecord] to a [DataOutputStream].
+&nbsp;         *
+&nbsp;         * Binary format: epochSecond (Long) + zone (UTF) + source (UTF) +
+&nbsp;         * device (UTF) + success (Boolean) + errorCategory (UTF) + durationMs (Long).
+&nbsp;         *
+&nbsp;         * @param record The record to write.
+&nbsp;         * @param out The output stream to write to.
+&nbsp;         */
+&nbsp;        fun writeTo(record: StatsRecord, out: DataOutputStream) {
+<b class="fc">&nbsp;            out.writeLong(record.epochSecond)</b>
+<b class="fc">&nbsp;            out.writeUTF(record.zone)</b>
+<b class="fc">&nbsp;            out.writeUTF(record.source)</b>
+<b class="fc">&nbsp;            out.writeUTF(record.device)</b>
+<b class="fc">&nbsp;            out.writeBoolean(record.success)</b>
+<b class="fc">&nbsp;            out.writeUTF(record.errorCategory)</b>
+<b class="fc">&nbsp;            out.writeLong(record.durationMs)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Reads a single [StatsRecord] from a [DataInputStream].
+&nbsp;         *
+&nbsp;         * @param input The input stream to read from.
+&nbsp;         * @return The decoded record.
+&nbsp;         * @throws EOFException if the stream has no more data.
+&nbsp;         */
+<b class="fc">&nbsp;        fun readFrom(input: DataInputStream): StatsRecord = StatsRecord(</b>
+<b class="fc">&nbsp;            epochSecond = input.readLong(),</b>
+<b class="fc">&nbsp;            zone = input.readUTF(),</b>
+<b class="fc">&nbsp;            source = input.readUTF(),</b>
+<b class="fc">&nbsp;            device = input.readUTF(),</b>
+<b class="fc">&nbsp;            success = input.readBoolean(),</b>
+<b class="fc">&nbsp;            errorCategory = input.readUTF(),</b>
+<b class="fc">&nbsp;            durationMs = input.readLong()</b>
+&nbsp;        )
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Encodes a list of [StatsRecord]s to a byte array.
+&nbsp;         *
+&nbsp;         * Used for Data Layer transfer (watch → phone) and binary file storage.
+&nbsp;         *
+&nbsp;         * @param records The records to encode.
+&nbsp;         * @return Binary-encoded byte array.
+&nbsp;         */
+&nbsp;        fun encodeToBytes(records: List&lt;StatsRecord&gt;): ByteArray {
+<b class="fc">&nbsp;            val baos = ByteArrayOutputStream()</b>
+<b class="fc">&nbsp;            DataOutputStream(baos).use { out -&gt;</b>
+<b class="fc">&nbsp;                for (record in records) {</b>
+<b class="fc">&nbsp;                    writeTo(record, out)</b>
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            return baos.toByteArray()</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Decodes a byte array into a list of [StatsRecord]s.
+&nbsp;         *
+&nbsp;         * Reads until EOF. On partial corruption, returns the records decoded so far.
+&nbsp;         *
+&nbsp;         * @param bytes Binary-encoded stats data.
+&nbsp;         * @return Decoded list of records, or empty list on error.
+&nbsp;         */
+&nbsp;        fun decodeFromBytes(bytes: ByteArray): List&lt;StatsRecord&gt; {
+&nbsp;            return try {
+<b class="fc">&nbsp;                DataInputStream(bytes.inputStream()).use { input -&gt;</b>
+<b class="fc">&nbsp;                    val records = mutableListOf&lt;StatsRecord&gt;()</b>
+<b class="fc">&nbsp;                    while (true) {</b>
+&nbsp;                        try {
+<b class="fc">&nbsp;                            records.add(readFrom(input))</b>
+&nbsp;                        } catch (_: EOFException) {
+&nbsp;                            break
+&nbsp;                        } catch (_: Exception) {
+&nbsp;                            break // partial corruption — keep records decoded so far
+&nbsp;                        }
+&nbsp;                    }
+<b class="fc">&nbsp;                    records</b>
+&nbsp;                }
+&nbsp;            } catch (_: Exception) {
+<b class="fc">&nbsp;                emptyList()</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-12 09:34</div>
+</div>
+</body>
+</html>
