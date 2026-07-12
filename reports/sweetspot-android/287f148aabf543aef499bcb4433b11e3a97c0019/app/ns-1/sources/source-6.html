@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > WatchStatsBridge</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot</a>
+</div>
+
+<h1>Coverage Summary for Class: WatchStatsBridge (today.sweetspot)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">WatchStatsBridge</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import com.google.android.gms.wearable.DataClient
+&nbsp;import com.google.android.gms.wearable.DataEvent
+&nbsp;import com.google.android.gms.wearable.DataEventBuffer
+&nbsp;import com.google.android.gms.wearable.DataMapItem
+&nbsp;import com.google.android.gms.wearable.Wearable
+&nbsp;import today.sweetspot.data.stats.StatsRecord
+&nbsp;
+&nbsp;/**
+&nbsp; * Receives API-reliability stats pushed from the Wear OS app via the Wearable Data Layer.
+&nbsp; *
+&nbsp; * Isolated behind an interface so the phone&#39;s handling logic
+&nbsp; * ([SweetSpotViewModel.onWatchStatsReceived]) stays unit-testable with a fake, free of Google Play
+&nbsp; * Services. The production implementation is [WearableStatsBridge].
+&nbsp; */
+&nbsp;interface WatchStatsBridge {
+&nbsp;    /**
+&nbsp;     * Starts listening for watch stats, delivering each batch of decoded records to [onStats].
+&nbsp;     *
+&nbsp;     * @param onStats Callback invoked with the records decoded from each `/stats` update.
+&nbsp;     */
+&nbsp;    fun observe(onStats: (List&lt;StatsRecord&gt;) -&gt; Unit)
+&nbsp;
+&nbsp;    /** Stops listening for watch stats. */
+&nbsp;    fun stop()
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Production [WatchStatsBridge]: the real Wearable Data Layer plumbing (listener registration and
+&nbsp; * `/stats` byte decoding). Deliberately thin and free of decision logic — the handling lives in
+&nbsp; * [SweetSpotViewModel.onWatchStatsReceived] — so it is excluded from coverage (it can only run with
+&nbsp; * Google Play Services on a real device/emulator).
+&nbsp; *
+&nbsp; * @param context Android context for [Wearable.getDataClient].
+&nbsp; */
+&nbsp;class WearableStatsBridge(private val context: Context) : WatchStatsBridge, DataClient.OnDataChangedListener {
+&nbsp;
+&nbsp;    private var onStats: ((List&lt;StatsRecord&gt;) -&gt; Unit)? = null
+&nbsp;
+&nbsp;    override fun observe(onStats: (List&lt;StatsRecord&gt;) -&gt; Unit) {
+&nbsp;        this.onStats = onStats
+&nbsp;        try {
+&nbsp;            Wearable.getDataClient(context).addListener(this)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Play Services unavailable — watch sync not supported
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onDataChanged(events: DataEventBuffer) {
+&nbsp;        try {
+&nbsp;            for (event in events) {
+&nbsp;                if (event.type != DataEvent.TYPE_CHANGED) continue
+&nbsp;                if (event.dataItem.uri.path != &quot;/stats&quot;) continue
+&nbsp;                val dataMap = DataMapItem.fromDataItem(event.dataItem).dataMap
+&nbsp;                val bytes = dataMap.getByteArray(&quot;data&quot;) ?: continue
+&nbsp;                onStats?.invoke(StatsRecord.decodeFromBytes(bytes))
+&nbsp;            }
+&nbsp;        } finally {
+&nbsp;            events.release()
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun stop() {
+&nbsp;        try {
+&nbsp;            Wearable.getDataClient(context).removeListener(this)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Play Services unavailable
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-12 11:57</div>
+</div>
+</body>
+</html>
