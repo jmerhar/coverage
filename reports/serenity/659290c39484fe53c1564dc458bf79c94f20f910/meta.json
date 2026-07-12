@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "659290c39484fe53c1564dc458bf79c94f20f910",
+  "short_sha": "659290c394",
+  "committed_at": "2026-07-12T20:15:37Z",
+  "message": "refactor: extract the review avatar-monogram helper out of the template",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/659290c39484fe53c1564dc458bf79c94f20f910",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "40.5%",
+        "methods": "73.4%"
+      }
+    }
+  ]
+}
