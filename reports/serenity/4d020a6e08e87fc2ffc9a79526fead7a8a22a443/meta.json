@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "4d020a6e08e87fc2ffc9a79526fead7a8a22a443",
+  "short_sha": "4d020a6e08",
+  "committed_at": "2026-07-12T18:35:53Z",
+  "message": "ci: add code coverage (PHPUnit + Codecov + shared report site)",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/4d020a6e08e87fc2ffc9a79526fead7a8a22a443",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "38.3%",
+        "methods": "72.9%"
+      }
+    }
+  ]
+}
