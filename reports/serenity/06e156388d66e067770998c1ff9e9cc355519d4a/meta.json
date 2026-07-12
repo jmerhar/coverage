@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "06e156388d66e067770998c1ff9e9cc355519d4a",
+  "short_sha": "06e156388d",
+  "committed_at": "2026-07-12T21:40:29Z",
+  "message": "ci: use codecov-action for test results instead of the deprecated action",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/06e156388d66e067770998c1ff9e9cc355519d4a",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}
