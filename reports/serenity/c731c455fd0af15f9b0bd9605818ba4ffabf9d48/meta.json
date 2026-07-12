@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "c731c455fd0af15f9b0bd9605818ba4ffabf9d48",
+  "short_sha": "c731c455fd",
+  "committed_at": "2026-07-12T19:06:34Z",
+  "message": "refactor: extract admin-user provisioning into a tested lib class",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/c731c455fd0af15f9b0bd9605818ba4ffabf9d48",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "38.8%",
+        "methods": "73.0%"
+      }
+    }
+  ]
+}
