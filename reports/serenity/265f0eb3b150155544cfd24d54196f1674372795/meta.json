@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "265f0eb3b150155544cfd24d54196f1674372795",
+  "short_sha": "265f0eb3b1",
+  "committed_at": "2026-07-12T20:44:05Z",
+  "message": "refactor(cron): split UpdateReviews into a tested API protocol + I/O half",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/265f0eb3b150155544cfd24d54196f1674372795",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "86.4%",
+        "methods": "76.4%"
+      }
+    }
+  ]
+}
