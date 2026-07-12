@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/runner/work/serenity/serenity/serenity.src/lib/Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../_css/bootstrap.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../../_css/nv.d3.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../../_css/style.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../../index.html">/home/runner/work/serenity/serenity</a></li>
+         <li class="breadcrumb-item"><a href="../../index.html">serenity.src</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">lib</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/SettingsController.php.html#23">Serenity\Admin\Controller\SettingsController</a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#24">Serenity\Admin\Controller\ProfileController</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#26">Serenity\Admin\Controller\UsersController</a></td><td class="text-right">79%</td></tr>
+       <tr><td><a href="Auth/Csrf.php.html#13">Serenity\Admin\Auth\Csrf</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Upload/FileUpload.php.html#13">Serenity\Admin\Upload\FileUpload</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Auth/NativeSessionStore.php.html#16">Serenity\Admin\Auth\NativeSessionStore</a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#19">Serenity\Admin\Upload\PhotoStore</a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#27">Serenity\Admin\Controller\ChannelsController</a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Review/Import/CsvParser.php.html#17">Serenity\Admin\Review\Import\CsvParser</a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#24">Serenity\Admin\Controller\ReviewsController</a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/SettingsController.php.html#23">Serenity\Admin\Controller\SettingsController</a></td><td class="text-right">996</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#26">Serenity\Admin\Controller\UsersController</a></td><td class="text-right">67</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#24">Serenity\Admin\Controller\ReviewsController</a></td><td class="text-right">60</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#24">Serenity\Admin\Controller\ProfileController</a></td><td class="text-right">50</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#27">Serenity\Admin\Controller\ChannelsController</a></td><td class="text-right">44</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#19">Serenity\Admin\Upload\PhotoStore</a></td><td class="text-right">23</td></tr>
+       <tr><td><a href="Review/Import/CsvParser.php.html#17">Serenity\Admin\Review\Import\CsvParser</a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="Upload/FileUpload.php.html#13">Serenity\Admin\Upload\FileUpload</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Auth/Csrf.php.html#13">Serenity\Admin\Auth\Csrf</a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Auth/NativeSessionStore.php.html#16">Serenity\Admin\Auth\NativeSessionStore</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Auth/NativeSessionStore.php.html#59"><abbr title="Serenity\Admin\Auth\NativeSessionStore::regenerateId">regenerateId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#109"><abbr title="Serenity\Admin\Controller\SettingsController::contact">contact</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#175"><abbr title="Serenity\Admin\Controller\SettingsController::cancellationPolicy">cancellationPolicy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#214"><abbr title="Serenity\Admin\Controller\SettingsController::seasons">seasons</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#267"><abbr title="Serenity\Admin\Controller\SettingsController::touristTax">touristTax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#296"><abbr title="Serenity\Admin\Controller\SettingsController::deleteTouristTax">deleteTouristTax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#309"><abbr title="Serenity\Admin\Controller\SettingsController::payment">payment</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#314"><abbr title="Serenity\Admin\Controller\SettingsController::paymentView">paymentView</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#324"><abbr title="Serenity\Admin\Controller\SettingsController::savePayment">savePayment</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#342"><abbr title="Serenity\Admin\Controller\SettingsController::deletePayment">deletePayment</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#355"><abbr title="Serenity\Admin\Controller\SettingsController::features">features</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#360"><abbr title="Serenity\Admin\Controller\SettingsController::featuresView">featuresView</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#371"><abbr title="Serenity\Admin\Controller\SettingsController::saveFeature">saveFeature</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#391"><abbr title="Serenity\Admin\Controller\SettingsController::deleteFeature">deleteFeature</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#404"><abbr title="Serenity\Admin\Controller\SettingsController::events">events</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#438"><abbr title="Serenity\Admin\Controller\SettingsController::deleteEvent">deleteEvent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#540"><abbr title="Serenity\Admin\Controller\SettingsController::deleteGalleryImage">deleteGalleryImage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#569"><abbr title="Serenity\Admin\Controller\SettingsController::subStr">subStr</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Upload/FileUpload.php.html#44"><abbr title="Serenity\Admin\Upload\FileUpload::isUploaded">isUploaded</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#90"><abbr title="Serenity\Admin\Upload\PhotoStore::isUploaded">isUploaded</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#95"><abbr title="Serenity\Admin\Upload\PhotoStore::move">move</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserProvisioner.php.html#70"><abbr title="Serenity\Admin\UserProvisioner::findByEmail">findByEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#125"><abbr title="Serenity\Admin\Controller\SettingsController::saveContact">saveContact</abbr></a></td><td class="text-right">8%</td></tr>
+       <tr><td><a href="Auth/RememberMe.php.html#128"><abbr title="Serenity\Admin\Auth\RememberMe::generate">generate</abbr></a></td><td class="text-right">16%</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#153"><abbr title="Serenity\Admin\Controller\UsersController::errorMessage">errorMessage</abbr></a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#124"><abbr title="Serenity\Admin\Controller\ProfileController::errorMessage">errorMessage</abbr></a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#170"><abbr title="Serenity\Admin\Controller\ChannelsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#284"><abbr title="Serenity\Admin\Controller\ReviewsController::importNotice">importNotice</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#299"><abbr title="Serenity\Admin\Controller\ReviewsController::importError">importError</abbr></a></td><td class="text-right">42%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#419"><abbr title="Serenity\Admin\Controller\SettingsController::saveEvent">saveEvent</abbr></a></td><td class="text-right">45%</td></tr>
+       <tr><td><a href="Controller/AuthController.php.html#45"><abbr title="Serenity\Admin\Controller\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/BookingsController.php.html#244"><abbr title="Serenity\Admin\Controller\BookingsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#254"><abbr title="Serenity\Admin\Controller\ReviewsController::sanitizeRow">sanitizeRow</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#282"><abbr title="Serenity\Admin\Controller\SettingsController::saveTouristTax">saveTouristTax</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#639"><abbr title="Serenity\Admin\Controller\SettingsController::isValidTime">isValidTime</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Auth/Csrf.php.html#26"><abbr title="Serenity\Admin\Auth\Csrf::token">token</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Auth/LoginThrottle.php.html#97"><abbr title="Serenity\Admin\Auth\LoginThrottle::load">load</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Controller/DashboardController.php.html#114"><abbr title="Serenity\Admin\Controller\DashboardController::attentionItems">attentionItems</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#659"><abbr title="Serenity\Admin\Controller\SettingsController::parseDate">parseDate</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#90"><abbr title="Serenity\Admin\Controller\ProfileController::validate">validate</abbr></a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#95"><abbr title="Serenity\Admin\Controller\UsersController::delete">delete</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#156"><abbr title="Serenity\Admin\Controller\ChannelsController::feedUrl">feedUrl</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#107"><abbr title="Serenity\Admin\Controller\ChannelsController::delete">delete</abbr></a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#151"><abbr title="Serenity\Admin\Controller\ReviewsController::commitImport">commitImport</abbr></a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Review/Import/CsvParser.php.html#24"><abbr title="Serenity\Admin\Review\Import\CsvParser::parse">parse</abbr></a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Controller/BookingsController.php.html#186"><abbr title="Serenity\Admin\Controller\BookingsController::cancel">cancel</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#116"><abbr title="Serenity\Admin\Controller\ReviewsController::import">import</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="LogViewer.php.html#53"><abbr title="Serenity\Admin\LogViewer::classifyLine">classifyLine</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#37"><abbr title="Serenity\Admin\Controller\ProfileController::index">index</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#474"><abbr title="Serenity\Admin\Controller\SettingsController::saveGalleryImage">saveGalleryImage</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#119"><abbr title="Serenity\Admin\Controller\UsersController::validate">validate</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#66"><abbr title="Serenity\Admin\Upload\PhotoStore::resolveName">resolveName</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/SettingsController.php.html#125"><abbr title="Serenity\Admin\Controller\SettingsController::saveContact">saveContact</abbr></a></td><td class="text-right">70</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#153"><abbr title="Serenity\Admin\Controller\UsersController::errorMessage">errorMessage</abbr></a></td><td class="text-right">62</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#124"><abbr title="Serenity\Admin\Controller\ProfileController::errorMessage">errorMessage</abbr></a></td><td class="text-right">48</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#170"><abbr title="Serenity\Admin\Controller\ChannelsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">26</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#119"><abbr title="Serenity\Admin\Controller\UsersController::validate">validate</abbr></a></td><td class="text-right">17</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#284"><abbr title="Serenity\Admin\Controller\ReviewsController::importNotice">importNotice</abbr></a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#299"><abbr title="Serenity\Admin\Controller\ReviewsController::importError">importError</abbr></a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="Review/Import/CsvParser.php.html#24"><abbr title="Serenity\Admin\Review\Import\CsvParser::parse">parse</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#90"><abbr title="Serenity\Admin\Controller\ProfileController::validate">validate</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#324"><abbr title="Serenity\Admin\Controller\SettingsController::savePayment">savePayment</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#371"><abbr title="Serenity\Admin\Controller\SettingsController::saveFeature">saveFeature</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#569"><abbr title="Serenity\Admin\Controller\SettingsController::subStr">subStr</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/DashboardController.php.html#114"><abbr title="Serenity\Admin\Controller\DashboardController::attentionItems">attentionItems</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#254"><abbr title="Serenity\Admin\Controller\ReviewsController::sanitizeRow">sanitizeRow</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="LogViewer.php.html#53"><abbr title="Serenity\Admin\LogViewer::classifyLine">classifyLine</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#419"><abbr title="Serenity\Admin\Controller\SettingsController::saveEvent">saveEvent</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#151"><abbr title="Serenity\Admin\Controller\ReviewsController::commitImport">commitImport</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#282"><abbr title="Serenity\Admin\Controller\SettingsController::saveTouristTax">saveTouristTax</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Controller/UsersController.php.html#95"><abbr title="Serenity\Admin\Controller\UsersController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/ReviewsController.php.html#116"><abbr title="Serenity\Admin\Controller\ReviewsController::import">import</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#296"><abbr title="Serenity\Admin\Controller\SettingsController::deleteTouristTax">deleteTouristTax</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#342"><abbr title="Serenity\Admin\Controller\SettingsController::deletePayment">deletePayment</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#391"><abbr title="Serenity\Admin\Controller\SettingsController::deleteFeature">deleteFeature</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#438"><abbr title="Serenity\Admin\Controller\SettingsController::deleteEvent">deleteEvent</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#540"><abbr title="Serenity\Admin\Controller\SettingsController::deleteGalleryImage">deleteGalleryImage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/BookingsController.php.html#186"><abbr title="Serenity\Admin\Controller\BookingsController::cancel">cancel</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Auth/Csrf.php.html#26"><abbr title="Serenity\Admin\Auth\Csrf::token">token</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Auth/LoginThrottle.php.html#97"><abbr title="Serenity\Admin\Auth\LoginThrottle::load">load</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Auth/RememberMe.php.html#128"><abbr title="Serenity\Admin\Auth\RememberMe::generate">generate</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#156"><abbr title="Serenity\Admin\Controller\ChannelsController::feedUrl">feedUrl</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Controller/AuthController.php.html#45"><abbr title="Serenity\Admin\Controller\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#639"><abbr title="Serenity\Admin\Controller\SettingsController::isValidTime">isValidTime</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#659"><abbr title="Serenity\Admin\Controller\SettingsController::parseDate">parseDate</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/ChannelsController.php.html#107"><abbr title="Serenity\Admin\Controller\ChannelsController::delete">delete</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Upload/PhotoStore.php.html#66"><abbr title="Serenity\Admin\Upload\PhotoStore::resolveName">resolveName</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/BookingsController.php.html#244"><abbr title="Serenity\Admin\Controller\BookingsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/ProfileController.php.html#37"><abbr title="Serenity\Admin\Controller\ProfileController::index">index</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/SettingsController.php.html#474"><abbr title="Serenity\Admin\Controller\SettingsController::saveGalleryImage">saveGalleryImage</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.12</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.8</a> and <a href="https://phpunit.de/">PHPUnit 11.5.55</a> at Sun Jul 12 21:29:40 CEST 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../../_js/jquery.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../../../_js/d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../../../_js/nv.d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,1,2,7,11,14], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([22,1,1,2,2,2,0,5,5,12,16,152], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,13,"<a href=\"Auth\/AdminGate.php.html#21\">Serenity\\Admin\\Auth\\AdminGate<\/a>"],[100,5,"<a href=\"Auth\/ArraySessionStore.php.html#13\">Serenity\\Admin\\Auth\\ArraySessionStore<\/a>"],[100,5,"<a href=\"Auth\/Authenticator.php.html#18\">Serenity\\Admin\\Auth\\Authenticator<\/a>"],[81.81818181818183,9,"<a href=\"Auth\/Csrf.php.html#13\">Serenity\\Admin\\Auth\\Csrf<\/a>"],[100,6,"<a href=\"Auth\/Guard.php.html#15\">Serenity\\Admin\\Auth\\Guard<\/a>"],[94.28571428571428,23,"<a href=\"Auth\/LoginThrottle.php.html#15\">Serenity\\Admin\\Auth\\LoginThrottle<\/a>"],[86.66666666666667,6,"<a href=\"Auth\/NativeSessionStore.php.html#16\">Serenity\\Admin\\Auth\\NativeSessionStore<\/a>"],[100,4,"<a href=\"Auth\/Rbac.php.html#23\">Serenity\\Admin\\Auth\\Rbac<\/a>"],[90.38461538461539,20,"<a href=\"Auth\/RememberMe.php.html#23\">Serenity\\Admin\\Auth\\RememberMe<\/a>"],[100,14,"<a href=\"Auth\/Session.php.html#12\">Serenity\\Admin\\Auth\\Session<\/a>"],[100,7,"<a href=\"Availability\/Stay.php.html#20\">Serenity\\Admin\\Availability\\Stay<\/a>"],[100,17,"<a href=\"Availability\/StayGrouper.php.html#20\">Serenity\\Admin\\Availability\\StayGrouper<\/a>"],[100,6,"<a href=\"Calendar\/Channel\/ChannelDirectory.php.html#20\">Serenity\\Admin\\Calendar\\Channel\\ChannelDirectory<\/a>"],[97.36842105263158,20,"<a href=\"Controller\/AuthController.php.html#24\">Serenity\\Admin\\Controller\\AuthController<\/a>"],[95,21,"<a href=\"Controller\/AvailabilityController.php.html#24\">Serenity\\Admin\\Controller\\AvailabilityController<\/a>"],[96.19047619047619,25,"<a href=\"Controller\/BookingsController.php.html#31\">Serenity\\Admin\\Controller\\BookingsController<\/a>"],[86.76470588235294,41,"<a href=\"Controller\/ChannelsController.php.html#27\">Serenity\\Admin\\Controller\\ChannelsController<\/a>"],[100,3,"<a href=\"Controller\/Controller.php.html#17\">Serenity\\Admin\\Controller\\Controller<\/a>"],[92,22,"<a href=\"Controller\/DashboardController.php.html#35\">Serenity\\Admin\\Controller\\DashboardController<\/a>"],[100,4,"<a href=\"Controller\/LogsController.php.html#18\">Serenity\\Admin\\Controller\\LogsController<\/a>"],[75,33,"<a href=\"Controller\/ProfileController.php.html#24\">Serenity\\Admin\\Controller\\ProfileController<\/a>"],[87.90322580645162,55,"<a href=\"Controller\/ReviewsController.php.html#24\">Serenity\\Admin\\Controller\\ReviewsController<\/a>"],[60.431654676258994,119,"<a href=\"Controller\/SettingsController.php.html#23\">Serenity\\Admin\\Controller\\SettingsController<\/a>"],[79.71014492753623,48,"<a href=\"Controller\/UsersController.php.html#26\">Serenity\\Admin\\Controller\\UsersController<\/a>"],[99.40828402366864,60,"<a href=\"Dashboard.php.html#18\">Serenity\\Admin\\Dashboard<\/a>"],[93.33333333333333,19,"<a href=\"LogViewer.php.html#16\">Serenity\\Admin\\LogViewer<\/a>"],[96.42857142857143,4,"<a href=\"Review\/CsvExporter.php.html#16\">Serenity\\Admin\\Review\\CsvExporter<\/a>"],[95.55555555555556,26,"<a href=\"Review\/Import\/AirbnbJsonParser.php.html#22\">Serenity\\Admin\\Review\\Import\\AirbnbJsonParser<\/a>"],[87.09677419354838,13,"<a href=\"Review\/Import\/CsvParser.php.html#17\">Serenity\\Admin\\Review\\Import\\CsvParser<\/a>"],[100,15,"<a href=\"Review\/Import\/Diff.php.html#18\">Serenity\\Admin\\Review\\Import\\Diff<\/a>"],[100,4,"<a href=\"Review\/Import\/Parsers.php.html#12\">Serenity\\Admin\\Review\\Import\\Parsers<\/a>"],[100,3,"<a href=\"SourceCalendarBuilder.php.html#20\">Serenity\\Admin\\SourceCalendarBuilder<\/a>"],[83.33333333333334,11,"<a href=\"Upload\/FileUpload.php.html#13\">Serenity\\Admin\\Upload\\FileUpload<\/a>"],[86.66666666666667,22,"<a href=\"Upload\/PhotoStore.php.html#19\">Serenity\\Admin\\Upload\\PhotoStore<\/a>"],[97.77777777777777,20,"<a href=\"UserProvisioner.php.html#20\">Serenity\\Admin\\UserProvisioner<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Auth\/AdminGate.php.html#23\">Serenity\\Admin\\Auth\\AdminGate::__construct<\/a>"],[100,9,"<a href=\"Auth\/AdminGate.php.html#31\">Serenity\\Admin\\Auth\\AdminGate::admit<\/a>"],[100,3,"<a href=\"Auth\/AdminGate.php.html#66\">Serenity\\Admin\\Auth\\AdminGate::reauthenticate<\/a>"],[100,1,"<a href=\"Auth\/ArraySessionStore.php.html#20\">Serenity\\Admin\\Auth\\ArraySessionStore::get<\/a>"],[100,1,"<a href=\"Auth\/ArraySessionStore.php.html#26\">Serenity\\Admin\\Auth\\ArraySessionStore::set<\/a>"],[100,1,"<a href=\"Auth\/ArraySessionStore.php.html#32\">Serenity\\Admin\\Auth\\ArraySessionStore::clear<\/a>"],[100,1,"<a href=\"Auth\/ArraySessionStore.php.html#38\">Serenity\\Admin\\Auth\\ArraySessionStore::regenerateId<\/a>"],[100,1,"<a href=\"Auth\/ArraySessionStore.php.html#47\">Serenity\\Admin\\Auth\\ArraySessionStore::regenerationCount<\/a>"],[100,1,"<a href=\"Auth\/Authenticator.php.html#20\">Serenity\\Admin\\Auth\\Authenticator::__construct<\/a>"],[100,4,"<a href=\"Auth\/Authenticator.php.html#32\">Serenity\\Admin\\Auth\\Authenticator::attempt<\/a>"],[100,1,"<a href=\"Auth\/Csrf.php.html#17\">Serenity\\Admin\\Auth\\Csrf::__construct<\/a>"],[71.42857142857143,4,"<a href=\"Auth\/Csrf.php.html#26\">Serenity\\Admin\\Auth\\Csrf::token<\/a>"],[100,4,"<a href=\"Auth\/Csrf.php.html#49\">Serenity\\Admin\\Auth\\Csrf::validate<\/a>"],[100,1,"<a href=\"Auth\/Guard.php.html#20\">Serenity\\Admin\\Auth\\Guard::__construct<\/a>"],[100,1,"<a href=\"Auth\/Guard.php.html#30\">Serenity\\Admin\\Auth\\Guard::check<\/a>"],[100,3,"<a href=\"Auth\/Guard.php.html#38\">Serenity\\Admin\\Auth\\Guard::user<\/a>"],[100,1,"<a href=\"Auth\/Guard.php.html#54\">Serenity\\Admin\\Auth\\Guard::can<\/a>"],[100,1,"<a href=\"Auth\/LoginThrottle.php.html#26\">Serenity\\Admin\\Auth\\LoginThrottle::__construct<\/a>"],[100,4,"<a href=\"Auth\/LoginThrottle.php.html#36\">Serenity\\Admin\\Auth\\LoginThrottle::lockedFor<\/a>"],[100,7,"<a href=\"Auth\/LoginThrottle.php.html#55\">Serenity\\Admin\\Auth\\LoginThrottle::recordFailure<\/a>"],[100,1,"<a href=\"Auth\/LoginThrottle.php.html#82\">Serenity\\Admin\\Auth\\LoginThrottle::clear<\/a>"],[100,1,"<a href=\"Auth\/LoginThrottle.php.html#89\">Serenity\\Admin\\Auth\\LoginThrottle::key<\/a>"],[71.42857142857143,4,"<a href=\"Auth\/LoginThrottle.php.html#97\">Serenity\\Admin\\Auth\\LoginThrottle::load<\/a>"],[100,1,"<a href=\"Auth\/LoginThrottle.php.html#114\">Serenity\\Admin\\Auth\\LoginThrottle::save<\/a>"],[100,4,"<a href=\"Auth\/LoginThrottle.php.html#127\">Serenity\\Admin\\Auth\\LoginThrottle::prune<\/a>"],[90.9090909090909,2,"<a href=\"Auth\/NativeSessionStore.php.html#24\">Serenity\\Admin\\Auth\\NativeSessionStore::__construct<\/a>"],[100,1,"<a href=\"Auth\/NativeSessionStore.php.html#41\">Serenity\\Admin\\Auth\\NativeSessionStore::get<\/a>"],[100,1,"<a href=\"Auth\/NativeSessionStore.php.html#47\">Serenity\\Admin\\Auth\\NativeSessionStore::set<\/a>"],[100,1,"<a href=\"Auth\/NativeSessionStore.php.html#53\">Serenity\\Admin\\Auth\\NativeSessionStore::clear<\/a>"],[0,1,"<a href=\"Auth\/NativeSessionStore.php.html#59\">Serenity\\Admin\\Auth\\NativeSessionStore::regenerateId<\/a>"],[100,3,"<a href=\"Auth\/Rbac.php.html#45\">Serenity\\Admin\\Auth\\Rbac::can<\/a>"],[100,1,"<a href=\"Auth\/Rbac.php.html#59\">Serenity\\Admin\\Auth\\Rbac::roles<\/a>"],[100,1,"<a href=\"Auth\/RememberMe.php.html#30\">Serenity\\Admin\\Auth\\RememberMe::__construct<\/a>"],[100,1,"<a href=\"Auth\/RememberMe.php.html#39\">Serenity\\Admin\\Auth\\RememberMe::issue<\/a>"],[100,5,"<a href=\"Auth\/RememberMe.php.html#61\">Serenity\\Admin\\Auth\\RememberMe::resolve<\/a>"],[100,1,"<a href=\"Auth\/RememberMe.php.html#85\">Serenity\\Admin\\Auth\\RememberMe::rotate<\/a>"],[100,3,"<a href=\"Auth\/RememberMe.php.html#101\">Serenity\\Admin\\Auth\\RememberMe::clear<\/a>"],[100,1,"<a href=\"Auth\/RememberMe.php.html#118\">Serenity\\Admin\\Auth\\RememberMe::purgeExpired<\/a>"],[16.666666666666664,2,"<a href=\"Auth\/RememberMe.php.html#128\">Serenity\\Admin\\Auth\\RememberMe::generate<\/a>"],[100,5,"<a href=\"Auth\/RememberMe.php.html#144\">Serenity\\Admin\\Auth\\RememberMe::parse<\/a>"],[100,1,"<a href=\"Auth\/RememberMe.php.html#154\">Serenity\\Admin\\Auth\\RememberMe::cookie<\/a>"],[100,1,"<a href=\"Auth\/Session.php.html#25\">Serenity\\Admin\\Auth\\Session::__construct<\/a>"],[100,1,"<a href=\"Auth\/Session.php.html#37\">Serenity\\Admin\\Auth\\Session::login<\/a>"],[100,1,"<a href=\"Auth\/Session.php.html#49\">Serenity\\Admin\\Auth\\Session::logout<\/a>"],[100,1,"<a href=\"Auth\/Session.php.html#54\">Serenity\\Admin\\Auth\\Session::isAuthenticated<\/a>"],[100,2,"<a href=\"Auth\/Session.php.html#62\">Serenity\\Admin\\Auth\\Session::userId<\/a>"],[100,2,"<a href=\"Auth\/Session.php.html#72\">Serenity\\Admin\\Auth\\Session::role<\/a>"],[100,6,"<a href=\"Auth\/Session.php.html#88\">Serenity\\Admin\\Auth\\Session::enforceTimeout<\/a>"],[100,1,"<a href=\"Availability\/Stay.php.html#34\">Serenity\\Admin\\Availability\\Stay::__construct<\/a>"],[100,1,"<a href=\"Availability\/Stay.php.html#49\">Serenity\\Admin\\Availability\\Stay::isExternal<\/a>"],[100,1,"<a href=\"Availability\/Stay.php.html#55\">Serenity\\Admin\\Availability\\Stay::isBlock<\/a>"],[100,2,"<a href=\"Availability\/Stay.php.html#61\">Serenity\\Admin\\Availability\\Stay::channelSlug<\/a>"],[100,2,"<a href=\"Availability\/Stay.php.html#73\">Serenity\\Admin\\Availability\\Stay::nightDates<\/a>"],[100,4,"<a href=\"Availability\/StayGrouper.php.html#28\">Serenity\\Admin\\Availability\\StayGrouper::group<\/a>"],[100,8,"<a href=\"Availability\/StayGrouper.php.html#48\">Serenity\\Admin\\Availability\\StayGrouper::segments<\/a>"],[100,4,"<a href=\"Availability\/StayGrouper.php.html#84\">Serenity\\Admin\\Availability\\StayGrouper::key<\/a>"],[100,1,"<a href=\"Availability\/StayGrouper.php.html#97\">Serenity\\Admin\\Availability\\StayGrouper::toStay<\/a>"],[100,2,"<a href=\"Calendar\/Channel\/ChannelDirectory.php.html#28\">Serenity\\Admin\\Calendar\\Channel\\ChannelDirectory::__construct<\/a>"],[100,1,"<a href=\"Calendar\/Channel\/ChannelDirectory.php.html#39\">Serenity\\Admin\\Calendar\\Channel\\ChannelDirectory::label<\/a>"],[100,2,"<a href=\"Calendar\/Channel\/ChannelDirectory.php.html#49\">Serenity\\Admin\\Calendar\\Channel\\ChannelDirectory::reservationUrl<\/a>"],[100,1,"<a href=\"Calendar\/Channel\/ChannelDirectory.php.html#65\">Serenity\\Admin\\Calendar\\Channel\\ChannelDirectory::meta<\/a>"],[100,1,"<a href=\"Controller\/AuthController.php.html#26\">Serenity\\Admin\\Controller\\AuthController::__construct<\/a>"],[66.66666666666666,3,"<a href=\"Controller\/AuthController.php.html#45\">Serenity\\Admin\\Controller\\AuthController::showLogin<\/a>"],[100,9,"<a href=\"Controller\/AuthController.php.html#63\">Serenity\\Admin\\Controller\\AuthController::login<\/a>"],[100,1,"<a href=\"Controller\/AuthController.php.html#103\">Serenity\\Admin\\Controller\\AuthController::logout<\/a>"],[100,5,"<a href=\"Controller\/AuthController.php.html#115\">Serenity\\Admin\\Controller\\AuthController::verifyRecaptcha<\/a>"],[100,1,"<a href=\"Controller\/AuthController.php.html#130\">Serenity\\Admin\\Controller\\AuthController::renderLogin<\/a>"],[100,1,"<a href=\"Controller\/AvailabilityController.php.html#29\">Serenity\\Admin\\Controller\\AvailabilityController::__construct<\/a>"],[93.33333333333333,4,"<a href=\"Controller\/AvailabilityController.php.html#43\">Serenity\\Admin\\Controller\\AvailabilityController::index<\/a>"],[100,4,"<a href=\"Controller\/AvailabilityController.php.html#76\">Serenity\\Admin\\Controller\\AvailabilityController::block<\/a>"],[100,2,"<a href=\"Controller\/AvailabilityController.php.html#96\">Serenity\\Admin\\Controller\\AvailabilityController::unblock<\/a>"],[92.85714285714286,9,"<a href=\"Controller\/AvailabilityController.php.html#117\">Serenity\\Admin\\Controller\\AvailabilityController::range<\/a>"],[100,1,"<a href=\"Controller\/AvailabilityController.php.html#141\">Serenity\\Admin\\Controller\\AvailabilityController::isValidDate<\/a>"],[100,1,"<a href=\"Controller\/BookingsController.php.html#33\">Serenity\\Admin\\Controller\\BookingsController::__construct<\/a>"],[100,1,"<a href=\"Controller\/BookingsController.php.html#53\">Serenity\\Admin\\Controller\\BookingsController::index<\/a>"],[100,3,"<a href=\"Controller\/BookingsController.php.html#74\">Serenity\\Admin\\Controller\\BookingsController::directRows<\/a>"],[100,3,"<a href=\"Controller\/BookingsController.php.html#109\">Serenity\\Admin\\Controller\\BookingsController::externalRows<\/a>"],[100,2,"<a href=\"Controller\/BookingsController.php.html#145\">Serenity\\Admin\\Controller\\BookingsController::show<\/a>"],[91.66666666666666,3,"<a href=\"Controller\/BookingsController.php.html#163\">Serenity\\Admin\\Controller\\BookingsController::confirm<\/a>"],[88.23529411764706,5,"<a href=\"Controller\/BookingsController.php.html#186\">Serenity\\Admin\\Controller\\BookingsController::cancel<\/a>"],[100,2,"<a href=\"Controller\/BookingsController.php.html#220\">Serenity\\Admin\\Controller\\BookingsController::id<\/a>"],[100,1,"<a href=\"Controller\/BookingsController.php.html#225\">Serenity\\Admin\\Controller\\BookingsController::cancelUrl<\/a>"],[100,2,"<a href=\"Controller\/BookingsController.php.html#234\">Serenity\\Admin\\Controller\\BookingsController::email<\/a>"],[66.66666666666666,2,"<a href=\"Controller\/BookingsController.php.html#244\">Serenity\\Admin\\Controller\\BookingsController::errorMessage<\/a>"],[100,1,"<a href=\"Controller\/ChannelsController.php.html#29\">Serenity\\Admin\\Controller\\ChannelsController::__construct<\/a>"],[100,1,"<a href=\"Controller\/ChannelsController.php.html#39\">Serenity\\Admin\\Controller\\ChannelsController::index<\/a>"],[100,9,"<a href=\"Controller\/ChannelsController.php.html#55\">Serenity\\Admin\\Controller\\ChannelsController::save<\/a>"],[100,4,"<a href=\"Controller\/ChannelsController.php.html#84\">Serenity\\Admin\\Controller\\ChannelsController::toggle<\/a>"],[85.71428571428571,3,"<a href=\"Controller\/ChannelsController.php.html#107\">Serenity\\Admin\\Controller\\ChannelsController::delete<\/a>"],[92.85714285714286,11,"<a href=\"Controller\/ChannelsController.php.html#126\">Serenity\\Admin\\Controller\\ChannelsController::validate<\/a>"],[83.33333333333334,4,"<a href=\"Controller\/ChannelsController.php.html#156\">Serenity\\Admin\\Controller\\ChannelsController::feedUrl<\/a>"],[33.33333333333333,8,"<a href=\"Controller\/ChannelsController.php.html#170\">Serenity\\Admin\\Controller\\ChannelsController::errorMessage<\/a>"],[100,1,"<a href=\"Controller\/Controller.php.html#19\">Serenity\\Admin\\Controller\\Controller::__construct<\/a>"],[100,1,"<a href=\"Controller\/Controller.php.html#33\">Serenity\\Admin\\Controller\\Controller::view<\/a>"],[100,1,"<a href=\"Controller\/Controller.php.html#53\">Serenity\\Admin\\Controller\\Controller::redirect<\/a>"],[100,1,"<a href=\"Controller\/DashboardController.php.html#46\">Serenity\\Admin\\Controller\\DashboardController::__construct<\/a>"],[100,2,"<a href=\"Controller\/DashboardController.php.html#62\">Serenity\\Admin\\Controller\\DashboardController::index<\/a>"],[75,10,"<a href=\"Controller\/DashboardController.php.html#114\">Serenity\\Admin\\Controller\\DashboardController::attentionItems<\/a>"],[100,5,"<a href=\"Controller\/DashboardController.php.html#168\">Serenity\\Admin\\Controller\\DashboardController::bookingRows<\/a>"],[100,2,"<a href=\"Controller\/DashboardController.php.html#204\">Serenity\\Admin\\Controller\\DashboardController::stayDates<\/a>"],[100,2,"<a href=\"Controller\/DashboardController.php.html#216\">Serenity\\Admin\\Controller\\DashboardController::shapeReviews<\/a>"],[100,4,"<a href=\"Controller\/LogsController.php.html#25\">Serenity\\Admin\\Controller\\LogsController::index<\/a>"],[100,1,"<a href=\"Controller\/ProfileController.php.html#28\">Serenity\\Admin\\Controller\\ProfileController::__construct<\/a>"],[88.88888888888889,2,"<a href=\"Controller\/ProfileController.php.html#37\">Serenity\\Admin\\Controller\\ProfileController::index<\/a>"],[94.11764705882352,9,"<a href=\"Controller\/ProfileController.php.html#58\">Serenity\\Admin\\Controller\\ProfileController::save<\/a>"],[77.77777777777779,11,"<a href=\"Controller\/ProfileController.php.html#90\">Serenity\\Admin\\Controller\\ProfileController::validate<\/a>"],[27.27272727272727,10,"<a href=\"Controller\/ProfileController.php.html#124\">Serenity\\Admin\\Controller\\ProfileController::errorMessage<\/a>"],[100,1,"<a href=\"Controller\/ReviewsController.php.html#37\">Serenity\\Admin\\Controller\\ReviewsController::__construct<\/a>"],[100,1,"<a href=\"Controller\/ReviewsController.php.html#52\">Serenity\\Admin\\Controller\\ReviewsController::index<\/a>"],[100,5,"<a href=\"Controller\/ReviewsController.php.html#97\">Serenity\\Admin\\Controller\\ReviewsController::moderate<\/a>"],[88.23529411764706,6,"<a href=\"Controller\/ReviewsController.php.html#116\">Serenity\\Admin\\Controller\\ReviewsController::import<\/a>"],[86.66666666666667,8,"<a href=\"Controller\/ReviewsController.php.html#151\">Serenity\\Admin\\Controller\\ReviewsController::commitImport<\/a>"],[100,1,"<a href=\"Controller\/ReviewsController.php.html#183\">Serenity\\Admin\\Controller\\ReviewsController::export<\/a>"],[100,10,"<a href=\"Controller\/ReviewsController.php.html#212\">Serenity\\Admin\\Controller\\ReviewsController::previewRows<\/a>"],[66.66666666666666,8,"<a href=\"Controller\/ReviewsController.php.html#254\">Serenity\\Admin\\Controller\\ReviewsController::sanitizeRow<\/a>"],[100,2,"<a href=\"Controller\/ReviewsController.php.html#274\">Serenity\\Admin\\Controller\\ReviewsController::rowStr<\/a>"],[33.33333333333333,6,"<a href=\"Controller\/ReviewsController.php.html#284\">Serenity\\Admin\\Controller\\ReviewsController::importNotice<\/a>"],[42.857142857142854,7,"<a href=\"Controller\/ReviewsController.php.html#299\">Serenity\\Admin\\Controller\\ReviewsController::importError<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#30\">Serenity\\Admin\\Controller\\SettingsController::__construct<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#41\">Serenity\\Admin\\Controller\\SettingsController::index<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#49\">Serenity\\Admin\\Controller\\SettingsController::pricing<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#57\">Serenity\\Admin\\Controller\\SettingsController::pricingView<\/a>"],[92,10,"<a href=\"Controller\/SettingsController.php.html#67\">Serenity\\Admin\\Controller\\SettingsController::savePricing<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#109\">Serenity\\Admin\\Controller\\SettingsController::contact<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#115\">Serenity\\Admin\\Controller\\SettingsController::contactView<\/a>"],[8.571428571428571,9,"<a href=\"Controller\/SettingsController.php.html#125\">Serenity\\Admin\\Controller\\SettingsController::saveContact<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#175\">Serenity\\Admin\\Controller\\SettingsController::cancellationPolicy<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#181\">Serenity\\Admin\\Controller\\SettingsController::cancellationPolicyView<\/a>"],[91.66666666666666,4,"<a href=\"Controller\/SettingsController.php.html#191\">Serenity\\Admin\\Controller\\SettingsController::saveCancellationPolicy<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#214\">Serenity\\Admin\\Controller\\SettingsController::seasons<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#219\">Serenity\\Admin\\Controller\\SettingsController::seasonsView<\/a>"],[100,5,"<a href=\"Controller\/SettingsController.php.html#229\">Serenity\\Admin\\Controller\\SettingsController::saveSeason<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#254\">Serenity\\Admin\\Controller\\SettingsController::deleteSeason<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#267\">Serenity\\Admin\\Controller\\SettingsController::touristTax<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#272\">Serenity\\Admin\\Controller\\SettingsController::touristTaxView<\/a>"],[66.66666666666666,6,"<a href=\"Controller\/SettingsController.php.html#282\">Serenity\\Admin\\Controller\\SettingsController::saveTouristTax<\/a>"],[0,2,"<a href=\"Controller\/SettingsController.php.html#296\">Serenity\\Admin\\Controller\\SettingsController::deleteTouristTax<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#309\">Serenity\\Admin\\Controller\\SettingsController::payment<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#314\">Serenity\\Admin\\Controller\\SettingsController::paymentView<\/a>"],[0,3,"<a href=\"Controller\/SettingsController.php.html#324\">Serenity\\Admin\\Controller\\SettingsController::savePayment<\/a>"],[0,2,"<a href=\"Controller\/SettingsController.php.html#342\">Serenity\\Admin\\Controller\\SettingsController::deletePayment<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#355\">Serenity\\Admin\\Controller\\SettingsController::features<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#360\">Serenity\\Admin\\Controller\\SettingsController::featuresView<\/a>"],[0,3,"<a href=\"Controller\/SettingsController.php.html#371\">Serenity\\Admin\\Controller\\SettingsController::saveFeature<\/a>"],[0,2,"<a href=\"Controller\/SettingsController.php.html#391\">Serenity\\Admin\\Controller\\SettingsController::deleteFeature<\/a>"],[0,1,"<a href=\"Controller\/SettingsController.php.html#404\">Serenity\\Admin\\Controller\\SettingsController::events<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#409\">Serenity\\Admin\\Controller\\SettingsController::eventsView<\/a>"],[45.45454545454545,5,"<a href=\"Controller\/SettingsController.php.html#419\">Serenity\\Admin\\Controller\\SettingsController::saveEvent<\/a>"],[0,2,"<a href=\"Controller\/SettingsController.php.html#438\">Serenity\\Admin\\Controller\\SettingsController::deleteEvent<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#451\">Serenity\\Admin\\Controller\\SettingsController::gallery<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#458\">Serenity\\Admin\\Controller\\SettingsController::galleryView<\/a>"],[88.88888888888889,2,"<a href=\"Controller\/SettingsController.php.html#474\">Serenity\\Admin\\Controller\\SettingsController::saveGalleryImage<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#497\">Serenity\\Admin\\Controller\\SettingsController::uploadPhoto<\/a>"],[100,4,"<a href=\"Controller\/SettingsController.php.html#521\">Serenity\\Admin\\Controller\\SettingsController::reorderGallery<\/a>"],[0,2,"<a href=\"Controller\/SettingsController.php.html#540\">Serenity\\Admin\\Controller\\SettingsController::deleteGalleryImage<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#553\">Serenity\\Admin\\Controller\\SettingsController::str<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#561\">Serenity\\Admin\\Controller\\SettingsController::strOrNull<\/a>"],[0,3,"<a href=\"Controller\/SettingsController.php.html#569\">Serenity\\Admin\\Controller\\SettingsController::subStr<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#578\">Serenity\\Admin\\Controller\\SettingsController::intOrNull<\/a>"],[100,3,"<a href=\"Controller\/SettingsController.php.html#586\">Serenity\\Admin\\Controller\\SettingsController::positiveIntOrNull<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#598\">Serenity\\Admin\\Controller\\SettingsController::nonNegInt<\/a>"],[100,2,"<a href=\"Controller\/SettingsController.php.html#606\">Serenity\\Admin\\Controller\\SettingsController::floatOrNull<\/a>"],[90.9090909090909,6,"<a href=\"Controller\/SettingsController.php.html#619\">Serenity\\Admin\\Controller\\SettingsController::days<\/a>"],[66.66666666666666,3,"<a href=\"Controller\/SettingsController.php.html#639\">Serenity\\Admin\\Controller\\SettingsController::isValidTime<\/a>"],[100,5,"<a href=\"Controller\/SettingsController.php.html#648\">Serenity\\Admin\\Controller\\SettingsController::isValidMd<\/a>"],[75,3,"<a href=\"Controller\/SettingsController.php.html#659\">Serenity\\Admin\\Controller\\SettingsController::parseDate<\/a>"],[100,1,"<a href=\"Controller\/SettingsController.php.html#669\">Serenity\\Admin\\Controller\\SettingsController::moment<\/a>"],[100,1,"<a href=\"Controller\/UsersController.php.html#30\">Serenity\\Admin\\Controller\\UsersController::__construct<\/a>"],[100,1,"<a href=\"Controller\/UsersController.php.html#39\">Serenity\\Admin\\Controller\\UsersController::index<\/a>"],[95.23809523809523,12,"<a href=\"Controller\/UsersController.php.html#56\">Serenity\\Admin\\Controller\\UsersController::save<\/a>"],[80,6,"<a href=\"Controller\/UsersController.php.html#95\">Serenity\\Admin\\Controller\\UsersController::delete<\/a>"],[88.88888888888889,17,"<a href=\"Controller\/UsersController.php.html#119\">Serenity\\Admin\\Controller\\UsersController::validate<\/a>"],[25,11,"<a href=\"Controller\/UsersController.php.html#153\">Serenity\\Admin\\Controller\\UsersController::errorMessage<\/a>"],[95.23809523809523,4,"<a href=\"Dashboard.php.html#40\">Serenity\\Admin\\Dashboard::decorateEvents<\/a>"],[100,3,"<a href=\"Dashboard.php.html#82\">Serenity\\Admin\\Dashboard::buildEventDateMap<\/a>"],[100,3,"<a href=\"Dashboard.php.html#123\">Serenity\\Admin\\Dashboard::buildCalendarMonths<\/a>"],[100,2,"<a href=\"Dashboard.php.html#172\">Serenity\\Admin\\Dashboard::openBookings<\/a>"],[100,4,"<a href=\"Dashboard.php.html#190\">Serenity\\Admin\\Dashboard::upcomingBookedNights<\/a>"],[100,6,"<a href=\"Dashboard.php.html#218\">Serenity\\Admin\\Dashboard::nextEvent<\/a>"],[100,3,"<a href=\"Dashboard.php.html#244\">Serenity\\Admin\\Dashboard::availableNights<\/a>"],[100,1,"<a href=\"Dashboard.php.html#265\">Serenity\\Admin\\Dashboard::upcomingEvents<\/a>"],[100,3,"<a href=\"Dashboard.php.html#298\">Serenity\\Admin\\Dashboard::buildCalendarSources<\/a>"],[100,3,"<a href=\"Dashboard.php.html#337\">Serenity\\Admin\\Dashboard::classify<\/a>"],[100,6,"<a href=\"Dashboard.php.html#362\">Serenity\\Admin\\Dashboard::fallbackChannelIndex<\/a>"],[100,5,"<a href=\"Dashboard.php.html#391\">Serenity\\Admin\\Dashboard::stayTip<\/a>"],[100,7,"<a href=\"Dashboard.php.html#418\">Serenity\\Admin\\Dashboard::bookingLines<\/a>"],[100,1,"<a href=\"Dashboard.php.html#446\">Serenity\\Admin\\Dashboard::formatDay<\/a>"],[100,2,"<a href=\"Dashboard.php.html#452\">Serenity\\Admin\\Dashboard::plural<\/a>"],[100,7,"<a href=\"Dashboard.php.html#464\">Serenity\\Admin\\Dashboard::orderLegend<\/a>"],[100,2,"<a href=\"LogViewer.php.html#28\">Serenity\\Admin\\LogViewer::loadLogs<\/a>"],[88.23529411764706,10,"<a href=\"LogViewer.php.html#53\">Serenity\\Admin\\LogViewer::classifyLine<\/a>"],[93.75,7,"<a href=\"LogViewer.php.html#94\">Serenity\\Admin\\LogViewer::readReversed<\/a>"],[96.42857142857143,4,"<a href=\"Review\/CsvExporter.php.html#28\">Serenity\\Admin\\Review\\CsvExporter::toCsv<\/a>"],[100,4,"<a href=\"Review\/Import\/AirbnbJsonParser.php.html#34\">Serenity\\Admin\\Review\\Import\\AirbnbJsonParser::supports<\/a>"],[95,20,"<a href=\"Review\/Import\/AirbnbJsonParser.php.html#45\">Serenity\\Admin\\Review\\Import\\AirbnbJsonParser::parse<\/a>"],[100,2,"<a href=\"Review\/Import\/AirbnbJsonParser.php.html#113\">Serenity\\Admin\\Review\\Import\\AirbnbJsonParser::str<\/a>"],[100,1,"<a href=\"Review\/Import\/CsvParser.php.html#19\">Serenity\\Admin\\Review\\Import\\CsvParser::supports<\/a>"],[86.66666666666667,12,"<a href=\"Review\/Import\/CsvParser.php.html#24\">Serenity\\Admin\\Review\\Import\\CsvParser::parse<\/a>"],[100,9,"<a href=\"Review\/Import\/Diff.php.html#27\">Serenity\\Admin\\Review\\Import\\Diff::compute<\/a>"],[100,6,"<a href=\"Review\/Import\/Diff.php.html#55\">Serenity\\Admin\\Review\\Import\\Diff::incoming<\/a>"],[100,1,"<a href=\"Review\/Import\/Parsers.php.html#17\">Serenity\\Admin\\Review\\Import\\Parsers::all<\/a>"],[100,3,"<a href=\"Review\/Import\/Parsers.php.html#28\">Serenity\\Admin\\Review\\Import\\Parsers::forFile<\/a>"],[100,1,"<a href=\"SourceCalendarBuilder.php.html#22\">Serenity\\Admin\\SourceCalendarBuilder::__construct<\/a>"],[100,1,"<a href=\"SourceCalendarBuilder.php.html#38\">Serenity\\Admin\\SourceCalendarBuilder::build<\/a>"],[100,1,"<a href=\"SourceCalendarBuilder.php.html#70\">Serenity\\Admin\\SourceCalendarBuilder::compose<\/a>"],[100,1,"<a href=\"Upload\/FileUpload.php.html#15\">Serenity\\Admin\\Upload\\FileUpload::__construct<\/a>"],[90,9,"<a href=\"Upload\/FileUpload.php.html#26\">Serenity\\Admin\\Upload\\FileUpload::read<\/a>"],[0,1,"<a href=\"Upload\/FileUpload.php.html#44\">Serenity\\Admin\\Upload\\FileUpload::isUploaded<\/a>"],[100,1,"<a href=\"Upload\/PhotoStore.php.html#25\">Serenity\\Admin\\Upload\\PhotoStore::__construct<\/a>"],[93.75,15,"<a href=\"Upload\/PhotoStore.php.html#35\">Serenity\\Admin\\Upload\\PhotoStore::store<\/a>"],[88.88888888888889,3,"<a href=\"Upload\/PhotoStore.php.html#66\">Serenity\\Admin\\Upload\\PhotoStore::resolveName<\/a>"],[100,1,"<a href=\"Upload\/PhotoStore.php.html#83\">Serenity\\Admin\\Upload\\PhotoStore::slug<\/a>"],[0,1,"<a href=\"Upload\/PhotoStore.php.html#90\">Serenity\\Admin\\Upload\\PhotoStore::isUploaded<\/a>"],[0,1,"<a href=\"Upload\/PhotoStore.php.html#95\">Serenity\\Admin\\Upload\\PhotoStore::move<\/a>"],[100,1,"<a href=\"UserProvisioner.php.html#25\">Serenity\\Admin\\UserProvisioner::__construct<\/a>"],[100,7,"<a href=\"UserProvisioner.php.html#37\">Serenity\\Admin\\UserProvisioner::parseArgs<\/a>"],[0,1,"<a href=\"UserProvisioner.php.html#70\">Serenity\\Admin\\UserProvisioner::findByEmail<\/a>"],[100,3,"<a href=\"UserProvisioner.php.html#79\">Serenity\\Admin\\UserProvisioner::defaultUsername<\/a>"],[100,1,"<a href=\"UserProvisioner.php.html#84\">Serenity\\Admin\\UserProvisioner::isValidUsername<\/a>"],[100,7,"<a href=\"UserProvisioner.php.html#97\">Serenity\\Admin\\UserProvisioner::provision<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
