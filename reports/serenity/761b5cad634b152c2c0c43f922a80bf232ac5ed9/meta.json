@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "761b5cad634b152c2c0c43f922a80bf232ac5ed9",
+  "short_sha": "761b5cad63",
+  "committed_at": "2026-07-13T21:03:01Z",
+  "message": "refactor(templates): reorganise by area with a consistent partial convention",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/761b5cad634b152c2c0c43f922a80bf232ac5ed9",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}
