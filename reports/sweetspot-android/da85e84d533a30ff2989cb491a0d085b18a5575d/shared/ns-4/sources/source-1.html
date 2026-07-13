@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ErrorCategoryKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.stats</a>
+</div>
+
+<h1>Coverage Summary for Class: ErrorCategoryKt (today.sweetspot.data.stats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ErrorCategoryKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (47/47)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.stats
+&nbsp;
+&nbsp;import today.sweetspot.data.api.EntsoeException
+&nbsp;import today.sweetspot.data.api.HttpException
+&nbsp;import java.io.IOException
+&nbsp;import java.net.ConnectException
+&nbsp;import java.net.SocketTimeoutException
+&nbsp;import java.net.UnknownHostException
+&nbsp;
+&nbsp;/**
+&nbsp; * Categorises an exception into a short, stable error category string for stats collection.
+&nbsp; *
+&nbsp; * Categories:
+&nbsp; * - `HTTP_&lt;code&gt;` — HTTP error with specific status code (e.g. &quot;HTTP_503&quot;)
+&nbsp; * - `ENTSOE_ERROR` — ENTSO-E Acknowledgement error (HTTP 200 but error response body)
+&nbsp; * - `TIMEOUT` — Socket timeout
+&nbsp; * - `DNS` — DNS resolution failure
+&nbsp; * - `CONNECTION` — Connection refused or reset
+&nbsp; * - `IO` — Other I/O errors
+&nbsp; * - `PARSE` — JSON/XML/number parsing errors
+&nbsp; * - `UNKNOWN` — Anything else
+&nbsp; *
+&nbsp; * @param exception The exception to categorise.
+&nbsp; * @return A short category string suitable for stats reporting.
+&nbsp; */
+<b class="fc">&nbsp;fun categorise(exception: Exception): String = when (exception) {</b>
+<b class="fc">&nbsp;    is HttpException -&gt; &quot;HTTP_${exception.code}&quot;</b>
+<b class="fc">&nbsp;    is EntsoeException -&gt; &quot;ENTSOE_ERROR&quot;</b>
+<b class="fc">&nbsp;    is SocketTimeoutException -&gt; &quot;TIMEOUT&quot;</b>
+<b class="fc">&nbsp;    is UnknownHostException -&gt; &quot;DNS&quot;</b>
+<b class="fc">&nbsp;    is ConnectException -&gt; &quot;CONNECTION&quot;</b>
+<b class="fc">&nbsp;    is IOException -&gt; &quot;IO&quot;</b>
+<b class="fc">&nbsp;    is kotlinx.serialization.SerializationException,</b>
+<b class="fc">&nbsp;    is org.xmlpull.v1.XmlPullParserException,</b>
+<b class="fc">&nbsp;    is NumberFormatException -&gt; &quot;PARSE&quot;</b>
+<b class="fc">&nbsp;    else -&gt; &quot;UNKNOWN&quot;</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 13:55</div>
+</div>
+</body>
+</html>
