@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "7375f9802403b7e47c3c37c960fdfd86b46b34a9",
+  "short_sha": "7375f98024",
+  "committed_at": "2026-07-13T11:42:13Z",
+  "message": "docs: make code comments describe behaviour, not change history",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/7375f9802403b7e47c3c37c960fdfd86b46b34a9",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}
