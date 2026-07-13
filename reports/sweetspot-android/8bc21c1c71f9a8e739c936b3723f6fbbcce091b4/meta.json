@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "8bc21c1c71f9a8e739c936b3723f6fbbcce091b4",
+  "short_sha": "8bc21c1c71",
+  "committed_at": "2026-07-13T16:45:02Z",
+  "message": "chore: translate appliance-sorting UI strings into all app languages",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/8bc21c1c71f9a8e739c936b3723f6fbbcce091b4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
