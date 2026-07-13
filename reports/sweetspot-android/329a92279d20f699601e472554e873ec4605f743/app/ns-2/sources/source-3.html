@@ -1,0 +1,350 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > StatsReporterKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.stats</a>
+</div>
+
+<h1>Coverage Summary for Class: StatsReporterKt (today.sweetspot.data.stats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">StatsReporterKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.5%
+  </span>
+  <span class="absValue">
+    (198/199)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.stats
+&nbsp;
+&nbsp;import android.content.SharedPreferences
+&nbsp;import androidx.core.content.edit
+&nbsp;import kotlinx.serialization.json.JsonArray
+&nbsp;import kotlinx.serialization.json.JsonElement
+&nbsp;import kotlinx.serialization.json.JsonObject
+&nbsp;import kotlinx.serialization.json.JsonPrimitive
+&nbsp;import kotlinx.serialization.json.buildJsonObject
+&nbsp;import kotlinx.serialization.json.put
+&nbsp;import java.net.HttpURLConnection
+&nbsp;import java.net.URL
+&nbsp;
+&nbsp;/**
+&nbsp; * Reports accumulated API stats to the stats endpoint.
+&nbsp; *
+&nbsp; * Reads stats from the [collector], groups them by zone+source+device, encodes to JSON,
+&nbsp; * and POSTs to [REPORT_URL]. On success (HTTP 200), clears the local stats.
+&nbsp; * On failure, silently ignores — stats will be retried on the next daily check.
+&nbsp; *
+&nbsp; * Rate-limited to at most one report per [MIN_INTERVAL_MS] (24 hours).
+&nbsp; *
+&nbsp; * @param collector The stats collector to read from and clear on success.
+&nbsp; * @param prefs SharedPreferences for tracking the last report timestamp.
+&nbsp; * @param appVersion App version string for the report payload.
+&nbsp; * @param languageProvider Returns the current app language tag (e.g. &quot;en&quot;, &quot;nl&quot;, &quot;&quot; for system default).
+&nbsp; * @param statusProvider Returns the current payment status (&quot;trial&quot;, &quot;unlocked&quot;, or &quot;expired&quot;).
+&nbsp; * @param poster Sends the JSON payload and returns the HTTP status code. Defaults to the real
+&nbsp; *   [HttpStatsPoster]; tests inject a fake to drive the response-handling branches without a network.
+&nbsp; */
+&nbsp;class StatsReporter(
+&nbsp;    private val collector: StatsCollector,
+&nbsp;    private val prefs: SharedPreferences,
+&nbsp;    private val appVersion: String,
+&nbsp;    private val languageProvider: () -&gt; String = { &quot;&quot; },
+&nbsp;    private val statusProvider: () -&gt; String = { &quot;trial&quot; },
+&nbsp;    private val poster: StatsPoster = HttpStatsPoster(appVersion)
+&nbsp;) {
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /** Stats reporting endpoint. */
+&nbsp;        const val REPORT_URL = &quot;https://stats.sweetspot.today/report&quot;
+&nbsp;
+&nbsp;        /** Minimum interval between reports: 24 hours. */
+&nbsp;        const val MIN_INTERVAL_MS = 24 * 60 * 60 * 1000L
+&nbsp;
+&nbsp;        /** JSON payload format version. Bump when the payload structure changes. */
+&nbsp;        const val PAYLOAD_VERSION = 2
+&nbsp;
+&nbsp;        private const val KEY_LAST_REPORT_MS = &quot;stats_last_report_ms&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sends accumulated stats if the minimum interval has elapsed.
+&nbsp;     *
+&nbsp;     * This method is safe to call frequently — it no-ops if not enough time has passed
+&nbsp;     * since the last report, or if there are no records to send.
+&nbsp;     *
+&nbsp;     * On success (HTTP 200), clears data and records the timestamp.
+&nbsp;     * On client error (4xx, except 429), clears data — the payload is invalid and retrying
+&nbsp;     * would never succeed. On server error (5xx), rate limit (429), or network failure,
+&nbsp;     * keeps data for retry on the next daily check.
+&nbsp;     */
+&nbsp;    fun reportIfDue() {
+&nbsp;        if (!isReportDue()) return
+&nbsp;        val records = collector.readAll()
+&nbsp;        if (records.isEmpty()) return
+&nbsp;
+&nbsp;        val json = buildReportJson(records, appVersion, languageProvider(), statusProvider())
+&nbsp;        val code = try {
+&nbsp;            poster.post(json)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            return // Network error — keep data, retry next day
+&nbsp;        }
+&nbsp;        when (reportOutcomeFor(code)) {
+&nbsp;            ReportOutcome.CLEAR_AND_STAMP -&gt; {
+&nbsp;                collector.clear()
+&nbsp;                prefs.edit { putLong(KEY_LAST_REPORT_MS, System.currentTimeMillis()) }
+&nbsp;            }
+&nbsp;            ReportOutcome.CLEAR -&gt; collector.clear()
+&nbsp;            ReportOutcome.KEEP -&gt; {} // 429 or 5xx: keep data, retry next day
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks whether enough time has passed since the last report.
+&nbsp;     *
+&nbsp;     * @return `true` if at least [MIN_INTERVAL_MS] has elapsed since the last successful report.
+&nbsp;     */
+&nbsp;    internal fun isReportDue(): Boolean {
+&nbsp;        val lastReport = prefs.getLong(KEY_LAST_REPORT_MS, 0L)
+&nbsp;        return System.currentTimeMillis() - lastReport &gt;= MIN_INTERVAL_MS
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resets the report timer, allowing immediate stats reporting.
+&nbsp;     *
+&nbsp;     * Used by developer options for testing.
+&nbsp;     */
+&nbsp;    fun resetReportTimer() {
+&nbsp;        prefs.edit { remove(KEY_LAST_REPORT_MS) }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Builds the JSON report payload from a list of stats records.
+&nbsp; *
+&nbsp; * Groups records by zone+source+device to minimise repetition. Each group contains
+&nbsp; * individual records with timestamps for time-of-day analysis.
+&nbsp; *
+&nbsp; * @param records The stats records to encode.
+&nbsp; * @param appVersion App version string.
+&nbsp; * @param language Current app language tag (e.g. &quot;en&quot;, &quot;nl&quot;, &quot;&quot; for system default).
+&nbsp; * @param status Current payment status (&quot;trial&quot;, &quot;unlocked&quot;, or &quot;expired&quot;).
+&nbsp; * @return JSON string ready for POST.
+&nbsp; */
+&nbsp;internal fun buildReportJson(
+&nbsp;    records: List&lt;StatsRecord&gt;,
+&nbsp;    appVersion: String,
+<b class="fc">&nbsp;    language: String = &quot;&quot;,</b>
+<b class="fc">&nbsp;    status: String = &quot;trial&quot;</b>
+&nbsp;): String {
+<b class="fc">&nbsp;    val grouped = records.groupBy { Triple(it.zone, it.source, it.device) }</b>
+<b class="fc">&nbsp;    val recordsArray = JsonArray(</b>
+<b class="fc">&nbsp;        grouped.map { (key, entries) -&gt;</b>
+<b class="fc">&nbsp;            val (zone, source, device) = key</b>
+<b class="fc">&nbsp;            buildJsonObject {</b>
+<b class="fc">&nbsp;                put(&quot;z&quot;, zone)</b>
+<b class="fc">&nbsp;                put(&quot;s&quot;, source)</b>
+<b class="fc">&nbsp;                put(&quot;d&quot;, device)</b>
+<b class="fc">&nbsp;                put(&quot;r&quot;, JsonArray(entries.map { entry -&gt;</b>
+<b class="fc">&nbsp;                    val base = mutableMapOf&lt;String, JsonElement&gt;(</b>
+<b class="fc">&nbsp;                        &quot;t&quot; to JsonPrimitive(entry.epochSecond),</b>
+<b class="fc">&nbsp;                        &quot;ok&quot; to JsonPrimitive(entry.success),</b>
+<b class="fc">&nbsp;                        &quot;ms&quot; to JsonPrimitive(entry.durationMs)</b>
+&nbsp;                    )
+<b class="fc">&nbsp;                    if (!entry.success) {</b>
+<b class="fc">&nbsp;                        base[&quot;e&quot;] = JsonPrimitive(entry.errorCategory)</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    JsonObject(base)</b>
+&nbsp;                }))
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    )
+&nbsp;
+<b class="fc">&nbsp;    return JsonObject(mapOf(</b>
+<b class="fc">&nbsp;        &quot;v&quot; to JsonPrimitive(StatsReporter.PAYLOAD_VERSION),</b>
+<b class="fc">&nbsp;        &quot;app&quot; to JsonPrimitive(appVersion),</b>
+<b class="fc">&nbsp;        &quot;lang&quot; to JsonPrimitive(language),</b>
+<b class="fc">&nbsp;        &quot;status&quot; to JsonPrimitive(status),</b>
+<b class="fc">&nbsp;        &quot;records&quot; to recordsArray</b>
+<b class="fc">&nbsp;    )).toString()</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Sends a JSON stats payload to the reporting endpoint and returns the HTTP status code.
+&nbsp; *
+&nbsp; * Isolated behind an interface so [StatsReporter]&#39;s response-handling logic can be exercised in
+&nbsp; * tests with a fake, without a real network call. The production implementation is [HttpStatsPoster].
+&nbsp; */
+&nbsp;fun interface StatsPoster {
+&nbsp;    /**
+&nbsp;     * POSTs [json] to the stats endpoint.
+&nbsp;     *
+&nbsp;     * @param json The report payload.
+&nbsp;     * @return The HTTP response code.
+&nbsp;     * @throws Exception on any network/IO failure (the caller treats this as &quot;keep data, retry&quot;).
+&nbsp;     */
+&nbsp;    fun post(json: String): Int
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Production [StatsPoster] using [HttpURLConnection]. Thin IO glue with no decision logic (the
+&nbsp; * response-code handling lives in [reportOutcomeFor]), so it is excluded from coverage — it can
+&nbsp; * only be exercised against a real network.
+&nbsp; *
+&nbsp; * @param appVersion App version string, sent in the User-Agent header.
+&nbsp; */
+&nbsp;class HttpStatsPoster(private val appVersion: String) : StatsPoster {
+&nbsp;    override fun post(json: String): Int {
+&nbsp;        val connection = (URL(StatsReporter.REPORT_URL).openConnection() as HttpURLConnection).apply {
+&nbsp;            requestMethod = &quot;POST&quot;
+&nbsp;            setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;)
+&nbsp;            setRequestProperty(&quot;User-Agent&quot;, &quot;SweetSpot/$appVersion&quot;)
+&nbsp;            connectTimeout = 10_000
+&nbsp;            readTimeout = 10_000
+&nbsp;            doOutput = true
+&nbsp;        }
+&nbsp;        return try {
+&nbsp;            connection.outputStream.use { it.write(json.toByteArray(Charsets.UTF_8)) }
+&nbsp;            connection.responseCode
+&nbsp;        } finally {
+&nbsp;            connection.disconnect()
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;/** The action to take on the local stats buffer after a report attempt. */
+&nbsp;internal enum class ReportOutcome {
+&nbsp;    /** HTTP 200: report accepted — clear the buffer and record the timestamp. */
+&nbsp;    CLEAR_AND_STAMP,
+&nbsp;
+&nbsp;    /** 4xx (except 429): payload is permanently invalid — clear it so it isn&#39;t retried forever. */
+&nbsp;    CLEAR,
+&nbsp;
+&nbsp;    /** 429 (rate limit) or 5xx: transient — keep the buffer for the next daily retry. */
+&nbsp;    KEEP
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Maps an HTTP response code to the action to take on the local stats buffer.
+&nbsp; *
+&nbsp; * Pure and Android-free so the reporting policy is unit-testable without a network or prefs.
+&nbsp; *
+&nbsp; * @param code HTTP status code returned by [StatsPoster.post].
+&nbsp; * @return The [ReportOutcome] to apply.
+&nbsp; */
+<b class="fc">&nbsp;internal fun reportOutcomeFor(code: Int): ReportOutcome = when {</b>
+<b class="fc">&nbsp;    code == HttpURLConnection.HTTP_OK -&gt; ReportOutcome.CLEAR_AND_STAMP</b>
+<b class="pc">&nbsp;    code in 400..499 &amp;&amp; code != 429 -&gt; ReportOutcome.CLEAR</b>
+<b class="fc">&nbsp;    else -&gt; ReportOutcome.KEEP</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:13</div>
+</div>
+</body>
+</html>
