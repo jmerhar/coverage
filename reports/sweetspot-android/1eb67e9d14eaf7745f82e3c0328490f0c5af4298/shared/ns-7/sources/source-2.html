@@ -1,0 +1,422 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ApplianceSortingKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: ApplianceSortingKt (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApplianceSortingKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (68/76)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.8%
+  </span>
+  <span class="absValue">
+    (44/45)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.8%
+  </span>
+  <span class="absValue">
+    (417/422)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$keyComparator$$inlined$compareBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$keyComparator$$inlined$compareBy$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$keyComparator$$inlined$compareBy$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$keyComparator$$inlined$compareBy$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$keyComparator$$inlined$compareBy$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$mergeForHome$$inlined$compareBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ApplianceSortingKt$WhenMappings</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    68.4%
+  </span>
+  <span class="absValue">
+    (13/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (68/76)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.8%
+  </span>
+  <span class="absValue">
+    (44/45)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.8%
+  </span>
+  <span class="absValue">
+    (417/422)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.ApplianceSort
+&nbsp;import today.sweetspot.model.ApplianceUsage
+&nbsp;import today.sweetspot.model.EvPosition
+&nbsp;import today.sweetspot.model.SortCriterion
+&nbsp;import today.sweetspot.model.SortKey
+&nbsp;
+&nbsp;/**
+&nbsp; * How the home screen should lay out appliance and vehicle chips, produced by [mergeForHome].
+&nbsp; */
+&nbsp;sealed interface HomeChipLayout {
+&nbsp;    /** A single flat run of chips (interleaved, or a First/Last block without a visual break). */
+&nbsp;    data class Flat(val items: List&lt;Appliance&gt;) : HomeChipLayout
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Two visually separated sections with a divider between them.
+&nbsp;     *
+&nbsp;     * @property first Chips in the top section.
+&nbsp;     * @property second Chips in the bottom section.
+&nbsp;     * @property vehiclesFirst Whether the [first] section holds the vehicles (else the appliances).
+&nbsp;     */
+&nbsp;    data class Sectioned(
+&nbsp;        val first: List&lt;Appliance&gt;,
+&nbsp;        val second: List&lt;Appliance&gt;,
+&nbsp;        val vehiclesFirst: Boolean,
+&nbsp;    ) : HomeChipLayout
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * A comparator for one [SortKey]. Values are derived from the appliance and its [usage];
+&nbsp; * electric vehicles sort as the longest possible [SortKey.DURATION] (a car charge is the long
+&nbsp; * job) and carry no icon so they cluster under [SortKey.TYPE]. [SortKey.CUSTOM] is inert here —
+&nbsp; * custom order is handled by [sortAppliances] returning the stored order directly.
+&nbsp; */
+&nbsp;private fun keyComparator(key: SortKey, usage: Map&lt;String, ApplianceUsage&gt;): Comparator&lt;Appliance&gt; =
+<b class="pc">&nbsp;    when (key) {</b>
+<b class="pc">&nbsp;        SortKey.FREQUENCY -&gt; compareBy { usage[it.id]?.count ?: 0 }</b>
+<b class="pc">&nbsp;        SortKey.RECENCY -&gt; compareBy { usage[it.id]?.lastUsedMs ?: 0L }</b>
+<b class="fc">&nbsp;        SortKey.NAME -&gt; compareBy(String.CASE_INSENSITIVE_ORDER) { it.name }</b>
+<b class="fc">&nbsp;        SortKey.DURATION -&gt; compareBy { if (it.isEv) Long.MAX_VALUE else it.durationHours * 60L + it.durationMinutes }</b>
+<b class="fc">&nbsp;        SortKey.TYPE -&gt; compareBy(String.CASE_INSENSITIVE_ORDER) { it.icon ?: &quot;&quot; }</b>
+<b class="nc">&nbsp;        SortKey.CUSTOM -&gt; Comparator { _, _ -&gt; 0 }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;/**
+&nbsp; * Chains [criteria] into a single comparator (primary first), applying each level&#39;s direction.
+&nbsp; * `CUSTOM` entries are skipped. Returns null when no orderable criterion remains.
+&nbsp; */
+&nbsp;private fun buildComparator(
+&nbsp;    criteria: List&lt;SortCriterion&gt;,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Comparator&lt;Appliance&gt;? {
+<b class="fc">&nbsp;    var comp: Comparator&lt;Appliance&gt;? = null</b>
+<b class="fc">&nbsp;    for (c in criteria) {</b>
+<b class="fc">&nbsp;        if (c.key == SortKey.CUSTOM) continue</b>
+<b class="fc">&nbsp;        val directed = keyComparator(c.key, usage).let { if (c.descending) it.reversed() else it }</b>
+<b class="pc">&nbsp;        comp = comp?.then(directed) ?: directed</b>
+&nbsp;    }
+<b class="fc">&nbsp;    return comp</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Orders [appliances] per [sort]. The sort is stable, so the original (stored) order is the
+&nbsp; * implicit final tie-breaker — which is also exactly what [SortKey.CUSTOM] returns unchanged.
+&nbsp; *
+&nbsp; * @param appliances The appliances to order.
+&nbsp; * @param sort The active ordering.
+&nbsp; * @param usage Combined tap statistics feeding the Frequency/Recency keys.
+&nbsp; * @return The ordered list.
+&nbsp; */
+&nbsp;fun sortAppliances(
+&nbsp;    appliances: List&lt;Appliance&gt;,
+&nbsp;    sort: ApplianceSort,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): List&lt;Appliance&gt; {
+<b class="fc">&nbsp;    if (sort.isCustom) return appliances</b>
+<b class="pc">&nbsp;    val comp = buildComparator(sort.criteria, usage) ?: return appliances</b>
+<b class="fc">&nbsp;    return appliances.sortedWith(comp)</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Whether [criteria] leave two or more appliances comparing equal — i.e. whether another
+&nbsp; * tie-breaker level would still change the order. Drives progressive disclosure of sort levels.
+&nbsp; *
+&nbsp; * @return false when fewer than two appliances, or when [criteria] carry no orderable key.
+&nbsp; */
+&nbsp;fun hasCollisions(
+&nbsp;    appliances: List&lt;Appliance&gt;,
+&nbsp;    criteria: List&lt;SortCriterion&gt;,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Boolean {
+<b class="fc">&nbsp;    if (appliances.size &lt; 2) return false</b>
+<b class="fc">&nbsp;    val comp = buildComparator(criteria, usage) ?: return false</b>
+<b class="fc">&nbsp;    return appliances.sortedWith(comp).zipWithNext().any { (a, b) -&gt; comp.compare(a, b) == 0 }</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * The sort keys that may still be added as a tie-breaker below the given [criteria]: every key
+&nbsp; * except [SortKey.CUSTOM] (terminal) and those already used.
+&nbsp; */
+&nbsp;fun nextAssignableKeys(criteria: List&lt;SortCriterion&gt;): List&lt;SortKey&gt; {
+<b class="fc">&nbsp;    val used = criteria.map { it.key }.toSet()</b>
+<b class="fc">&nbsp;    return SortKey.entries.filter { it != SortKey.CUSTOM &amp;&amp; it !in used }</b>
+&nbsp;}
+&nbsp;
+&nbsp;// --- Pure edits driving the sort-control UI (kept here, not in the composable, so they are tested) ---
+&nbsp;
+&nbsp;/**
+&nbsp; * The natural default direction for a freshly-picked [key]: descending for the usage keys, whose
+&nbsp; * labels (&quot;Most used&quot;, &quot;Recently used&quot;) imply high-to-low, and ascending for the rest (A→Z,
+&nbsp; * shortest-first, etc.). The user can still flip it afterwards.
+&nbsp; */
+<b class="fc">&nbsp;fun defaultDescending(key: SortKey): Boolean = key == SortKey.FREQUENCY || key == SortKey.RECENCY</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Sets the primary key with its default direction, discarding any tie-breakers (a new primary
+&nbsp; * starts a fresh chain, and [SortKey.CUSTOM] is terminal).
+&nbsp; */
+&nbsp;fun ApplianceSort.withPrimary(key: SortKey): ApplianceSort =
+<b class="fc">&nbsp;    ApplianceSort(listOf(SortCriterion(key, defaultDescending(key))))</b>
+&nbsp;
+&nbsp;/** Replaces the key at [index], resetting that level to the new key&#39;s default direction. */
+&nbsp;fun ApplianceSort.withLevelKey(index: Int, key: SortKey): ApplianceSort =
+<b class="fc">&nbsp;    ApplianceSort(criteria.mapIndexed { i, c -&gt; if (i == index) SortCriterion(key, defaultDescending(key)) else c })</b>
+&nbsp;
+&nbsp;/** Flips the direction of the level at [index]. */
+&nbsp;fun ApplianceSort.withToggledDirection(index: Int): ApplianceSort =
+<b class="fc">&nbsp;    ApplianceSort(criteria.mapIndexed { i, c -&gt; if (i == index) c.copy(descending = !c.descending) else c })</b>
+&nbsp;
+&nbsp;/** Appends [key] as a new tie-breaker level with its default direction. */
+&nbsp;fun ApplianceSort.withAddedTiebreaker(key: SortKey): ApplianceSort =
+<b class="fc">&nbsp;    ApplianceSort(criteria + SortCriterion(key, defaultDescending(key)))</b>
+&nbsp;
+&nbsp;/** Removes the level at [index] (used only for tie-breakers, never the primary). */
+&nbsp;fun ApplianceSort.withoutLevel(index: Int): ApplianceSort =
+<b class="fc">&nbsp;    ApplianceSort(criteria.filterIndexed { i, _ -&gt; i != index })</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Combines phone-local and watch-reported usage into effective totals: counts add, recency is
+&nbsp; * the more recent of the two. Idempotent with respect to re-delivered watch snapshots.
+&nbsp; */
+&nbsp;fun combineUsage(
+&nbsp;    phone: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;    watch: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Map&lt;String, ApplianceUsage&gt; =
+<b class="fc">&nbsp;    (phone.keys + watch.keys).associateWith { id -&gt;</b>
+<b class="fc">&nbsp;        val p = phone[id]</b>
+<b class="fc">&nbsp;        val w = watch[id]</b>
+<b class="fc">&nbsp;        ApplianceUsage(</b>
+<b class="fc">&nbsp;            count = (p?.count ?: 0) + (w?.count ?: 0),</b>
+<b class="fc">&nbsp;            lastUsedMs = maxOf(p?.lastUsedMs ?: 0L, w?.lastUsedMs ?: 0L),</b>
+<b class="fc">&nbsp;        )</b>
+&nbsp;    }
+&nbsp;
+&nbsp;/**
+&nbsp; * Folds vehicles into the appliance ordering for the home screen.
+&nbsp; *
+&nbsp; * Interleaved (only meaningful for a derived sort) orders vehicles into the same stream by the
+&nbsp; * active [sort]. For First/Last, appliances are sorted by [sort] while vehicles form a
+&nbsp; * name-ordered block placed before or after them; [separate] renders that block as its own
+&nbsp; * section. A Custom sort never interleaves (there is no manual position for a vehicle), so it
+&nbsp; * falls through to the block path as if Last.
+&nbsp; *
+&nbsp; * @param all All appliances, vehicles included.
+&nbsp; * @param sort The active appliance ordering.
+&nbsp; * @param usage Combined tap statistics.
+&nbsp; * @param position Where vehicles go relative to appliances.
+&nbsp; * @param separate Whether a First/Last vehicle block is drawn as its own section.
+&nbsp; * @return The chip layout to render.
+&nbsp; */
+&nbsp;fun mergeForHome(
+&nbsp;    all: List&lt;Appliance&gt;,
+&nbsp;    sort: ApplianceSort,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;    position: EvPosition,
+&nbsp;    separate: Boolean,
+&nbsp;): HomeChipLayout {
+<b class="fc">&nbsp;    if (position == EvPosition.INTERLEAVED &amp;&amp; !sort.isCustom) {</b>
+<b class="fc">&nbsp;        return HomeChipLayout.Flat(sortAppliances(all, sort, usage))</b>
+&nbsp;    }
+<b class="fc">&nbsp;    val apps = sortAppliances(all.filterNot { it.isEv }, sort, usage)</b>
+<b class="fc">&nbsp;    val vehicles = all.filter { it.isEv }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name })</b>
+&nbsp;    // With only one kind present there is nothing to separate — stay flat (avoids an empty section).
+<b class="fc">&nbsp;    if (vehicles.isEmpty()) return HomeChipLayout.Flat(apps)</b>
+<b class="fc">&nbsp;    if (apps.isEmpty()) return HomeChipLayout.Flat(vehicles)</b>
+<b class="fc">&nbsp;    val vehiclesFirst = position == EvPosition.FIRST</b>
+<b class="fc">&nbsp;    return if (separate) {</b>
+<b class="pc">&nbsp;        if (vehiclesFirst) HomeChipLayout.Sectioned(vehicles, apps, vehiclesFirst = true)</b>
+<b class="fc">&nbsp;        else HomeChipLayout.Sectioned(apps, vehicles, vehiclesFirst = false)</b>
+&nbsp;    } else {
+<b class="fc">&nbsp;        HomeChipLayout.Flat(if (vehiclesFirst) vehicles + apps else apps + vehicles)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 16:44</div>
+</div>
+</body>
+</html>
