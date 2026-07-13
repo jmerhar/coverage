@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "36e2dee0623bfb4bbda79f36d057011b22d717a1",
+  "short_sha": "36e2dee062",
+  "committed_at": "2026-07-13T16:47:35Z",
+  "message": "docs: remove the completed TODO backlog",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/36e2dee0623bfb4bbda79f36d057011b22d717a1",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}
