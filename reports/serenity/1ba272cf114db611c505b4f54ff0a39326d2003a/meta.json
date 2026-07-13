@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "1ba272cf114db611c505b4f54ff0a39326d2003a",
+  "short_sha": "1ba272cf11",
+  "committed_at": "2026-07-13T09:44:00Z",
+  "message": "docs: correct the stale API endpoint paths in CLAUDE.md",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/1ba272cf114db611c505b4f54ff0a39326d2003a",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}
