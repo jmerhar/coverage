@@ -1,0 +1,216 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > CachedPrice</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.cache</a>
+</div>
+
+<h1>Coverage Summary for Class: CachedPrice (today.sweetspot.data.cache)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CachedPrice</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.cache
+&nbsp;
+&nbsp;/**
+&nbsp; * A single cached price entry, stored in a timezone-agnostic format.
+&nbsp; *
+&nbsp; * The epoch second is UTC so the cache is independent of any particular timezone.
+&nbsp; * The zone is applied when converting back to [today.sweetspot.model.PriceSlot].
+&nbsp; *
+&nbsp; * @property epochSecond UTC epoch second for the start of this slot.
+&nbsp; * @property durationMinutes Length of this slot in minutes (e.g. 60 for hourly, 15 for quarter-hourly).
+&nbsp; * @property price Price in EUR per kWh.
+&nbsp; */
+<b class="fc">&nbsp;data class CachedPrice(</b>
+<b class="fc">&nbsp;    val epochSecond: Long,</b>
+<b class="fc">&nbsp;    val durationMinutes: Int,</b>
+<b class="fc">&nbsp;    val price: Double</b>
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Wrapper for cached price data that includes the data source name.
+&nbsp; *
+&nbsp; * @property source Human-readable name of the data source (e.g. &quot;ENTSO-E&quot;, &quot;EnergyZero&quot;).
+&nbsp; * @property prices Cached price entries.
+&nbsp; */
+&nbsp;data class CachedPriceData(
+&nbsp;    val source: String,
+&nbsp;    val prices: List&lt;CachedPrice&gt;
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Cache for parsed electricity prices, keyed by zone.
+&nbsp; *
+&nbsp; * Abstracts the storage mechanism so [PriceRepository] can be tested
+&nbsp; * without Android dependencies.
+&nbsp; */
+&nbsp;interface PriceCache {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks whether enough time has passed since the last API fetch.
+&nbsp;     *
+&nbsp;     * Cooldown is global (not per-key) since multiple zones may share the
+&nbsp;     * same upstream API, and we want to respect its rate limits.
+&nbsp;     *
+&nbsp;     * @param cooldownMs Minimum interval between fetches in milliseconds.
+&nbsp;     * @return `true` if at least [cooldownMs] have elapsed since the last fetch.
+&nbsp;     */
+&nbsp;    fun isCooldownElapsed(cooldownMs: Long): Boolean
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Reads cached prices for the given zone key, if available.
+&nbsp;     *
+&nbsp;     * @param key Zone identifier (e.g. `&quot;NL&quot;`, `&quot;DE_LU&quot;`).
+&nbsp;     * @return Cached price data including source name, or `null` if no cached data exists or on any error.
+&nbsp;     */
+&nbsp;    fun readCached(key: String): CachedPriceData?
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Writes parsed prices to cache and records the fetch timestamp.
+&nbsp;     *
+&nbsp;     * @param key Zone identifier (e.g. `&quot;NL&quot;`, `&quot;DE_LU&quot;`).
+&nbsp;     * @param data Cached price data including source name and price entries.
+&nbsp;     */
+&nbsp;    fun write(key: String, data: CachedPriceData)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Deletes all cached price data across all zones.
+&nbsp;     *
+&nbsp;     * Does not reset the fetch timestamp (cooldown remains in effect).
+&nbsp;     */
+&nbsp;    fun clear()
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Deletes cached price data for a specific zone.
+&nbsp;     *
+&nbsp;     * Does not reset the fetch timestamp (cooldown remains in effect).
+&nbsp;     *
+&nbsp;     * @param key Zone identifier (e.g. `&quot;NL&quot;`, `&quot;DE_LU&quot;`).
+&nbsp;     */
+&nbsp;    fun clearForZone(key: String)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the remaining cooldown time in milliseconds before the next API fetch is allowed.
+&nbsp;     *
+&nbsp;     * @param cooldownMs Minimum interval between fetches in milliseconds.
+&nbsp;     * @return Remaining time in milliseconds, or 0 if the cooldown has elapsed.
+&nbsp;     */
+&nbsp;    fun cooldownRemainingMs(cooldownMs: Long): Long
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resets the fetch cooldown timer, allowing immediate API fetches.
+&nbsp;     *
+&nbsp;     * Used by developer options for testing.
+&nbsp;     */
+&nbsp;    fun resetCooldown()
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 15:07</div>
+</div>
+</body>
+</html>

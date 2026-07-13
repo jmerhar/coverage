@@ -1,0 +1,263 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > EvVehicleRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: EvVehicleRepository (today.sweetspot.data.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">EvVehicleRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (160/160)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EvVehicleRepository$brands$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">EvVehicleRepository$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (171/171)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.repository
+&nbsp;
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import today.sweetspot.model.EvVehicle
+&nbsp;
+&nbsp;/**
+&nbsp; * Read-only access to the bundled EV vehicle database.
+&nbsp; *
+&nbsp; * The database is a normalised JSON array produced at build time by `bin/build-ev-db.py`
+&nbsp; * (see `app/src/main/assets/ev-vehicles.json`). This repository is Android-free: it takes the
+&nbsp; * raw JSON string so it can be unit-tested without a `Context`. The caller (the phone app)
+&nbsp; * reads the asset and constructs the repository once, since parsing is done eagerly.
+&nbsp; *
+&nbsp; * @param json Raw contents of the bundled `ev-vehicles.json` asset.
+&nbsp; */
+<b class="fc">&nbsp;class EvVehicleRepository(json: String) {</b>
+&nbsp;
+&nbsp;    /** All vehicles, sorted by brand then model (the order they appear in the asset). */
+<b class="fc">&nbsp;    val vehicles: List&lt;EvVehicle&gt; = parse(json)</b>
+&nbsp;
+&nbsp;    /** Distinct brands present in the database, alphabetically ordered (case-insensitive). */
+&nbsp;    fun brands(): List&lt;String&gt; =
+<b class="fc">&nbsp;        vehicles.map { it.brand }.distinct().sortedBy { it.lowercase() }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns all vehicles for a given brand, preserving model order.
+&nbsp;     *
+&nbsp;     * @param brand Brand name to filter by (case-insensitive).
+&nbsp;     */
+&nbsp;    fun models(brand: String): List&lt;EvVehicle&gt; =
+<b class="fc">&nbsp;        vehicles.filter { it.brand.equals(brand, ignoreCase = true) }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Filters vehicles by a free-text query matched against brand, model, and variant.
+&nbsp;     *
+&nbsp;     * The query is split on whitespace; every term must match somewhere in the vehicle&#39;s
+&nbsp;     * brand/model/variant text (AND semantics), so &quot;vw id3&quot; or &quot;id.3 pro&quot; both narrow as
+&nbsp;     * expected. A blank query returns all vehicles.
+&nbsp;     *
+&nbsp;     * @param query Free-text search string.
+&nbsp;     * @return Matching vehicles in database order.
+&nbsp;     */
+&nbsp;    fun search(query: String): List&lt;EvVehicle&gt; {
+<b class="fc">&nbsp;        val terms = query.trim().lowercase().split(Regex(&quot;\\s+&quot;)).filter { it.isNotEmpty() }</b>
+<b class="fc">&nbsp;        if (terms.isEmpty()) return vehicles</b>
+<b class="fc">&nbsp;        return vehicles.filter { vehicle -&gt;</b>
+<b class="fc">&nbsp;            val haystack = buildString {</b>
+<b class="fc">&nbsp;                append(vehicle.brand.lowercase()).append(&#39; &#39;)</b>
+<b class="fc">&nbsp;                append(vehicle.model.lowercase())</b>
+<b class="fc">&nbsp;                vehicle.variant?.let { append(&#39; &#39;).append(it.lowercase()) }</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            terms.all { haystack.contains(it) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private companion object {
+&nbsp;        /** Lenient parser that ignores unknown fields for forward compatibility. */
+<b class="fc">&nbsp;        val parser = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Parses the bundled JSON array into [EvVehicle]s.
+&nbsp;         *
+&nbsp;         * @param json Raw JSON array string.
+&nbsp;         * @return Parsed vehicles, or an empty list if the content is malformed.
+&nbsp;         */
+&nbsp;        fun parse(json: String): List&lt;EvVehicle&gt; = try {
+<b class="fc">&nbsp;            parser.decodeFromString&lt;List&lt;EvVehicle&gt;&gt;(json)</b>
+&nbsp;        } catch (_: Exception) {
+<b class="fc">&nbsp;            emptyList()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 15:07</div>
+</div>
+</body>
+</html>
