@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "5bca34599946f1323c0d5287a1902454eaf5aa25",
+  "short_sha": "5bca345999",
+  "committed_at": "2026-07-13T15:26:43Z",
+  "message": "fix(cache): key HTTP 304 off a deploy VERSION stamp, not just the asset mtime",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/5bca34599946f1323c0d5287a1902454eaf5aa25",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}
