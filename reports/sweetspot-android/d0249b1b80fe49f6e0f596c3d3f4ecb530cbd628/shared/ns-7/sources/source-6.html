@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > TimeUtilsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: TimeUtilsKt (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">TimeUtilsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (132/132)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import android.content.res.Resources
+&nbsp;import today.sweetspot.shared.R
+&nbsp;import java.time.ZonedDateTime
+&nbsp;import java.time.Duration
+&nbsp;
+&nbsp;/**
+&nbsp; * Formats the time difference between [now] and [target] as a human-readable relative string.
+&nbsp; *
+&nbsp; * Rounds to the nearest minute to avoid misleading truncation (e.g. 3h 59m 50s → &quot;in 4h&quot;).
+&nbsp; * When [resources] is provided, uses localised string resources. When `null`, falls back
+&nbsp; * to English formatting so existing tests work without an Android context.
+&nbsp; *
+&nbsp; * @param target The future point in time.
+&nbsp; * @param now The reference &quot;current&quot; time.
+&nbsp; * @param resources Optional Android resources for localised formatting.
+&nbsp; * @return A string like &quot;in 2h 30m&quot;, &quot;in 45m&quot;, or &quot;now&quot; if the target is in the past.
+&nbsp; */
+<b class="fc">&nbsp;fun formatRelative(target: ZonedDateTime, now: ZonedDateTime, resources: Resources? = null): String {</b>
+<b class="fc">&nbsp;    val seconds = Duration.between(now, target).seconds</b>
+<b class="fc">&nbsp;    val totalMinutes = if (seconds &gt; 0) (seconds + 30) / 60 else 0L</b>
+<b class="fc">&nbsp;    val h = (totalMinutes / 60).toInt()</b>
+<b class="fc">&nbsp;    val m = (totalMinutes % 60).toInt()</b>
+&nbsp;    // Branch on the localisation mode once, rather than per line: `resources?.getX(...) ?: english`
+&nbsp;    // on every arm would add an unreachable &quot;resources non-null but getX returned null&quot; branch to
+&nbsp;    // each line, which can never be covered. This keeps the English fallback for pure (non-Robolectric)
+&nbsp;    // tests while leaving only real, coverable branches.
+<b class="fc">&nbsp;    return if (resources != null) {</b>
+<b class="fc">&nbsp;        when {</b>
+<b class="fc">&nbsp;            totalMinutes &lt;= 0 -&gt; resources.getString(R.string.relative_now)</b>
+<b class="fc">&nbsp;            h &gt; 0 &amp;&amp; m &gt; 0 -&gt; resources.getQuantityString(R.plurals.relative_in_hours_minutes, h, h, m)</b>
+<b class="fc">&nbsp;            h &gt; 0 -&gt; resources.getQuantityString(R.plurals.relative_in_hours, h, h)</b>
+<b class="fc">&nbsp;            else -&gt; resources.getString(R.string.relative_in_minutes, m)</b>
+&nbsp;        }
+&nbsp;    } else {
+<b class="fc">&nbsp;        when {</b>
+<b class="fc">&nbsp;            totalMinutes &lt;= 0 -&gt; &quot;now&quot;</b>
+<b class="fc">&nbsp;            h &gt; 0 &amp;&amp; m &gt; 0 -&gt; &quot;in ${h}h ${m}m&quot;</b>
+<b class="fc">&nbsp;            h &gt; 0 -&gt; &quot;in ${h}h&quot;</b>
+<b class="fc">&nbsp;            else -&gt; &quot;in ${m}m&quot;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:49</div>
+</div>
+</body>
+</html>

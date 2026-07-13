@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ApplianceIconKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ApplianceIconKt (today.sweetspot.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApplianceIconKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (315/315)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.model
+&nbsp;
+&nbsp;import androidx.annotation.DrawableRes
+&nbsp;import androidx.annotation.StringRes
+&nbsp;import today.sweetspot.shared.R
+&nbsp;
+&nbsp;/**
+&nbsp; * An icon option for appliances, displayed in the icon picker.
+&nbsp; *
+&nbsp; * @property id Unique string identifier (e.g. &quot;washing_machine&quot;, &quot;electricity&quot;) stored in [Appliance.icon].
+&nbsp; * @property iconRes Drawable resource ID for the Material Symbol vector.
+&nbsp; * @property labelRes String resource ID for the human-readable label.
+&nbsp; */
+&nbsp;data class ApplianceIcon(val id: String, @DrawableRes val iconRes: Int, @StringRes val labelRes: Int)
+&nbsp;
+&nbsp;/** All available appliance icons, grouped by household appliances and generic icons. */
+<b class="fc">&nbsp;val applianceIcons: List&lt;ApplianceIcon&gt; = listOf(</b>
+&nbsp;    // Laundry &amp; cleaning
+<b class="fc">&nbsp;    ApplianceIcon(&quot;washing_machine&quot;, R.drawable.ic_washing_machine, R.string.icon_washing_machine),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;dryer&quot;, R.drawable.ic_dryer, R.string.icon_dryer),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;iron&quot;, R.drawable.ic_iron, R.string.icon_iron),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;dishwasher&quot;, R.drawable.ic_dishwasher, R.string.icon_dishwasher),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;vacuum&quot;, R.drawable.ic_vacuum, R.string.icon_vacuum),</b>
+&nbsp;    // Kitchen
+<b class="fc">&nbsp;    ApplianceIcon(&quot;oven&quot;, R.drawable.ic_oven, R.string.icon_oven),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;kettle&quot;, R.drawable.ic_kettle, R.string.icon_kettle),</b>
+&nbsp;    // Heating, cooling &amp; air
+<b class="fc">&nbsp;    ApplianceIcon(&quot;heat_pump&quot;, R.drawable.ic_heat_pump, R.string.icon_heat_pump),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;heater&quot;, R.drawable.ic_heater, R.string.icon_heater),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;air_conditioner&quot;, R.drawable.ic_air_conditioner, R.string.icon_air_conditioner),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;thermostat&quot;, R.drawable.ic_thermostat, R.string.icon_thermostat),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;fan&quot;, R.drawable.ic_fan, R.string.icon_fan),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;dehumidifier&quot;, R.drawable.ic_dehumidifier, R.string.icon_dehumidifier),</b>
+&nbsp;    // Water &amp; wellness
+<b class="fc">&nbsp;    ApplianceIcon(&quot;water_heater&quot;, R.drawable.ic_water_heater, R.string.icon_water_heater),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;hot_tub&quot;, R.drawable.ic_hot_tub, R.string.icon_hot_tub),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;sauna&quot;, R.drawable.ic_sauna, R.string.icon_sauna),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;pool_pump&quot;, R.drawable.ic_pool_pump, R.string.icon_pool_pump),</b>
+&nbsp;    // Outdoor &amp; transport
+<b class="fc">&nbsp;    ApplianceIcon(&quot;lawn_mower&quot;, R.drawable.ic_lawn_mower, R.string.icon_lawn_mower),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;sprinkler&quot;, R.drawable.ic_sprinkler, R.string.icon_sprinkler),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;ev_charger&quot;, R.drawable.ic_ev_charger, R.string.icon_ev_charger),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;solar_battery&quot;, R.drawable.ic_solar_battery, R.string.icon_solar_battery),</b>
+&nbsp;    // Electronics
+<b class="fc">&nbsp;    ApplianceIcon(&quot;tv&quot;, R.drawable.ic_tv, R.string.icon_tv),</b>
+&nbsp;    // Generic
+<b class="fc">&nbsp;    ApplianceIcon(&quot;electricity&quot;, R.drawable.ic_electricity, R.string.icon_electricity),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;power&quot;, R.drawable.ic_power, R.string.icon_power),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;timer&quot;, R.drawable.ic_timer, R.string.icon_timer),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;light&quot;, R.drawable.ic_light, R.string.icon_light),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;device&quot;, R.drawable.ic_device, R.string.icon_device),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;home&quot;, R.drawable.ic_home, R.string.icon_home),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;favorite&quot;, R.drawable.ic_favorite, R.string.icon_favorite),</b>
+<b class="fc">&nbsp;    ApplianceIcon(&quot;other&quot;, R.drawable.ic_other, R.string.icon_other),</b>
+&nbsp;)
+&nbsp;
+<b class="fc">&nbsp;private val iconMap: Map&lt;String, Int&gt; = applianceIcons.associate { it.id to it.iconRes }</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Resolves an icon ID to its drawable resource.
+&nbsp; *
+&nbsp; * @param id Icon identifier from [applianceIcons].
+&nbsp; * @return The corresponding drawable resource ID, or the &quot;electricity&quot; icon if the ID is unknown.
+&nbsp; */
+&nbsp;@DrawableRes
+<b class="fc">&nbsp;fun applianceIconFor(id: String): Int = iconMap[id] ?: R.drawable.ic_electricity</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Resolves the icon to display for an [appliance].
+&nbsp; *
+&nbsp; * An electric vehicle always shows a car: the choice is derived here, not stored, so a
+&nbsp; * vehicle&#39;s [Appliance.icon] is null. Every other appliance resolves its configured icon id,
+&nbsp; * falling back to the &quot;electricity&quot; icon when none is set.
+&nbsp; *
+&nbsp; * @param appliance The appliance whose icon to display.
+&nbsp; * @return The drawable resource ID to display.
+&nbsp; */
+&nbsp;@DrawableRes
+&nbsp;fun applianceIconFor(appliance: Appliance): Int =
+<b class="fc">&nbsp;    if (appliance.isEv) R.drawable.ic_car</b>
+<b class="fc">&nbsp;    else appliance.icon?.let(::applianceIconFor) ?: R.drawable.ic_electricity</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:49</div>
+</div>
+</body>
+</html>
