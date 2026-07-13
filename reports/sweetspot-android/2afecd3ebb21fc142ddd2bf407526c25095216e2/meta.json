@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "2afecd3ebb21fc142ddd2bf407526c25095216e2",
+  "short_sha": "2afecd3ebb",
+  "committed_at": "2026-07-13T17:03:34Z",
+  "message": "docs: note drag-to-reorder for data sources in dep comment and done-doc",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/2afecd3ebb21fc142ddd2bf407526c25095216e2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
