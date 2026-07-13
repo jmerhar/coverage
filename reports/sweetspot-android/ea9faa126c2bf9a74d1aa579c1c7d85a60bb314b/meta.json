@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "ea9faa126c2bf9a74d1aa579c1c7d85a60bb314b",
+  "short_sha": "ea9faa126c",
+  "committed_at": "2026-07-13T12:41:15Z",
+  "message": "docs: refine appliance sorting note \u2014 split EV separate-section from position, add cross-device usage sync",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/ea9faa126c2bf9a74d1aa579c1c7d85a60bb314b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}
