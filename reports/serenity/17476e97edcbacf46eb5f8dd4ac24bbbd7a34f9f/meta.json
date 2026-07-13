@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "17476e97edcbacf46eb5f8dd4ac24bbbd7a34f9f",
+  "short_sha": "17476e97ed",
+  "committed_at": "2026-07-13T10:14:16Z",
+  "message": "fix(cron): fail loudly when the DB is down in SendReviewRequests",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/17476e97edcbacf46eb5f8dd4ac24bbbd7a34f9f",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}
