@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "48c8589c2da983c9c34b0c2d3e8f6419be73c1f6",
+  "short_sha": "48c8589c2d",
+  "committed_at": "2026-07-13T17:17:05Z",
+  "message": "feat(privacy): add a privacy & cookie policy page",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/48c8589c2da983c9c34b0c2d3e8f6419be73c1f6",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}
