@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "e0ac579fd47d382877feb184b1f8cad9d8d32636",
+  "short_sha": "e0ac579fd4",
+  "committed_at": "2026-07-14T08:10:29Z",
+  "message": "docs: add development workflow to README",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/e0ac579fd47d382877feb184b1f8cad9d8d32636",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}
