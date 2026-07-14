@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "c93f79a176a0c1866ef196eef6f27e2b7e3b838c",
+  "short_sha": "c93f79a176",
+  "committed_at": "2026-07-14T13:40:33Z",
+  "message": "docs: add a typical development workflow section to the README",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/c93f79a176a0c1866ef196eef6f27e2b7e3b838c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
