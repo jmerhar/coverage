@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "54f6c438337a15b008d756b63658d6f9fd9acca7",
+  "short_sha": "54f6c43833",
+  "committed_at": "2026-07-14T09:54:52Z",
+  "message": "docs(store): refresh screenshots + descriptions for household sharing",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/54f6c438337a15b008d756b63658d6f9fd9acca7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
