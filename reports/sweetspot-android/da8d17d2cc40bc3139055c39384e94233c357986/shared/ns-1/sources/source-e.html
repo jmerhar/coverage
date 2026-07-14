@@ -1,0 +1,206 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > TariffApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: TariffApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">TariffApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (95/95)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TariffApi$Companion</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (95/95)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import today.sweetspot.model.SupplierTariffs
+&nbsp;
+&nbsp;/**
+&nbsp; * Abstraction for fetching a country&#39;s all-in tariff feed, so [today.sweetspot.data.repository.TariffRepository]
+&nbsp; * can be tested with a fake. Returns the raw JSON; parsing is the repository&#39;s concern.
+&nbsp; */
+&nbsp;fun interface TariffFetcher {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches the raw tariff feed JSON for a country.
+&nbsp;     *
+&nbsp;     * @param countryCode ISO 3166-1 alpha-2 code (e.g. &quot;NL&quot;); the feed lives at `&lt;lowercase&gt;.json`.
+&nbsp;     * @return The raw feed JSON.
+&nbsp;     * @throws HttpException on a non-200 response (404 = no feed for this country).
+&nbsp;     */
+&nbsp;    fun fetchRaw(countryCode: String): String
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Client for the SweetSpot all-in tariff feed published by `bin/build-suppliers.py` at
+&nbsp; * `https://sweetspot.today/data/suppliers/&lt;cc&gt;.json`. The raw JSON is cached by
+&nbsp; * [today.sweetspot.data.cache.TariffCache].
+&nbsp; */
+<b class="fc">&nbsp;class TariffApi(private val client: OkHttpClient = sharedHttpClient) : TariffFetcher {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /** Base URL for the per-country tariff feeds; the lowercase country code + &quot;.json&quot; is appended. */
+&nbsp;        const val BASE_URL = &quot;https://sweetspot.today/data/suppliers/&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun fetchRaw(countryCode: String): String {
+<b class="fc">&nbsp;        val url = BASE_URL + countryCode.lowercase() + &quot;.json&quot;</b>
+<b class="fc">&nbsp;        val request = Request.Builder().url(url).get().build()</b>
+<b class="fc">&nbsp;        return client.newCall(request).execute().use { response -&gt;</b>
+<b class="fc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="fc">&nbsp;                throw HttpException(response.code, &quot;Tariff feed returned ${response.code}&quot;)</b>
+&nbsp;            }
+<b class="fc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Parses raw tariff JSON into [SupplierTariffs]. Exposed for tests. */
+<b class="fc">&nbsp;    fun parse(raw: String): SupplierTariffs = json.decodeFromString(raw)</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-14 08:25</div>
+</div>
+</body>
+</html>
