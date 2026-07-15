@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > DataSource</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: DataSource (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">DataSource</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents a price data source (API provider).
+&nbsp; *
+&nbsp; * @property id Unique identifier used for persistence and source ordering.
+&nbsp; * @property displayName Human-readable name shown in the UI.
+&nbsp; */
+<b class="fc">&nbsp;data class DataSource(val id: String, val displayName: String)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Registry of all supported price data sources.
+&nbsp; *
+&nbsp; * Each source declares which zones it covers. [defaultsForZone] filters and
+&nbsp; * returns sources in registry order (which defines the default priority).
+&nbsp; */
+&nbsp;object DataSources {
+&nbsp;
+&nbsp;    /** ENTSO-E Transparency Platform — primary source for all 43 European bidding zones. */
+&nbsp;    val ENTSOE = DataSource(&quot;entsoe&quot;, &quot;ENTSO-E&quot;)
+&nbsp;
+&nbsp;    /** EnergyZero API — NL-only fallback with day-ahead prices. */
+&nbsp;    val ENERGY_ZERO = DataSource(&quot;energyzero&quot;, &quot;EnergyZero&quot;)
+&nbsp;
+&nbsp;    /** Spot-Hinta.fi API — fallback for 15 Nordic/Baltic zones. */
+&nbsp;    val SPOT_HINTA = DataSource(&quot;spothinta&quot;, &quot;Spot-Hinta.fi&quot;)
+&nbsp;
+&nbsp;    /** Energy-Charts API — fallback for 15 European zones (CC BY 4.0). */
+&nbsp;    val ENERGY_CHARTS = DataSource(&quot;energycharts&quot;, &quot;Energy-Charts&quot;)
+&nbsp;
+&nbsp;    /** aWATTar API — fallback for AT and DE-LU zones. */
+&nbsp;    val AWATTAR = DataSource(&quot;awattar&quot;, &quot;aWATTar&quot;)
+&nbsp;
+&nbsp;    /** All known data sources. */
+&nbsp;    val all = listOf(ENTSOE, ENERGY_ZERO, SPOT_HINTA, ENERGY_CHARTS, AWATTAR)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A data source paired with the set of zones it covers.
+&nbsp;     *
+&nbsp;     * @property source The data source.
+&nbsp;     * @property zones Zone IDs this source covers, or `null` for all zones.
+&nbsp;     */
+&nbsp;    private data class SourceEntry(val source: DataSource, val zones: Set&lt;String&gt;?)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Declarative registry of data sources and their zone coverage.
+&nbsp;     *
+&nbsp;     * List order defines the default fallback priority: ENTSO-E first (covers all
+&nbsp;     * zones), then higher-resolution fallbacks (Spot-Hinta for Nordic/Baltic,
+&nbsp;     * Energy-Charts for 15 European zones), then hourly sources (EnergyZero for NL,
+&nbsp;     * aWATTar for AT/DE-LU). Adding a new source is a single line — no intersection
+&nbsp;     * logic required.
+&nbsp;     */
+&nbsp;    private val registry = listOf(
+&nbsp;        SourceEntry(ENTSOE, null),
+&nbsp;        SourceEntry(SPOT_HINTA, SpotHintaApi.ZONES),
+&nbsp;        SourceEntry(ENERGY_CHARTS, EnergyChartsApi.ZONE_TO_BZN.keys),
+&nbsp;        SourceEntry(ENERGY_ZERO, setOf(&quot;NL&quot;)),
+&nbsp;        SourceEntry(AWATTAR, AwattarApi.ZONE_TO_BASE_URL.keys),
+&nbsp;    )
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns available sources for a zone in default priority order.
+&nbsp;     *
+&nbsp;     * Filters the [registry] to sources that cover the given zone, preserving
+&nbsp;     * insertion order as the fallback priority.
+&nbsp;     *
+&nbsp;     * @param zoneId The [PriceZone.id][today.sweetspot.model.PriceZone.id] to look up.
+&nbsp;     * @return Ordered list of available data sources for this zone.
+&nbsp;     */
+&nbsp;    fun defaultsForZone(zoneId: String): List&lt;DataSource&gt; =
+&nbsp;        registry
+&nbsp;            .filter { it.zones == null || zoneId in it.zones }
+&nbsp;            .map { it.source }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-15 09:08</div>
+</div>
+</body>
+</html>
