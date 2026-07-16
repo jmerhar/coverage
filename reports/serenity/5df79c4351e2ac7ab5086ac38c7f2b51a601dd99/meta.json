@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "5df79c4351e2ac7ab5086ac38c7f2b51a601dd99",
+  "short_sha": "5df79c4351",
+  "committed_at": "2026-07-16T12:55:48Z",
+  "message": "feat(monitoring): add public /api/health probe for external monitors",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/5df79c4351e2ac7ab5086ac38c7f2b51a601dd99",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}
