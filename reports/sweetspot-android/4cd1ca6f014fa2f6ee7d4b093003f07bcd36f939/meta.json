@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "4cd1ca6f014fa2f6ee7d4b093003f07bcd36f939",
+  "short_sha": "4cd1ca6f01",
+  "committed_at": "2026-07-20T21:07:11Z",
+  "message": "feat: break the price chart into all-in components with a results-screen toggle",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/4cd1ca6f014fa2f6ee7d4b093003f07bcd36f939",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "82.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > Country</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Country (today.sweetspot.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">Country</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.model
+&nbsp;
+&nbsp;import androidx.annotation.StringRes
+&nbsp;import today.sweetspot.data.api.BiddingZone
+&nbsp;import today.sweetspot.shared.R
+&nbsp;
+&nbsp;/**
+&nbsp; * A specific electricity pricing zone within a country.
+&nbsp; *
+&nbsp; * Most countries have a single zone, but some (DK, IT, NO, SE) are split
+&nbsp; * into multiple bidding zones with independent day-ahead prices.
+&nbsp; *
+&nbsp; * @property id Short identifier, e.g. `&quot;NL&quot;`, `&quot;DK1&quot;`, `&quot;IT_NORD&quot;`.
+&nbsp; * @property labelRes String resource ID for the human-readable label.
+&nbsp; * @property eicCode EIC code for the ENTSO-E API (see [BiddingZone]).
+&nbsp; * @property timeZoneId IANA timezone, e.g. `&quot;Europe/Amsterdam&quot;`.
+&nbsp; */
+&nbsp;data class PriceZone(
+&nbsp;    val id: String,
+&nbsp;    @param:StringRes val labelRes: Int,
+&nbsp;    val eicCode: String,
+&nbsp;    val timeZoneId: String
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * A country that participates in European electricity markets.
+&nbsp; *
+&nbsp; * @property code ISO 3166-1 alpha-2 code, e.g. `&quot;NL&quot;`, `&quot;DK&quot;`.
+&nbsp; * @property nameRes String resource ID for the display name.
+&nbsp; * @property zones Bidding zones within this country (1 for most, multiple for DK/IT/NO/SE).
+&nbsp; */
+<b class="fc">&nbsp;data class Country(</b>
+<b class="fc">&nbsp;    val code: String,</b>
+<b class="fc">&nbsp;    @param:StringRes val nameRes: Int,</b>
+<b class="fc">&nbsp;    val zones: List&lt;PriceZone&gt;</b>
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Registry of all supported countries and their bidding zones.
+&nbsp; *
+&nbsp; * Contains 30 countries covering 43 European bidding zones on the ENTSO-E
+&nbsp; * Transparency Platform. DE and LU share the same bidding zone (`DE_LU`).
+&nbsp; * IE uses the all-island Single Electricity Market (SEM).
+&nbsp; */
+&nbsp;object Countries {
+&nbsp;
+&nbsp;    /** All supported countries, sorted alphabetically by English name. */
+&nbsp;    val all: List&lt;Country&gt; = listOf(
+&nbsp;        Country(
+&nbsp;            code = &quot;AT&quot;, nameRes = R.string.country_at,
+&nbsp;            zones = listOf(PriceZone(&quot;AT&quot;, R.string.zone_at, BiddingZone.AT, &quot;Europe/Vienna&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;BE&quot;, nameRes = R.string.country_be,
+&nbsp;            zones = listOf(PriceZone(&quot;BE&quot;, R.string.zone_be, BiddingZone.BE, &quot;Europe/Brussels&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;BG&quot;, nameRes = R.string.country_bg,
+&nbsp;            zones = listOf(PriceZone(&quot;BG&quot;, R.string.zone_bg, BiddingZone.BG, &quot;Europe/Sofia&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;HR&quot;, nameRes = R.string.country_hr,
+&nbsp;            zones = listOf(PriceZone(&quot;HR&quot;, R.string.zone_hr, BiddingZone.HR, &quot;Europe/Zagreb&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;CZ&quot;, nameRes = R.string.country_cz,
+&nbsp;            zones = listOf(PriceZone(&quot;CZ&quot;, R.string.zone_cz, BiddingZone.CZ, &quot;Europe/Prague&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;DK&quot;, nameRes = R.string.country_dk,
+&nbsp;            zones = listOf(
+&nbsp;                PriceZone(&quot;DK1&quot;, R.string.zone_dk1, BiddingZone.DK1, &quot;Europe/Copenhagen&quot;),
+&nbsp;                PriceZone(&quot;DK2&quot;, R.string.zone_dk2, BiddingZone.DK2, &quot;Europe/Copenhagen&quot;)
+&nbsp;            )
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;EE&quot;, nameRes = R.string.country_ee,
+&nbsp;            zones = listOf(PriceZone(&quot;EE&quot;, R.string.zone_ee, BiddingZone.EE, &quot;Europe/Tallinn&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;FI&quot;, nameRes = R.string.country_fi,
+&nbsp;            zones = listOf(PriceZone(&quot;FI&quot;, R.string.zone_fi, BiddingZone.FI, &quot;Europe/Helsinki&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;FR&quot;, nameRes = R.string.country_fr,
+&nbsp;            zones = listOf(PriceZone(&quot;FR&quot;, R.string.zone_fr, BiddingZone.FR, &quot;Europe/Paris&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;DE&quot;, nameRes = R.string.country_de,
+&nbsp;            zones = listOf(PriceZone(&quot;DE_LU&quot;, R.string.zone_de_lu, BiddingZone.DE_LU, &quot;Europe/Berlin&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;GR&quot;, nameRes = R.string.country_gr,
+&nbsp;            zones = listOf(PriceZone(&quot;GR&quot;, R.string.zone_gr, BiddingZone.GR, &quot;Europe/Athens&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;HU&quot;, nameRes = R.string.country_hu,
+&nbsp;            zones = listOf(PriceZone(&quot;HU&quot;, R.string.zone_hu, BiddingZone.HU, &quot;Europe/Budapest&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;IE&quot;, nameRes = R.string.country_ie,
+&nbsp;            zones = listOf(PriceZone(&quot;IE_SEM&quot;, R.string.zone_ie_sem, BiddingZone.IE_SEM, &quot;Europe/Dublin&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;IT&quot;, nameRes = R.string.country_it,
+&nbsp;            zones = listOf(
+&nbsp;                PriceZone(&quot;IT_NORD&quot;, R.string.zone_it_nord, BiddingZone.IT_NORD, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_CNOR&quot;, R.string.zone_it_cnor, BiddingZone.IT_CNOR, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_CSUD&quot;, R.string.zone_it_csud, BiddingZone.IT_CSUD, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_SUD&quot;, R.string.zone_it_sud, BiddingZone.IT_SUD, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_CALA&quot;, R.string.zone_it_cala, BiddingZone.IT_CALA, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_SICI&quot;, R.string.zone_it_sici, BiddingZone.IT_SICI, &quot;Europe/Rome&quot;),
+&nbsp;                PriceZone(&quot;IT_SARD&quot;, R.string.zone_it_sard, BiddingZone.IT_SARD, &quot;Europe/Rome&quot;)
+&nbsp;            )
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;LV&quot;, nameRes = R.string.country_lv,
+&nbsp;            zones = listOf(PriceZone(&quot;LV&quot;, R.string.zone_lv, BiddingZone.LV, &quot;Europe/Riga&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;LT&quot;, nameRes = R.string.country_lt,
+&nbsp;            zones = listOf(PriceZone(&quot;LT&quot;, R.string.zone_lt, BiddingZone.LT, &quot;Europe/Vilnius&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;LU&quot;, nameRes = R.string.country_lu,
+&nbsp;            zones = listOf(PriceZone(&quot;DE_LU&quot;, R.string.zone_de_lu, BiddingZone.DE_LU, &quot;Europe/Luxembourg&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;ME&quot;, nameRes = R.string.country_me,
+&nbsp;            zones = listOf(PriceZone(&quot;ME&quot;, R.string.zone_me, BiddingZone.ME, &quot;Europe/Podgorica&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;NL&quot;, nameRes = R.string.country_nl,
+&nbsp;            zones = listOf(PriceZone(&quot;NL&quot;, R.string.zone_nl, BiddingZone.NL, &quot;Europe/Amsterdam&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;MK&quot;, nameRes = R.string.country_mk,
+&nbsp;            zones = listOf(PriceZone(&quot;MK&quot;, R.string.zone_mk, BiddingZone.MK, &quot;Europe/Skopje&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;NO&quot;, nameRes = R.string.country_no,
+&nbsp;            zones = listOf(
+&nbsp;                PriceZone(&quot;NO1&quot;, R.string.zone_no1, BiddingZone.NO1, &quot;Europe/Oslo&quot;),
+&nbsp;                PriceZone(&quot;NO2&quot;, R.string.zone_no2, BiddingZone.NO2, &quot;Europe/Oslo&quot;),
+&nbsp;                PriceZone(&quot;NO3&quot;, R.string.zone_no3, BiddingZone.NO3, &quot;Europe/Oslo&quot;),
+&nbsp;                PriceZone(&quot;NO4&quot;, R.string.zone_no4, BiddingZone.NO4, &quot;Europe/Oslo&quot;),
+&nbsp;                PriceZone(&quot;NO5&quot;, R.string.zone_no5, BiddingZone.NO5, &quot;Europe/Oslo&quot;)
+&nbsp;            )
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;PL&quot;, nameRes = R.string.country_pl,
+&nbsp;            zones = listOf(PriceZone(&quot;PL&quot;, R.string.zone_pl, BiddingZone.PL, &quot;Europe/Warsaw&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;PT&quot;, nameRes = R.string.country_pt,
+&nbsp;            zones = listOf(PriceZone(&quot;PT&quot;, R.string.zone_pt, BiddingZone.PT, &quot;Europe/Lisbon&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;RO&quot;, nameRes = R.string.country_ro,
+&nbsp;            zones = listOf(PriceZone(&quot;RO&quot;, R.string.zone_ro, BiddingZone.RO, &quot;Europe/Bucharest&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;RS&quot;, nameRes = R.string.country_rs,
+&nbsp;            zones = listOf(PriceZone(&quot;RS&quot;, R.string.zone_rs, BiddingZone.RS, &quot;Europe/Belgrade&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;SK&quot;, nameRes = R.string.country_sk,
+&nbsp;            zones = listOf(PriceZone(&quot;SK&quot;, R.string.zone_sk, BiddingZone.SK, &quot;Europe/Bratislava&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;SI&quot;, nameRes = R.string.country_si,
+&nbsp;            zones = listOf(PriceZone(&quot;SI&quot;, R.string.zone_si, BiddingZone.SI, &quot;Europe/Ljubljana&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;ES&quot;, nameRes = R.string.country_es,
+&nbsp;            zones = listOf(PriceZone(&quot;ES&quot;, R.string.zone_es, BiddingZone.ES, &quot;Europe/Madrid&quot;))
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;SE&quot;, nameRes = R.string.country_se,
+&nbsp;            zones = listOf(
+&nbsp;                PriceZone(&quot;SE1&quot;, R.string.zone_se1, BiddingZone.SE1, &quot;Europe/Stockholm&quot;),
+&nbsp;                PriceZone(&quot;SE2&quot;, R.string.zone_se2, BiddingZone.SE2, &quot;Europe/Stockholm&quot;),
+&nbsp;                PriceZone(&quot;SE3&quot;, R.string.zone_se3, BiddingZone.SE3, &quot;Europe/Stockholm&quot;),
+&nbsp;                PriceZone(&quot;SE4&quot;, R.string.zone_se4, BiddingZone.SE4, &quot;Europe/Stockholm&quot;)
+&nbsp;            )
+&nbsp;        ),
+&nbsp;        Country(
+&nbsp;            code = &quot;CH&quot;, nameRes = R.string.country_ch,
+&nbsp;            zones = listOf(PriceZone(&quot;CH&quot;, R.string.zone_ch, BiddingZone.CH, &quot;Europe/Zurich&quot;))
+&nbsp;        )
+&nbsp;    )
+&nbsp;
+&nbsp;    /** Lookup map by country code for O(1) access. */
+&nbsp;    private val byCode: Map&lt;String, Country&gt; = all.associateBy { it.code }
+&nbsp;
+&nbsp;    /** Lookup map by zone ID for O(1) access. */
+&nbsp;    private val priceZoneById: Map&lt;String, PriceZone&gt; = all.flatMap { it.zones }.associateBy { it.id }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Finds a country by its ISO code.
+&nbsp;     *
+&nbsp;     * @param code ISO 3166-1 alpha-2 country code (e.g. `&quot;NL&quot;`, `&quot;DE&quot;`).
+&nbsp;     * @return The matching [Country], or `null` if not supported.
+&nbsp;     */
+&nbsp;    fun findByCode(code: String): Country? = byCode[code]
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Finds a price zone by its zone ID.
+&nbsp;     *
+&nbsp;     * @param id Zone identifier (e.g. `&quot;NL&quot;`, `&quot;DE_LU&quot;`, `&quot;IT_NORD&quot;`).
+&nbsp;     * @return The matching [PriceZone], or `null` if not found.
+&nbsp;     */
+&nbsp;    fun findPriceZoneById(id: String): PriceZone? = priceZoneById[id]
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the default country (Netherlands).
+&nbsp;     */
+&nbsp;    fun defaultCountry(): Country = byCode.getValue(&quot;NL&quot;)
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-20 21:06</div>
+</div>
+</body>
+</html>
