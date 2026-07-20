@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "1742028b353690b732943f7d45c1d57a3097f349",
+  "short_sha": "1742028b35",
+  "committed_at": "2026-07-20T21:17:54Z",
+  "message": "feat: show EV charging time in the results header",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/1742028b353690b732943f7d45c1d57a3097f349",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
