@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "57f99f7a29b1648d76773e8befc5cf2e4d6b7cca",
+  "short_sha": "57f99f7a29",
+  "committed_at": "2026-07-21T10:02:40Z",
+  "message": "docs: add first-launch onboarding idea note",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/57f99f7a29b1648d76773e8befc5cf2e4d6b7cca",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

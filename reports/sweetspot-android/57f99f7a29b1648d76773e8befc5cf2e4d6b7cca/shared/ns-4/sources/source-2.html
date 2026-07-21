@@ -1,0 +1,256 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > SetupShare</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.share</a>
+</div>
+
+<h1>Coverage Summary for Class: SetupShare (today.sweetspot.data.share)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SetupShare</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (21/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (29/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (275/275)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.share
+&nbsp;
+&nbsp;import kotlinx.serialization.encodeToString
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import kotlinx.serialization.json.intOrNull
+&nbsp;import kotlinx.serialization.json.jsonObject
+&nbsp;import kotlinx.serialization.json.jsonPrimitive
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.SharedSetup
+&nbsp;import java.io.ByteArrayInputStream
+&nbsp;import java.io.ByteArrayOutputStream
+&nbsp;import java.util.Base64
+&nbsp;import java.util.zip.GZIPInputStream
+&nbsp;import java.util.zip.GZIPOutputStream
+&nbsp;
+&nbsp;/**
+&nbsp; * Outcome of decoding a shared-setup payload.
+&nbsp; */
+&nbsp;sealed interface DecodeResult {
+&nbsp;    /** The payload decoded to a usable setup. */
+&nbsp;    data class Success(val setup: SharedSetup) : DecodeResult
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The payload was written by a newer app whose schema this version doesn&#39;t understand.
+&nbsp;     *
+&nbsp;     * @property schemaVersion The (higher-than-supported) schema version found in the payload.
+&nbsp;     */
+&nbsp;    data class TooNew(val schemaVersion: Int) : DecodeResult
+&nbsp;
+&nbsp;    /** The payload was unreadable (bad Base64/gzip/JSON, or a blank link fragment). */
+&nbsp;    data object Malformed : DecodeResult
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Encodes and decodes a [SharedSetup] as a compact, offline deep link for household sharing.
+&nbsp; *
+&nbsp; * The pipeline is JSON → gzip → URL-safe Base64 (no padding), carried in the **fragment** of
+&nbsp; * `https://sweetspot.today/import#&lt;payload&gt;` so the data never leaves the device (a fragment is
+&nbsp; * not sent to the server). The same encoded string backs both the QR code and the shared link.
+&nbsp; *
+&nbsp; * Mirrors the structure of [today.sweetspot.data.usage.UsageSnapshot]: a stateless object with a
+&nbsp; * single lenient [Json] and pure functions, unit-testable without Android.
+&nbsp; */
+&nbsp;object SetupShare {
+&nbsp;
+&nbsp;    /** Highest payload schema this app can read; a higher one decodes to [DecodeResult.TooNew]. */
+&nbsp;    const val CURRENT_SCHEMA = 1
+&nbsp;
+&nbsp;    /** Base URL whose fragment carries the encoded payload. */
+&nbsp;    const val IMPORT_BASE = &quot;https://sweetspot.today/import&quot;
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    /** Encodes a setup to the URL-safe Base64 payload string (JSON → gzip → Base64). */
+&nbsp;    fun encode(setup: SharedSetup): String {
+<b class="fc">&nbsp;        val bytes = json.encodeToString(setup).toByteArray(Charsets.UTF_8)</b>
+<b class="fc">&nbsp;        val gzipped = ByteArrayOutputStream().also { out -&gt;</b>
+<b class="fc">&nbsp;            GZIPOutputStream(out).use { it.write(bytes) }</b>
+<b class="fc">&nbsp;        }.toByteArray()</b>
+<b class="fc">&nbsp;        return Base64.getUrlEncoder().withoutPadding().encodeToString(gzipped)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Builds the shareable deep link (QR + sharesheet) carrying [setup] in its fragment. */
+<b class="fc">&nbsp;    fun toLink(setup: SharedSetup): String = &quot;$IMPORT_BASE#${encode(setup)}&quot;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Decodes a raw payload string.
+&nbsp;     *
+&nbsp;     * The schema version is read from the JSON before a full decode, so a future payload that
+&nbsp;     * merely renames or requires new fields is reported as [DecodeResult.TooNew] rather than
+&nbsp;     * [DecodeResult.Malformed].
+&nbsp;     */
+&nbsp;    fun decode(payload: String): DecodeResult =
+&nbsp;        try {
+<b class="fc">&nbsp;            val gzipped = Base64.getUrlDecoder().decode(payload)</b>
+<b class="fc">&nbsp;            val jsonText = GZIPInputStream(ByteArrayInputStream(gzipped))</b>
+<b class="fc">&nbsp;                .use { it.readBytes() }</b>
+<b class="fc">&nbsp;                .toString(Charsets.UTF_8)</b>
+<b class="pc">&nbsp;            val schema = json.parseToJsonElement(jsonText)</b>
+<b class="pc">&nbsp;                .jsonObject[&quot;schemaVersion&quot;]?.jsonPrimitive?.intOrNull ?: 1</b>
+<b class="fc">&nbsp;            if (schema &gt; CURRENT_SCHEMA) {</b>
+<b class="fc">&nbsp;                DecodeResult.TooNew(schema)</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                DecodeResult.Success(json.decodeFromString&lt;SharedSetup&gt;(jsonText))</b>
+&nbsp;            }
+&nbsp;        } catch (_: Exception) {
+<b class="fc">&nbsp;            DecodeResult.Malformed</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    /** Decodes the payload carried in a link&#39;s URI fragment (the part after `#`). */
+&nbsp;    fun fromLink(fragment: String?): DecodeResult =
+<b class="fc">&nbsp;        if (fragment.isNullOrBlank()) DecodeResult.Malformed else decode(fragment)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Merges incoming appliances into an existing list, re-minting every imported appliance&#39;s id
+&nbsp;     * so it never collides with a local one.
+&nbsp;     *
+&nbsp;     * @param existing The receiver&#39;s current appliances.
+&nbsp;     * @param incoming The appliances to import (for a &quot;pick&quot; import, pass only the chosen subset).
+&nbsp;     * @param replace When true, adopt [incoming] wholesale; when false, append the incoming
+&nbsp;     *        appliances that aren&#39;t already present by content (name, duration, EV specs, power,
+&nbsp;     *        icon), keeping the receiver&#39;s own list.
+&nbsp;     * @param newId Factory for fresh ids (production passes `UUID.randomUUID().toString()`; tests
+&nbsp;     *        inject a deterministic counter).
+&nbsp;     */
+&nbsp;    fun mergeAppliances(
+&nbsp;        existing: List&lt;Appliance&gt;,
+&nbsp;        incoming: List&lt;Appliance&gt;,
+&nbsp;        replace: Boolean,
+&nbsp;        newId: () -&gt; String,
+&nbsp;    ): List&lt;Appliance&gt; {
+<b class="fc">&nbsp;        val reIded = incoming.map { it.copy(id = newId()) }</b>
+<b class="fc">&nbsp;        if (replace) return reIded</b>
+<b class="fc">&nbsp;        val fresh = reIded.filter { candidate -&gt;</b>
+<b class="fc">&nbsp;            existing.none { sameContent(it, candidate) }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return existing + fresh</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Content equality for dedupe, ignoring the (per-device) id. */
+&nbsp;    private fun sameContent(a: Appliance, b: Appliance): Boolean =
+<b class="fc">&nbsp;        a.name == b.name &amp;&amp;</b>
+<b class="fc">&nbsp;            a.durationHours == b.durationHours &amp;&amp;</b>
+<b class="pc">&nbsp;            a.durationMinutes == b.durationMinutes &amp;&amp;</b>
+<b class="fc">&nbsp;            a.ev == b.ev &amp;&amp;</b>
+<b class="fc">&nbsp;            a.powerKw == b.powerKw &amp;&amp;</b>
+<b class="fc">&nbsp;            a.icon == b.icon</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-21 08:38</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > BarColors</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.charting</a>
+</div>
+
+<h1>Coverage Summary for Class: BarColors (today.sweetspot.charting)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">BarColors</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (41/41)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BarColors$WhenMappings</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (41/41)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.charting
+&nbsp;
+&nbsp;import androidx.compose.ui.graphics.Color
+&nbsp;import androidx.compose.ui.graphics.lerp
+&nbsp;import today.sweetspot.util.AllInBarSegments
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure colour logic for the price bar chart, kept out of the `@Composable` (which is excluded from
+&nbsp; * coverage) so it can be unit-tested. The chart passes in the theme-fixed bar colours; this object
+&nbsp; * decides how they are faded and which one a segment gets.
+&nbsp; */
+&nbsp;object BarColors {
+&nbsp;
+&nbsp;    // How far a non-window bar is faded toward the background (0 = untouched, 1 = fully background).
+&nbsp;    // A dark background swallows a faded bar more readily than a light one, so the dark theme needs a
+&nbsp;    // little less fade to reach the same separation.
+&nbsp;    const val DIM_FRACTION_LIGHT = 0.35f
+&nbsp;    const val DIM_FRACTION_DARK = 0.25f
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fades a bar colour toward the theme&#39;s background so a non-window bar recedes: lighten (toward
+&nbsp;     * white) on a light theme, darken (toward black) on a dark theme. Window bars are left at full
+&nbsp;     * strength, which is what makes them stand out.
+&nbsp;     *
+&nbsp;     * @param color The bar&#39;s full-strength colour.
+&nbsp;     * @param dark Whether the app is in dark theme.
+&nbsp;     */
+&nbsp;    fun dim(color: Color, dark: Boolean): Color =
+<b class="fc">&nbsp;        lerp(color, if (dark) Color.Black else Color.White, if (dark) DIM_FRACTION_DARK else DIM_FRACTION_LIGHT)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resolves an all-in segment [AllInBarSegments.Role] to its bar colour, faded via [dim] when the
+&nbsp;     * bar is not part of the cheapest window.
+&nbsp;     *
+&nbsp;     * @param role Which price component the segment represents.
+&nbsp;     * @param dimmed Whether this bar is outside the cheapest window (and so should recede).
+&nbsp;     * @param dark Whether the app is in dark theme.
+&nbsp;     */
+&nbsp;    fun segmentColor(
+&nbsp;        role: AllInBarSegments.Role,
+&nbsp;        dimmed: Boolean,
+&nbsp;        dark: Boolean,
+&nbsp;        taxColor: Color,
+&nbsp;        surchargeColor: Color,
+&nbsp;        spotColor: Color,
+&nbsp;        negativeSpotColor: Color
+&nbsp;    ): Color {
+<b class="fc">&nbsp;        val base = when (role) {</b>
+<b class="fc">&nbsp;            AllInBarSegments.Role.TAX -&gt; taxColor</b>
+<b class="fc">&nbsp;            AllInBarSegments.Role.SURCHARGE -&gt; surchargeColor</b>
+<b class="fc">&nbsp;            AllInBarSegments.Role.SPOT -&gt; spotColor</b>
+<b class="fc">&nbsp;            AllInBarSegments.Role.SPOT_NEGATIVE -&gt; negativeSpotColor</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return if (dimmed) dim(base, dark) else base</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-21 08:39</div>
+</div>
+</body>
+</html>

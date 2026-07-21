@@ -1,0 +1,303 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > AllInBarSegments</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: AllInBarSegments (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllInBarSegments</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (139/139)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AllInBarSegments$Role</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (30/30)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AllInBarSegments$Segment</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (186/186)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import today.sweetspot.util.AllInPricing.AllInComponents
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure geometry for the all-in &quot;fixed baseline + spot deviation&quot; bar chart.
+&nbsp; *
+&nbsp; * Every bar shares a vertical baseline at the constant fixed cost ([AllInComponents.fixedTotal] —
+&nbsp; * energy tax + surcharge, VAT-inclusive). The spot component is drawn as a deviation from that
+&nbsp; * baseline: a positive spot extends the bar to the right of the baseline, a negative spot draws a
+&nbsp; * band back over the right end of the fixed block (so cheaper hours visibly pull the bar in). The
+&nbsp; * fixed block itself is identical on every bar, which is what makes the baseline read as a single
+&nbsp; * vertical line across the chart.
+&nbsp; *
+&nbsp; * All positions are fractions of the chart&#39;s value range `[xMin, xMax]`, so a renderer can place
+&nbsp; * each segment by absolute offset/width without any weight arithmetic. When every bar&#39;s total is
+&nbsp; * non-negative, `xMin` is 0 and the fixed block sits at the left edge. When some all-in total goes
+&nbsp; * below zero, `xMin` is that lowest total: the zero reference shifts right, and a deeply-negative
+&nbsp; * spot&#39;s band extends left of it — the &quot;getting paid&quot; case, drawn with the same components rather
+&nbsp; * than a separate fallback. Segments are returned in draw order: the fixed block first, then the
+&nbsp; * spot layer on top (which matters for a negative spot, whose band overlays the fixed block&#39;s tail).
+&nbsp; */
+&nbsp;object AllInBarSegments {
+&nbsp;
+&nbsp;    /** Which price component a bar segment represents (drives its colour in the UI). */
+&nbsp;    enum class Role {
+&nbsp;        /** Energy tax portion of the fixed block. */
+<b class="fc">&nbsp;        TAX,</b>
+&nbsp;
+&nbsp;        /** Supplier-surcharge portion of the fixed block. */
+<b class="fc">&nbsp;        SURCHARGE,</b>
+&nbsp;
+&nbsp;        /** Positive spot price, extending right of the baseline. */
+<b class="fc">&nbsp;        SPOT,</b>
+&nbsp;
+&nbsp;        /** Negative spot price, drawn back over the fixed block&#39;s tail. */
+<b class="fc">&nbsp;        SPOT_NEGATIVE</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A single coloured segment of a bar, positioned by fractions of the chart&#39;s value range.
+&nbsp;     *
+&nbsp;     * @property role Which component this segment represents.
+&nbsp;     * @property startFraction Left edge as a fraction of `[xMin, xMax]` (0 = the chart&#39;s left edge).
+&nbsp;     * @property widthFraction Width as a fraction of the `[xMin, xMax]` range.
+&nbsp;     */
+<b class="fc">&nbsp;    data class Segment(val role: Role, val startFraction: Float, val widthFraction: Float)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Computes the segments for one all-in bar in the fixed-baseline + spot-deviation layout.
+&nbsp;     *
+&nbsp;     * @param total The bar&#39;s all-in price (may be negative — a net &quot;getting paid&quot; bar).
+&nbsp;     * @param components The VAT-inclusive fixed components (energy tax + surcharge).
+&nbsp;     * @param xMax The chart&#39;s right extent (≥ every bar&#39;s `total` and ≥ `fixedTotal`).
+&nbsp;     * @param xMin The chart&#39;s left extent (≤ 0 and ≤ every bar&#39;s `total`; 0 when no total is negative).
+&nbsp;     * @return Ordered segments (fixed block first, then the spot layer). Zero-width components are
+&nbsp;     *   omitted so a renderer never has to special-case them. Empty when the range is non-positive.
+&nbsp;     */
+&nbsp;    fun segmentsFor(
+&nbsp;        total: Double,
+&nbsp;        components: AllInComponents,
+&nbsp;        xMax: Double,
+<b class="fc">&nbsp;        xMin: Double = 0.0</b>
+&nbsp;    ): List&lt;Segment&gt; {
+<b class="fc">&nbsp;        val range = xMax - xMin</b>
+<b class="fc">&nbsp;        if (range &lt;= 0.0) return emptyList()</b>
+&nbsp;        // Map a value to its fraction of the [xMin, xMax] range. frac(0) is the zero reference.
+<b class="fc">&nbsp;        fun frac(value: Double): Float = ((value - xMin) / range).toFloat()</b>
+&nbsp;
+<b class="fc">&nbsp;        val fixed = components.fixedTotal</b>
+<b class="fc">&nbsp;        val spot = total - fixed</b>
+&nbsp;        // Treat a spot within rounding noise of the baseline as exactly zero (no spot segment),
+&nbsp;        // so `total == fixedTotal` doesn&#39;t leave a hairline segment from float subtraction.
+<b class="fc">&nbsp;        val eps = 1e-9</b>
+<b class="fc">&nbsp;        val segments = mutableListOf&lt;Segment&gt;()</b>
+&nbsp;
+&nbsp;        // Fixed block, always spanning the value range [0, fixedTotal] — constant across bars.
+<b class="fc">&nbsp;        if (components.energyTax &gt; 0.0) {</b>
+<b class="fc">&nbsp;            segments += Segment(Role.TAX, frac(0.0), frac(components.energyTax) - frac(0.0))</b>
+&nbsp;        }
+<b class="pc">&nbsp;        if (components.surcharge &gt; 0.0) {</b>
+<b class="fc">&nbsp;            segments += Segment(Role.SURCHARGE, frac(components.energyTax), frac(fixed) - frac(components.energyTax))</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Spot deviation from the baseline (fixedTotal).
+<b class="fc">&nbsp;        if (spot &gt; eps) {</b>
+<b class="fc">&nbsp;            segments += Segment(Role.SPOT, frac(fixed), frac(total) - frac(fixed))</b>
+<b class="fc">&nbsp;        } else if (spot &lt; -eps) {</b>
+&nbsp;            // Band over [total, fixedTotal] — the market &quot;discount&quot; eating back into the fixed block,
+&nbsp;            // crossing the zero reference (frac(0)) when the all-in total itself is below zero.
+<b class="fc">&nbsp;            segments += Segment(Role.SPOT_NEGATIVE, frac(total), frac(fixed) - frac(total))</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return segments</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-21 08:38</div>
+</div>
+</body>
+</html>
