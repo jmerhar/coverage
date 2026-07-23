@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "bdab0fb2e23177c48a49d2c1d7e49cbc1a95c1b2",
+  "short_sha": "bdab0fb2e2",
+  "committed_at": "2026-07-23T09:48:00Z",
+  "message": "fix(prod): pin LiteSpeed PHP handler in .htaccess to bypass broken vhost binding",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/bdab0fb2e23177c48a49d2c1d7e49cbc1a95c1b2",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}
