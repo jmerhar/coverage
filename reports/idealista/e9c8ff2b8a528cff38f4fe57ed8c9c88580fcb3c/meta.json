@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "e9c8ff2b8a528cff38f4fe57ed8c9c88580fcb3c",
+  "short_sha": "e9c8ff2b8a",
+  "committed_at": "2026-07-23T13:04:29Z",
+  "message": "chore: add coverage badges and tighten gate to 95/98",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/e9c8ff2b8a528cff38f4fe57ed8c9c88580fcb3c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.0%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}
