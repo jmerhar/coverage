@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "6c10cd80abf782e1d7db7e0fd34adce6b81c6248",
+  "short_sha": "6c10cd80ab",
+  "committed_at": "2026-07-23T15:00:49Z",
+  "message": "feat: show matched location name in property rent-estimate match level",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/6c10cd80abf782e1d7db7e0fd34adce6b81c6248",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.0%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "91.6%"
+      }
+    }
+  ]
+}
