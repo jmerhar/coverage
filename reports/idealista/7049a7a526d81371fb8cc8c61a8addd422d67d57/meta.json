@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "7049a7a526d81371fb8cc8c61a8addd422d67d57",
+  "short_sha": "7049a7a526",
+  "committed_at": "2026-07-23T07:50:59Z",
+  "message": "chore: upgrade runtime to Python 3.14 for accurate async coverage",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/7049a7a526d81371fb8cc8c61a8addd422d67d57",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "85.7%",
+        "branch": "81.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "90.8%",
+        "branch": "85.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "82.6%",
+        "branch": "77.4%"
+      }
+    }
+  ]
+}
