@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "9efdeb917684dc19be098b9835562905b2d97945",
+  "short_sha": "9efdeb9176",
+  "committed_at": "2026-07-30T21:52:56Z",
+  "message": "docs: document exported API and correct stale references",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/9efdeb917684dc19be098b9835562905b2d97945",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    }
+  ]
+}
