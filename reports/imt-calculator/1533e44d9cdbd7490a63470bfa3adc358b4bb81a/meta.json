@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "1533e44d9cdbd7490a63470bfa3adc358b4bb81a",
+  "short_sha": "1533e44d9c",
+  "committed_at": "2026-07-30T21:01:41Z",
+  "message": "test: cover clipboard/breakdown, URL load, theme, glossary PT; gate 98%",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/1533e44d9cdbd7490a63470bfa3adc358b4bb81a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "88.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "88.7%"
+      }
+    }
+  ]
+}
