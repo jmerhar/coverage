@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "154cd0939d840e0d2db77d90606cffb9fe2c9c35",
+  "short_sha": "154cd0939d",
+  "committed_at": "2026-07-30T19:15:07Z",
+  "message": "layout: stack the purchase-details form in two columns",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/154cd0939d840e0d2db77d90606cffb9fe2c9c35",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}
