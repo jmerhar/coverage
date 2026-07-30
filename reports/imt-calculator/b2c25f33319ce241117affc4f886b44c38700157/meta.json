@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "b2c25f33319ce241117affc4f886b44c38700157",
+  "short_sha": "b2c25f3331",
+  "committed_at": "2026-07-30T13:56:36Z",
+  "message": "fix: align form controls, give result figures room, house favicon",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/b2c25f33319ce241117affc4f886b44c38700157",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}
