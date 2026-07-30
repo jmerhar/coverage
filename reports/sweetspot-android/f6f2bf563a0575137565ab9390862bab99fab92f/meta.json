@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "f6f2bf563a0575137565ab9390862bab99fab92f",
+  "short_sha": "f6f2bf563a",
+  "committed_at": "2026-07-30T07:30:15Z",
+  "message": "docs: rename Help & feedback -> Help & support across docs and website",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/f6f2bf563a0575137565ab9390862bab99fab92f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.9%",
+        "branch": "86.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}
