@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "07b90c9e7036c5170659507ae68dcda052f9e9c8",
+  "short_sha": "07b90c9e70",
+  "committed_at": "2026-07-30T13:29:08Z",
+  "message": "style: replace azulejo rail + favicon with a 'selo' seal mark",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/07b90c9e7036c5170659507ae68dcda052f9e9c8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}
