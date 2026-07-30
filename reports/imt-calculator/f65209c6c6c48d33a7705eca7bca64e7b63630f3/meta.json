@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "f65209c6c6c48d33a7705eca7bca64e7b63630f3",
+  "short_sha": "f65209c6c6",
+  "committed_at": "2026-07-30T10:45:09Z",
+  "message": "fix(test): clear localStorage between tests to prevent state pollution",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/f65209c6c6c48d33a7705eca7bca64e7b63630f3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "86.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "86.2%"
+      }
+    }
+  ]
+}
