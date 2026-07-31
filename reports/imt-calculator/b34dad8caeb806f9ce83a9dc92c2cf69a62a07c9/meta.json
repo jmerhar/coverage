@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "b34dad8caeb806f9ce83a9dc92c2cf69a62a07c9",
+  "short_sha": "b34dad8cae",
+  "committed_at": "2026-07-31T21:19:00Z",
+  "message": "docs: record shipped progress in the SEO and content plans",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/b34dad8caeb806f9ce83a9dc92c2cf69a62a07c9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
