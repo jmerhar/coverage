@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "82313bbcb0207bf7a7c5c04864ae576ee117620d",
+  "short_sha": "82313bbcb0",
+  "committed_at": "2026-07-31T07:46:38Z",
+  "message": "fix: correct share-arrival tracking and drop raw amount from GA",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/82313bbcb0207bf7a7c5c04864ae576ee117620d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.0%"
+      }
+    }
+  ]
+}
