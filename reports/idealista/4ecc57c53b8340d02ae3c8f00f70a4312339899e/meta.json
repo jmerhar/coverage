@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "4ecc57c53b8340d02ae3c8f00f70a4312339899e",
+  "short_sha": "4ecc57c53b",
+  "committed_at": "2026-08-02T12:11:02Z",
+  "message": "feat: add admin captcha dashboard with event history and settings timeline",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/4ecc57c53b8340d02ae3c8f00f70a4312339899e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.4%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.2%"
+      }
+    }
+  ]
+}
