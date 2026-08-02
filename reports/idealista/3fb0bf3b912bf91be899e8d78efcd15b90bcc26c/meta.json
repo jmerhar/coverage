@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "3fb0bf3b912bf91be899e8d78efcd15b90bcc26c",
+  "short_sha": "3fb0bf3b91",
+  "committed_at": "2026-08-02T15:36:58Z",
+  "message": "feat(captcha): clip-outliers toggle on the pages-before-captcha chart",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/3fb0bf3b912bf91be899e8d78efcd15b90bcc26c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}
