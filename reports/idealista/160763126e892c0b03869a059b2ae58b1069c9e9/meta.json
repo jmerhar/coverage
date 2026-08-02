@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "160763126e892c0b03869a059b2ae58b1069c9e9",
+  "short_sha": "160763126e",
+  "committed_at": "2026-08-02T12:54:03Z",
+  "message": "feat(captcha): colour type breakdowns by kind + add work-before-over-time chart",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/160763126e892c0b03869a059b2ae58b1069c9e9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.4%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}
