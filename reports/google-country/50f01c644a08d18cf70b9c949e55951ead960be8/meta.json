@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "50f01c644a08d18cf70b9c949e55951ead960be8",
+  "short_sha": "50f01c644a",
+  "committed_at": "2026-08-03T21:50:23Z",
+  "message": "feat: Google search country override extension",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/50f01c644a08d18cf70b9c949e55951ead960be8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "96.7%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "96.7%"
+      }
+    }
+  ]
+}
