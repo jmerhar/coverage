@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "67e9345d114260267b5b88034b719c22670bb9fc",
+  "short_sha": "67e9345d11",
+  "committed_at": "2026-08-04T10:48:49Z",
+  "message": "feat: add GitHub Pages site and fix store icon",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/67e9345d114260267b5b88034b719c22670bb9fc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
