@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "4dd4ace962a7bc83edf3d6ed461f6594639b8a96",
+  "short_sha": "4dd4ace962",
+  "committed_at": "2026-08-04T13:15:40Z",
+  "message": "ci: run Pages after the Release workflow (workflow_run) so downloads track the latest release",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/4dd4ace962a7bc83edf3d6ed461f6594639b8a96",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
