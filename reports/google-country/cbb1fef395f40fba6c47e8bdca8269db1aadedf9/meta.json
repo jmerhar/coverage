@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "cbb1fef395f40fba6c47e8bdca8269db1aadedf9",
+  "short_sha": "cbb1fef395",
+  "committed_at": "2026-08-04T12:34:47Z",
+  "message": "chore: auto-load a git-ignored .env in the Makefile so secret-dependent targets run without exporting",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/cbb1fef395f40fba6c47e8bdca8269db1aadedf9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
