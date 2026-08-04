@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "72226840b0f783d49744f657c035ec341634fa1d",
+  "short_sha": "72226840b0",
+  "committed_at": "2026-08-04T16:40:41Z",
+  "message": "chore: release v0.1.6",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/72226840b0f783d49744f657c035ec341634fa1d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    }
+  ]
+}
