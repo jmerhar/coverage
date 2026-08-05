@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "de375912743d5499901a70886b68647977c26e16",
+  "short_sha": "de37591274",
+  "committed_at": "2026-08-05T12:26:14Z",
+  "message": "chore: slow scraper request pacing to ease DataDome IP flag",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/de375912743d5499901a70886b68647977c26e16",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
