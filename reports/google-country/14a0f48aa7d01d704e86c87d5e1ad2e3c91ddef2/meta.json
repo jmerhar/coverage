@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "14a0f48aa7d01d704e86c87d5e1ad2e3c91ddef2",
+  "short_sha": "14a0f48aa7",
+  "committed_at": "2026-08-06T15:11:42Z",
+  "message": "fix(ci): deploy the release matching the built version, not GitHub's lagging \"latest\"",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/14a0f48aa7d01d704e86c87d5e1ad2e3c91ddef2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
