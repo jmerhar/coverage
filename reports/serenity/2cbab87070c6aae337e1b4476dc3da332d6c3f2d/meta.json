@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "2cbab87070c6aae337e1b4476dc3da332d6c3f2d",
+  "short_sha": "2cbab87070",
+  "committed_at": "2026-08-06T17:19:50Z",
+  "message": "chore(ci): add Dependabot for GitHub Actions (#1)",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/2cbab87070c6aae337e1b4476dc3da332d6c3f2d",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.5%",
+        "methods": "91.7%"
+      }
+    }
+  ]
+}
