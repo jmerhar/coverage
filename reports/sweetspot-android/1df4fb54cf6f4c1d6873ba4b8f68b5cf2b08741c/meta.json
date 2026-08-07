@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "1df4fb54cf6f4c1d6873ba4b8f68b5cf2b08741c",
+  "short_sha": "1df4fb54cf",
+  "committed_at": "2026-08-07T09:56:18Z",
+  "message": "chore(ci): add Dependabot for GitHub Actions (#12)",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/1df4fb54cf6f4c1d6873ba4b8f68b5cf2b08741c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%"
+      }
+    }
+  ]
+}
