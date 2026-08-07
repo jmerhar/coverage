@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ReportCategory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ReportCategory (today.sweetspot.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReportCategory</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.model
+&nbsp;
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;
+&nbsp;/** Whether a submission is a bug report or general feedback. */
+&nbsp;enum class ReportCategory {
+<b class="nc">&nbsp;    BUG,</b>
+<b class="nc">&nbsp;    FEEDBACK;</b>
+&nbsp;
+&nbsp;    /** The value the feedback Worker expects in the request&#39;s `category` field. */
+<b class="nc">&nbsp;    val wireValue: String get() = if (this == BUG) &quot;bug&quot; else &quot;feedback&quot;</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * A report/feedback submission as sent to the feedback Worker (`POST /report`).
+&nbsp; *
+&nbsp; * [diagnostics] is attached to bug reports only. [email] is optional and opts the reporter into
+&nbsp; * activity notifications — it is stored server-side only and never appears in the public GitHub issue.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;data class FeedbackReport(
+&nbsp;    val category: String,
+&nbsp;    val subject: String,
+&nbsp;    val body: String,
+&nbsp;    val diagnostics: String? = null,
+&nbsp;    val email: String? = null
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * A report this device has submitted, remembered locally so &quot;My reports&quot; can show its live status
+&nbsp; * (read from the public GitHub API — the app never stores a token).
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;data class MyReport(
+&nbsp;    val number: Int,
+&nbsp;    val subject: String,
+&nbsp;    val category: String,
+&nbsp;    val submittedAtMs: Long,
+&nbsp;    /** Capability token for posting in-app replies to this report (null for older stored reports). */
+&nbsp;    val replyToken: String? = null
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * A submitted-but-not-yet-delivered report held in the local outbox for retry. Carries the full
+&nbsp; * request (including the diagnostics captured at submit time, so a later retry sends the identical
+&nbsp; * payload) plus bookkeeping. Flushed on app/Help open until it lands.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;data class PendingReport(
+&nbsp;    val report: FeedbackReport,
+&nbsp;    val createdAtMs: Long,
+&nbsp;    val attempts: Int = 0
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * A reply (comment on an existing report) submitted but not yet delivered, held in the reply outbox
+&nbsp; * for retry — the reply counterpart of [PendingReport]. Carries the target [issue], the report&#39;s
+&nbsp; * capability [token], and the [body], plus bookkeeping. Flushed on app/Help open until it lands.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;data class PendingReply(
+&nbsp;    val issue: Int,
+&nbsp;    val token: String,
+&nbsp;    val body: String,
+&nbsp;    val createdAtMs: Long,
+&nbsp;    val attempts: Int = 0
+&nbsp;)
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-08-07 09:55</div>
+</div>
+</body>
+</html>
