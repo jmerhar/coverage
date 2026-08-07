@@ -1,0 +1,23 @@
+name: Coverage summary
+description: Render a coverage table onto the workflow run's summary page, from the project's coverage.toml.
+
+inputs:
+  config:
+    description: Path to the project's coverage.toml, relative to working-directory.
+    required: false
+    default: coverage.toml
+  working-directory:
+    description: Directory to run in. Report paths in coverage.toml are resolved from here.
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - name: Coverage summary
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        source "$GITHUB_ACTION_PATH/../lib/resolve.sh"
+        python3 "$COVERAGE_BIN/coverage-report.py" \
+          --config "${{ inputs.config }}" --format md >> "$GITHUB_STEP_SUMMARY"

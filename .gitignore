@@ -1,0 +1,2 @@
+# bin/test-coverage-report.py imports the engine by path, which caches bytecode next to it.
+__pycache__/

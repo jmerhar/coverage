@@ -1,0 +1,32 @@
+name: Test tooling
+
+# The scripts here are the coverage gate and the source of the published numbers for every project on
+# the site, so a regression would mis-report or stop gating all of them at once.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bin/**'
+      - '.github/**'
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Unit tests
+        run: python3 bin/test-coverage-report.py
+
+      # shellcheck is preinstalled on GitHub-hosted runners.
+      - name: ShellCheck
+        run: shellcheck bin/*.sh .github/actions/lib/*.sh

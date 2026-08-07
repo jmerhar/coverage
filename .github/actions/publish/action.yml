@@ -1,0 +1,86 @@
+name: Publish coverage report
+description: Assemble this commit's HTML coverage reports and publish them to the shared coverage site.
+
+# Guard the calling step on a green build and your default branch, e.g.
+#   if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+# A missing token is not an error: the step reports that it skipped, so a repository's workflow stays
+# green before the secret has been created.
+#
+# Posting the commit status needs `permissions: { statuses: write }` on the calling job.
+
+inputs:
+  token:
+    description: Token with Contents write on the coverage repository. Skips publishing when empty.
+    required: true
+  project:
+    description: Project name on the site. Defaults to this repository's name.
+    required: false
+    default: ${{ github.event.repository.name }}
+  config:
+    description: Path to the project's coverage.toml, relative to working-directory.
+    required: false
+    default: coverage.toml
+  working-directory:
+    description: Directory to run in. Report paths in coverage.toml are resolved from here.
+    required: false
+    default: .
+  report-dir:
+    description: Scratch directory the report is assembled in before publishing.
+    required: false
+    default: coverage-upload
+  commit-status:
+    description: Whether to link the published report from the commit's statuses.
+    required: false
+    default: "true"
+  status-context:
+    description: Context label for that commit status.
+    required: false
+    default: coverage/report
+  description:
+    description: Description for that commit status.
+    required: false
+    default: HTML coverage report
+  site-url:
+    description: Base URL the site is served from.
+    required: false
+    default: https://jmerhar.github.io/coverage
+
+runs:
+  using: composite
+  steps:
+    - name: Collect and publish coverage report
+      id: publish
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        COVERAGE_PAGES_TOKEN: ${{ inputs.token }}
+        PROJECT: ${{ inputs.project }}
+      run: |
+        if [ -z "${COVERAGE_PAGES_TOKEN}" ]; then
+          echo "::notice::No coverage token supplied; skipping publish."
+          echo "published=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        source "$GITHUB_ACTION_PATH/../lib/resolve.sh"
+
+        bash "$COVERAGE_BIN/collect-coverage.sh" "${{ inputs.report-dir }}" "${{ inputs.config }}"
+        bash "$COVERAGE_BIN/add-report.sh" \
+          --project "$PROJECT" \
+          --sha "$GITHUB_SHA" \
+          --message "$(git log -1 --pretty=%s)" \
+          --commit-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA" \
+          --report-dir "${{ inputs.report-dir }}"
+        echo "published=true" >> "$GITHUB_OUTPUT"
+
+    - name: Link the report from the commit
+      if: inputs.commit-status == 'true' && steps.publish.outputs.published == 'true'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        PROJECT: ${{ inputs.project }}
+      run: |
+        gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+          -f state=success \
+          -f context="${{ inputs.status-context }}" \
+          -f description="${{ inputs.description }}" \
+          -f target_url="${{ inputs.site-url }}/$PROJECT/$GITHUB_SHA/"
