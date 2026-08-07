@@ -47,6 +47,7 @@ the site links to. Suites keep their declared order in the table and the manifes
 """
 import argparse
 import json
+import re
 import sys
 import tomllib
 from xml.etree import ElementTree
@@ -162,6 +163,14 @@ def load_config(path):
     if not suites:
         sys.exit(f"coverage-report: {path} declares no [suites.<name>]")
     for key, spec in suites.items():
+        # A key becomes both a directory under the upload root and a URL path segment on the site, so
+        # anything that could escape either — a slash, a parent reference — has to be refused here
+        # rather than produce a report published outside its own directory.
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", key):
+            sys.exit(
+                f"coverage-report: suite name {key!r} must be a single path segment of letters, "
+                "digits, dots, underscores or dashes"
+            )
         for field in ("label", "format", "report"):
             if field not in spec:
                 sys.exit(f"coverage-report: suite '{key}' is missing '{field}'")
@@ -171,14 +180,24 @@ def load_config(path):
                 f"(known: {', '.join(sorted(PARSERS))})"
             )
         # The publishing table is tab-separated with comma-joined lists, so a path containing either
-        # would be silently split into the wrong files. Refuse it instead.
+        # would be silently split into the wrong files. These paths are also resolved inside the
+        # suite's own directory, so they must not climb out of it.
         for field in ("include", "require"):
-            for path in spec.get(field, []):
-                if "," in path or "\t" in path:
-                    sys.exit(f"coverage-report: suite '{key}' has a comma or tab in {field}: {path!r}")
-        if "index" in spec and "\t" in spec["index"]:
-            sys.exit(f"coverage-report: suite '{key}' has a tab in index: {spec['index']!r}")
+            for value in spec.get(field, []):
+                _check_relative_path(key, field, value)
+        if "index" in spec:
+            _check_relative_path(key, "index", spec["index"])
     return config
+
+
+def _check_relative_path(key, field, value):
+    """Reject a configured path that cannot be used safely, explaining which rule it broke."""
+    if "," in value or "\t" in value:
+        sys.exit(f"coverage-report: suite '{key}' has a comma or tab in {field}: {value!r}")
+    if value.startswith("/"):
+        sys.exit(f"coverage-report: suite '{key}' has an absolute {field}: {value!r}")
+    if ".." in value.split("/"):
+        sys.exit(f"coverage-report: suite '{key}' has a '..' segment in {field}: {value!r}")
 
 
 def counts(config):

@@ -382,6 +382,31 @@ class ConfigTest(TempCwd):
             with self.assertRaises(SystemExit):
                 cr.load_config("coverage.toml")
 
+    def test_suite_name_must_be_one_safe_path_segment(self):
+        # The name is both a directory under the upload root and a URL segment on the site, so one
+        # that climbs out would publish a report outside its own directory.
+        for name in ('"../evil"', '"a/b"', '"."', '"-leading"'):
+            write("coverage.toml",
+                  f'[suites.{name}]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n')
+            with self.assertRaises(SystemExit, msg=f"accepted suite name {name}"):
+                cr.load_config("coverage.toml")
+
+    def test_ordinary_suite_names_are_accepted(self):
+        # A name containing a dot has to be quoted in TOML, or it declares nested tables instead.
+        for name, declared in (("app", "app"), ("shared", "shared"), ("my-suite", "my-suite"),
+                               ("suite_2", "suite_2"), ("v1.2", '"v1.2"')):
+            write("coverage.toml",
+                  f'[suites.{declared}]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n')
+            self.assertIn(name, cr.load_config("coverage.toml")["suites"])
+
+    def test_published_paths_may_not_escape_the_suite(self):
+        for field, value in (("include", '["../up"]'), ("require", '["/etc/passwd"]'),
+                             ("index", '"../../x.html"')):
+            write("coverage.toml",
+                  f'[suites.app]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n{field}={value}\n')
+            with self.assertRaises(SystemExit, msg=f"accepted {field}={value}"):
+                cr.load_config("coverage.toml")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

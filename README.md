@@ -137,7 +137,22 @@ Supported `format` values, and the report each one reads:
 
 A metric whose denominator the tool reports as zero is dropped, so each project's table has exactly
 the columns its tooling can fill — no configuration needed. The gate always checks **line** coverage.
-Other keys are optional: `require = ["data/bcov.css"]` asserts files the HTML must ship with.
+
+Three further per-suite keys are optional, for tools that don't write a single self-contained report:
+
+| Key | Use |
+|---|---|
+| `include` | Publish only these subpaths of `html`, when the tool writes several reports into one directory |
+| `index` | The report's entry point, when it isn't `index.html` at the top of the suite — a redirect is written there, since that's what the site links to |
+| `require` | Files the published report must contain, asserted after the copy |
+
+`gh-maintenance` uses all three: kcov writes a merged report *and* one per traced invocation, each of
+which lists every file while crediting only a slice of the hits, so only `kcov-merged` and the `data`
+directory its pages need are published.
+
+Suite names must be a single path segment (letters, digits, dots, underscores, dashes) since they
+become directory names and URL segments; a name containing a dot needs quoting in TOML
+(`[suites."v1.2"]`).
 
 ### 3. Three CI steps
 
