@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "b12ba50065f2f53e37918226ef08edb213e33fac",
+  "short_sha": "b12ba50065",
+  "committed_at": "2026-08-07T22:37:37Z",
+  "message": "fix: refresh the fetched coverage engine instead of caching it forever",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/b12ba50065f2f53e37918226ef08edb213e33fac",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
