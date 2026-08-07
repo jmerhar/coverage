@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > CoachMarkGeometry</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: CoachMarkGeometry (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CoachMarkGeometry</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (82/82)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import kotlin.math.roundToInt
+&nbsp;
+&nbsp;/** A target control&#39;s bounds in window pixels (the control a coach mark points at). */
+&nbsp;data class RectPx(val left: Float, val top: Float, val right: Float, val bottom: Float) {
+&nbsp;    /** Horizontal centre of the target, in window pixels. */
+&nbsp;    val centerX: Float get() = (left + right) / 2f
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Where to draw a coach-mark bubble and its tail.
+&nbsp; *
+&nbsp; * @property x Bubble left, in window pixels.
+&nbsp; * @property y Bubble top, in window pixels.
+&nbsp; * @property above `true` when the bubble sits above the target (tail points down), `false` below.
+&nbsp; * @property tailCenterX Tail centre, in pixels measured from the bubble&#39;s left edge.
+&nbsp; */
+&nbsp;data class CalloutPlacement(val x: Int, val y: Int, val above: Boolean, val tailCenterX: Int)
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure placement geometry for the anchored coach-mark callout — the two-axis, tailed sibling of
+&nbsp; * [ChartGeometry.tooltipTopY].
+&nbsp; *
+&nbsp; * The bubble is preferred **above** the target (a [gapPx] gap), flipping **below** when it wouldn&#39;t fit
+&nbsp; * above, and is clamped to stay fully within the window on both axes. The tail points at the target&#39;s
+&nbsp; * horizontal centre, clamped to remain within the bubble (minus [tailInset]) so it can&#39;t slide off a
+&nbsp; * corner when the bubble is pushed sideways by the edge clamp.
+&nbsp; */
+&nbsp;object CoachMarkGeometry {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param target The anchored control&#39;s bounds, in window pixels.
+&nbsp;     * @param bubbleW Measured bubble width in pixels.
+&nbsp;     * @param bubbleH Measured bubble height in pixels.
+&nbsp;     * @param windowW Window width in pixels.
+&nbsp;     * @param windowH Window height in pixels.
+&nbsp;     * @param gapPx Gap between the target and the bubble&#39;s near edge.
+&nbsp;     * @param tailInset Minimum distance the tail centre keeps from the bubble&#39;s left/right edges.
+&nbsp;     */
+&nbsp;    fun calloutFor(
+&nbsp;        target: RectPx,
+&nbsp;        bubbleW: Int,
+&nbsp;        bubbleH: Int,
+&nbsp;        windowW: Int,
+&nbsp;        windowH: Int,
+&nbsp;        gapPx: Float,
+<b class="fc">&nbsp;        tailInset: Float = 0f</b>
+&nbsp;    ): CalloutPlacement {
+<b class="fc">&nbsp;        val aboveTop = target.top - gapPx - bubbleH</b>
+<b class="fc">&nbsp;        val above = aboveTop &gt;= 0f</b>
+<b class="fc">&nbsp;        val yRaw = if (above) aboveTop else target.bottom + gapPx</b>
+<b class="fc">&nbsp;        val maxTop = (windowH - bubbleH).coerceAtLeast(0).toFloat()</b>
+<b class="fc">&nbsp;        val y = yRaw.coerceIn(0f, maxTop)</b>
+&nbsp;
+<b class="fc">&nbsp;        val maxLeft = (windowW - bubbleW).coerceAtLeast(0).toFloat()</b>
+<b class="fc">&nbsp;        val x = (target.centerX - bubbleW / 2f).coerceIn(0f, maxLeft)</b>
+&nbsp;
+<b class="fc">&nbsp;        val tailMax = (bubbleW - tailInset).coerceAtLeast(tailInset)</b>
+<b class="fc">&nbsp;        val tail = (target.centerX - x).coerceIn(tailInset, tailMax)</b>
+&nbsp;
+<b class="fc">&nbsp;        return CalloutPlacement(x.roundToInt(), y.roundToInt(), above, tail.roundToInt())</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-08-07 09:55</div>
+</div>
+</body>
+</html>
