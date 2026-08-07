@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "047a73ce0a73f68776fb8b8e59956d38944ab4ac",
+  "short_sha": "047a73ce0a",
+  "committed_at": "2026-08-07T21:38:54Z",
+  "message": "docs: point the coverage comments at coverage.toml",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/047a73ce0a73f68776fb8b8e59956d38944ab4ac",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
