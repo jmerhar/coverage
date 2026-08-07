@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "3750d16f23f308c74d50fc7d0ec53bae52c72e23",
+  "short_sha": "3750d16f23",
+  "committed_at": "2026-08-07T21:37:02Z",
+  "message": "fix(ci): stop run-coverage.sh calling the removed report script",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/3750d16f23f308c74d50fc7d0ec53bae52c72e23",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
