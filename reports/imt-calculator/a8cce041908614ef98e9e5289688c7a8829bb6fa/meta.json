@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "a8cce041908614ef98e9e5289688c7a8829bb6fa",
+  "short_sha": "a8cce04190",
+  "committed_at": "2026-07-31T19:47:12Z",
+  "message": "fix: apply guide review findings (content, pt-PT, hydration)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/a8cce041908614ef98e9e5289688c7a8829bb6fa",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.0%"
+      }
+    }
+  ]
+}

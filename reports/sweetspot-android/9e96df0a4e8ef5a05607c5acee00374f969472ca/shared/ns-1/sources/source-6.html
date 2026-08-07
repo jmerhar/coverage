@@ -1,0 +1,471 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > EntsoeApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: EntsoeApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">EntsoeApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.6%
+  </span>
+  <span class="absValue">
+    (86/96)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (124/124)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.2%
+  </span>
+  <span class="absValue">
+    (636/641)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EntsoeApi$buildPriceSlots$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.6%
+  </span>
+  <span class="absValue">
+    (86/96)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (124/124)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.2%
+  </span>
+  <span class="absValue">
+    (636/641)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import org.xmlpull.v1.XmlPullParser
+&nbsp;import org.xmlpull.v1.XmlPullParserFactory
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import java.io.StringReader
+&nbsp;import java.time.Duration
+&nbsp;import java.time.Instant
+&nbsp;import java.time.OffsetDateTime
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZoneOffset
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;import java.time.format.DateTimeFormatterBuilder
+&nbsp;
+&nbsp;/**
+&nbsp; * Client for the ENTSO-E Transparency Platform day-ahead price API.
+&nbsp; *
+&nbsp; * Fetches day-ahead electricity prices (documentType A44) for a specific bidding zone.
+&nbsp; * The response is XML containing one or more `TimeSeries &gt; Period &gt; Point` blocks.
+&nbsp; * Prices are in EUR/MWh and converted to EUR/kWh (÷ 1000).
+&nbsp; *
+&nbsp; * Returns prices at the API&#39;s native resolution (PT15M or PT60M) — no aggregation
+&nbsp; * is performed, so the rest of the pipeline sees the original slot duration.
+&nbsp; *
+&nbsp; * @param token ENTSO-E API security token.
+&nbsp; * @param biddingZone EIC code for the bidding zone (see [BiddingZone]).
+&nbsp; */
+&nbsp;class EntsoeApi(
+<b class="fc">&nbsp;    private val token: String,</b>
+<b class="fc">&nbsp;    private val biddingZone: String,</b>
+<b class="fc">&nbsp;    private val client: OkHttpClient = sharedHttpClient</b>
+&nbsp;) : PriceFetcher {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses ENTSO-E timestamps that may omit seconds (e.g. `2026-03-02T23:00Z`).
+&nbsp;     * Standard [Instant.parse] requires seconds, so we use a lenient formatter.
+&nbsp;     */
+<b class="fc">&nbsp;    private val timestampParser: DateTimeFormatter = DateTimeFormatterBuilder()</b>
+<b class="fc">&nbsp;        .append(DateTimeFormatter.ISO_LOCAL_DATE)</b>
+<b class="fc">&nbsp;        .appendLiteral(&#39;T&#39;)</b>
+<b class="fc">&nbsp;        .appendPattern(&quot;HH:mm[:ss]&quot;)</b>
+<b class="fc">&nbsp;        .appendOffsetId()</b>
+<b class="fc">&nbsp;        .toFormatter()</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches and parses day-ahead electricity prices from the ENTSO-E API.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @param timeZoneId Timezone to convert UTC timestamps to local time.
+&nbsp;     * @return A [FetchResult] with sorted price slots in EUR/kWh at native resolution and source &quot;ENTSO-E&quot;.
+&nbsp;     * @throws HttpException if the HTTP request returns a non-200 status code.
+&nbsp;     * @throws EntsoeException if the response is an Acknowledgement error document.
+&nbsp;     */
+&nbsp;    override fun fetchPrices(from: Instant, to: Instant, timeZoneId: ZoneId): FetchResult {
+<b class="fc">&nbsp;        return FetchResult(parse(fetchRaw(from, to), timeZoneId), &quot;ENTSO-E&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches raw XML from the ENTSO-E API for the given date range.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @return Raw XML response body.
+&nbsp;     * @throws HttpException if the HTTP request returns a non-200 status code.
+&nbsp;     * @throws EntsoeException if the response is an Acknowledgement error document.
+&nbsp;     */
+&nbsp;    fun fetchRaw(from: Instant, to: Instant): String {
+<b class="fc">&nbsp;        val fmt = DateTimeFormatter.ofPattern(&quot;yyyyMMddHHmm&quot;).withZone(ZoneOffset.UTC)</b>
+<b class="fc">&nbsp;        val url = &quot;https://web-api.tp.entsoe.eu/api&quot; +</b>
+<b class="fc">&nbsp;            &quot;?securityToken=$token&quot; +</b>
+&nbsp;            &quot;&amp;documentType=A44&quot; +
+<b class="fc">&nbsp;            &quot;&amp;in_Domain=$biddingZone&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;out_Domain=$biddingZone&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;periodStart=${fmt.format(from)}&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;periodEnd=${fmt.format(to)}&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        val request = Request.Builder().url(url).get().build()</b>
+<b class="fc">&nbsp;        val body = client.newCall(request).execute().use { response -&gt;</b>
+<b class="fc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="fc">&nbsp;                throw HttpException(response.code, &quot;ENTSO-E API returned ${response.code}&quot;)</b>
+&nbsp;            }
+<b class="fc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (body.contains(&quot;Acknowledgement_MarketDocument&quot;)) {</b>
+<b class="fc">&nbsp;            val reason = extractErrorReason(body)</b>
+<b class="fc">&nbsp;            throw EntsoeException(reason)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return body</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses ENTSO-E XML into a sorted list of [PriceSlot] entries at native resolution.
+&nbsp;     *
+&nbsp;     * Handles both PT60M (hourly) and PT15M (quarter-hourly) resolutions.
+&nbsp;     * Supports A03 curve type where positions may be skipped (price carries forward
+&nbsp;     * from the last point).
+&nbsp;     *
+&nbsp;     * @param raw Raw XML string from [fetchRaw].
+&nbsp;     * @param timeZoneId Timezone to convert UTC timestamps to local time.
+&nbsp;     * @return Chronologically sorted list of price slots at native resolution.
+&nbsp;     * @throws EntsoeException if the XML is an Acknowledgement error document.
+&nbsp;     */
+&nbsp;    fun parse(raw: String, timeZoneId: ZoneId): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        if (raw.contains(&quot;Acknowledgement_MarketDocument&quot;)) {</b>
+<b class="fc">&nbsp;            val reason = extractErrorReason(raw)</b>
+<b class="fc">&nbsp;            throw EntsoeException(reason)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        val rawPrices = mutableListOf&lt;Triple&lt;Instant, Double, Int&gt;&gt;()</b>
+<b class="fc">&nbsp;        val parser = XmlPullParserFactory.newInstance().newPullParser()</b>
+<b class="fc">&nbsp;        parser.setInput(StringReader(raw))</b>
+&nbsp;
+<b class="fc">&nbsp;        var periodStart: Instant? = null</b>
+<b class="fc">&nbsp;        var resolution: Duration? = null</b>
+<b class="fc">&nbsp;        var currentPosition: Int? = null</b>
+<b class="fc">&nbsp;        var currentPrice: Double? = null</b>
+<b class="fc">&nbsp;        var inTimeSeries = false</b>
+<b class="fc">&nbsp;        var inPeriod = false</b>
+<b class="fc">&nbsp;        var inPoint = false</b>
+<b class="fc">&nbsp;        var inTimeInterval = false</b>
+<b class="fc">&nbsp;        var currentTag = &quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        var eventType = parser.eventType</b>
+<b class="fc">&nbsp;        while (eventType != XmlPullParser.END_DOCUMENT) {</b>
+<b class="fc">&nbsp;            when (eventType) {</b>
+&nbsp;                XmlPullParser.START_TAG -&gt; {
+<b class="fc">&nbsp;                    currentTag = parser.name</b>
+<b class="pc">&nbsp;                    when (currentTag) {</b>
+<b class="fc">&nbsp;                        &quot;TimeSeries&quot; -&gt; inTimeSeries = true</b>
+<b class="fc">&nbsp;                        &quot;Period&quot; -&gt; if (inTimeSeries) inPeriod = true</b>
+<b class="fc">&nbsp;                        &quot;timeInterval&quot; -&gt; if (inPeriod) inTimeInterval = true</b>
+<b class="fc">&nbsp;                        &quot;Point&quot; -&gt; if (inPeriod) {</b>
+<b class="fc">&nbsp;                            inPoint = true</b>
+<b class="fc">&nbsp;                            currentPosition = null</b>
+<b class="fc">&nbsp;                            currentPrice = null</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                XmlPullParser.TEXT -&gt; {
+<b class="fc">&nbsp;                    val text = parser.text.trim()</b>
+<b class="fc">&nbsp;                    if (text.isEmpty()) {</b>
+<b class="fc">&nbsp;                        eventType = parser.next()</b>
+&nbsp;                        continue
+&nbsp;                    }
+<b class="fc">&nbsp;                    when {</b>
+<b class="fc">&nbsp;                        inTimeInterval &amp;&amp; currentTag == &quot;start&quot; -&gt;</b>
+<b class="fc">&nbsp;                            periodStart = OffsetDateTime.parse(text, timestampParser).toInstant()</b>
+&nbsp;
+<b class="fc">&nbsp;                        inPeriod &amp;&amp; !inTimeInterval &amp;&amp; currentTag == &quot;resolution&quot; -&gt;</b>
+<b class="fc">&nbsp;                            resolution = Duration.parse(text)</b>
+&nbsp;
+<b class="fc">&nbsp;                        inPoint &amp;&amp; currentTag == &quot;position&quot; -&gt;</b>
+<b class="fc">&nbsp;                            currentPosition = text.toInt()</b>
+&nbsp;
+<b class="pc">&nbsp;                        inPoint &amp;&amp; currentTag == &quot;price.amount&quot; -&gt;</b>
+<b class="fc">&nbsp;                            currentPrice = text.toDouble()</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                XmlPullParser.END_TAG -&gt; {
+<b class="fc">&nbsp;                    when (parser.name) {</b>
+<b class="fc">&nbsp;                        &quot;TimeSeries&quot; -&gt; inTimeSeries = false</b>
+<b class="fc">&nbsp;                        &quot;timeInterval&quot; -&gt; inTimeInterval = false</b>
+&nbsp;                        &quot;Point&quot; -&gt; {
+<b class="pc">&nbsp;                            if (inPoint &amp;&amp; currentPosition != null &amp;&amp; currentPrice != null) {</b>
+<b class="fc">&nbsp;                                val start = periodStart!!</b>
+<b class="fc">&nbsp;                                val res = resolution!!</b>
+<b class="fc">&nbsp;                                val resMinutes = res.toMinutes().toInt()</b>
+<b class="fc">&nbsp;                                val timestamp = start.plus(</b>
+<b class="fc">&nbsp;                                    res.multipliedBy((currentPosition - 1).toLong())</b>
+&nbsp;                                )
+<b class="fc">&nbsp;                                rawPrices.add(Triple(timestamp, currentPrice, resMinutes))</b>
+&nbsp;                            }
+<b class="fc">&nbsp;                            inPoint = false</b>
+&nbsp;                        }
+&nbsp;
+&nbsp;                        &quot;Period&quot; -&gt; {
+<b class="pc">&nbsp;                            if (inPeriod &amp;&amp; periodStart != null &amp;&amp; resolution != null) {</b>
+<b class="fc">&nbsp;                                fillA03Gaps(rawPrices, periodStart, resolution)</b>
+&nbsp;                            }
+<b class="fc">&nbsp;                            inPeriod = false</b>
+<b class="fc">&nbsp;                            periodStart = null</b>
+<b class="fc">&nbsp;                            resolution = null</b>
+&nbsp;                        }
+&nbsp;                    }
+<b class="fc">&nbsp;                    currentTag = &quot;&quot;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            eventType = parser.next()</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return buildPriceSlots(rawPrices, timeZoneId)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fills gaps left by A03 curve type by carrying forward the last known price.
+&nbsp;     *
+&nbsp;     * For A03 responses, not every position is present — missing positions inherit
+&nbsp;     * the price from the preceding point. This method detects gaps in the already-parsed
+&nbsp;     * points for the current period and fills them.
+&nbsp;     *
+&nbsp;     * @param prices Mutable list of (timestamp, price, resolutionMinutes) triples to fill in-place.
+&nbsp;     * @param periodStart Start instant of the current period.
+&nbsp;     * @param resolution Duration of each position slot.
+&nbsp;     */
+&nbsp;    private fun fillA03Gaps(
+&nbsp;        prices: MutableList&lt;Triple&lt;Instant, Double, Int&gt;&gt;,
+&nbsp;        periodStart: Instant,
+&nbsp;        resolution: Duration
+&nbsp;    ) {
+<b class="fc">&nbsp;        if (prices.isEmpty()) return</b>
+&nbsp;
+<b class="fc">&nbsp;        val resMinutes = resolution.toMinutes().toInt()</b>
+&nbsp;
+&nbsp;        // Find the points that belong to this period
+<b class="fc">&nbsp;        val periodPrices = prices.filter { (ts, _, _) -&gt; !ts.isBefore(periodStart) }</b>
+<b class="fc">&nbsp;        if (periodPrices.size &lt; 2) return</b>
+&nbsp;
+&nbsp;        // Build a map of position → price for existing points
+<b class="fc">&nbsp;        val positionMap = mutableMapOf&lt;Int, Double&gt;()</b>
+<b class="fc">&nbsp;        for ((ts, price, _) in periodPrices) {</b>
+<b class="fc">&nbsp;            val pos = ((Duration.between(periodStart, ts).toMinutes()) / resolution.toMinutes()).toInt() + 1</b>
+<b class="fc">&nbsp;            positionMap[pos] = price</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        val maxPos = positionMap.keys.max()</b>
+<b class="fc">&nbsp;        var lastPrice = positionMap[1] ?: return</b>
+&nbsp;
+<b class="pc">&nbsp;        for (pos in 1..maxPos) {</b>
+<b class="fc">&nbsp;            if (positionMap.containsKey(pos)) {</b>
+<b class="fc">&nbsp;                lastPrice = positionMap[pos]!!</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                val ts = periodStart.plus(resolution.multipliedBy((pos - 1).toLong()))</b>
+<b class="fc">&nbsp;                prices.add(Triple(ts, lastPrice, resMinutes))</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Converts raw price triples to [PriceSlot] entries, applying EUR/MWh → EUR/kWh conversion.
+&nbsp;     *
+&nbsp;     * Deduplicates by timestamp: ENTSO-E responses may contain multiple overlapping TimeSeries
+&nbsp;     * (e.g. original and corrected publications). When duplicates exist, the last entry is kept
+&nbsp;     * (typically the most recent/corrected value).
+&nbsp;     *
+&nbsp;     * @param prices List of (timestamp, price_in_EUR_MWh, resolutionMinutes) triples.
+&nbsp;     * @param timeZoneId Timezone for the resulting [PriceSlot] entries.
+&nbsp;     * @return Sorted, deduplicated list of price slots in EUR/kWh at native resolution.
+&nbsp;     */
+&nbsp;    private fun buildPriceSlots(
+&nbsp;        prices: List&lt;Triple&lt;Instant, Double, Int&gt;&gt;,
+&nbsp;        timeZoneId: ZoneId
+&nbsp;    ): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        return prices</b>
+<b class="fc">&nbsp;            .associate { (ts, priceMwh, resMinutes) -&gt;</b>
+<b class="fc">&nbsp;                ts to PriceSlot(</b>
+<b class="fc">&nbsp;                    time = ts.atZone(timeZoneId),</b>
+<b class="fc">&nbsp;                    price = priceMwh / 1000.0,</b>
+<b class="fc">&nbsp;                    durationMinutes = resMinutes</b>
+<b class="fc">&nbsp;                )</b>
+&nbsp;            }
+<b class="fc">&nbsp;            .values</b>
+<b class="fc">&nbsp;            .sortedBy { it.time }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Extracts the error reason text from an ENTSO-E Acknowledgement_MarketDocument.
+&nbsp;     *
+&nbsp;     * @param xml Raw XML error response.
+&nbsp;     * @return The reason text, or &quot;Unknown error&quot; if not found.
+&nbsp;     */
+&nbsp;    private fun extractErrorReason(xml: String): String {
+<b class="fc">&nbsp;        val parser = XmlPullParserFactory.newInstance().newPullParser()</b>
+<b class="fc">&nbsp;        parser.setInput(StringReader(xml))</b>
+<b class="fc">&nbsp;        var inReason = false</b>
+<b class="fc">&nbsp;        var currentTag = &quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        var eventType = parser.eventType</b>
+<b class="fc">&nbsp;        while (eventType != XmlPullParser.END_DOCUMENT) {</b>
+<b class="fc">&nbsp;            when (eventType) {</b>
+&nbsp;                XmlPullParser.START_TAG -&gt; {
+<b class="fc">&nbsp;                    currentTag = parser.name</b>
+<b class="fc">&nbsp;                    if (currentTag == &quot;Reason&quot;) inReason = true</b>
+&nbsp;                }
+&nbsp;
+&nbsp;                XmlPullParser.TEXT -&gt; {
+<b class="fc">&nbsp;                    if (inReason &amp;&amp; currentTag == &quot;text&quot;) {</b>
+<b class="fc">&nbsp;                        val text = parser.text.trim()</b>
+<b class="pc">&nbsp;                        if (text.isNotEmpty()) return text</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                XmlPullParser.END_TAG -&gt; {
+<b class="fc">&nbsp;                    if (parser.name == &quot;Reason&quot;) inReason = false</b>
+<b class="fc">&nbsp;                    currentTag = &quot;&quot;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            eventType = parser.next()</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return &quot;Unknown error&quot;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 15:07</div>
+</div>
+</body>
+</html>

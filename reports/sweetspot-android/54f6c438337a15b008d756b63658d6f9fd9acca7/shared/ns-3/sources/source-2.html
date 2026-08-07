@@ -1,0 +1,235 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > CountryDetector</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: CountryDetector (today.sweetspot.data.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CountryDetector</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.7%
+  </span>
+  <span class="absValue">
+    (26/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (44/44)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.7%
+  </span>
+  <span class="absValue">
+    (313/317)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.repository
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import android.telephony.TelephonyManager
+&nbsp;import today.sweetspot.model.Countries
+&nbsp;import today.sweetspot.model.Country
+&nbsp;import java.util.Locale
+&nbsp;import java.util.TimeZone
+&nbsp;
+&nbsp;/**
+&nbsp; * Zero-permission utility that guesses the user&#39;s country on first launch.
+&nbsp; *
+&nbsp; * Used only for the initial default — the user can always override in settings.
+&nbsp; * No runtime permissions are required: [TelephonyManager.getSimCountryIso] and
+&nbsp; * [TelephonyManager.getNetworkCountryIso] are available without `READ_PHONE_STATE`.
+&nbsp; */
+&nbsp;object CountryDetector {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Maps common IANA timezone IDs to ISO 3166-1 alpha-2 country codes.
+&nbsp;     * More reliable than locale (which reflects language preference, not location).
+&nbsp;     */
+<b class="fc">&nbsp;    private val timezoneToCountry = mapOf(</b>
+&nbsp;        // Western Europe
+<b class="fc">&nbsp;        &quot;Europe/Amsterdam&quot; to &quot;NL&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Brussels&quot; to &quot;BE&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Paris&quot; to &quot;FR&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Berlin&quot; to &quot;DE&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Luxembourg&quot; to &quot;LU&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Vienna&quot; to &quot;AT&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Zurich&quot; to &quot;CH&quot;,</b>
+&nbsp;        // Iberian Peninsula
+<b class="fc">&nbsp;        &quot;Europe/Madrid&quot; to &quot;ES&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Lisbon&quot; to &quot;PT&quot;,</b>
+&nbsp;        // Central Europe
+<b class="fc">&nbsp;        &quot;Europe/Warsaw&quot; to &quot;PL&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Prague&quot; to &quot;CZ&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Bratislava&quot; to &quot;SK&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Budapest&quot; to &quot;HU&quot;,</b>
+&nbsp;        // Nordic
+<b class="fc">&nbsp;        &quot;Europe/Copenhagen&quot; to &quot;DK&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Oslo&quot; to &quot;NO&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Stockholm&quot; to &quot;SE&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Helsinki&quot; to &quot;FI&quot;,</b>
+&nbsp;        // Baltic
+<b class="fc">&nbsp;        &quot;Europe/Tallinn&quot; to &quot;EE&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Riga&quot; to &quot;LV&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Vilnius&quot; to &quot;LT&quot;,</b>
+&nbsp;        // Southeastern Europe
+<b class="fc">&nbsp;        &quot;Europe/Sofia&quot; to &quot;BG&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Athens&quot; to &quot;GR&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Zagreb&quot; to &quot;HR&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Bucharest&quot; to &quot;RO&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Ljubljana&quot; to &quot;SI&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Belgrade&quot; to &quot;RS&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Podgorica&quot; to &quot;ME&quot;,</b>
+<b class="fc">&nbsp;        &quot;Europe/Skopje&quot; to &quot;MK&quot;,</b>
+&nbsp;        // Italy
+<b class="fc">&nbsp;        &quot;Europe/Rome&quot; to &quot;IT&quot;,</b>
+&nbsp;        // Ireland
+<b class="fc">&nbsp;        &quot;Europe/Dublin&quot; to &quot;IE&quot;</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Detects the user&#39;s country by checking, in order:
+&nbsp;     * 1. SIM card country ([TelephonyManager.getSimCountryIso])
+&nbsp;     * 2. Network operator country ([TelephonyManager.getNetworkCountryIso])
+&nbsp;     * 3. System timezone → country mapping (more reliable than locale)
+&nbsp;     * 4. System locale ([Locale.getDefault]) — reflects language, not location
+&nbsp;     * 5. Fallback: NL
+&nbsp;     *
+&nbsp;     * @param context Android context for accessing [TelephonyManager].
+&nbsp;     * @return The detected [Country], or Netherlands as fallback.
+&nbsp;     */
+&nbsp;    fun detect(context: Context): Country {
+<b class="fc">&nbsp;        val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as? TelephonyManager</b>
+&nbsp;
+&nbsp;        // 1. SIM country
+<b class="pc">&nbsp;        val simCountry = tm?.simCountryIso?.uppercase()?.ifEmpty { null }</b>
+<b class="fc">&nbsp;        resolve(simCountry)?.let { return it }</b>
+&nbsp;
+&nbsp;        // 2. Network country
+<b class="pc">&nbsp;        val networkCountry = tm?.networkCountryIso?.uppercase()?.ifEmpty { null }</b>
+<b class="fc">&nbsp;        resolve(networkCountry)?.let { return it }</b>
+&nbsp;
+&nbsp;        // 3. Timezone (reflects physical location better than locale)
+<b class="fc">&nbsp;        val tzId = TimeZone.getDefault().id</b>
+<b class="fc">&nbsp;        val tzCountryCode = timezoneToCountry[tzId]</b>
+<b class="fc">&nbsp;        resolve(tzCountryCode)?.let { return it }</b>
+&nbsp;
+&nbsp;        // 4. System locale (reflects language preference, not necessarily location)
+<b class="fc">&nbsp;        val localeCountry = Locale.getDefault().country.ifEmpty { null }</b>
+<b class="fc">&nbsp;        resolve(localeCountry)?.let { return it }</b>
+&nbsp;
+&nbsp;        // 5. Fallback
+<b class="fc">&nbsp;        return Countries.defaultCountry()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resolves an ISO country code to a [Country] in the registry.
+&nbsp;     * Unsupported countries (e.g. `&quot;US&quot;`, `&quot;GB&quot;`) fall through to return `null`.
+&nbsp;     */
+&nbsp;    private fun resolve(code: String?): Country? {
+<b class="fc">&nbsp;        if (code == null) return null</b>
+<b class="fc">&nbsp;        return Countries.findByCode(code)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-14 08:30</div>
+</div>
+</body>
+</html>

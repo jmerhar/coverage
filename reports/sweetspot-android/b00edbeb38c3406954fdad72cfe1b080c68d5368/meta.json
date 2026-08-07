@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "b00edbeb38c3406954fdad72cfe1b080c68d5368",
+  "short_sha": "b00edbeb38",
+  "committed_at": "2026-07-30T09:29:24Z",
+  "message": "test: build the deadline scenario in the ViewModel's timezone, not the JVM's",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/b00edbeb38c3406954fdad72cfe1b080c68d5368",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "86.4%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "79.0%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

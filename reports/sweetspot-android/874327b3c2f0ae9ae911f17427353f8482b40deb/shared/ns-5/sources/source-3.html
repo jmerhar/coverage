@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > UsageStore</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.usage</a>
+</div>
+
+<h1>Coverage Summary for Class: UsageStore (today.sweetspot.data.usage)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">UsageStore</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.usage
+&nbsp;
+&nbsp;import today.sweetspot.model.ApplianceUsage
+&nbsp;
+&nbsp;/**
+&nbsp; * Local, cumulative per-appliance tap store.
+&nbsp; *
+&nbsp; * Used by the watch to accumulate its own usage and report the full snapshot to the phone. The
+&nbsp; * store carries a reset token adopted from the phone: when the phone purges usage it bumps the
+&nbsp; * token, and the store zeroes itself the next time it sees a newer one. Android-free so it can
+&nbsp; * be faked in tests.
+&nbsp; */
+&nbsp;interface UsageStore {
+&nbsp;
+&nbsp;    /** Records one tap for [id] at [nowMs] (increments count, sets last-used). */
+&nbsp;    fun record(id: String, nowMs: Long)
+&nbsp;
+&nbsp;    /** The current cumulative usage per appliance id. */
+&nbsp;    fun snapshot(): Map&lt;String, ApplianceUsage&gt;
+&nbsp;
+&nbsp;    /** Zeroes all usage and adopts [token] as the current reset token. */
+&nbsp;    fun reset(token: Long)
+&nbsp;
+&nbsp;    /** The reset token this store currently holds. */
+&nbsp;    fun token(): Long
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:28</div>
+</div>
+</body>
+</html>

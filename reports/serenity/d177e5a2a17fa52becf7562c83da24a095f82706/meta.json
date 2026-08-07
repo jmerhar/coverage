@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "d177e5a2a17fa52becf7562c83da24a095f82706",
+  "short_sha": "d177e5a2a1",
+  "committed_at": "2026-07-25T20:43:33Z",
+  "message": "docs: add all-platforms quick-reference table with permit-number column",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/d177e5a2a17fa52becf7562c83da24a095f82706",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.5%",
+        "methods": "91.7%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "59829a00ba4a4da1eded66d6b34117b80a6458a5",
+  "short_sha": "59829a00ba",
+  "committed_at": "2026-08-02T12:21:59Z",
+  "message": "fix(scraper): locate scraper.log in either container for captcha backfill",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/59829a00ba4a4da1eded66d6b34117b80a6458a5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.4%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.2%"
+      }
+    }
+  ]
+}

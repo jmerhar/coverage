@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "1321589db6c3d5b0ed52065e5c94b54e7a7fcb84",
+  "short_sha": "1321589db6",
+  "committed_at": "2026-08-04T12:58:41Z",
+  "message": "feat(site): direct ZIP and .crx download links (published to Pages under stable names)",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/1321589db6c3d5b0ed52065e5c94b54e7a7fcb84",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}

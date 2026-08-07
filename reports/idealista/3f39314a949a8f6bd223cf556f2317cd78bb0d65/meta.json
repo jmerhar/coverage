@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "3f39314a949a8f6bd223cf556f2317cd78bb0d65",
+  "short_sha": "3f39314a94",
+  "committed_at": "2026-08-02T14:22:52Z",
+  "message": "fix(captcha): reset pages-since-block on slider timeouts too, not only hard blocks",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/3f39314a949a8f6bd223cf556f2317cd78bb0d65",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}

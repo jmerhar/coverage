@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "62ba02575ca44bb451ef9e915fdaf549c21b298c",
+  "short_sha": "62ba02575c",
+  "committed_at": "2026-07-12T20:24:17Z",
+  "message": "test: scope coverage to lib/ and exclude thin I/O adapters (Phase 3)",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/62ba02575ca44bb451ef9e915fdaf549c21b298c",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "82.0%",
+        "methods": "75.0%"
+      }
+    }
+  ]
+}

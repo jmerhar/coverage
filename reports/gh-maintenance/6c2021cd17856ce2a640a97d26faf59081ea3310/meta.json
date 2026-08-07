@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "6c2021cd17856ce2a640a97d26faf59081ea3310",
+  "short_sha": "6c2021cd17",
+  "committed_at": "2026-08-07T18:55:42Z",
+  "message": "fix: keep line highlighting in the published coverage report",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/6c2021cd17856ce2a640a97d26faf59081ea3310",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "95.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "95.0%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > PriceBarChartKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.components</a>
+</div>
+
+<h1>Coverage Summary for Class: PriceBarChartKt (today.sweetspot.ui.components)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">PriceBarChartKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/64)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/183)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1828)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.ui.components
+&nbsp;
+&nbsp;import androidx.compose.foundation.background
+&nbsp;import androidx.compose.foundation.layout.Arrangement
+&nbsp;import androidx.compose.foundation.layout.Box
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.Spacer
+&nbsp;import androidx.compose.foundation.layout.fillMaxHeight
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.height
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.foundation.layout.width
+&nbsp;import androidx.compose.foundation.shape.RoundedCornerShape
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.draw.clip
+&nbsp;import androidx.compose.ui.graphics.Color
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.semantics.contentDescription
+&nbsp;import androidx.compose.ui.semantics.semantics
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import today.sweetspot.R
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import today.sweetspot.model.WindowResult
+&nbsp;import today.sweetspot.ui.theme.LocalBarNegativeColor
+&nbsp;import today.sweetspot.ui.theme.LocalBarNormalColor
+&nbsp;import today.sweetspot.ui.theme.LocalBarOptimalColor
+&nbsp;import today.sweetspot.util.formatPrice
+&nbsp;import today.sweetspot.util.shortTimeFormatter
+&nbsp;import androidx.compose.ui.tooling.preview.Preview
+&nbsp;import java.time.ZonedDateTime
+&nbsp;import java.time.temporal.ChronoUnit
+&nbsp;import kotlin.math.abs
+&nbsp;
+&nbsp;/**
+&nbsp; * Horizontal bar chart showing electricity prices grouped by hour.
+&nbsp; *
+&nbsp; * Sub-hourly slots (e.g. 15-minute) are stacked vertically within each hourly row,
+&nbsp; * with the time label and average price shown once per hour. For hourly data this
+&nbsp; * renders identically to one bar per row.
+&nbsp; *
+&nbsp; * When all prices are non-negative, bars grow left-to-right from zero.
+&nbsp; * When negative prices exist, the zero axis shifts right proportionally
+&nbsp; * so that negative bars grow leftward and positive bars grow rightward.
+&nbsp; * Negative bars use a distinct colour to highlight that the price is below zero.
+&nbsp; *
+&nbsp; * @param prices Price slots to display (any resolution, sorted chronologically).
+&nbsp; * @param result Optional cheapest-window result whose slots are highlighted.
+&nbsp; * @param modifier Modifier for the outer column.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;fun PriceBarChart(
+&nbsp;    prices: List&lt;PriceSlot&gt;,
+&nbsp;    result: WindowResult?,
+<b class="nc">&nbsp;    modifier: Modifier = Modifier</b>
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    val optimalStart = remember(result) { result?.startTime?.toEpochSecond() }</b>
+<b class="nc">&nbsp;    val optimalEnd = remember(result) { result?.endTime?.toEpochSecond() }</b>
+<b class="nc">&nbsp;    val barNormalColor = LocalBarNormalColor.current</b>
+<b class="nc">&nbsp;    val barOptimalColor = LocalBarOptimalColor.current</b>
+<b class="nc">&nbsp;    val barNegativeColor = LocalBarNegativeColor.current</b>
+<b class="nc">&nbsp;    val highlightColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.4f)</b>
+<b class="nc">&nbsp;    val trackColor = MaterialTheme.colorScheme.surfaceVariant</b>
+&nbsp;
+<b class="nc">&nbsp;    val cheapestWindowCd = stringResource(R.string.cd_cheapest_window)</b>
+&nbsp;
+<b class="nc">&nbsp;    val minPrice = remember(prices) { prices.minOfOrNull { it.price } ?: 0.0 }</b>
+<b class="nc">&nbsp;    val maxPrice = remember(prices) { prices.maxOfOrNull { it.price } ?: 1.0 }</b>
+<b class="nc">&nbsp;    val hasNegative = minPrice &lt; 0</b>
+&nbsp;    // Where zero falls within the min–max range (0 = left edge, 1 = right edge)
+<b class="nc">&nbsp;    val zeroFraction = remember(minPrice, maxPrice) {</b>
+<b class="nc">&nbsp;        if (minPrice &lt; 0 &amp;&amp; maxPrice &gt; minPrice) {</b>
+<b class="nc">&nbsp;            ((0.0 - minPrice) / (maxPrice - minPrice)).toFloat().coerceIn(0.01f, 0.99f)</b>
+<b class="nc">&nbsp;        } else 0f</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Group slots by hour (using epoch second of truncated hour for correct DST handling)
+<b class="nc">&nbsp;    val slotsPerHour = remember(prices) {</b>
+<b class="nc">&nbsp;        if (prices.isEmpty()) 1 else 60 / prices.first().durationMinutes</b>
+&nbsp;    }
+<b class="nc">&nbsp;    val hourlyGroups = remember(prices) {</b>
+<b class="nc">&nbsp;        prices.groupBy { it.time.truncatedTo(ChronoUnit.HOURS).toEpochSecond() }</b>
+<b class="nc">&nbsp;            .toSortedMap()</b>
+<b class="nc">&nbsp;            .values</b>
+<b class="nc">&nbsp;            .toList()</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    Column(modifier = modifier.fillMaxWidth()) {</b>
+<b class="nc">&nbsp;        hourlyGroups.forEach { slots -&gt;</b>
+<b class="nc">&nbsp;            val hourTime = slots.first().time.truncatedTo(ChronoUnit.HOURS)</b>
+<b class="nc">&nbsp;            val avgPrice = slots.map { it.price }.average()</b>
+<b class="nc">&nbsp;            val anyOptimal = optimalStart != null &amp;&amp; optimalEnd != null &amp;&amp;</b>
+<b class="nc">&nbsp;                slots.any { it.overlapsWindow(optimalStart, optimalEnd) }</b>
+<b class="nc">&nbsp;            val rowBackground = if (anyOptimal) highlightColor else Color.Transparent</b>
+<b class="nc">&nbsp;            val timeText = hourTime.format(shortTimeFormatter)</b>
+<b class="nc">&nbsp;            val priceText = formatPrice(avgPrice, 3)</b>
+<b class="nc">&nbsp;            val rowDescription = if (anyOptimal) &quot;$timeText, $priceText, $cheapestWindowCd&quot; else &quot;$timeText, $priceText&quot;</b>
+&nbsp;
+&nbsp;            // Build a fixed-size list of slots for this hour, with nulls for missing sub-slots.
+&nbsp;            // This ensures incomplete hours (first/last) always render the same height.
+<b class="nc">&nbsp;            val slotByMinute = slots.associateBy { it.time.minute }</b>
+<b class="nc">&nbsp;            val durationMinutes = slots.first().durationMinutes</b>
+<b class="nc">&nbsp;            val paddedSlots = (0 until slotsPerHour).map { i -&gt;</b>
+<b class="nc">&nbsp;                slotByMinute[i * durationMinutes]</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            Row(</b>
+<b class="nc">&nbsp;                modifier = Modifier</b>
+<b class="nc">&nbsp;                    .fillMaxWidth()</b>
+<b class="nc">&nbsp;                    .clip(RoundedCornerShape(4.dp))</b>
+<b class="nc">&nbsp;                    .background(rowBackground)</b>
+<b class="nc">&nbsp;                    .semantics(mergeDescendants = true) {</b>
+<b class="nc">&nbsp;                        contentDescription = rowDescription</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    .padding(horizontal = 4.dp, vertical = 1.dp),</b>
+<b class="nc">&nbsp;                verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = timeText,</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.labelSmall,</b>
+<b class="nc">&nbsp;                    color = MaterialTheme.colorScheme.onSurfaceVariant,</b>
+<b class="nc">&nbsp;                    modifier = Modifier.width(40.dp)</b>
+&nbsp;                )
+&nbsp;
+&nbsp;                // Stack sub-hourly bars vertically within the hourly row height.
+&nbsp;                // Each bar gets its own rounded track background and spacing.
+&nbsp;                // Missing sub-slots (incomplete first/last hour) render as empty spacers.
+<b class="nc">&nbsp;                val barShape = RoundedCornerShape(6.dp)</b>
+<b class="nc">&nbsp;                Column(</b>
+<b class="nc">&nbsp;                    modifier = Modifier</b>
+<b class="nc">&nbsp;                        .weight(1f)</b>
+<b class="nc">&nbsp;                        .height(20.dp),</b>
+<b class="nc">&nbsp;                    verticalArrangement = Arrangement.spacedBy(1.dp)</b>
+&nbsp;                ) {
+<b class="nc">&nbsp;                    paddedSlots.forEach { slot -&gt;</b>
+<b class="nc">&nbsp;                        if (slot == null) {</b>
+<b class="nc">&nbsp;                            Spacer(modifier = Modifier.fillMaxWidth().weight(1f))</b>
+<b class="nc">&nbsp;                        } else {</b>
+<b class="nc">&nbsp;                            val isOptimal = optimalStart != null &amp;&amp; optimalEnd != null &amp;&amp;</b>
+<b class="nc">&nbsp;                                slot.overlapsWindow(optimalStart, optimalEnd)</b>
+&nbsp;
+<b class="nc">&nbsp;                            if (hasNegative) {</b>
+<b class="nc">&nbsp;                                Row(</b>
+<b class="nc">&nbsp;                                    modifier = Modifier</b>
+<b class="nc">&nbsp;                                        .fillMaxWidth()</b>
+<b class="nc">&nbsp;                                        .weight(1f)</b>
+<b class="nc">&nbsp;                                        .clip(barShape)</b>
+<b class="nc">&nbsp;                                        .background(trackColor)</b>
+&nbsp;                                ) {
+<b class="nc">&nbsp;                                    Box(</b>
+<b class="nc">&nbsp;                                        modifier = Modifier</b>
+<b class="nc">&nbsp;                                            .weight(zeroFraction)</b>
+<b class="nc">&nbsp;                                            .fillMaxHeight(),</b>
+<b class="nc">&nbsp;                                        contentAlignment = Alignment.CenterEnd</b>
+&nbsp;                                    ) {
+<b class="nc">&nbsp;                                        if (slot.price &lt; 0) {</b>
+<b class="nc">&nbsp;                                            val negFraction = (abs(slot.price) / abs(minPrice)).toFloat().coerceIn(0f, 1f)</b>
+<b class="nc">&nbsp;                                            val barColor = if (isOptimal) barOptimalColor else barNegativeColor</b>
+<b class="nc">&nbsp;                                            Box(</b>
+<b class="nc">&nbsp;                                                modifier = Modifier</b>
+<b class="nc">&nbsp;                                                    .fillMaxWidth(negFraction)</b>
+<b class="nc">&nbsp;                                                    .fillMaxHeight()</b>
+<b class="nc">&nbsp;                                                    .clip(barShape)</b>
+<b class="nc">&nbsp;                                                    .background(barColor)</b>
+&nbsp;                                            )
+<b class="nc">&nbsp;                                        }</b>
+<b class="nc">&nbsp;                                    }</b>
+<b class="nc">&nbsp;                                    Box(</b>
+<b class="nc">&nbsp;                                        modifier = Modifier</b>
+<b class="nc">&nbsp;                                            .weight(1f - zeroFraction)</b>
+<b class="nc">&nbsp;                                            .fillMaxHeight(),</b>
+<b class="nc">&nbsp;                                        contentAlignment = Alignment.CenterStart</b>
+&nbsp;                                    ) {
+<b class="nc">&nbsp;                                        if (slot.price &gt;= 0) {</b>
+<b class="nc">&nbsp;                                            val posFraction = if (maxPrice &gt; 0) {</b>
+<b class="nc">&nbsp;                                                (slot.price / maxPrice).toFloat().coerceIn(0f, 1f)</b>
+<b class="nc">&nbsp;                                            } else 0f</b>
+<b class="nc">&nbsp;                                            val barColor = if (isOptimal) barOptimalColor else barNormalColor</b>
+<b class="nc">&nbsp;                                            Box(</b>
+<b class="nc">&nbsp;                                                modifier = Modifier</b>
+<b class="nc">&nbsp;                                                    .fillMaxWidth(posFraction)</b>
+<b class="nc">&nbsp;                                                    .fillMaxHeight()</b>
+<b class="nc">&nbsp;                                                    .clip(barShape)</b>
+<b class="nc">&nbsp;                                                    .background(barColor)</b>
+&nbsp;                                            )
+<b class="nc">&nbsp;                                        }</b>
+<b class="nc">&nbsp;                                    }</b>
+<b class="nc">&nbsp;                                }</b>
+<b class="nc">&nbsp;                            } else {</b>
+<b class="nc">&nbsp;                                Box(</b>
+<b class="nc">&nbsp;                                    modifier = Modifier</b>
+<b class="nc">&nbsp;                                        .fillMaxWidth()</b>
+<b class="nc">&nbsp;                                        .weight(1f)</b>
+<b class="nc">&nbsp;                                        .clip(barShape)</b>
+<b class="nc">&nbsp;                                        .background(trackColor)</b>
+&nbsp;                                ) {
+<b class="nc">&nbsp;                                    val barFraction = if (maxPrice &gt; 0) {</b>
+<b class="nc">&nbsp;                                        (slot.price / maxPrice).toFloat().coerceIn(0f, 1f)</b>
+<b class="nc">&nbsp;                                    } else 0f</b>
+<b class="nc">&nbsp;                                    val barColor = if (isOptimal) barOptimalColor else barNormalColor</b>
+<b class="nc">&nbsp;                                    Box(</b>
+<b class="nc">&nbsp;                                        modifier = Modifier</b>
+<b class="nc">&nbsp;                                            .fillMaxWidth(barFraction)</b>
+<b class="nc">&nbsp;                                            .fillMaxHeight()</b>
+<b class="nc">&nbsp;                                            .clip(barShape)</b>
+<b class="nc">&nbsp;                                            .background(barColor)</b>
+&nbsp;                                    )
+<b class="nc">&nbsp;                                }</b>
+&nbsp;                            }
+&nbsp;                        }
+<b class="nc">&nbsp;                    }</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = priceText,</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.labelSmall,</b>
+<b class="nc">&nbsp;                    color = MaterialTheme.colorScheme.onSurfaceVariant,</b>
+<b class="nc">&nbsp;                    modifier = Modifier</b>
+<b class="nc">&nbsp;                        .width(72.dp)</b>
+<b class="nc">&nbsp;                        .padding(start = 4.dp)</b>
+&nbsp;                )
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;@Preview(showBackground = true, name = &quot;Mixed positive and negative prices&quot;)
+&nbsp;@Composable
+<b class="nc">&nbsp;private fun PriceBarChartNegativePreview() {</b>
+<b class="nc">&nbsp;    val base = ZonedDateTime.now().withHour(10).withMinute(0).withSecond(0).withNano(0)</b>
+<b class="nc">&nbsp;    val prices = listOf(</b>
+<b class="nc">&nbsp;        PriceSlot(base, 0.12, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1), 0.08, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2), 0.02, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(3), -0.01, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(4), -0.03, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(5), -0.02, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(6), 0.01, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(7), 0.06, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(8), 0.10, 60),</b>
+&nbsp;    )
+<b class="nc">&nbsp;    today.sweetspot.ui.theme.SweetSpotTheme {</b>
+<b class="nc">&nbsp;        PriceBarChart(prices = prices, result = null)</b>
+&nbsp;    }
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;@Preview(showBackground = true, name = &quot;All positive prices&quot;)
+&nbsp;@Composable
+<b class="nc">&nbsp;private fun PriceBarChartPositivePreview() {</b>
+<b class="nc">&nbsp;    val base = ZonedDateTime.now().withHour(10).withMinute(0).withSecond(0).withNano(0)</b>
+<b class="nc">&nbsp;    val prices = listOf(</b>
+<b class="nc">&nbsp;        PriceSlot(base, 0.12, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1), 0.08, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2), 0.04, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(3), 0.02, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(4), 0.05, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(5), 0.09, 60),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(6), 0.11, 60),</b>
+&nbsp;    )
+<b class="nc">&nbsp;    today.sweetspot.ui.theme.SweetSpotTheme {</b>
+<b class="nc">&nbsp;        PriceBarChart(prices = prices, result = null)</b>
+&nbsp;    }
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;@Preview(showBackground = true, name = &quot;15-minute slots&quot;)
+&nbsp;@Composable
+<b class="nc">&nbsp;private fun PriceBarChart15MinPreview() {</b>
+<b class="nc">&nbsp;    val base = ZonedDateTime.now().withHour(10).withMinute(0).withSecond(0).withNano(0)</b>
+<b class="nc">&nbsp;    val prices = listOf(</b>
+<b class="nc">&nbsp;        PriceSlot(base, 0.10, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusMinutes(15), 0.12, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusMinutes(30), 0.08, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusMinutes(45), 0.11, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1), 0.06, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1).plusMinutes(15), 0.04, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1).plusMinutes(30), 0.05, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(1).plusMinutes(45), 0.03, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2), 0.09, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2).plusMinutes(15), 0.14, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2).plusMinutes(30), 0.11, 15),</b>
+<b class="nc">&nbsp;        PriceSlot(base.plusHours(2).plusMinutes(45), 0.13, 15),</b>
+&nbsp;    )
+<b class="nc">&nbsp;    today.sweetspot.ui.theme.SweetSpotTheme {</b>
+<b class="nc">&nbsp;        PriceBarChart(prices = prices, result = null)</b>
+&nbsp;    }
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 19:46</div>
+</div>
+</body>
+</html>

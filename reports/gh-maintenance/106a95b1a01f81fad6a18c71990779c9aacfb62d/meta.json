@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "106a95b1a01f81fad6a18c71990779c9aacfb62d",
+  "short_sha": "106a95b1a0",
+  "committed_at": "2026-08-07T18:49:12Z",
+  "message": "fix: publish only kcov's self-contained merged report",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/106a95b1a01f81fad6a18c71990779c9aacfb62d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}

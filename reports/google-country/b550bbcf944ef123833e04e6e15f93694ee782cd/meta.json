@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "b550bbcf944ef123833e04e6e15f93694ee782cd",
+  "short_sha": "b550bbcf94",
+  "committed_at": "2026-08-04T12:50:03Z",
+  "message": "refactor: single source of truth for CWS IDs; keep only real secrets local",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/b550bbcf944ef123833e04e6e15f93694ee782cd",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}

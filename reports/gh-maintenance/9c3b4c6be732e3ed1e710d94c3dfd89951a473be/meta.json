@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "9c3b4c6be732e3ed1e710d94c3dfd89951a473be",
+  "short_sha": "9c3b4c6be7",
+  "committed_at": "2026-08-07T18:49:58Z",
+  "message": "build(deps): bump the actions group with 2 updates (#1)",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/9c3b4c6be732e3ed1e710d94c3dfd89951a473be",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}

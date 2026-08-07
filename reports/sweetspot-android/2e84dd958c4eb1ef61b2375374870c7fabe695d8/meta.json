@@ -1,0 +1,34 @@
+{
+  "project": "sweetspot-android",
+  "sha": "2e84dd958c4eb1ef61b2375374870c7fabe695d8",
+  "short_sha": "2e84dd958c",
+  "committed_at": "2026-07-09T11:15:24Z",
+  "message": "refactor(ci): extract coverage scripts from the workflow into bin/",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/2e84dd958c4eb1ef61b2375374870c7fabe695d8",
+  "reports": [
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "88.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "15.7%",
+        "branch": "6.8%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "25.9%",
+        "branch": "12.3%"
+      }
+    }
+  ]
+}

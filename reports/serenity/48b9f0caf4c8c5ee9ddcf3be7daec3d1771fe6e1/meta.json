@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "48b9f0caf4c8c5ee9ddcf3be7daec3d1771fe6e1",
+  "short_sha": "48b9f0caf4",
+  "committed_at": "2026-07-14T07:43:21Z",
+  "message": "feat(reviews): host-minted review-invite links for off-site guests",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/48b9f0caf4c8c5ee9ddcf3be7daec3d1771fe6e1",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}

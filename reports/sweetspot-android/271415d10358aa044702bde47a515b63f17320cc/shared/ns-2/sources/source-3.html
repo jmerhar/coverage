@@ -1,0 +1,254 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > FilePriceCache</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.cache</a>
+</div>
+
+<h1>Coverage Summary for Class: FilePriceCache (today.sweetspot.data.cache)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">FilePriceCache</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (15/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.6%
+  </span>
+  <span class="absValue">
+    (322/330)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FilePriceCache$Companion</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (15/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.6%
+  </span>
+  <span class="absValue">
+    (322/330)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.cache
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import androidx.core.content.edit
+&nbsp;import java.io.DataInputStream
+&nbsp;import java.io.DataOutputStream
+&nbsp;import java.io.File
+&nbsp;
+&nbsp;/**
+&nbsp; * File-based [PriceCache] implementation backed by the Android cache directory
+&nbsp; * and SharedPreferences.
+&nbsp; *
+&nbsp; * Stores parsed prices in per-zone binary files (`cacheDir/prices_&lt;key&gt;.bin`)
+&nbsp; * and tracks the last fetch timestamp in SharedPreferences to enforce a minimum
+&nbsp; * interval between API requests (cooldown).
+&nbsp; *
+&nbsp; * Binary format per file (v3):
+&nbsp; * - `version: Byte` (currently 3)
+&nbsp; * - `source: UTF` (data source name, via `writeUTF`/`readUTF`)
+&nbsp; * - `count: Int` (number of entries)
+&nbsp; * - N × (`epochSecond: Long` | `durationMinutes: Short` | `price: Double`) — 18 bytes per entry
+&nbsp; *
+&nbsp; * V1/V2 caches are gracefully migrated by returning `null` (triggers a re-fetch).
+&nbsp; *
+&nbsp; * @param context Android context for accessing cache directory and SharedPreferences.
+&nbsp; */
+<b class="fc">&nbsp;class FilePriceCache(private val context: Context) : PriceCache {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val prefs = context.getSharedPreferences(&quot;sweetspot_cache&quot;, Context.MODE_PRIVATE)</b>
+&nbsp;
+&nbsp;    private companion object {
+&nbsp;        const val KEY_LAST_FETCH_MS = &quot;last_fetch_ms&quot;
+&nbsp;        const val FORMAT_VERSION: Byte = 3
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns the per-zone cache file for the given key. */
+<b class="fc">&nbsp;    private fun cacheFile(key: String): File = File(context.cacheDir, &quot;prices_$key.bin&quot;)</b>
+&nbsp;
+&nbsp;    override fun isCooldownElapsed(cooldownMs: Long): Boolean {
+<b class="fc">&nbsp;        val lastFetch = prefs.getLong(KEY_LAST_FETCH_MS, 0L)</b>
+<b class="fc">&nbsp;        return System.currentTimeMillis() - lastFetch &gt;= cooldownMs</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun readCached(key: String): CachedPriceData? {
+<b class="fc">&nbsp;        val file = cacheFile(key)</b>
+<b class="fc">&nbsp;        if (!file.exists()) return null</b>
+&nbsp;        return try {
+<b class="pc">&nbsp;            DataInputStream(file.inputStream().buffered()).use { input -&gt;</b>
+<b class="fc">&nbsp;                val version = input.readByte()</b>
+<b class="fc">&nbsp;                if (version != FORMAT_VERSION) return null</b>
+<b class="fc">&nbsp;                val source = input.readUTF()</b>
+<b class="fc">&nbsp;                val count = input.readInt()</b>
+<b class="fc">&nbsp;                val prices = List(count) {</b>
+<b class="fc">&nbsp;                    CachedPrice(</b>
+<b class="fc">&nbsp;                        epochSecond = input.readLong(),</b>
+<b class="fc">&nbsp;                        durationMinutes = input.readShort().toInt(),</b>
+<b class="fc">&nbsp;                        price = input.readDouble()</b>
+<b class="fc">&nbsp;                    )</b>
+&nbsp;                }
+<b class="fc">&nbsp;                CachedPriceData(source, prices)</b>
+&nbsp;            }
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Graceful migration: any I/O or format error returns null
+<b class="fc">&nbsp;            null</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun write(key: String, data: CachedPriceData) {
+<b class="pc">&nbsp;        DataOutputStream(cacheFile(key).outputStream().buffered()).use { output -&gt;</b>
+<b class="fc">&nbsp;            output.writeByte(FORMAT_VERSION.toInt())</b>
+<b class="fc">&nbsp;            output.writeUTF(data.source)</b>
+<b class="fc">&nbsp;            output.writeInt(data.prices.size)</b>
+<b class="fc">&nbsp;            for (entry in data.prices) {</b>
+<b class="fc">&nbsp;                output.writeLong(entry.epochSecond)</b>
+<b class="fc">&nbsp;                output.writeShort(entry.durationMinutes)</b>
+<b class="fc">&nbsp;                output.writeDouble(entry.price)</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        prefs.edit { putLong(KEY_LAST_FETCH_MS, System.currentTimeMillis()) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun clear() {
+<b class="pc">&nbsp;        context.cacheDir.listFiles()?.filter { it.name.startsWith(&quot;prices_&quot;) &amp;&amp; it.name.endsWith(&quot;.bin&quot;) }?.forEach { it.delete() }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun clearForZone(key: String) {
+<b class="fc">&nbsp;        cacheFile(key).delete()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun cooldownRemainingMs(cooldownMs: Long): Long {
+<b class="fc">&nbsp;        val lastFetch = prefs.getLong(KEY_LAST_FETCH_MS, 0L)</b>
+<b class="fc">&nbsp;        val elapsed = System.currentTimeMillis() - lastFetch</b>
+<b class="fc">&nbsp;        return maxOf(0L, cooldownMs - elapsed)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun resetCooldown() {
+<b class="fc">&nbsp;        prefs.edit { remove(KEY_LAST_FETCH_MS) }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-20 22:35</div>
+</div>
+</body>
+</html>

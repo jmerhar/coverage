@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "1eb67e9d14eaf7745f82e3c0328490f0c5af4298",
+  "short_sha": "1eb67e9d14",
+  "committed_at": "2026-07-13T16:57:12Z",
+  "message": "refactor: drag-to-reorder data sources instead of up/down arrows",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/1eb67e9d14eaf7745f82e3c0328490f0c5af4298",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

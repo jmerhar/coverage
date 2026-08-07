@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "e50f4a7af1186500c4bc40f3cd4c62b9a992e975",
+  "short_sha": "e50f4a7af1",
+  "committed_at": "2026-07-14T08:47:28Z",
+  "message": "docs: add CI status badge and fix the private-repo codecov badge",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/e50f4a7af1186500c4bc40f3cd4c62b9a992e975",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}

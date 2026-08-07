@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "a717a3ddba598857de99e9bebd584d2b3bfddd21",
+  "short_sha": "a717a3ddba",
+  "committed_at": "2026-07-12T13:51:48Z",
+  "message": "chore: remove committed bin/__pycache__ bytecode",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/a717a3ddba598857de99e9bebd584d2b3bfddd21",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "d65cb01c2976cac5d35c18cc683164910823dfa9",
+  "short_sha": "d65cb01c29",
+  "committed_at": "2026-07-28T21:28:01Z",
+  "message": "chore: add feedback Worker deploy script and make target",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/d65cb01c2976cac5d35c18cc683164910823dfa9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "87.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "80.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

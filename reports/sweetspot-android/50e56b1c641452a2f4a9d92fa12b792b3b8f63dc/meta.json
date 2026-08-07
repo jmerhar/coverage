@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "50e56b1c641452a2f4a9d92fa12b792b3b8f63dc",
+  "short_sha": "50e56b1c64",
+  "committed_at": "2026-07-28T20:53:16Z",
+  "message": "feat: add in-app Help & feedback section",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/50e56b1c641452a2f4a9d92fa12b792b3b8f63dc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "87.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "80.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

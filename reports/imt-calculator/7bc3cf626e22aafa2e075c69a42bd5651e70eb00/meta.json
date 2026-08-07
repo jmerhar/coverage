@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "7bc3cf626e22aafa2e075c69a42bd5651e70eb00",
+  "short_sha": "7bc3cf626e",
+  "committed_at": "2026-07-31T10:43:44Z",
+  "message": "feat: track the active theme on page views, mirroring language",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/7bc3cf626e22aafa2e075c69a42bd5651e70eb00",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    }
+  ]
+}

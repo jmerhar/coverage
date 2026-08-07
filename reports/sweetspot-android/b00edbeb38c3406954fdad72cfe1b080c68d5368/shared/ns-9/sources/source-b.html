@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > HelpLinks</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: HelpLinks (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">HelpLinks</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (71/71)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure builders + constants for the Help section&#39;s external links, so URL/deep-link shaping is
+&nbsp; * testable and lives in one place. Android-free.
+&nbsp; */
+&nbsp;object HelpLinks {
+&nbsp;
+&nbsp;    const val WEBSITE_BASE = &quot;https://sweetspot.today&quot;
+&nbsp;    const val CONTACT_EMAIL = &quot;hello@sweetspot.today&quot;
+&nbsp;    const val PLAY_STORE_ID = &quot;today.sweetspot&quot;
+&nbsp;    const val GITHUB_REPO = &quot;jmerhar/sweetspot-android&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The GitHub login the feedback Worker posts as. Reports (and, later, replies) are authored by
+&nbsp;     * this bot on the reporter&#39;s behalf, so the in-app thread labels its entries as the user&#39;s own.
+&nbsp;     */
+&nbsp;    const val BOT_LOGIN = &quot;sweetspot-support&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Prefix the feedback Worker prepends to a reporter&#39;s in-app reply when it posts the comment as the
+&nbsp;     * bot (so a reader on GitHub can tell it&#39;s the reporter speaking, not the maintainer). In the app
+&nbsp;     * the entry is already labelled &quot;You&quot;, so the prefix is stripped for display — keeping it here in
+&nbsp;     * sync with the Worker&#39;s `commentBody`. Must match `server/feedback-worker/src/index.js`.
+&nbsp;     */
+&nbsp;    const val REPLY_PREFIX = &quot;💬 **Reporter (via app):**&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Footer the feedback Worker appends to every issue body (followed, for bug reports, by a
+&nbsp;     * collapsible diagnostics block). The in-app thread strips from this marker onward so it shows only
+&nbsp;     * the reporter&#39;s own text — the auto-appended footer and the diagnostics code block are noise in the
+&nbsp;     * app (and the code block renders with a non-theme-aware background); the full body stays on GitHub.
+&nbsp;     * Must match `server/feedback-worker/src/index.js` (buildIssueBody).
+&nbsp;     */
+&nbsp;    const val ISSUE_BODY_FOOTER = &quot;&lt;sub&gt;Submitted from the SweetSpot app.&lt;/sub&gt;&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Localized website URL for [path] (e.g. `&quot;faq&quot;`, `&quot;privacy&quot;`, `&quot;changelog&quot;`). English is served
+&nbsp;     * at the root; every other language lives under `/&lt;lang&gt;/`. [languageTag] is a BCP-47 tag — its
+&nbsp;     * region is dropped and, if it is a comma-joined list, only the first entry is used; a blank tag
+&nbsp;     * falls back to English.
+&nbsp;     *
+&nbsp;     * A `?lang=&lt;code&gt;` query is always appended so the site honours the app&#39;s language even when the
+&nbsp;     * browser has a different language saved from a previous visit (the site JS would otherwise
+&nbsp;     * redirect to that saved preference), and a `&amp;theme=&lt;light|dark&gt;` query so the site matches the
+&nbsp;     * app&#39;s current light/dark mode (opened in a Custom Tab, it would otherwise look mismatched). See
+&nbsp;     * `site/static/js/main.js` and `site/layouts/partials/head.html`.
+&nbsp;     */
+<b class="fc">&nbsp;    fun localizedUrl(path: String, languageTag: String, dark: Boolean = false, base: String = WEBSITE_BASE): String {</b>
+<b class="fc">&nbsp;        val lang = languageTag.substringBefore(&#39;,&#39;).substringBefore(&#39;-&#39;).lowercase()</b>
+<b class="fc">&nbsp;        val code = lang.ifBlank { &quot;en&quot; }</b>
+<b class="fc">&nbsp;        val prefix = if (code == &quot;en&quot;) &quot;&quot; else &quot;/$code&quot;</b>
+<b class="fc">&nbsp;        val theme = if (dark) &quot;dark&quot; else &quot;light&quot;</b>
+<b class="fc">&nbsp;        return &quot;$base$prefix/$path/?lang=$code&amp;theme=$theme&quot;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Play Store deep link (opens the Play app); [playStoreUrl] is the browser fallback. */
+<b class="fc">&nbsp;    fun playStoreUri(): String = &quot;market://details?id=$PLAY_STORE_ID&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    fun playStoreUrl(): String = &quot;https://play.google.com/store/apps/details?id=$PLAY_STORE_ID&quot;</b>
+&nbsp;
+&nbsp;    /** Public web URL of a GitHub issue (used by &quot;My reports&quot;). */
+<b class="fc">&nbsp;    fun issueUrl(number: Int): String = &quot;https://github.com/$GITHUB_REPO/issues/$number&quot;</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-30 09:28</div>
+</div>
+</body>
+</html>

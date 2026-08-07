@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/runner/work/serenity/serenity/serenity.src/lib/Admin/Controller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/home/runner/work/serenity/serenity/serenity.src/lib</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Admin</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Controller</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AuthController.php.html#45"><abbr title="Serenity\Admin\Controller\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="BookingsController.php.html#244"><abbr title="Serenity\Admin\Controller\BookingsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="ChannelsController.php.html#156"><abbr title="Serenity\Admin\Controller\ChannelsController::feedUrl">feedUrl</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="BookingsController.php.html#186"><abbr title="Serenity\Admin\Controller\BookingsController::cancel">cancel</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="BookingsController.php.html#186"><abbr title="Serenity\Admin\Controller\BookingsController::cancel">cancel</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="ChannelsController.php.html#156"><abbr title="Serenity\Admin\Controller\ChannelsController::feedUrl">feedUrl</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="AuthController.php.html#45"><abbr title="Serenity\Admin\Controller\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="BookingsController.php.html#244"><abbr title="Serenity\Admin\Controller\BookingsController::errorMessage">errorMessage</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.12</a> using <a href="https://www.php.net/" target="_top">PHP 8.5.8</a> and <a href="https://phpunit.de/">PHPUnit 11.5.55</a> at Mon Jul 13 15:15:58 CEST 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,4,7], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,2,0,2,3,105], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[97.36842105263158,20,"<a href=\"AuthController.php.html#24\">Serenity\\Admin\\Controller\\AuthController<\/a>"],[95,21,"<a href=\"AvailabilityController.php.html#24\">Serenity\\Admin\\Controller\\AvailabilityController<\/a>"],[96.19047619047619,25,"<a href=\"BookingsController.php.html#31\">Serenity\\Admin\\Controller\\BookingsController<\/a>"],[98.52941176470588,41,"<a href=\"ChannelsController.php.html#27\">Serenity\\Admin\\Controller\\ChannelsController<\/a>"],[100,3,"<a href=\"Controller.php.html#17\">Serenity\\Admin\\Controller\\Controller<\/a>"],[100,22,"<a href=\"DashboardController.php.html#35\">Serenity\\Admin\\Controller\\DashboardController<\/a>"],[100,4,"<a href=\"LogsController.php.html#18\">Serenity\\Admin\\Controller\\LogsController<\/a>"],[100,33,"<a href=\"ProfileController.php.html#24\">Serenity\\Admin\\Controller\\ProfileController<\/a>"],[100,55,"<a href=\"ReviewsController.php.html#24\">Serenity\\Admin\\Controller\\ReviewsController<\/a>"],[100,119,"<a href=\"SettingsController.php.html#23\">Serenity\\Admin\\Controller\\SettingsController<\/a>"],[100,48,"<a href=\"UsersController.php.html#26\">Serenity\\Admin\\Controller\\UsersController<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"AuthController.php.html#26\">Serenity\\Admin\\Controller\\AuthController::__construct<\/a>"],[66.66666666666666,3,"<a href=\"AuthController.php.html#45\">Serenity\\Admin\\Controller\\AuthController::showLogin<\/a>"],[100,9,"<a href=\"AuthController.php.html#63\">Serenity\\Admin\\Controller\\AuthController::login<\/a>"],[100,1,"<a href=\"AuthController.php.html#103\">Serenity\\Admin\\Controller\\AuthController::logout<\/a>"],[100,5,"<a href=\"AuthController.php.html#115\">Serenity\\Admin\\Controller\\AuthController::verifyRecaptcha<\/a>"],[100,1,"<a href=\"AuthController.php.html#130\">Serenity\\Admin\\Controller\\AuthController::renderLogin<\/a>"],[100,1,"<a href=\"AvailabilityController.php.html#29\">Serenity\\Admin\\Controller\\AvailabilityController::__construct<\/a>"],[93.33333333333333,4,"<a href=\"AvailabilityController.php.html#43\">Serenity\\Admin\\Controller\\AvailabilityController::index<\/a>"],[100,4,"<a href=\"AvailabilityController.php.html#76\">Serenity\\Admin\\Controller\\AvailabilityController::block<\/a>"],[100,2,"<a href=\"AvailabilityController.php.html#96\">Serenity\\Admin\\Controller\\AvailabilityController::unblock<\/a>"],[92.85714285714286,9,"<a href=\"AvailabilityController.php.html#117\">Serenity\\Admin\\Controller\\AvailabilityController::range<\/a>"],[100,1,"<a href=\"AvailabilityController.php.html#141\">Serenity\\Admin\\Controller\\AvailabilityController::isValidDate<\/a>"],[100,1,"<a href=\"BookingsController.php.html#33\">Serenity\\Admin\\Controller\\BookingsController::__construct<\/a>"],[100,1,"<a href=\"BookingsController.php.html#53\">Serenity\\Admin\\Controller\\BookingsController::index<\/a>"],[100,3,"<a href=\"BookingsController.php.html#74\">Serenity\\Admin\\Controller\\BookingsController::directRows<\/a>"],[100,3,"<a href=\"BookingsController.php.html#109\">Serenity\\Admin\\Controller\\BookingsController::externalRows<\/a>"],[100,2,"<a href=\"BookingsController.php.html#145\">Serenity\\Admin\\Controller\\BookingsController::show<\/a>"],[91.66666666666666,3,"<a href=\"BookingsController.php.html#163\">Serenity\\Admin\\Controller\\BookingsController::confirm<\/a>"],[88.23529411764706,5,"<a href=\"BookingsController.php.html#186\">Serenity\\Admin\\Controller\\BookingsController::cancel<\/a>"],[100,2,"<a href=\"BookingsController.php.html#220\">Serenity\\Admin\\Controller\\BookingsController::id<\/a>"],[100,1,"<a href=\"BookingsController.php.html#225\">Serenity\\Admin\\Controller\\BookingsController::cancelUrl<\/a>"],[100,2,"<a href=\"BookingsController.php.html#234\">Serenity\\Admin\\Controller\\BookingsController::email<\/a>"],[66.66666666666666,2,"<a href=\"BookingsController.php.html#244\">Serenity\\Admin\\Controller\\BookingsController::errorMessage<\/a>"],[100,1,"<a href=\"ChannelsController.php.html#29\">Serenity\\Admin\\Controller\\ChannelsController::__construct<\/a>"],[100,1,"<a href=\"ChannelsController.php.html#39\">Serenity\\Admin\\Controller\\ChannelsController::index<\/a>"],[100,9,"<a href=\"ChannelsController.php.html#55\">Serenity\\Admin\\Controller\\ChannelsController::save<\/a>"],[100,4,"<a href=\"ChannelsController.php.html#84\">Serenity\\Admin\\Controller\\ChannelsController::toggle<\/a>"],[100,3,"<a href=\"ChannelsController.php.html#107\">Serenity\\Admin\\Controller\\ChannelsController::delete<\/a>"],[100,11,"<a href=\"ChannelsController.php.html#126\">Serenity\\Admin\\Controller\\ChannelsController::validate<\/a>"],[83.33333333333334,4,"<a href=\"ChannelsController.php.html#156\">Serenity\\Admin\\Controller\\ChannelsController::feedUrl<\/a>"],[100,8,"<a href=\"ChannelsController.php.html#170\">Serenity\\Admin\\Controller\\ChannelsController::errorMessage<\/a>"],[100,1,"<a href=\"Controller.php.html#19\">Serenity\\Admin\\Controller\\Controller::__construct<\/a>"],[100,1,"<a href=\"Controller.php.html#33\">Serenity\\Admin\\Controller\\Controller::view<\/a>"],[100,1,"<a href=\"Controller.php.html#53\">Serenity\\Admin\\Controller\\Controller::redirect<\/a>"],[100,1,"<a href=\"DashboardController.php.html#46\">Serenity\\Admin\\Controller\\DashboardController::__construct<\/a>"],[100,2,"<a href=\"DashboardController.php.html#62\">Serenity\\Admin\\Controller\\DashboardController::index<\/a>"],[100,10,"<a href=\"DashboardController.php.html#114\">Serenity\\Admin\\Controller\\DashboardController::attentionItems<\/a>"],[100,5,"<a href=\"DashboardController.php.html#168\">Serenity\\Admin\\Controller\\DashboardController::bookingRows<\/a>"],[100,2,"<a href=\"DashboardController.php.html#204\">Serenity\\Admin\\Controller\\DashboardController::stayDates<\/a>"],[100,2,"<a href=\"DashboardController.php.html#216\">Serenity\\Admin\\Controller\\DashboardController::shapeReviews<\/a>"],[100,4,"<a href=\"LogsController.php.html#25\">Serenity\\Admin\\Controller\\LogsController::index<\/a>"],[100,1,"<a href=\"ProfileController.php.html#28\">Serenity\\Admin\\Controller\\ProfileController::__construct<\/a>"],[100,2,"<a href=\"ProfileController.php.html#37\">Serenity\\Admin\\Controller\\ProfileController::index<\/a>"],[100,9,"<a href=\"ProfileController.php.html#58\">Serenity\\Admin\\Controller\\ProfileController::save<\/a>"],[100,11,"<a href=\"ProfileController.php.html#90\">Serenity\\Admin\\Controller\\ProfileController::validate<\/a>"],[100,10,"<a href=\"ProfileController.php.html#124\">Serenity\\Admin\\Controller\\ProfileController::errorMessage<\/a>"],[100,1,"<a href=\"ReviewsController.php.html#37\">Serenity\\Admin\\Controller\\ReviewsController::__construct<\/a>"],[100,1,"<a href=\"ReviewsController.php.html#52\">Serenity\\Admin\\Controller\\ReviewsController::index<\/a>"],[100,5,"<a href=\"ReviewsController.php.html#97\">Serenity\\Admin\\Controller\\ReviewsController::moderate<\/a>"],[100,6,"<a href=\"ReviewsController.php.html#116\">Serenity\\Admin\\Controller\\ReviewsController::import<\/a>"],[100,8,"<a href=\"ReviewsController.php.html#151\">Serenity\\Admin\\Controller\\ReviewsController::commitImport<\/a>"],[100,1,"<a href=\"ReviewsController.php.html#183\">Serenity\\Admin\\Controller\\ReviewsController::export<\/a>"],[100,10,"<a href=\"ReviewsController.php.html#212\">Serenity\\Admin\\Controller\\ReviewsController::previewRows<\/a>"],[100,8,"<a href=\"ReviewsController.php.html#254\">Serenity\\Admin\\Controller\\ReviewsController::sanitizeRow<\/a>"],[100,2,"<a href=\"ReviewsController.php.html#274\">Serenity\\Admin\\Controller\\ReviewsController::rowStr<\/a>"],[100,6,"<a href=\"ReviewsController.php.html#284\">Serenity\\Admin\\Controller\\ReviewsController::importNotice<\/a>"],[100,7,"<a href=\"ReviewsController.php.html#299\">Serenity\\Admin\\Controller\\ReviewsController::importError<\/a>"],[100,1,"<a href=\"SettingsController.php.html#30\">Serenity\\Admin\\Controller\\SettingsController::__construct<\/a>"],[100,1,"<a href=\"SettingsController.php.html#41\">Serenity\\Admin\\Controller\\SettingsController::index<\/a>"],[100,1,"<a href=\"SettingsController.php.html#49\">Serenity\\Admin\\Controller\\SettingsController::pricing<\/a>"],[100,1,"<a href=\"SettingsController.php.html#57\">Serenity\\Admin\\Controller\\SettingsController::pricingView<\/a>"],[100,10,"<a href=\"SettingsController.php.html#67\">Serenity\\Admin\\Controller\\SettingsController::savePricing<\/a>"],[100,1,"<a href=\"SettingsController.php.html#109\">Serenity\\Admin\\Controller\\SettingsController::contact<\/a>"],[100,1,"<a href=\"SettingsController.php.html#115\">Serenity\\Admin\\Controller\\SettingsController::contactView<\/a>"],[100,9,"<a href=\"SettingsController.php.html#125\">Serenity\\Admin\\Controller\\SettingsController::saveContact<\/a>"],[100,1,"<a href=\"SettingsController.php.html#175\">Serenity\\Admin\\Controller\\SettingsController::cancellationPolicy<\/a>"],[100,1,"<a href=\"SettingsController.php.html#181\">Serenity\\Admin\\Controller\\SettingsController::cancellationPolicyView<\/a>"],[100,4,"<a href=\"SettingsController.php.html#191\">Serenity\\Admin\\Controller\\SettingsController::saveCancellationPolicy<\/a>"],[100,1,"<a href=\"SettingsController.php.html#214\">Serenity\\Admin\\Controller\\SettingsController::seasons<\/a>"],[100,1,"<a href=\"SettingsController.php.html#219\">Serenity\\Admin\\Controller\\SettingsController::seasonsView<\/a>"],[100,5,"<a href=\"SettingsController.php.html#229\">Serenity\\Admin\\Controller\\SettingsController::saveSeason<\/a>"],[100,2,"<a href=\"SettingsController.php.html#254\">Serenity\\Admin\\Controller\\SettingsController::deleteSeason<\/a>"],[100,1,"<a href=\"SettingsController.php.html#267\">Serenity\\Admin\\Controller\\SettingsController::touristTax<\/a>"],[100,1,"<a href=\"SettingsController.php.html#272\">Serenity\\Admin\\Controller\\SettingsController::touristTaxView<\/a>"],[100,6,"<a href=\"SettingsController.php.html#282\">Serenity\\Admin\\Controller\\SettingsController::saveTouristTax<\/a>"],[100,2,"<a href=\"SettingsController.php.html#296\">Serenity\\Admin\\Controller\\SettingsController::deleteTouristTax<\/a>"],[100,1,"<a href=\"SettingsController.php.html#309\">Serenity\\Admin\\Controller\\SettingsController::payment<\/a>"],[100,1,"<a href=\"SettingsController.php.html#314\">Serenity\\Admin\\Controller\\SettingsController::paymentView<\/a>"],[100,3,"<a href=\"SettingsController.php.html#324\">Serenity\\Admin\\Controller\\SettingsController::savePayment<\/a>"],[100,2,"<a href=\"SettingsController.php.html#342\">Serenity\\Admin\\Controller\\SettingsController::deletePayment<\/a>"],[100,1,"<a href=\"SettingsController.php.html#355\">Serenity\\Admin\\Controller\\SettingsController::features<\/a>"],[100,1,"<a href=\"SettingsController.php.html#360\">Serenity\\Admin\\Controller\\SettingsController::featuresView<\/a>"],[100,3,"<a href=\"SettingsController.php.html#371\">Serenity\\Admin\\Controller\\SettingsController::saveFeature<\/a>"],[100,2,"<a href=\"SettingsController.php.html#391\">Serenity\\Admin\\Controller\\SettingsController::deleteFeature<\/a>"],[100,1,"<a href=\"SettingsController.php.html#404\">Serenity\\Admin\\Controller\\SettingsController::events<\/a>"],[100,1,"<a href=\"SettingsController.php.html#409\">Serenity\\Admin\\Controller\\SettingsController::eventsView<\/a>"],[100,5,"<a href=\"SettingsController.php.html#419\">Serenity\\Admin\\Controller\\SettingsController::saveEvent<\/a>"],[100,2,"<a href=\"SettingsController.php.html#438\">Serenity\\Admin\\Controller\\SettingsController::deleteEvent<\/a>"],[100,2,"<a href=\"SettingsController.php.html#451\">Serenity\\Admin\\Controller\\SettingsController::gallery<\/a>"],[100,1,"<a href=\"SettingsController.php.html#458\">Serenity\\Admin\\Controller\\SettingsController::galleryView<\/a>"],[100,2,"<a href=\"SettingsController.php.html#474\">Serenity\\Admin\\Controller\\SettingsController::saveGalleryImage<\/a>"],[100,2,"<a href=\"SettingsController.php.html#497\">Serenity\\Admin\\Controller\\SettingsController::uploadPhoto<\/a>"],[100,4,"<a href=\"SettingsController.php.html#521\">Serenity\\Admin\\Controller\\SettingsController::reorderGallery<\/a>"],[100,2,"<a href=\"SettingsController.php.html#540\">Serenity\\Admin\\Controller\\SettingsController::deleteGalleryImage<\/a>"],[100,2,"<a href=\"SettingsController.php.html#553\">Serenity\\Admin\\Controller\\SettingsController::str<\/a>"],[100,2,"<a href=\"SettingsController.php.html#561\">Serenity\\Admin\\Controller\\SettingsController::strOrNull<\/a>"],[100,3,"<a href=\"SettingsController.php.html#569\">Serenity\\Admin\\Controller\\SettingsController::subStr<\/a>"],[100,2,"<a href=\"SettingsController.php.html#578\">Serenity\\Admin\\Controller\\SettingsController::intOrNull<\/a>"],[100,3,"<a href=\"SettingsController.php.html#586\">Serenity\\Admin\\Controller\\SettingsController::positiveIntOrNull<\/a>"],[100,1,"<a href=\"SettingsController.php.html#598\">Serenity\\Admin\\Controller\\SettingsController::nonNegInt<\/a>"],[100,2,"<a href=\"SettingsController.php.html#606\">Serenity\\Admin\\Controller\\SettingsController::floatOrNull<\/a>"],[100,6,"<a href=\"SettingsController.php.html#619\">Serenity\\Admin\\Controller\\SettingsController::days<\/a>"],[100,3,"<a href=\"SettingsController.php.html#639\">Serenity\\Admin\\Controller\\SettingsController::isValidTime<\/a>"],[100,5,"<a href=\"SettingsController.php.html#648\">Serenity\\Admin\\Controller\\SettingsController::isValidMd<\/a>"],[100,3,"<a href=\"SettingsController.php.html#659\">Serenity\\Admin\\Controller\\SettingsController::parseDate<\/a>"],[100,1,"<a href=\"SettingsController.php.html#669\">Serenity\\Admin\\Controller\\SettingsController::moment<\/a>"],[100,1,"<a href=\"UsersController.php.html#30\">Serenity\\Admin\\Controller\\UsersController::__construct<\/a>"],[100,1,"<a href=\"UsersController.php.html#39\">Serenity\\Admin\\Controller\\UsersController::index<\/a>"],[100,12,"<a href=\"UsersController.php.html#56\">Serenity\\Admin\\Controller\\UsersController::save<\/a>"],[100,6,"<a href=\"UsersController.php.html#95\">Serenity\\Admin\\Controller\\UsersController::delete<\/a>"],[100,17,"<a href=\"UsersController.php.html#119\">Serenity\\Admin\\Controller\\UsersController::validate<\/a>"],[100,11,"<a href=\"UsersController.php.html#153\">Serenity\\Admin\\Controller\\UsersController::errorMessage<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

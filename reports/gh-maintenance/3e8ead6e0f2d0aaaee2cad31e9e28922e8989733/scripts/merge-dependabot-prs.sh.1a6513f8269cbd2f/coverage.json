@@ -1,0 +1,13 @@
+{
+  "files": [
+    {"file": "/src/bin/merge-dependabot-prs.sh", "percent_covered": "95.29", "covered_lines": "81", "total_lines": "85"},
+    {"file": "/src/bin/watch-all.sh", "percent_covered": "0.00", "covered_lines": "0", "total_lines": "16"}
+  ],
+  "percent_covered": "80.20",
+  "covered_lines": 81,
+  "total_lines": 101,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "merge-dependabot-prs.sh",
+  "date": "2026-08-07 19:11:27"
+}

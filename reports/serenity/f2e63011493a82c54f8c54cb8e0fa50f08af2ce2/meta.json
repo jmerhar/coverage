@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "f2e63011493a82c54f8c54cb8e0fa50f08af2ce2",
+  "short_sha": "f2e6301149",
+  "committed_at": "2026-07-13T12:48:50Z",
+  "message": "refactor(cron): centralise DB resolution so it's covered and can't drift",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/f2e63011493a82c54f8c54cb8e0fa50f08af2ce2",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "89.1%"
+      }
+    }
+  ]
+}

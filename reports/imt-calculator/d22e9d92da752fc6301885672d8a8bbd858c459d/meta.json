@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "d22e9d92da752fc6301885672d8a8bbd858c459d",
+  "short_sha": "d22e9d92da",
+  "committed_at": "2026-07-31T09:59:41Z",
+  "message": "feat: add idempotent GA4 custom-definition setup script",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/d22e9d92da752fc6301885672d8a8bbd858c459d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > BillingRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.billing</a>
+</div>
+
+<h1>Coverage Summary for Class: BillingRepository (today.sweetspot.data.billing)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">BillingRepository</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.billing
+&nbsp;
+&nbsp;import android.app.Activity
+&nbsp;import kotlinx.coroutines.flow.StateFlow
+&nbsp;
+&nbsp;/**
+&nbsp; * Abstraction over Play Billing for yearly subscription.
+&nbsp; *
+&nbsp; * Provides a [StateFlow] of unlock state and methods to manage the subscription lifecycle.
+&nbsp; * The interface enables injecting a fake in ViewModel tests.
+&nbsp; */
+&nbsp;interface BillingRepository {
+&nbsp;
+&nbsp;    /** Observable unlock state. `true` when the user has an active subscription. */
+&nbsp;    val isUnlocked: StateFlow&lt;Boolean&gt;
+&nbsp;
+&nbsp;    /** Observable localized price string (e.g. &quot;€2.49&quot;), or `null` if not yet loaded. */
+&nbsp;    val productPrice: StateFlow&lt;String?&gt;
+&nbsp;
+&nbsp;    /** Connects to the billing service. Call from ViewModel init. */
+&nbsp;    fun connect()
+&nbsp;
+&nbsp;    /** Disconnects from the billing service. Call from ViewModel onCleared. */
+&nbsp;    fun disconnect()
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Launches the purchase flow for the yearly subscription.
+&nbsp;     *
+&nbsp;     * @param activity The activity to host the purchase UI.
+&nbsp;     */
+&nbsp;    fun launchPurchaseFlow(activity: Activity)
+&nbsp;
+&nbsp;    /** Re-queries existing purchases to restore unlock state (e.g. reinstall or new device). */
+&nbsp;    fun queryPurchases()
+&nbsp;
+&nbsp;    /** Re-queries purchases to detect subscription expiry when the app returns to foreground. */
+&nbsp;    fun onResume()
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-20 22:35</div>
+</div>
+</body>
+</html>

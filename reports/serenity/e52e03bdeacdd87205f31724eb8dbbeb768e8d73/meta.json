@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "e52e03bdeacdd87205f31724eb8dbbeb768e8d73",
+  "short_sha": "e52e03bdea",
+  "committed_at": "2026-07-13T21:03:34Z",
+  "message": "chore: revert auto-generated .idea/php.xml vendor-path churn",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/e52e03bdeacdd87205f31724eb8dbbeb768e8d73",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "c38c81864573353428abdeff90370a8a16f93a4e",
+  "short_sha": "c38c818645",
+  "committed_at": "2026-07-28T12:17:07Z",
+  "message": "refactor: move stats backend into server/stats/",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/c38c81864573353428abdeff90370a8a16f93a4e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

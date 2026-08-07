@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ab4de1ec75fbf84ed104a812ae8690d87025d566",
+  "short_sha": "ab4de1ec75",
+  "committed_at": "2026-08-01T10:34:12Z",
+  "message": "docs: update plans \u2014 breadcrumbs, per-language OG, shareability fix, baseline",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ab4de1ec75fbf84ed104a812ae8690d87025d566",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}

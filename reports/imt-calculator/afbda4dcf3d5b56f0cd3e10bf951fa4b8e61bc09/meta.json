@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "afbda4dcf3d5b56f0cd3e10bf951fa4b8e61bc09",
+  "short_sha": "afbda4dcf3",
+  "committed_at": "2026-07-31T12:13:33Z",
+  "message": "feat: per-route SEO metadata, robots.txt and sitemap",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/afbda4dcf3d5b56f0cd3e10bf951fa4b8e61bc09",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "90.2%"
+      }
+    }
+  ]
+}

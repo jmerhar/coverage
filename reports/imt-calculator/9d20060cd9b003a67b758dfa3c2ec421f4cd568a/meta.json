@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "9d20060cd9b003a67b758dfa3c2ec421f4cd568a",
+  "short_sha": "9d20060cd9",
+  "committed_at": "2026-07-31T10:22:14Z",
+  "message": "feat: track the active UI language on page views",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/9d20060cd9b003a67b758dfa3c2ec421f4cd568a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    }
+  ]
+}

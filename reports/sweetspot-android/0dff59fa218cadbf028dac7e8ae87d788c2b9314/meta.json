@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "0dff59fa218cadbf028dac7e8ae87d788c2b9314",
+  "short_sha": "0dff59fa21",
+  "committed_at": "2026-07-12T20:49:26Z",
+  "message": "chore: update store screenshots for the redesigned settings menu",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/0dff59fa218cadbf028dac7e8ae87d788c2b9314",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

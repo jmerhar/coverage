@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "a4033583dfc953dbd741983558206c71aee7b886",
+  "short_sha": "a4033583df",
+  "committed_at": "2026-08-02T16:09:16Z",
+  "message": "feat(captcha): add median trend line to pages-before chart + data-analysis doc",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/a4033583dfc953dbd741983558206c71aee7b886",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "dc58ad2d5b819ea29eea7061469329a67efa4be7",
+  "short_sha": "dc58ad2d5b",
+  "committed_at": "2026-07-28T12:26:28Z",
+  "message": "docs: record aurora InfluxDB access + stats verification runbook",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/dc58ad2d5b819ea29eea7061469329a67efa4be7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

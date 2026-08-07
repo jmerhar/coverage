@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "d0a08083820cd6b810ff988fd778cfda359f33c6",
+  "short_sha": "d0a0808382",
+  "committed_at": "2026-07-31T17:51:19Z",
+  "message": "fix: clearing the price (or mortgage) box empties it instead of showing 0",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/d0a08083820cd6b810ff988fd778cfda359f33c6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "91.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "91.2%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "2029f0f3a75fe1f517fb8b295462c7a24a1f82f4",
+  "short_sha": "2029f0f3a7",
+  "committed_at": "2026-07-13T15:29:37Z",
+  "message": "docs: remove the completed off-Airbnb migration plan",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/2029f0f3a75fe1f517fb8b295462c7a24a1f82f4",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.3%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "9e2012a9b28e5bdc03274c64cd4e5c62327fd511",
+  "short_sha": "9e2012a9b2",
+  "committed_at": "2026-07-14T09:04:42Z",
+  "message": "fix(screenshots): tune price-chart scroll to keep the headers visible",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/9e2012a9b28e5bdc03274c64cd4e5c62327fd511",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

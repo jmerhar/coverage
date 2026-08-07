@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ab6ddc56796dd0069f8f9535946364a644f09108",
+  "short_sha": "ab6ddc5679",
+  "committed_at": "2026-08-01T09:11:40Z",
+  "message": "docs: make reference Markdown presentable (strip chrome, add headings + ToC)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ab6ddc56796dd0069f8f9535946364a644f09108",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}

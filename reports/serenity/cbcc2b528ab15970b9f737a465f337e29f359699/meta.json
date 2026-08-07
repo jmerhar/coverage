@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "cbcc2b528ab15970b9f737a465f337e29f359699",
+  "short_sha": "cbcc2b528a",
+  "committed_at": "2026-07-31T17:30:33Z",
+  "message": "chore(ide): stop tracking .idea/php.xml to end include-path churn",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/cbcc2b528ab15970b9f737a465f337e29f359699",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.5%",
+        "methods": "91.7%"
+      }
+    }
+  ]
+}

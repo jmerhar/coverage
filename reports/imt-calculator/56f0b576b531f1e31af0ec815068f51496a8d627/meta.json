@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "56f0b576b531f1e31af0ec815068f51496a8d627",
+  "short_sha": "56f0b576b5",
+  "committed_at": "2026-07-31T11:40:18Z",
+  "message": "refactor: initialize state deterministically for hydration safety",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/56f0b576b531f1e31af0ec815068f51496a8d627",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "89.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "89.9%"
+      }
+    }
+  ]
+}

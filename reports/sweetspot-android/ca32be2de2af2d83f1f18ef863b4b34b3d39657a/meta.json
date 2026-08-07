@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "ca32be2de2af2d83f1f18ef863b4b34b3d39657a",
+  "short_sha": "ca32be2de2",
+  "committed_at": "2026-07-10T21:17:33Z",
+  "message": "docs: extract NL all-in pilot spec + validate the surcharge-feed plan against live data",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/ca32be2de2af2d83f1f18ef863b4b34b3d39657a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "82.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

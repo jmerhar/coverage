@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "70a7e25be8bf4d398d09c83857d1e4b87ab55025",
+  "short_sha": "70a7e25be8",
+  "committed_at": "2026-07-13T13:16:12Z",
+  "message": "test: close lib/ coverage gaps and raise the gate to 98%",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/70a7e25be8bf4d398d09c83857d1e4b87ab55025",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}

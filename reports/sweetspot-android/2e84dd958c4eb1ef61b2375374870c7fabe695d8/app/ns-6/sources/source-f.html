@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > UnlockSectionKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.settings</a>
+</div>
+
+<h1>Coverage Summary for Class: UnlockSectionKt (today.sweetspot.ui.settings)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">UnlockSectionKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/344)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.ui.settings
+&nbsp;
+&nbsp;import androidx.compose.foundation.clickable
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.res.pluralStringResource
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import today.sweetspot.R
+&nbsp;
+&nbsp;/**
+&nbsp; * Settings section for unlocking the app before the trial expires.
+&nbsp; *
+&nbsp; * Shows the unlock button with the product price (if loaded) and the number of trial days
+&nbsp; * remaining. Hidden when the app is already unlocked.
+&nbsp; *
+&nbsp; * @param trialDaysRemaining Number of trial days remaining (0–14).
+&nbsp; * @param productPrice Localized price string (e.g. &quot;€2.49&quot;), or `null` if not yet loaded.
+&nbsp; * @param onPurchaseClicked Called when the user taps to purchase.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;internal fun UnlockSection(
+&nbsp;    trialDaysRemaining: Int,
+&nbsp;    productPrice: String?,
+&nbsp;    onPurchaseClicked: () -&gt; Unit
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    Text(</b>
+<b class="nc">&nbsp;        text = stringResource(R.string.settings_unlock),</b>
+<b class="nc">&nbsp;        style = MaterialTheme.typography.labelLarge,</b>
+<b class="nc">&nbsp;        color = MaterialTheme.colorScheme.primary,</b>
+<b class="nc">&nbsp;        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)</b>
+&nbsp;    )
+&nbsp;
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = Modifier</b>
+<b class="nc">&nbsp;            .fillMaxWidth()</b>
+<b class="nc">&nbsp;            .clickable(onClick = onPurchaseClicked)</b>
+<b class="nc">&nbsp;            .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = if (productPrice != null) {</b>
+<b class="nc">&nbsp;                    stringResource(R.string.paywall_unlock_price, productPrice)</b>
+<b class="nc">&nbsp;                } else {</b>
+<b class="nc">&nbsp;                    stringResource(R.string.paywall_unlock)</b>
+&nbsp;                },
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = if (trialDaysRemaining &gt; 0) {</b>
+<b class="nc">&nbsp;                    pluralStringResource(R.plurals.trial_days_remaining, trialDaysRemaining, trialDaysRemaining)</b>
+<b class="nc">&nbsp;                } else {</b>
+<b class="nc">&nbsp;                    stringResource(R.string.settings_unlock_description)</b>
+&nbsp;                },
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 19:46</div>
+</div>
+</body>
+</html>

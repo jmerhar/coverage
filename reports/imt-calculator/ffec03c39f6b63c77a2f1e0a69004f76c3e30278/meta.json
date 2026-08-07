@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ffec03c39f6b63c77a2f1e0a69004f76c3e30278",
+  "short_sha": "ffec03c39f",
+  "committed_at": "2026-07-31T16:00:48Z",
+  "message": "perf: self-host fonts and fix footer contrast",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ffec03c39f6b63c77a2f1e0a69004f76c3e30278",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    }
+  ]
+}

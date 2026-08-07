@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "9a723c2a2c6a3f9b2ab3335fa1ef5f02ff352ad8",
+  "short_sha": "9a723c2a2c",
+  "committed_at": "2026-08-04T16:15:07Z",
+  "message": "ci: upload a signed store crx (no update_url) for Verified CRX uploads; self-hosted crx keeps update_url",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/9a723c2a2c6a3f9b2ab3335fa1ef5f02ff352ad8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "93.0%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "93.0%"
+      }
+    }
+  ]
+}

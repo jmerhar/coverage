@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "bc1dfeb589adb9a7b518c3ae51e0167fb9032a78",
+  "short_sha": "bc1dfeb589",
+  "committed_at": "2026-07-14T08:48:26Z",
+  "message": "fix(ci): serve /.well-known/assetlinks.json on Pages by keeping dotfiles",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/bc1dfeb589adb9a7b518c3ae51e0167fb9032a78",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

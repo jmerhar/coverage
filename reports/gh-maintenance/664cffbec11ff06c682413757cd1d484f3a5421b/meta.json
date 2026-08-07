@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "664cffbec11ff06c682413757cd1d484f3a5421b",
+  "short_sha": "664cffbec1",
+  "committed_at": "2026-08-07T19:35:03Z",
+  "message": "test: reach full line coverage and publish only the merged report",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/664cffbec11ff06c682413757cd1d484f3a5421b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}

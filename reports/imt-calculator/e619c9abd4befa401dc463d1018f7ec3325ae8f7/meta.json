@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "e619c9abd4befa401dc463d1018f7ec3325ae8f7",
+  "short_sha": "e619c9abd4",
+  "committed_at": "2026-07-31T08:28:47Z",
+  "message": "feat: track VPT-to-price ratio band on the calculate event",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/e619c9abd4befa401dc463d1018f7ec3325ae8f7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.3%"
+      }
+    }
+  ]
+}

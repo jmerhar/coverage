@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "01fd2200a0b4516f9c2dea0cbef978a8cd816a3f",
+  "short_sha": "01fd2200a0",
+  "committed_at": "2026-07-12T21:34:13Z",
+  "message": "ci: raise the coverage gate to 95% after lifting lib/ coverage to ~97%",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/01fd2200a0b4516f9c2dea0cbef978a8cd816a3f",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "97.0%",
+        "methods": "88.9%"
+      }
+    }
+  ]
+}

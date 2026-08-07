@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "a46b1a3e056f183c24a6b1b5bebdc76685b32845",
+  "short_sha": "a46b1a3e05",
+  "committed_at": "2026-08-07T10:00:14Z",
+  "message": "chore(ci): add Dependabot for GitHub Actions (#4)",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/a46b1a3e056f183c24a6b1b5bebdc76685b32845",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}

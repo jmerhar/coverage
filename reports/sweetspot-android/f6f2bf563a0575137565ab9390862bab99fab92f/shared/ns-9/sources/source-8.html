@@ -1,0 +1,212 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > CoachMarkPolicy</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: CoachMarkPolicy (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CoachMarkPolicy</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.4%
+  </span>
+  <span class="absValue">
+    (53/55)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CoachMarkPolicy$WhenMappings</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.4%
+  </span>
+  <span class="absValue">
+    (53/55)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import today.sweetspot.model.CoachMark
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure decision for **which** contextual hint (if any) is due on a given screen.
+&nbsp; *
+&nbsp; * A hint is due only when it is applicable to what&#39;s on screen and has not yet been seen. At most one
+&nbsp; * hint is returned per call (the highest-priority applicable one), which is how the &quot;one hint per
+&nbsp; * screen appearance&quot; rule is enforced — the caller shows the returned hint, and once it&#39;s seen the next
+&nbsp; * appearance surfaces the next one. Keeping this out of Compose makes the ordering unit-testable.
+&nbsp; */
+&nbsp;object CoachMarkPolicy {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The results screen&#39;s hint priority, most important first. The screen shows the first entry that
+&nbsp;     * is both applicable (see [resultsDue]) and unseen.
+&nbsp;     */
+<b class="fc">&nbsp;    private val RESULTS_PRIORITY = listOf(</b>
+<b class="fc">&nbsp;        CoachMark.EARLIER_CHEAPER,</b>
+<b class="fc">&nbsp;        CoachMark.CHART_PRESS_HOLD,</b>
+<b class="fc">&nbsp;        CoachMark.ALL_IN_TOGGLE</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The contextual hint due on the results screen, or `null` if none.
+&nbsp;     *
+&nbsp;     * @param seen Hints already shown/acted on.
+&nbsp;     * @param hasAlternatives Whether more than one window exists, so the Earlier/Cheaper buttons are
+&nbsp;     *   actually usable (both are disabled when the cheapest window is also the earliest).
+&nbsp;     * @param allInConfigured Whether the total ⇄ spot toggle is present (all-in set up for this zone).
+&nbsp;     * @param hasChart Whether the price chart is shown (there are prices to plot).
+&nbsp;     */
+&nbsp;    fun resultsDue(
+&nbsp;        seen: Set&lt;CoachMark&gt;,
+&nbsp;        hasAlternatives: Boolean,
+&nbsp;        allInConfigured: Boolean,
+&nbsp;        hasChart: Boolean
+&nbsp;    ): CoachMark? =
+<b class="fc">&nbsp;        RESULTS_PRIORITY.firstOrNull { mark -&gt;</b>
+<b class="pc">&nbsp;            mark !in seen &amp;&amp; when (mark) {</b>
+<b class="fc">&nbsp;                CoachMark.EARLIER_CHEAPER -&gt; hasAlternatives</b>
+<b class="fc">&nbsp;                CoachMark.CHART_PRESS_HOLD -&gt; hasChart</b>
+<b class="fc">&nbsp;                CoachMark.ALL_IN_TOGGLE -&gt; allInConfigured</b>
+<b class="nc">&nbsp;                CoachMark.EV_CHIP -&gt; false // home-only, never surfaced on the results screen</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The contextual hint due on the home screen, or `null` if none.
+&nbsp;     *
+&nbsp;     * @param seen Hints already shown/acted on.
+&nbsp;     * @param hasEvChip Whether at least one vehicle chip is on the home screen.
+&nbsp;     */
+&nbsp;    fun homeDue(seen: Set&lt;CoachMark&gt;, hasEvChip: Boolean): CoachMark? =
+<b class="fc">&nbsp;        CoachMark.EV_CHIP.takeIf { hasEvChip &amp;&amp; it !in seen }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-30 07:29</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "874327b3c2f0ae9ae911f17427353f8482b40deb",
+  "short_sha": "874327b3c2",
+  "committed_at": "2026-07-13T17:29:18Z",
+  "message": "refactor: funnel SettingsRepository prefs access through typed helpers",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/874327b3c2f0ae9ae911f17427353f8482b40deb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

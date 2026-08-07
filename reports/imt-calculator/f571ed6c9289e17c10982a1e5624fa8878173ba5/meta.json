@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "f571ed6c9289e17c10982a1e5624fa8878173ba5",
+  "short_sha": "f571ed6c92",
+  "committed_at": "2026-08-01T10:15:04Z",
+  "message": "feat: per-language Open Graph images (EN + PT)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/f571ed6c9289e17c10982a1e5624fa8878173ba5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}

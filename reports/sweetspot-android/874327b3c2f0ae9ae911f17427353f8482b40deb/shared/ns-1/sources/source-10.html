@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > PriceFetcherFactory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: PriceFetcherFactory (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">PriceFetcherFactory</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import today.sweetspot.data.stats.InstrumentedPriceFetcher
+&nbsp;import today.sweetspot.data.stats.StatsCollector
+&nbsp;import today.sweetspot.model.PriceZone
+&nbsp;
+&nbsp;/**
+&nbsp; * Factory for creating a [PriceFetcher] appropriate for a given [PriceZone].
+&nbsp; *
+&nbsp; * Decouples ViewModels from knowing which API serves which zone.
+&nbsp; */
+&nbsp;fun interface PriceFetcherFactory {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a [PriceFetcher] configured for the given zone.
+&nbsp;     *
+&nbsp;     * @param zone The price zone to fetch data for.
+&nbsp;     * @return A [PriceFetcher] that can retrieve prices for this zone.
+&nbsp;     */
+&nbsp;    fun create(zone: PriceZone): PriceFetcher
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Default factory: builds the fetcher chain dynamically based on [sourceOrder].
+&nbsp; *
+&nbsp; * When [sourceOrder] is `null`, uses [DataSources.defaultsForZone] for each zone.
+&nbsp; * When provided, filters and reorders the available sources for the zone to match
+&nbsp; * the user&#39;s preference. Falls back to defaults if the filtered list is empty
+&nbsp; * (e.g. user&#39;s stored sources don&#39;t apply to the current zone).
+&nbsp; *
+&nbsp; * When [statsCollector] is provided, wraps each individual fetcher in an
+&nbsp; * [InstrumentedPriceFetcher] that records success/failure outcomes. When `null`
+&nbsp; * (tests or stats disabled), no wrapping occurs — zero overhead.
+&nbsp; *
+&nbsp; * Always wraps the result in [FallbackPriceFetcher], which handles single-item
+&nbsp; * lists correctly — keeping one code path for all cases.
+&nbsp; *
+&nbsp; * @param entsoeToken ENTSO-E API security token (from BuildConfig).
+&nbsp; * @param sourceOrder Ordered list of enabled source IDs, or `null` for defaults.
+&nbsp; * @param statsCollector Optional collector for API reliability stats.
+&nbsp; * @param device Device type for stats: &quot;phone&quot; or &quot;watch&quot;. Ignored when [statsCollector] is `null`.
+&nbsp; * @return A [PriceFetcherFactory] that routes to the correct API(s) per zone.
+&nbsp; */
+&nbsp;fun defaultPriceFetcherFactory(
+&nbsp;    entsoeToken: String,
+&nbsp;    sourceOrder: List&lt;String&gt;? = null,
+&nbsp;    statsCollector: StatsCollector? = null,
+&nbsp;    device: String = &quot;phone&quot;
+&nbsp;): PriceFetcherFactory =
+&nbsp;    PriceFetcherFactory { zone -&gt;
+&nbsp;        val available = DataSources.defaultsForZone(zone.id)
+&nbsp;        val ordered = if (sourceOrder != null) {
+&nbsp;            val filtered = sourceOrder.mapNotNull { id -&gt; available.find { it.id == id } }
+&nbsp;            filtered.ifEmpty { available }
+&nbsp;        } else {
+&nbsp;            available
+&nbsp;        }
+&nbsp;
+&nbsp;        val fetchers = ordered.map { source -&gt;
+&nbsp;            val base: PriceFetcher = when (source.id) {
+&nbsp;                DataSources.ENTSOE.id -&gt; EntsoeApi(entsoeToken, zone.eicCode)
+&nbsp;                DataSources.ENERGY_ZERO.id -&gt; EnergyZeroApi()
+&nbsp;                DataSources.SPOT_HINTA.id -&gt; SpotHintaApi(zone.id)
+&nbsp;                DataSources.ENERGY_CHARTS.id -&gt; EnergyChartsApi(zone.id)
+&nbsp;                DataSources.AWATTAR.id -&gt; AwattarApi(zone.id)
+&nbsp;                else -&gt; error(&quot;Unknown data source: ${source.id}&quot;)
+&nbsp;            }
+&nbsp;            if (statsCollector != null) {
+&nbsp;                InstrumentedPriceFetcher(base, source.id, zone.id, device, statsCollector)
+&nbsp;            } else {
+&nbsp;                base
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        FallbackPriceFetcher(fetchers)
+&nbsp;    }
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:28</div>
+</div>
+</body>
+</html>

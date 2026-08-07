@@ -1,0 +1,351 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > EvChargingComponentsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.components</a>
+</div>
+
+<h1>Coverage Summary for Class: EvChargingComponentsKt (today.sweetspot.ui.components)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">EvChargingComponentsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/74)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/96)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1705)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.ui.components
+&nbsp;
+&nbsp;import androidx.compose.foundation.layout.Arrangement
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.Spacer
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.height
+&nbsp;import androidx.compose.foundation.layout.width
+&nbsp;import androidx.compose.material3.AlertDialog
+&nbsp;import androidx.compose.material3.AssistChip
+&nbsp;import androidx.compose.material3.ExperimentalMaterial3Api
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Slider
+&nbsp;import androidx.compose.material3.Switch
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.material3.TextButton
+&nbsp;import androidx.compose.material3.TimePicker
+&nbsp;import androidx.compose.material3.rememberTimePickerState
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.mutableIntStateOf
+&nbsp;import androidx.compose.runtime.mutableStateOf
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.saveable.rememberSaveable
+&nbsp;import androidx.compose.runtime.setValue
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.platform.LocalContext
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import today.sweetspot.R
+&nbsp;import today.sweetspot.util.formatDuration
+&nbsp;import java.util.Locale
+&nbsp;import kotlin.math.max
+&nbsp;import kotlin.math.roundToInt
+&nbsp;
+&nbsp;/** Formats a kW value, dropping the decimal for whole numbers (11.0 → &quot;11&quot;, 7.4 → &quot;7.4&quot;). */
+&nbsp;internal fun formatKw(value: Double): String =
+<b class="nc">&nbsp;    if (value == value.toLong().toDouble()) value.toLong().toString()</b>
+<b class="nc">&nbsp;    else String.format(Locale.getDefault(), &quot;%.1f&quot;, value)</b>
+&nbsp;
+&nbsp;/** Formats an hour/minute pair as a 24-hour &quot;HH:mm&quot; label. */
+&nbsp;internal fun formatHhMm(hour: Int, minute: Int): String =
+<b class="nc">&nbsp;    String.format(Locale.getDefault(), &quot;%02d:%02d&quot;, hour, minute)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * A universal &quot;ready by&quot; deadline control: a switch plus a tappable time chip. Tapping the chip
+&nbsp; * opens a [TimePickerDialog]. Used on the main form (and reusable elsewhere) to constrain a search
+&nbsp; * so the chosen window finishes by the given time.
+&nbsp; *
+&nbsp; * @param enabled Whether the deadline is active.
+&nbsp; * @param hour Deadline hour of day (0–23).
+&nbsp; * @param minute Deadline minute (0–59).
+&nbsp; * @param onEnabledChange Called when the switch is toggled.
+&nbsp; * @param onTimeChange Called with the new hour/minute when the user picks a time.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;fun DeadlineRow(
+&nbsp;    enabled: Boolean,
+&nbsp;    hour: Int,
+&nbsp;    minute: Int,
+&nbsp;    onEnabledChange: (Boolean) -&gt; Unit,
+&nbsp;    onTimeChange: (Int, Int) -&gt; Unit,
+<b class="nc">&nbsp;    modifier: Modifier = Modifier</b>
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    var showPicker by remember { mutableStateOf(false) }</b>
+&nbsp;
+<b class="nc">&nbsp;    Row(</b>
+<b class="nc">&nbsp;        modifier = modifier.fillMaxWidth(),</b>
+<b class="nc">&nbsp;        verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        Text(</b>
+<b class="nc">&nbsp;            text = stringResource(R.string.ev_deadline_toggle),</b>
+<b class="nc">&nbsp;            style = MaterialTheme.typography.bodyLarge,</b>
+<b class="nc">&nbsp;            modifier = Modifier.weight(1f)</b>
+&nbsp;        )
+<b class="nc">&nbsp;        if (enabled) {</b>
+<b class="nc">&nbsp;            AssistChip(</b>
+<b class="nc">&nbsp;                onClick = { showPicker = true },</b>
+<b class="nc">&nbsp;                label = { Text(formatHhMm(hour, minute)) }</b>
+&nbsp;            )
+<b class="nc">&nbsp;            Spacer(modifier = Modifier.width(12.dp))</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        Switch(checked = enabled, onCheckedChange = onEnabledChange)</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showPicker) {</b>
+<b class="nc">&nbsp;        TimePickerDialog(</b>
+<b class="nc">&nbsp;            initialHour = hour,</b>
+<b class="nc">&nbsp;            initialMinute = minute,</b>
+<b class="nc">&nbsp;            onConfirm = { h, m -&gt; onTimeChange(h, m); showPicker = false },</b>
+<b class="nc">&nbsp;            onDismiss = { showPicker = false }</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Prompts for a state-of-charge range when an EV-type appliance is tapped, shows the resulting
+&nbsp; * charging time, and runs the search on confirm.
+&nbsp; *
+&nbsp; * @param vehicleName The vehicle&#39;s display name.
+&nbsp; * @param batteryKwh Usable battery capacity in kWh.
+&nbsp; * @param acMaxPowerKw The vehicle&#39;s maximum AC charging power in kW.
+&nbsp; * @param homeChargerKw The user&#39;s home charger output in kW.
+&nbsp; * @param initialCurrentSoc Prefilled current state of charge (%).
+&nbsp; * @param initialTargetSoc Prefilled target state of charge (%).
+&nbsp; * @param deadlineHint A &quot;ready by HH:mm&quot; hint shown when a deadline is active, or `null`.
+&nbsp; * @param onConfirm Called with the chosen current/target SoC.
+&nbsp; * @param onDismiss Called when the dialog is dismissed.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;fun SocDialog(
+&nbsp;    vehicleName: String,
+&nbsp;    batteryKwh: Double,
+&nbsp;    acMaxPowerKw: Double,
+&nbsp;    homeChargerKw: Double,
+&nbsp;    initialCurrentSoc: Int,
+&nbsp;    initialTargetSoc: Int,
+&nbsp;    deadlineHint: String?,
+&nbsp;    onConfirm: (current: Int, target: Int) -&gt; Unit,
+&nbsp;    onDismiss: () -&gt; Unit
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    val resources = LocalContext.current.resources</b>
+<b class="nc">&nbsp;    var current by rememberSaveable { mutableIntStateOf(initialCurrentSoc) }</b>
+<b class="nc">&nbsp;    var target by rememberSaveable { mutableIntStateOf(initialTargetSoc) }</b>
+&nbsp;
+<b class="nc">&nbsp;    val power = minOf(acMaxPowerKw, homeChargerKw)</b>
+<b class="nc">&nbsp;    val valid = target &gt; current &amp;&amp; power &gt; 0.0</b>
+&nbsp;
+<b class="nc">&nbsp;    AlertDialog(</b>
+<b class="nc">&nbsp;        onDismissRequest = onDismiss,</b>
+<b class="nc">&nbsp;        title = { Text(vehicleName) },</b>
+<b class="nc">&nbsp;        text = {</b>
+<b class="nc">&nbsp;            Column {</b>
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = stringResource(R.string.ev_current_soc, current),</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;                )
+<b class="nc">&nbsp;                Slider(</b>
+<b class="nc">&nbsp;                    value = current.toFloat(),</b>
+<b class="nc">&nbsp;                    onValueChange = { current = (it / 5).roundToInt() * 5 },</b>
+<b class="nc">&nbsp;                    valueRange = 0f..100f,</b>
+<b class="nc">&nbsp;                    steps = 19</b>
+&nbsp;                )
+<b class="nc">&nbsp;                Text(</b>
+<b class="nc">&nbsp;                    text = stringResource(R.string.ev_target_soc, target),</b>
+<b class="nc">&nbsp;                    style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;                )
+<b class="nc">&nbsp;                Slider(</b>
+<b class="nc">&nbsp;                    value = target.toFloat(),</b>
+<b class="nc">&nbsp;                    onValueChange = { target = (it / 5).roundToInt() * 5 },</b>
+<b class="nc">&nbsp;                    valueRange = 0f..100f,</b>
+<b class="nc">&nbsp;                    steps = 19</b>
+&nbsp;                )
+<b class="nc">&nbsp;                Spacer(modifier = Modifier.height(8.dp))</b>
+<b class="nc">&nbsp;                if (valid) {</b>
+<b class="nc">&nbsp;                    val totalMinutes = max(1, ((target - current) / 100.0 * batteryKwh / power * 60).roundToInt())</b>
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(</b>
+<b class="nc">&nbsp;                            R.string.ev_charging_estimate,</b>
+<b class="nc">&nbsp;                            formatDuration(totalMinutes / 60, totalMinutes % 60, resources),</b>
+<b class="nc">&nbsp;                            formatKw(power)</b>
+&nbsp;                        ),
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                        color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;                    )
+&nbsp;                } else {
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(R.string.ev_error_invalid_soc),</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                        color = MaterialTheme.colorScheme.error</b>
+&nbsp;                    )
+&nbsp;                }
+<b class="nc">&nbsp;                if (deadlineHint != null) {</b>
+<b class="nc">&nbsp;                    Spacer(modifier = Modifier.height(4.dp))</b>
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = deadlineHint,</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodySmall,</b>
+<b class="nc">&nbsp;                        color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        },
+<b class="nc">&nbsp;        confirmButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = { onConfirm(current, target) }, enabled = valid) {</b>
+&nbsp;                Text(stringResource(R.string.main_find_button))
+&nbsp;            }
+&nbsp;        },
+<b class="nc">&nbsp;        dismissButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }</b>
+&nbsp;        }
+&nbsp;    )
+<b class="nc">&nbsp;}</b>
+&nbsp;
+&nbsp;/** A Material time picker wrapped in a dialog. */
+&nbsp;@OptIn(ExperimentalMaterial3Api::class)
+&nbsp;@Composable
+&nbsp;fun TimePickerDialog(
+&nbsp;    initialHour: Int,
+&nbsp;    initialMinute: Int,
+&nbsp;    onConfirm: (Int, Int) -&gt; Unit,
+&nbsp;    onDismiss: () -&gt; Unit
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    val timeState = rememberTimePickerState(initialHour = initialHour, initialMinute = initialMinute, is24Hour = true)</b>
+<b class="nc">&nbsp;    AlertDialog(</b>
+<b class="nc">&nbsp;        onDismissRequest = onDismiss,</b>
+&nbsp;        title = { Text(stringResource(R.string.ev_deadline_toggle)) },
+<b class="nc">&nbsp;        text = {</b>
+<b class="nc">&nbsp;            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {</b>
+<b class="nc">&nbsp;                TimePicker(state = timeState)</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        },
+<b class="nc">&nbsp;        confirmButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = { onConfirm(timeState.hour, timeState.minute) }) {</b>
+&nbsp;                Text(stringResource(android.R.string.ok))
+&nbsp;            }
+&nbsp;        },
+<b class="nc">&nbsp;        dismissButton = {</b>
+<b class="nc">&nbsp;            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }</b>
+&nbsp;        }
+&nbsp;    )
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 20:31</div>
+</div>
+</body>
+</html>

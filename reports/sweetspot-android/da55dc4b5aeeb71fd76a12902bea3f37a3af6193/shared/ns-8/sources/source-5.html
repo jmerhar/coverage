@@ -1,0 +1,492 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > HomeChipLayout</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: HomeChipLayout (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+  <tr>
+    <td class="name">HomeChipLayout$Flat</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeChipLayout$Grouped</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeChipLayout$Sectioned</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (48/48)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.ApplianceGrouping
+&nbsp;import today.sweetspot.model.ApplianceSort
+&nbsp;import today.sweetspot.model.ApplianceUsage
+&nbsp;import today.sweetspot.model.EvPosition
+&nbsp;import today.sweetspot.model.SortCriterion
+&nbsp;import today.sweetspot.model.SortKey
+&nbsp;
+&nbsp;/** The type key ordinary appliances group under when their icon is unset, matching the display fallback. */
+&nbsp;private const val DEFAULT_TYPE_KEY = &quot;electricity&quot;
+&nbsp;
+&nbsp;/**
+&nbsp; * How the home screen should lay out appliance and vehicle chips, produced by [mergeForHome].
+&nbsp; */
+&nbsp;sealed interface HomeChipLayout {
+&nbsp;    /** A single flat run of chips (interleaved, or a First/Last block without a visual break). */
+<b class="fc">&nbsp;    data class Flat(val items: List&lt;Appliance&gt;) : HomeChipLayout</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Two visually separated sections with a divider between them.
+&nbsp;     *
+&nbsp;     * @property first Chips in the top section.
+&nbsp;     * @property second Chips in the bottom section.
+&nbsp;     * @property vehiclesFirst Whether the [first] section holds the vehicles (else the appliances).
+&nbsp;     */
+<b class="fc">&nbsp;    data class Sectioned(</b>
+<b class="fc">&nbsp;        val first: List&lt;Appliance&gt;,</b>
+<b class="fc">&nbsp;        val second: List&lt;Appliance&gt;,</b>
+<b class="fc">&nbsp;        val vehiclesFirst: Boolean,</b>
+&nbsp;    ) : HomeChipLayout
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Chips clustered by type into titled [groups], produced when grouping is enabled.
+&nbsp;     *
+&nbsp;     * When vehicles are shown as their own section (EV separate + First/Last), they are lifted out
+&nbsp;     * of [groups] into [vehicles] and drawn as a full-width block before or after the whole grid;
+&nbsp;     * otherwise they fold in as a vehicles [HomeGroup] and [vehicles] is empty.
+&nbsp;     *
+&nbsp;     * @property groups The appliance type groups, in display order.
+&nbsp;     * @property columns Whether to render the groups side by side (else as stacked bands).
+&nbsp;     * @property vehicles The separate vehicle block, or empty when vehicles fold into [groups].
+&nbsp;     * @property vehiclesFirst Whether the [vehicles] block sits above the groups (else below).
+&nbsp;     */
+&nbsp;    data class Grouped(
+<b class="fc">&nbsp;        val groups: List&lt;HomeGroup&gt;,</b>
+<b class="fc">&nbsp;        val columns: Boolean,</b>
+<b class="fc">&nbsp;        val vehicles: List&lt;Appliance&gt; = emptyList(),</b>
+<b class="fc">&nbsp;        val vehiclesFirst: Boolean = false,</b>
+&nbsp;    ) : HomeChipLayout
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * One type group on the grouped home screen: the chips sharing an appliance type, plus enough
+&nbsp; * identity for the UI to title it (icon + label). The title text is resolved by the presentation
+&nbsp; * layer, which owns the string resources.
+&nbsp; *
+&nbsp; * @property iconId The shared type/icon id the group is keyed by, or null for the vehicles group.
+&nbsp; * @property isVehicles Whether this is the electric-vehicles group (titled &quot;Vehicles&quot;, car icon).
+&nbsp; * @property items The chips in the group, in the active sort order.
+&nbsp; */
+&nbsp;data class HomeGroup(
+&nbsp;    val iconId: String?,
+&nbsp;    val isVehicles: Boolean,
+&nbsp;    val items: List&lt;Appliance&gt;,
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * A comparator for one [SortKey]. Values are derived from the appliance and its [usage];
+&nbsp; * electric vehicles sort as the longest possible [SortKey.DURATION] (a car charge is the long
+&nbsp; * job) and carry no icon so they cluster under [SortKey.TYPE]. [SortKey.CUSTOM] is inert here —
+&nbsp; * custom order is handled by [sortAppliances] returning the stored order directly.
+&nbsp; */
+&nbsp;private fun keyComparator(key: SortKey, usage: Map&lt;String, ApplianceUsage&gt;): Comparator&lt;Appliance&gt; =
+&nbsp;    when (key) {
+&nbsp;        SortKey.FREQUENCY -&gt; compareBy { usage[it.id]?.count ?: 0 }
+&nbsp;        SortKey.RECENCY -&gt; compareBy { usage[it.id]?.lastUsedMs ?: 0L }
+&nbsp;        SortKey.NAME -&gt; compareBy(String.CASE_INSENSITIVE_ORDER) { it.name }
+&nbsp;        SortKey.DURATION -&gt; compareBy { if (it.isEv) Long.MAX_VALUE else it.durationHours * 60L + it.durationMinutes }
+&nbsp;        SortKey.TYPE -&gt; compareBy(String.CASE_INSENSITIVE_ORDER) { it.icon ?: &quot;&quot; }
+&nbsp;        SortKey.CUSTOM -&gt; Comparator { _, _ -&gt; 0 }
+&nbsp;    }
+&nbsp;
+&nbsp;/**
+&nbsp; * Chains [criteria] into a single comparator (primary first), applying each level&#39;s direction.
+&nbsp; * `CUSTOM` entries are skipped. Returns null when no orderable criterion remains.
+&nbsp; */
+&nbsp;private fun buildComparator(
+&nbsp;    criteria: List&lt;SortCriterion&gt;,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Comparator&lt;Appliance&gt;? {
+&nbsp;    var comp: Comparator&lt;Appliance&gt;? = null
+&nbsp;    for (c in criteria) {
+&nbsp;        if (c.key == SortKey.CUSTOM) continue
+&nbsp;        val directed = keyComparator(c.key, usage).let { if (c.descending) it.reversed() else it }
+&nbsp;        comp = comp?.then(directed) ?: directed
+&nbsp;    }
+&nbsp;    return comp
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Orders [appliances] per [sort]. The sort is stable, so the original (stored) order is the
+&nbsp; * implicit final tie-breaker — which is also exactly what [SortKey.CUSTOM] returns unchanged.
+&nbsp; *
+&nbsp; * @param appliances The appliances to order.
+&nbsp; * @param sort The active ordering.
+&nbsp; * @param usage Combined tap statistics feeding the Frequency/Recency keys.
+&nbsp; * @return The ordered list.
+&nbsp; */
+&nbsp;fun sortAppliances(
+&nbsp;    appliances: List&lt;Appliance&gt;,
+&nbsp;    sort: ApplianceSort,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): List&lt;Appliance&gt; {
+&nbsp;    if (sort.isCustom) return appliances
+&nbsp;    val comp = buildComparator(sort.criteria, usage) ?: return appliances
+&nbsp;    return appliances.sortedWith(comp)
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Whether [criteria] leave two or more appliances comparing equal — i.e. whether another
+&nbsp; * tie-breaker level would still change the order. Drives progressive disclosure of sort levels.
+&nbsp; *
+&nbsp; * @return false when fewer than two appliances, or when [criteria] carry no orderable key.
+&nbsp; */
+&nbsp;fun hasCollisions(
+&nbsp;    appliances: List&lt;Appliance&gt;,
+&nbsp;    criteria: List&lt;SortCriterion&gt;,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Boolean {
+&nbsp;    if (appliances.size &lt; 2) return false
+&nbsp;    val comp = buildComparator(criteria, usage) ?: return false
+&nbsp;    return appliances.sortedWith(comp).zipWithNext().any { (a, b) -&gt; comp.compare(a, b) == 0 }
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * The sort keys that may still be added as a tie-breaker below the given [criteria]: every key
+&nbsp; * except [SortKey.CUSTOM] (terminal) and those already used.
+&nbsp; */
+&nbsp;fun nextAssignableKeys(criteria: List&lt;SortCriterion&gt;): List&lt;SortKey&gt; {
+&nbsp;    val used = criteria.map { it.key }.toSet()
+&nbsp;    return SortKey.entries.filter { it != SortKey.CUSTOM &amp;&amp; it !in used }
+&nbsp;}
+&nbsp;
+&nbsp;// --- Pure edits driving the sort-control UI (kept here, not in the composable, so they are tested) ---
+&nbsp;
+&nbsp;/**
+&nbsp; * The natural default direction for a freshly-picked [key]: descending for the usage keys, whose
+&nbsp; * labels (&quot;Most used&quot;, &quot;Recently used&quot;) imply high-to-low, and ascending for the rest (A→Z,
+&nbsp; * shortest-first, etc.). The user can still flip it afterwards.
+&nbsp; */
+&nbsp;fun defaultDescending(key: SortKey): Boolean = key == SortKey.FREQUENCY || key == SortKey.RECENCY
+&nbsp;
+&nbsp;/**
+&nbsp; * Sets the primary key with its default direction, discarding any tie-breakers (a new primary
+&nbsp; * starts a fresh chain, and [SortKey.CUSTOM] is terminal).
+&nbsp; */
+&nbsp;fun ApplianceSort.withPrimary(key: SortKey): ApplianceSort =
+&nbsp;    ApplianceSort(listOf(SortCriterion(key, defaultDescending(key))))
+&nbsp;
+&nbsp;/** Replaces the key at [index], resetting that level to the new key&#39;s default direction. */
+&nbsp;fun ApplianceSort.withLevelKey(index: Int, key: SortKey): ApplianceSort =
+&nbsp;    ApplianceSort(criteria.mapIndexed { i, c -&gt; if (i == index) SortCriterion(key, defaultDescending(key)) else c })
+&nbsp;
+&nbsp;/** Flips the direction of the level at [index]. */
+&nbsp;fun ApplianceSort.withToggledDirection(index: Int): ApplianceSort =
+&nbsp;    ApplianceSort(criteria.mapIndexed { i, c -&gt; if (i == index) c.copy(descending = !c.descending) else c })
+&nbsp;
+&nbsp;/** Appends [key] as a new tie-breaker level with its default direction. */
+&nbsp;fun ApplianceSort.withAddedTiebreaker(key: SortKey): ApplianceSort =
+&nbsp;    ApplianceSort(criteria + SortCriterion(key, defaultDescending(key)))
+&nbsp;
+&nbsp;/** Removes the level at [index] (used only for tie-breakers, never the primary). */
+&nbsp;fun ApplianceSort.withoutLevel(index: Int): ApplianceSort =
+&nbsp;    ApplianceSort(criteria.filterIndexed { i, _ -&gt; i != index })
+&nbsp;
+&nbsp;/**
+&nbsp; * Combines phone-local and watch-reported usage into effective totals: counts add, recency is
+&nbsp; * the more recent of the two. Idempotent with respect to re-delivered watch snapshots.
+&nbsp; */
+&nbsp;fun combineUsage(
+&nbsp;    phone: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;    watch: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;): Map&lt;String, ApplianceUsage&gt; =
+&nbsp;    (phone.keys + watch.keys).associateWith { id -&gt;
+&nbsp;        val p = phone[id]
+&nbsp;        val w = watch[id]
+&nbsp;        ApplianceUsage(
+&nbsp;            count = (p?.count ?: 0) + (w?.count ?: 0),
+&nbsp;            lastUsedMs = maxOf(p?.lastUsedMs ?: 0L, w?.lastUsedMs ?: 0L),
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;/**
+&nbsp; * Folds vehicles into the appliance ordering for the home screen.
+&nbsp; *
+&nbsp; * Interleaved (only meaningful for a derived sort) orders vehicles into the same stream by the
+&nbsp; * active [sort]. For First/Last, appliances are sorted by [sort] while vehicles form a
+&nbsp; * name-ordered block placed before or after them; [separate] renders that block as its own
+&nbsp; * section. A Custom sort never interleaves (there is no manual position for a vehicle), so it
+&nbsp; * falls through to the block path as if Last.
+&nbsp; *
+&nbsp; * When [grouping] is [ApplianceGrouping.ROWS] or [ApplianceGrouping.COLUMNS] it takes precedence
+&nbsp; * over how appliances are ordered: chips are clustered by type via [groupForHome]. The EV
+&nbsp; * [separate] section is still honoured — a First/Last separate block is lifted above/below the
+&nbsp; * grid — while [position] otherwise only decides that block&#39;s side. [ApplianceGrouping.NONE] uses
+&nbsp; * the flat/sectioned placement below.
+&nbsp; *
+&nbsp; * @param all All appliances, vehicles included.
+&nbsp; * @param sort The active appliance ordering.
+&nbsp; * @param usage Combined tap statistics.
+&nbsp; * @param position Where vehicles go relative to appliances.
+&nbsp; * @param separate Whether a First/Last vehicle block is drawn as its own section.
+&nbsp; * @param grouping Whether and how to group chips by type.
+&nbsp; * @return The chip layout to render.
+&nbsp; */
+&nbsp;fun mergeForHome(
+&nbsp;    all: List&lt;Appliance&gt;,
+&nbsp;    sort: ApplianceSort,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;    position: EvPosition,
+&nbsp;    separate: Boolean,
+&nbsp;    grouping: ApplianceGrouping = ApplianceGrouping.NONE,
+&nbsp;): HomeChipLayout {
+&nbsp;    if (grouping != ApplianceGrouping.NONE) {
+&nbsp;        return groupForHome(all, sort, usage, grouping == ApplianceGrouping.COLUMNS, position, separate)
+&nbsp;    }
+&nbsp;    if (position == EvPosition.INTERLEAVED &amp;&amp; !sort.isCustom) {
+&nbsp;        return HomeChipLayout.Flat(sortAppliances(all, sort, usage))
+&nbsp;    }
+&nbsp;    val apps = sortAppliances(all.filterNot { it.isEv }, sort, usage)
+&nbsp;    val vehicles = all.filter { it.isEv }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name })
+&nbsp;    // With only one kind present there is nothing to separate — stay flat (avoids an empty section).
+&nbsp;    if (vehicles.isEmpty()) return HomeChipLayout.Flat(apps)
+&nbsp;    if (apps.isEmpty()) return HomeChipLayout.Flat(vehicles)
+&nbsp;    val vehiclesFirst = position == EvPosition.FIRST
+&nbsp;    return if (separate) {
+&nbsp;        if (vehiclesFirst) HomeChipLayout.Sectioned(vehicles, apps, vehiclesFirst = true)
+&nbsp;        else HomeChipLayout.Sectioned(apps, vehicles, vehiclesFirst = false)
+&nbsp;    } else {
+&nbsp;        HomeChipLayout.Flat(if (vehiclesFirst) vehicles + apps else apps + vehicles)
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Clusters [all] appliances into [HomeGroup]s by type for the grouped home layout.
+&nbsp; *
+&nbsp; * Everything is first ordered by the active [sort] (a single pass, so within-group order matches
+&nbsp; * what a flat layout would show), then bucketed by type key preserving first appearance — so the
+&nbsp; * group order follows the sort too (e.g. Name-sorted groups appear in order of their first item).
+&nbsp; * Ordinary appliances group by their icon id, treating an unset icon as [DEFAULT_TYPE_KEY] to
+&nbsp; * match the display fallback.
+&nbsp; *
+&nbsp; * Vehicles honour the EV section preference: with [separate] and a First/Last [position] they are
+&nbsp; * lifted out into a name-ordered block placed above ([EvPosition.FIRST]) or below the grid;
+&nbsp; * otherwise they fold in as a single &quot;Vehicles&quot; group regardless of their (car) icon.
+&nbsp; *
+&nbsp; * @param all All appliances, vehicles included.
+&nbsp; * @param sort The active appliance ordering.
+&nbsp; * @param usage Combined tap statistics.
+&nbsp; * @param columns Whether the groups should render side by side.
+&nbsp; * @param position The EV placement (decides the separate block&#39;s side).
+&nbsp; * @param separate Whether vehicles form their own section rather than folding into a group.
+&nbsp; * @return A [HomeChipLayout.Grouped] (with no empty groups; empty input yields no groups).
+&nbsp; */
+&nbsp;fun groupForHome(
+&nbsp;    all: List&lt;Appliance&gt;,
+&nbsp;    sort: ApplianceSort,
+&nbsp;    usage: Map&lt;String, ApplianceUsage&gt;,
+&nbsp;    columns: Boolean,
+&nbsp;    position: EvPosition = EvPosition.INTERLEAVED,
+&nbsp;    separate: Boolean = false,
+&nbsp;): HomeChipLayout.Grouped {
+&nbsp;    // A separate section only makes sense with a First/Last side (Interleaved has no block).
+&nbsp;    val separateEvs = separate &amp;&amp; position != EvPosition.INTERLEAVED
+&nbsp;    val toGroup = if (separateEvs) all.filterNot { it.isEv } else all
+&nbsp;    val buckets = LinkedHashMap&lt;String, MutableList&lt;Appliance&gt;&gt;()
+&nbsp;    for (appliance in sortAppliances(toGroup, sort, usage)) {
+&nbsp;        val key = if (appliance.isEv) EV_GROUP_KEY else (appliance.icon ?: DEFAULT_TYPE_KEY)
+&nbsp;        buckets.getOrPut(key) { mutableListOf() }.add(appliance)
+&nbsp;    }
+&nbsp;    val groups = buckets.map { (key, items) -&gt;
+&nbsp;        HomeGroup(
+&nbsp;            iconId = if (key == EV_GROUP_KEY) null else key,
+&nbsp;            isVehicles = key == EV_GROUP_KEY,
+&nbsp;            items = items,
+&nbsp;        )
+&nbsp;    }
+&nbsp;    val vehicles = if (separateEvs) {
+&nbsp;        all.filter { it.isEv }.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name })
+&nbsp;    } else {
+&nbsp;        emptyList()
+&nbsp;    }
+&nbsp;    return HomeChipLayout.Grouped(groups, columns, vehicles, vehiclesFirst = position == EvPosition.FIRST)
+&nbsp;}
+&nbsp;
+&nbsp;/** Bucket key under which electric vehicles collapse into a single &quot;Vehicles&quot; group. */
+&nbsp;private const val EV_GROUP_KEY = &quot; ev&quot;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-15 09:08</div>
+</div>
+</body>
+</html>

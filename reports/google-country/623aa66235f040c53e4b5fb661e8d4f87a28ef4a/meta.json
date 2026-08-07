@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "623aa66235f040c53e4b5fb661e8d4f87a28ef4a",
+  "short_sha": "623aa66235",
+  "committed_at": "2026-08-07T19:10:06Z",
+  "message": "chore(deps): bump the actions group with 6 updates (#2)",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/623aa66235f040c53e4b5fb661e8d4f87a28ef4a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "project": "sweetspot-android",
+  "sha": "9e231d93615fa7a18e3aaae636583286d09df65c",
+  "short_sha": "9e231d9361",
+  "committed_at": "2026-07-09T13:38:16Z",
+  "message": "ci: raise :shared coverage gate to 98% line",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/9e231d93615fa7a18e3aaae636583286d09df65c",
+  "reports": [
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "88.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "15.7%",
+        "branch": "6.8%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "25.9%",
+        "branch": "12.3%"
+      }
+    }
+  ]
+}

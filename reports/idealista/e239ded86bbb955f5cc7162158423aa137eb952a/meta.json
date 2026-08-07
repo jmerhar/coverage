@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "e239ded86bbb955f5cc7162158423aa137eb952a",
+  "short_sha": "e239ded86b",
+  "committed_at": "2026-08-02T13:56:19Z",
+  "message": "feat(captcha): pages-since-block metric + per-kind chart breakdowns + history doc",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/e239ded86bbb955f5cc7162158423aa137eb952a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}

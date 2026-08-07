@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "9554c6448c2551c45b4ee25d69f24f8b51839a35",
+  "short_sha": "9554c6448c",
+  "committed_at": "2026-07-13T13:52:22Z",
+  "message": "docs: fix two stale references in README and CLAUDE",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/9554c6448c2551c45b4ee25d69f24f8b51839a35",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}

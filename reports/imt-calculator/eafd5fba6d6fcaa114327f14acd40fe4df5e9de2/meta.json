@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "eafd5fba6d6fcaa114327f14acd40fe4df5e9de2",
+  "short_sha": "eafd5fba6d",
+  "committed_at": "2026-07-30T20:50:14Z",
+  "message": "feat: footer GitHub link, README coverage badges, relicense to GPL-3.0",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/eafd5fba6d6fcaa114327f14acd40fe4df5e9de2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    }
+  ]
+}

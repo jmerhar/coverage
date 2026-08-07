@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "1704f7e92c543b60b0f78ff0c6a78fcc0a3ad914",
+  "short_sha": "1704f7e92c",
+  "committed_at": "2026-07-12T09:34:34Z",
+  "message": "chore: release v6.1",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/1704f7e92c543b60b0f78ff0c6a78fcc0a3ad914",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

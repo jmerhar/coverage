@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "aa05f5e41b64cb276c1e86a78c4c8881bbcb3831",
+  "short_sha": "aa05f5e41b",
+  "committed_at": "2026-08-02T13:31:37Z",
+  "message": "feat: let buyers be named, carried in shared links and results",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/aa05f5e41b64cb276c1e86a78c4c8881bbcb3831",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}

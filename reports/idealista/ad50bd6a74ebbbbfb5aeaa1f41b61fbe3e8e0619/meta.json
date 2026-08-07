@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "ad50bd6a74ebbbbfb5aeaa1f41b61fbe3e8e0619",
+  "short_sha": "ad50bd6a74",
+  "committed_at": "2026-07-23T14:47:04Z",
+  "message": "docs: remove PLAN.md and AUDIT.md planning artifacts",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/ad50bd6a74ebbbbfb5aeaa1f41b61fbe3e8e0619",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.0%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}

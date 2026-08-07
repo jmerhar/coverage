@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "19211d5426f7b6d0b5138cdc1137ccf8fa81f7ae",
+  "short_sha": "19211d5426",
+  "committed_at": "2026-08-04T11:22:17Z",
+  "message": "ci: don't fail the release when the Chrome Web Store publish step errors",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/19211d5426f7b6d0b5138cdc1137ccf8fa81f7ae",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "19fb908350b9f37ad4f43ad1f2910872baff770b",
+  "short_sha": "19fb908350",
+  "committed_at": "2026-07-12T22:01:30Z",
+  "message": "docs(store): refresh Play Store descriptions for Total price + Earlier/Cheaper",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/19fb908350b9f37ad4f43ad1f2910872baff770b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

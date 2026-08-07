@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "4581d74efbf0fbc73d028a0446b06c3d0d80520c",
+  "short_sha": "4581d74efb",
+  "committed_at": "2026-08-07T18:52:04Z",
+  "message": "chore(deps): bump the actions group across 1 directory with 6 updates (#5)",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/4581d74efbf0fbc73d028a0446b06c3d0d80520c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}

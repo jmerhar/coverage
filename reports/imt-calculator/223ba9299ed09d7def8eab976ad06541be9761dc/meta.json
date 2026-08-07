@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "223ba9299ed09d7def8eab976ad06541be9761dc",
+  "short_sha": "223ba9299e",
+  "committed_at": "2026-07-30T20:16:19Z",
+  "message": "feat: much shorter share token (compact codec)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/223ba9299ed09d7def8eab976ad06541be9761dc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    }
+  ]
+}

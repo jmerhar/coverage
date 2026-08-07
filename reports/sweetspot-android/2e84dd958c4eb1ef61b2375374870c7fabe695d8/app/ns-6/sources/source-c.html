@@ -1,0 +1,618 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > SettingsScreenKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.ui.settings</a>
+</div>
+
+<h1>Coverage Summary for Class: SettingsScreenKt (today.sweetspot.ui.settings)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SettingsScreenKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/45)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/262)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/243)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4177)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SettingsScreenKt$SettingsScreen$28$1$17$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/46)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/262)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/244)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4205)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;AssignedValueIsNeverRead&quot;)
+&nbsp;
+&nbsp;package today.sweetspot.ui.settings
+&nbsp;
+&nbsp;import androidx.activity.compose.BackHandler
+&nbsp;import androidx.compose.foundation.clickable
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.fillMaxSize
+&nbsp;import androidx.compose.foundation.layout.fillMaxWidth
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.foundation.rememberScrollState
+&nbsp;import androidx.compose.foundation.verticalScroll
+&nbsp;import androidx.compose.material.icons.Icons
+&nbsp;import androidx.compose.material.icons.automirrored.filled.ArrowBack
+&nbsp;import androidx.compose.material3.ExperimentalMaterial3Api
+&nbsp;import androidx.compose.material3.HorizontalDivider
+&nbsp;import androidx.compose.material3.Icon
+&nbsp;import androidx.compose.material3.IconButton
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Scaffold
+&nbsp;import androidx.compose.material3.SnackbarHost
+&nbsp;import androidx.compose.material3.SnackbarHostState
+&nbsp;import androidx.compose.material3.Switch
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.material3.TopAppBar
+&nbsp;import androidx.compose.material3.TopAppBarDefaults
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.mutableIntStateOf
+&nbsp;import androidx.compose.runtime.mutableStateOf
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.rememberCoroutineScope
+&nbsp;import androidx.compose.runtime.saveable.rememberSaveable
+&nbsp;import androidx.compose.runtime.setValue
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.text.style.TextAlign
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import today.sweetspot.BuildConfig
+&nbsp;import kotlinx.coroutines.launch
+&nbsp;import today.sweetspot.R
+&nbsp;import today.sweetspot.util.UiText
+&nbsp;import today.sweetspot.ThemeMode
+&nbsp;import today.sweetspot.data.api.DataSource
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.Countries
+&nbsp;import today.sweetspot.model.Country
+&nbsp;import today.sweetspot.model.PriceZone
+&nbsp;import java.time.ZoneId
+&nbsp;
+&nbsp;/**
+&nbsp; * Settings screen with appliance management, language selection, country/zone selection,
+&nbsp; * data source preferences, and timezone selection. Manages its own sub-navigation: tapping rows
+&nbsp; * opens picker screens for country, zone, or timezone.
+&nbsp; */
+&nbsp;@OptIn(ExperimentalMaterial3Api::class)
+&nbsp;@Composable
+&nbsp;fun SettingsScreen(
+&nbsp;    themeMode: ThemeMode,
+&nbsp;    onThemeModeChanged: (ThemeMode) -&gt; Unit,
+&nbsp;    currentTimeZoneId: ZoneId,
+&nbsp;    isUsingDefaultTimezone: Boolean,
+&nbsp;    onTimezoneSelected: (ZoneId?) -&gt; Unit,
+&nbsp;    appliances: List&lt;Appliance&gt;,
+&nbsp;    onAddAppliance: (name: String, durationHours: Int, durationMinutes: Int, icon: String, powerKw: Double?) -&gt; Unit,
+&nbsp;    onUpdateAppliance: (Appliance) -&gt; Unit,
+&nbsp;    onDeleteAppliance: (id: String) -&gt; Unit,
+&nbsp;    evHomeChargerKw: Double,
+&nbsp;    evDefaultTargetSoc: Int,
+&nbsp;    onEvHomeChargerChanged: (Double) -&gt; Unit,
+&nbsp;    onEvDefaultTargetChanged: (Int) -&gt; Unit,
+&nbsp;    searchVehicles: (String) -&gt; List&lt;today.sweetspot.model.EvVehicle&gt;,
+&nbsp;    onAddVehicle: (name: String, batteryKwh: Double, acPowerKw: Double) -&gt; Unit,
+&nbsp;    countryCode: String,
+&nbsp;    priceZone: PriceZone?,
+&nbsp;    countries: List&lt;Country&gt;,
+&nbsp;    onCountrySelected: (String) -&gt; Unit,
+&nbsp;    onPriceZoneSelected: (String) -&gt; Unit,
+&nbsp;    sourceOrder: List&lt;String&gt;?,
+&nbsp;    disabledSources: Set&lt;String&gt;,
+&nbsp;    availableSources: List&lt;DataSource&gt;,
+&nbsp;    onSourceOrderChanged: (List&lt;String&gt;) -&gt; Unit,
+&nbsp;    onDisabledSourcesChanged: (Set&lt;String&gt;) -&gt; Unit,
+&nbsp;    onResetSourceOrder: () -&gt; Unit,
+&nbsp;    onLanguageChanged: (String) -&gt; Unit,
+&nbsp;    onClearCache: () -&gt; UiText,
+&nbsp;    isStatsEnabled: Boolean,
+&nbsp;    onStatsEnabledChanged: (Boolean) -&gt; Unit,
+&nbsp;    isUnlocked: Boolean,
+&nbsp;    trialDaysRemaining: Int,
+&nbsp;    productPrice: String?,
+&nbsp;    onPurchaseClicked: () -&gt; Unit,
+&nbsp;    devOptionsEnabled: Boolean,
+&nbsp;    isCooldownDisabled: Boolean,
+&nbsp;    onDevOptionsUnlocked: () -&gt; Unit,
+&nbsp;    onDevResetUnlock: () -&gt; Unit,
+&nbsp;    onDevCooldownDisabledChanged: (Boolean) -&gt; Unit,
+&nbsp;    isDevUnlocked: Boolean,
+&nbsp;    onDevUnlockChanged: (Boolean) -&gt; Unit,
+&nbsp;    onDevResetStatsTimer: () -&gt; Unit,
+&nbsp;    timeOverrideMs: Long?,
+&nbsp;    onDevTimeOverrideChanged: (Long?) -&gt; Unit,
+&nbsp;    useProductionLogo: Boolean,
+&nbsp;    onDevUseProductionLogoChanged: (Boolean) -&gt; Unit,
+&nbsp;    onBack: () -&gt; Unit,
+<b class="nc">&nbsp;    modifier: Modifier = Modifier</b>
+<b class="nc">&nbsp;) {</b>
+<b class="nc">&nbsp;    var showAdvancedSettings by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var showLanguagePicker by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var showTimezonePicker by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var showCountryPicker by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var showZonePicker by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var editingAppliance by remember { mutableStateOf&lt;Appliance?&gt;(null) }</b>
+<b class="nc">&nbsp;    var showAddDialog by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    var editingVehicle by remember { mutableStateOf&lt;Appliance?&gt;(null) }</b>
+<b class="nc">&nbsp;    var showAddVehicleDialog by rememberSaveable { mutableStateOf(false) }</b>
+<b class="nc">&nbsp;    val snackbarHostState = remember { SnackbarHostState() }</b>
+<b class="nc">&nbsp;    val coroutineScope = rememberCoroutineScope()</b>
+&nbsp;
+<b class="nc">&nbsp;    val defaultTimeZoneId = remember(priceZone) {</b>
+<b class="nc">&nbsp;        priceZone?.timeZoneId?.let { ZoneId.of(it) } ?: ZoneId.systemDefault()</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    if (showAdvancedSettings) {</b>
+<b class="nc">&nbsp;        BackHandler { showAdvancedSettings = false }</b>
+<b class="nc">&nbsp;        AdvancedSettingsScreen(</b>
+<b class="nc">&nbsp;            sourceOrder = sourceOrder,</b>
+<b class="nc">&nbsp;            disabledSources = disabledSources,</b>
+<b class="nc">&nbsp;            availableSources = availableSources,</b>
+<b class="nc">&nbsp;            onSourceOrderChanged = onSourceOrderChanged,</b>
+<b class="nc">&nbsp;            onDisabledSourcesChanged = onDisabledSourcesChanged,</b>
+<b class="nc">&nbsp;            onResetSourceOrder = onResetSourceOrder,</b>
+<b class="nc">&nbsp;            onClearCache = onClearCache,</b>
+<b class="nc">&nbsp;            devOptionsEnabled = devOptionsEnabled,</b>
+<b class="nc">&nbsp;            isCooldownDisabled = isCooldownDisabled,</b>
+<b class="nc">&nbsp;            onDevCooldownDisabledChanged = onDevCooldownDisabledChanged,</b>
+<b class="nc">&nbsp;            isDevUnlocked = isDevUnlocked,</b>
+<b class="nc">&nbsp;            onDevUnlockChanged = onDevUnlockChanged,</b>
+<b class="nc">&nbsp;            onDevResetUnlock = onDevResetUnlock,</b>
+<b class="nc">&nbsp;            onDevResetStatsTimer = onDevResetStatsTimer,</b>
+<b class="nc">&nbsp;            timeOverrideMs = timeOverrideMs,</b>
+<b class="nc">&nbsp;            onDevTimeOverrideChanged = onDevTimeOverrideChanged,</b>
+<b class="nc">&nbsp;            timeZoneId = currentTimeZoneId,</b>
+<b class="nc">&nbsp;            useProductionLogo = useProductionLogo,</b>
+<b class="nc">&nbsp;            onDevUseProductionLogoChanged = onDevUseProductionLogoChanged,</b>
+<b class="nc">&nbsp;            onBack = { showAdvancedSettings = false }</b>
+&nbsp;        )
+&nbsp;        return
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showLanguagePicker) {</b>
+<b class="nc">&nbsp;        BackHandler { showLanguagePicker = false }</b>
+<b class="nc">&nbsp;        LanguagePickerScreen(</b>
+<b class="nc">&nbsp;            onLanguageChanged = { tag -&gt;</b>
+<b class="nc">&nbsp;                onLanguageChanged(tag)</b>
+<b class="nc">&nbsp;                showLanguagePicker = false</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onBack = { showLanguagePicker = false }</b>
+&nbsp;        )
+&nbsp;        return
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showTimezonePicker) {</b>
+<b class="nc">&nbsp;        BackHandler { showTimezonePicker = false }</b>
+<b class="nc">&nbsp;        TimezonePickerScreen(</b>
+<b class="nc">&nbsp;            currentTimeZoneId = currentTimeZoneId,</b>
+<b class="nc">&nbsp;            defaultTimeZoneId = defaultTimeZoneId,</b>
+<b class="nc">&nbsp;            isUsingDefaultTimezone = isUsingDefaultTimezone,</b>
+<b class="nc">&nbsp;            onTimezoneSelected = { timeZoneId -&gt;</b>
+<b class="nc">&nbsp;                onTimezoneSelected(timeZoneId)</b>
+<b class="nc">&nbsp;                showTimezonePicker = false</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onBack = { showTimezonePicker = false }</b>
+&nbsp;        )
+&nbsp;        return
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showCountryPicker) {</b>
+<b class="nc">&nbsp;        BackHandler { showCountryPicker = false }</b>
+<b class="nc">&nbsp;        CountryPickerScreen(</b>
+<b class="nc">&nbsp;            countries = countries,</b>
+<b class="nc">&nbsp;            currentCountryCode = countryCode,</b>
+<b class="nc">&nbsp;            onCountrySelected = { code -&gt;</b>
+<b class="nc">&nbsp;                onCountrySelected(code)</b>
+<b class="nc">&nbsp;                showCountryPicker = false</b>
+<b class="nc">&nbsp;                val selected = Countries.findByCode(code)</b>
+<b class="nc">&nbsp;                if (selected != null &amp;&amp; selected.zones.size &gt; 1) {</b>
+<b class="nc">&nbsp;                    showZonePicker = true</b>
+&nbsp;                }
+&nbsp;            },
+<b class="nc">&nbsp;            onBack = { showCountryPicker = false }</b>
+&nbsp;        )
+&nbsp;        return
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showZonePicker) {</b>
+<b class="nc">&nbsp;        BackHandler { showZonePicker = false }</b>
+<b class="nc">&nbsp;        val country = Countries.findByCode(countryCode)</b>
+<b class="nc">&nbsp;        if (country != null &amp;&amp; country.zones.size &gt; 1) {</b>
+<b class="nc">&nbsp;            PriceZonePickerScreen(</b>
+<b class="nc">&nbsp;                zones = country.zones,</b>
+<b class="nc">&nbsp;                currentPriceZoneId = priceZone?.id ?: &quot;&quot;,</b>
+<b class="nc">&nbsp;                onPriceZoneSelected = { priceZoneId -&gt;</b>
+<b class="nc">&nbsp;                    onPriceZoneSelected(priceZoneId)</b>
+<b class="nc">&nbsp;                    showZonePicker = false</b>
+&nbsp;                },
+<b class="nc">&nbsp;                onBack = { showZonePicker = false }</b>
+&nbsp;            )
+&nbsp;            return
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            showZonePicker = false</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showAddDialog) {</b>
+<b class="nc">&nbsp;        ApplianceDialog(</b>
+<b class="nc">&nbsp;            appliance = null,</b>
+<b class="nc">&nbsp;            onSave = { name, durationHours, durationMinutes, icon, powerKw -&gt;</b>
+<b class="nc">&nbsp;                onAddAppliance(name, durationHours, durationMinutes, icon, powerKw)</b>
+<b class="nc">&nbsp;                showAddDialog = false</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDelete = null,</b>
+<b class="nc">&nbsp;            onDismiss = { showAddDialog = false }</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    editingAppliance?.let { appliance -&gt;</b>
+<b class="nc">&nbsp;        ApplianceDialog(</b>
+<b class="nc">&nbsp;            appliance = appliance,</b>
+<b class="nc">&nbsp;            onSave = { name, durationHours, durationMinutes, icon, powerKw -&gt;</b>
+<b class="nc">&nbsp;                onUpdateAppliance(appliance.copy(name = name, durationHours = durationHours, durationMinutes = durationMinutes, icon = icon, powerKw = powerKw))</b>
+<b class="nc">&nbsp;                editingAppliance = null</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDelete = {</b>
+<b class="nc">&nbsp;                onDeleteAppliance(appliance.id)</b>
+<b class="nc">&nbsp;                editingAppliance = null</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDismiss = { editingAppliance = null }</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    if (showAddVehicleDialog) {</b>
+<b class="nc">&nbsp;        VehicleDialog(</b>
+<b class="nc">&nbsp;            vehicle = null,</b>
+<b class="nc">&nbsp;            searchVehicles = searchVehicles,</b>
+<b class="nc">&nbsp;            onSave = { name, batteryKwh, acPowerKw -&gt;</b>
+<b class="nc">&nbsp;                onAddVehicle(name, batteryKwh, acPowerKw)</b>
+<b class="nc">&nbsp;                showAddVehicleDialog = false</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDelete = null,</b>
+<b class="nc">&nbsp;            onDismiss = { showAddVehicleDialog = false }</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    editingVehicle?.let { vehicle -&gt;</b>
+<b class="nc">&nbsp;        VehicleDialog(</b>
+<b class="nc">&nbsp;            vehicle = vehicle,</b>
+<b class="nc">&nbsp;            searchVehicles = searchVehicles,</b>
+<b class="nc">&nbsp;            onSave = { name, batteryKwh, acPowerKw -&gt;</b>
+<b class="nc">&nbsp;                onUpdateAppliance(</b>
+<b class="nc">&nbsp;                    vehicle.copy(name = name, ev = today.sweetspot.model.EvSpec(batteryKwh, acPowerKw))</b>
+&nbsp;                )
+<b class="nc">&nbsp;                editingVehicle = null</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDelete = {</b>
+<b class="nc">&nbsp;                onDeleteAppliance(vehicle.id)</b>
+<b class="nc">&nbsp;                editingVehicle = null</b>
+&nbsp;            },
+<b class="nc">&nbsp;            onDismiss = { editingVehicle = null }</b>
+&nbsp;        )
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    val currentCountry = remember(countryCode) { Countries.findByCode(countryCode) }</b>
+<b class="nc">&nbsp;    val isMultiZone = (currentCountry?.zones?.size ?: 0) &gt; 1</b>
+&nbsp;
+<b class="nc">&nbsp;    Scaffold(</b>
+<b class="nc">&nbsp;        modifier = modifier,</b>
+<b class="nc">&nbsp;        topBar = {</b>
+<b class="nc">&nbsp;            TopAppBar(</b>
+&nbsp;                title = { Text(stringResource(R.string.settings_title)) },
+<b class="nc">&nbsp;                navigationIcon = {</b>
+<b class="nc">&nbsp;                    IconButton(onClick = onBack) {</b>
+&nbsp;                        Icon(
+&nbsp;                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+&nbsp;                            contentDescription = stringResource(R.string.cd_back)
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                },
+<b class="nc">&nbsp;                colors = TopAppBarDefaults.topAppBarColors(</b>
+<b class="nc">&nbsp;                    containerColor = MaterialTheme.colorScheme.surface,</b>
+<b class="nc">&nbsp;                    titleContentColor = MaterialTheme.colorScheme.onSurface</b>
+&nbsp;                )
+&nbsp;            )
+&nbsp;        },
+<b class="nc">&nbsp;        snackbarHost = { SnackbarHost(snackbarHostState) }</b>
+<b class="nc">&nbsp;    ) { innerPadding -&gt;</b>
+<b class="nc">&nbsp;        Column(</b>
+<b class="nc">&nbsp;            modifier = Modifier</b>
+<b class="nc">&nbsp;                .fillMaxSize()</b>
+<b class="nc">&nbsp;                .padding(innerPadding)</b>
+<b class="nc">&nbsp;                .verticalScroll(rememberScrollState())</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            if (!isUnlocked) {</b>
+<b class="nc">&nbsp;                UnlockSection(</b>
+<b class="nc">&nbsp;                    trialDaysRemaining = trialDaysRemaining,</b>
+<b class="nc">&nbsp;                    productPrice = productPrice,</b>
+<b class="nc">&nbsp;                    onPurchaseClicked = onPurchaseClicked</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            AppliancesSection(</b>
+<b class="nc">&nbsp;                appliances = appliances.filterNot { it.isEv },</b>
+<b class="nc">&nbsp;                onApplianceClick = { editingAppliance = it },</b>
+<b class="nc">&nbsp;                onAddClick = { showAddDialog = true }</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            EvSection(</b>
+<b class="nc">&nbsp;                vehicles = appliances.filter { it.isEv },</b>
+<b class="nc">&nbsp;                homeChargerKw = evHomeChargerKw,</b>
+<b class="nc">&nbsp;                defaultTargetSoc = evDefaultTargetSoc,</b>
+<b class="nc">&nbsp;                onHomeChargerChanged = onEvHomeChargerChanged,</b>
+<b class="nc">&nbsp;                onDefaultTargetChanged = onEvDefaultTargetChanged,</b>
+<b class="nc">&nbsp;                onVehicleClick = { editingVehicle = it },</b>
+<b class="nc">&nbsp;                onAddVehicleClick = { showAddVehicleDialog = true }</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            LanguageSection(onClick = { showLanguagePicker = true })</b>
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            ThemeSection(</b>
+<b class="nc">&nbsp;                themeMode = themeMode,</b>
+<b class="nc">&nbsp;                onThemeModeChanged = onThemeModeChanged</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            CountrySection(</b>
+<b class="nc">&nbsp;                countryName = currentCountry?.let { stringResource(it.nameRes) }</b>
+<b class="nc">&nbsp;                    ?: stringResource(R.string.settings_unknown_country),</b>
+<b class="nc">&nbsp;                onClick = { showCountryPicker = true }</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            if (isMultiZone) {</b>
+<b class="nc">&nbsp;                PriceZoneSection(</b>
+<b class="nc">&nbsp;                    zoneLabel = priceZone?.let { stringResource(it.labelRes) },</b>
+<b class="nc">&nbsp;                    onClick = { showZonePicker = true }</b>
+&nbsp;                )
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            TimezoneSection(</b>
+<b class="nc">&nbsp;                currentTimeZoneId = currentTimeZoneId,</b>
+<b class="nc">&nbsp;                isUsingDefaultTimezone = isUsingDefaultTimezone,</b>
+<b class="nc">&nbsp;                onClick = { showTimezonePicker = true }</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            Row(</b>
+<b class="nc">&nbsp;                modifier = Modifier</b>
+<b class="nc">&nbsp;                    .fillMaxWidth()</b>
+<b class="nc">&nbsp;                    .clickable(onClick = { onStatsEnabledChanged(!isStatsEnabled) })</b>
+<b class="nc">&nbsp;                    .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;                verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(R.string.settings_stats_title),</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(R.string.settings_stats_description),</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                        color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                Switch(</b>
+<b class="nc">&nbsp;                    checked = isStatsEnabled,</b>
+<b class="nc">&nbsp;                    onCheckedChange = onStatsEnabledChanged</b>
+&nbsp;                )
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            Row(</b>
+<b class="nc">&nbsp;                modifier = Modifier</b>
+<b class="nc">&nbsp;                    .fillMaxWidth()</b>
+<b class="nc">&nbsp;                    .clickable(onClick = { showAdvancedSettings = true })</b>
+<b class="nc">&nbsp;                    .padding(horizontal = 16.dp, vertical = 12.dp),</b>
+<b class="nc">&nbsp;                verticalAlignment = Alignment.CenterVertically</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                Column(modifier = Modifier.weight(1f)) {</b>
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(R.string.settings_advanced),</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyLarge</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                    Text(</b>
+<b class="nc">&nbsp;                        text = stringResource(R.string.settings_advanced_description),</b>
+<b class="nc">&nbsp;                        style = MaterialTheme.typography.bodyMedium,</b>
+<b class="nc">&nbsp;                        color = MaterialTheme.colorScheme.onSurfaceVariant</b>
+&nbsp;                    )
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;            var versionTapCount by remember { mutableIntStateOf(0) }</b>
+&nbsp;
+<b class="nc">&nbsp;            Text(</b>
+<b class="nc">&nbsp;                text = &quot;SweetSpot v${BuildConfig.VERSION_NAME}&quot;,</b>
+<b class="nc">&nbsp;                style = MaterialTheme.typography.bodySmall,</b>
+<b class="nc">&nbsp;                color = MaterialTheme.colorScheme.onSurfaceVariant,</b>
+<b class="nc">&nbsp;                modifier = Modifier</b>
+<b class="nc">&nbsp;                    .fillMaxWidth()</b>
+<b class="nc">&nbsp;                    .clickable {</b>
+<b class="nc">&nbsp;                        if (!devOptionsEnabled) {</b>
+<b class="nc">&nbsp;                            versionTapCount++</b>
+<b class="nc">&nbsp;                            if (versionTapCount &gt;= 7) {</b>
+<b class="nc">&nbsp;                                onDevOptionsUnlocked()</b>
+<b class="nc">&nbsp;                                coroutineScope.launch { snackbarHostState.showSnackbar(&quot;Developer options enabled&quot;) }</b>
+&nbsp;                            }
+&nbsp;                        }
+&nbsp;                    }
+<b class="nc">&nbsp;                    .padding(vertical = 16.dp),</b>
+<b class="nc">&nbsp;                textAlign = TextAlign.Center</b>
+&nbsp;            )
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 19:46</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "8e87acf5d51535f4114a3cd305d08779618aa043",
+  "short_sha": "8e87acf5d5",
+  "committed_at": "2026-08-07T09:52:39Z",
+  "message": "chore(ci): bump Actions to node24 majors and add Dependabot (#1)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/8e87acf5d51535f4114a3cd305d08779618aa043",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}

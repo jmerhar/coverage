@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "42a7738da6a0de0aa8ca6a7b2d4931f419fd22fb",
+  "short_sha": "42a7738da6",
+  "committed_at": "2026-07-31T12:45:11Z",
+  "message": "feat: add home <h1> + intro; on-page SEO and semantics",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/42a7738da6a0de0aa8ca6a7b2d4931f419fd22fb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.5%"
+      }
+    }
+  ]
+}

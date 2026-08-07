@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "9e96df0a4e8ef5a05607c5acee00374f969472ca",
+  "short_sha": "9e96df0a4e",
+  "committed_at": "2026-07-13T15:08:02Z",
+  "message": "feat: sort and reorder appliances, with cross-device usage",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/9e96df0a4e8ef5a05607c5acee00374f969472ca",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.3%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

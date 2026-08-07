@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "f753769f9f442189e018c793577f083ee28ffd9c",
+  "short_sha": "f753769f9f",
+  "committed_at": "2026-07-12T21:26:59Z",
+  "message": "docs: add household appliance-sharing idea note",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/f753769f9f442189e018c793577f083ee28ffd9c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.2%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

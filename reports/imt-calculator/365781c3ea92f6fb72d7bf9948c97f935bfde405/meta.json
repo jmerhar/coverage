@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "365781c3ea92f6fb72d7bf9948c97f935bfde405",
+  "short_sha": "365781c3ea",
+  "committed_at": "2026-08-07T10:16:31Z",
+  "message": "chore(deps): bump the actions group with 5 updates (#2)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/365781c3ea92f6fb72d7bf9948c97f935bfde405",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}

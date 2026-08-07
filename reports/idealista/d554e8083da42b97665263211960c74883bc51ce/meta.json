@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "d554e8083da42b97665263211960c74883bc51ce",
+  "short_sha": "d554e8083d",
+  "committed_at": "2026-07-23T12:46:31Z",
+  "message": "chore: enable hard coverage gate (backend >=94%, frontend >=97%)",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/d554e8083da42b97665263211960c74883bc51ce",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.0%",
+        "branch": "92.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}

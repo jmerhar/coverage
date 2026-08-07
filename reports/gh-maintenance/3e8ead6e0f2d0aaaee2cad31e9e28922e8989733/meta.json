@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "3e8ead6e0f2d0aaaee2cad31e9e28922e8989733",
+  "short_sha": "3e8ead6e0f",
+  "committed_at": "2026-08-07T19:11:39Z",
+  "message": "refactor: drop the Python 3.9 workaround and support forcing the container",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/3e8ead6e0f2d0aaaee2cad31e9e28922e8989733",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "95.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "95.0%"
+      }
+    }
+  ]
+}
