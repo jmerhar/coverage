@@ -9,7 +9,8 @@
 # let the second wipe the first.
 #
 # Each suite's HTML is copied to <out>/<suite-key>/, because the key is the manifest `path` the
-# generated site links to.
+# generated site links to. A suite may publish only part of its report directory (`include`) and name
+# an entry point other than index.html (`index`) — see coverage.toml's schema in coverage-report.py.
 #
 # Usage: collect-coverage.sh [output-dir] [config]   (defaults: coverage-upload, coverage.toml)
 # Run from the project root, after the suites have produced their HTML reports.
@@ -25,22 +26,49 @@ suites="$(python3 "$report" --config "$config" --format collect)"
 rm -rf "$out"
 mkdir -p "$out"
 
-while IFS=$'\t' read -r key html require; do
+while IFS=$'\t' read -r key html require include index; do
   [ -n "$key" ] || continue
   if [ ! -d "$html" ]; then
     echo "collect-coverage: suite '$key' has no HTML report at $html" >&2
     exit 1
   fi
   mkdir -p "$out/$key"
-  # Copy via tar rather than cp: cp's symlink handling differs between BSD and GNU and, in its
-  # common `cp -r src dest` form, dereferences symlinked directories into real ones — which would
-  # defeat the symlink stripping below and publish a duplicate tree per link. tar preserves them
-  # identically on both platforms, so the stripping actually applies. Copying the contents (`.`)
-  # rather than the directory lands the suite at <out>/<key>/ regardless of what `html` is named.
-  ( cd "$html" && tar cf - . ) | ( cd "$out/$key" && tar xf - )
 
-  # The site links to <key>/index.html; without it the commit page has a dead link.
-  if [ ! -f "$out/$key/index.html" ]; then
+  # Copy via tar rather than cp: cp's symlink handling differs between BSD and GNU — it copies them
+  # as symlinks on GNU and follows them on BSD — so a copy-then-prune approach behaves differently
+  # locally and in CI. tar preserves them identically on both, so the stripping below is predictable.
+  if [ -n "$include" ]; then
+    # Publish named subpaths only, for a tool that writes several reports into one directory.
+    IFS=',' read -ra included <<< "$include"
+    for sub in "${included[@]}"; do
+      if [ ! -e "$html/$sub" ]; then
+        echo "collect-coverage: suite '$key' has no $sub under $html" >&2
+        exit 1
+      fi
+      mkdir -p "$out/$key/$(dirname "$sub")"
+      ( cd "$html" && tar cf - "$sub" ) | ( cd "$out/$key" && tar xf - )
+    done
+  else
+    # Copying the contents (`.`) rather than the directory lands the suite at <out>/<key>/ regardless
+    # of what `html` is named.
+    ( cd "$html" && tar cf - . ) | ( cd "$out/$key" && tar xf - )
+  fi
+
+  # The site links to <key>/index.html. When the report's entry point is elsewhere, redirect to it
+  # rather than moving the report, whose pages resolve their assets relative to their own location.
+  if [ -n "$index" ]; then
+    if [ ! -f "$out/$key/$index" ]; then
+      echo "collect-coverage: suite '$key' declares index $index, which was not published" >&2
+      exit 1
+    fi
+    cat > "$out/$key/index.html" <<HTML
+<!doctype html>
+<meta charset="utf-8">
+<title>Coverage report</title>
+<meta http-equiv="refresh" content="0; url=$index">
+<p><a href="$index">Coverage report</a></p>
+HTML
+  elif [ ! -f "$out/$key/index.html" ]; then
     echo "collect-coverage: suite '$key' has no index.html — the site would link to nothing" >&2
     exit 1
   fi

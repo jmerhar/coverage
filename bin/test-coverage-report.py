@@ -316,11 +316,27 @@ class GateTest(TempCwd):
 class CollectTest(TempCwd):
     def test_emits_key_html_and_require(self):
         cfg = config({"s": suite("kcov", "c.json", html="coverage", require=["data/bcov.css"])})
-        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\tdata/bcov.css")
+        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\tdata/bcov.css\t\t")
 
-    def test_require_is_empty_when_absent(self):
+    def test_optional_fields_are_empty_when_absent(self):
         cfg = config({"s": suite("kcov", "c.json", html="coverage")})
-        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\t")
+        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\t\t\t")
+
+    def test_emits_include_and_index(self):
+        spec = suite("kcov", "c.json", html="coverage")
+        spec["include"] = ["kcov-merged", "data"]
+        spec["index"] = "kcov-merged/index.html"
+        self.assertEqual(
+            cr.render_collect(config({"s": spec})),
+            "s\tcoverage\t\tkcov-merged,data\tkcov-merged/index.html")
+
+    def test_field_count_is_stable(self):
+        # collect-coverage.sh reads these positionally, so a dropped field would silently shift the
+        # rest — an empty `include` becoming the index, for instance.
+        spec = suite("kcov", "c.json", html="coverage", require=["a"])
+        spec["include"] = ["b"]
+        spec["index"] = "c.html"
+        self.assertEqual(len(cr.render_collect(config({"s": spec})).split("\t")), 5)
 
     def test_missing_html_exits(self):
         cfg = config({"s": suite("kcov", "c.json")})
@@ -357,6 +373,14 @@ class ConfigTest(TempCwd):
         write("coverage.toml", '[suites.app]\nlabel="App"\nformat="lcov"\nreport="c.json"\n')
         with self.assertRaises(SystemExit):
             cr.load_config("coverage.toml")
+
+    def test_comma_in_a_published_path_exits(self):
+        # The publishing table comma-joins these, so a comma would split one path into two.
+        for field in ("include", "require"):
+            write("coverage.toml",
+                  f'[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\n{field}=["a,b"]\n')
+            with self.assertRaises(SystemExit):
+                cr.load_config("coverage.toml")
 
 
 if __name__ == "__main__":

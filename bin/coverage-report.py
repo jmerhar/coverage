@@ -17,8 +17,8 @@ Usage (run from the project root, after the suites have produced their reports):
   --format reports    The JSON "reports" array consumed by bin/make-meta.py: a leading combined
                       "total" entry (no ``path``, so the site renders it as the headline) followed
                       by one linkable entry per suite.
-  --format collect    Tab-separated ``key<TAB>html<TAB>require,…`` for collect-coverage.sh, so that
-                      the config is parsed in exactly one place.
+  --format collect    Tab-separated ``key<TAB>html<TAB>require,…<TAB>include,…<TAB>index`` for
+                      collect-coverage.sh, so that the config is parsed in exactly one place.
   --gate              Check each suite's LINE coverage against its ``gate`` and exit non-zero if any
                       suite is below its bound or has no report.
 
@@ -34,7 +34,13 @@ The ``coverage.toml`` schema::
     report = "frontend/coverage/coverage-summary.json"  # the machine-readable summary
     html   = "frontend/coverage"                        # HTML directory (collect-coverage.sh)
     gate   = 98.0                                       # omit to make the suite informational
+    include = ["kcov-merged", "data"]                   # optional: publish only these subpaths of html
+    index   = "kcov-merged/index.html"                  # optional: the report's entry point
     require = ["data/bcov.css"]                         # optional: files the HTML must ship with
+
+``include`` publishes a subset of ``html`` rather than all of it, for tools that write more than one
+report into one directory. ``index`` names the entry point when it is not ``index.html`` at the top of
+the suite; the collector writes a redirect there, since that is what the site links to.
 
 A suite's key is the subdirectory its HTML is published under, so it is also the manifest ``path``
 the site links to. Suites keep their declared order in the table and the manifest.
@@ -164,6 +170,14 @@ def load_config(path):
                 f"coverage-report: suite '{key}' has unknown format '{spec['format']}' "
                 f"(known: {', '.join(sorted(PARSERS))})"
             )
+        # The publishing table is tab-separated with comma-joined lists, so a path containing either
+        # would be silently split into the wrong files. Refuse it instead.
+        for field in ("include", "require"):
+            for path in spec.get(field, []):
+                if "," in path or "\t" in path:
+                    sys.exit(f"coverage-report: suite '{key}' has a comma or tab in {field}: {path!r}")
+        if "index" in spec and "\t" in spec["index"]:
+            sys.exit(f"coverage-report: suite '{key}' has a tab in index: {spec['index']!r}")
     return config
 
 
@@ -259,16 +273,23 @@ def render_reports(config):
 
 
 def render_collect(config):
-    """The suite → HTML-directory table, tab-separated, for collect-coverage.sh.
+    """The suite → publishing table, tab-separated, for collect-coverage.sh.
 
-    Publishing needs each suite's ``html`` directory and its optional ``require`` list, neither of
-    which the summaries use. Emitting them here keeps ``coverage.toml`` parsed in one language.
+    Publishing needs each suite's ``html`` directory plus its optional ``require``, ``include`` and
+    ``index``, none of which the summaries use. Emitting them here keeps ``coverage.toml`` parsed in
+    one language. Lists are comma-joined, which is why load_config rejects commas in these paths.
     """
     lines = []
     for key, spec in config["suites"].items():
         if "html" not in spec:
             sys.exit(f"coverage-report: suite '{key}' is missing 'html', needed to publish it")
-        lines.append("\t".join((key, spec["html"], ",".join(spec.get("require", [])))))
+        lines.append("\t".join((
+            key,
+            spec["html"],
+            ",".join(spec.get("require", [])),
+            ",".join(spec.get("include", [])),
+            spec.get("index", ""),
+        )))
     return "\n".join(lines)
 
 
