@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "a671053fdfa253e9ea05545fae0bb04895c409d6",
+  "short_sha": "a671053fdf",
+  "committed_at": "2026-08-07T22:37:48Z",
+  "message": "fix: refresh the fetched coverage engine instead of caching it forever",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/a671053fdfa253e9ea05545fae0bb04895c409d6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}
