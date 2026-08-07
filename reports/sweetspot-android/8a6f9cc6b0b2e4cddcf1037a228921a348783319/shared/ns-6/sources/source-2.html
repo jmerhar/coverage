@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > SubmitOutcome</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.support</a>
+</div>
+
+<h1>Coverage Summary for Class: SubmitOutcome (today.sweetspot.data.support)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SubmitOutcome</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.support
+&nbsp;
+&nbsp;import kotlinx.serialization.encodeToString
+&nbsp;import today.sweetspot.util.sweetSpotJson
+&nbsp;import kotlinx.serialization.json.buildJsonObject
+&nbsp;import kotlinx.serialization.json.contentOrNull
+&nbsp;import kotlinx.serialization.json.intOrNull
+&nbsp;import kotlinx.serialization.json.jsonObject
+&nbsp;import kotlinx.serialization.json.jsonPrimitive
+&nbsp;import kotlinx.serialization.json.put
+&nbsp;import today.sweetspot.model.FeedbackReport
+&nbsp;
+&nbsp;/** Outcome of parsing the feedback Worker&#39;s `/report` success body. */
+&nbsp;sealed interface SubmitResult {
+&nbsp;    /**
+&nbsp;     * The issue was created; carries its number and web URL, and the per-report [replyToken] the app
+&nbsp;     * stores to post in-app replies (null if the Worker didn&#39;t return one, e.g. an older deployment).
+&nbsp;     */
+&nbsp;    data class Success(val number: Int, val url: String, val replyToken: String? = null) : SubmitResult
+&nbsp;
+&nbsp;    /** The response wasn&#39;t the expected `{number,url}` shape. */
+&nbsp;    data object Malformed : SubmitResult
+&nbsp;}
+&nbsp;
+&nbsp;/** What to do with a submission attempt, decided from the HTTP status code. */
+&nbsp;enum class SubmitOutcome {
+&nbsp;    /** 2xx — delivered. */
+<b class="fc">&nbsp;    SENT,</b>
+&nbsp;
+&nbsp;    /** Transient (429 / 5xx / network) — keep the report and retry later. */
+<b class="fc">&nbsp;    RETRYABLE,</b>
+&nbsp;
+&nbsp;    /** A 4xx that retrying can&#39;t fix (validation) — surface an error, don&#39;t queue. */
+<b class="fc">&nbsp;    PERMANENT</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure encode/parse + retry policy for the feedback Worker. Android-free and unit-tested; mirrors
+&nbsp; * [today.sweetspot.data.share.SetupShare]&#39;s lenient-[sweetSpotJson] + sealed-result style and
+&nbsp; * `StatsReporter.reportOutcomeFor`&#39;s status-code policy.
+&nbsp; */
+&nbsp;object FeedbackCodec {
+&nbsp;
+&nbsp;    private val json = sweetSpotJson
+&nbsp;
+&nbsp;    /** Serialises the request body sent to `POST /report`. */
+&nbsp;    fun encodeRequest(report: FeedbackReport): String = json.encodeToString(report)
+&nbsp;
+&nbsp;    /** Serialises the `{issue, token, body}` request body sent to `POST /reply`. */
+&nbsp;    fun encodeReply(issue: Int, token: String, body: String): String =
+&nbsp;        buildJsonObject {
+&nbsp;            put(&quot;issue&quot;, issue)
+&nbsp;            put(&quot;token&quot;, token)
+&nbsp;            put(&quot;body&quot;, body)
+&nbsp;        }.toString()
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses the `{number, url, replyToken?}` success body; [SubmitResult.Malformed] on anything
+&nbsp;     * unexpected (missing number/url).
+&nbsp;     */
+&nbsp;    fun parseSubmitResponse(body: String): SubmitResult =
+&nbsp;        try {
+&nbsp;            val obj = json.parseToJsonElement(body).jsonObject
+&nbsp;            val number = obj[&quot;number&quot;]?.jsonPrimitive?.intOrNull
+&nbsp;            val url = obj[&quot;url&quot;]?.jsonPrimitive?.contentOrNull
+&nbsp;            val replyToken = obj[&quot;replyToken&quot;]?.jsonPrimitive?.contentOrNull
+&nbsp;            if (number != null &amp;&amp; url != null) SubmitResult.Success(number, url, replyToken) else SubmitResult.Malformed
+&nbsp;        } catch (_: Exception) {
+&nbsp;            SubmitResult.Malformed
+&nbsp;        }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retry policy from the HTTP status code: 2xx → [SubmitOutcome.SENT]; 429 or 5xx →
+&nbsp;     * [SubmitOutcome.RETRYABLE]; any other 4xx → [SubmitOutcome.PERMANENT]. A network exception (no
+&nbsp;     * status code) is treated as retryable by the caller.
+&nbsp;     */
+&nbsp;    fun submitOutcomeFor(code: Int): SubmitOutcome = when {
+&nbsp;        code in 200..299 -&gt; SubmitOutcome.SENT
+&nbsp;        code == 429 || code in 500..599 -&gt; SubmitOutcome.RETRYABLE
+&nbsp;        else -&gt; SubmitOutcome.PERMANENT
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-31 17:26</div>
+</div>
+</body>
+</html>

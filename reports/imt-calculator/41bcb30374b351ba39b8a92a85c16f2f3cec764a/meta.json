@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "41bcb30374b351ba39b8a92a85c16f2f3cec764a",
+  "short_sha": "41bcb30374",
+  "committed_at": "2026-07-31T11:34:19Z",
+  "message": "chore(deps): add vite-react-ssg + sharp; upgrade to Vite 6 / Vitest 3",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/41bcb30374b351ba39b8a92a85c16f2f3cec764a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "89.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "89.9%"
+      }
+    }
+  ]
+}

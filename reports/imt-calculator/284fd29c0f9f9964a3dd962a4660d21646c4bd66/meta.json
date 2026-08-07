@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "284fd29c0f9f9964a3dd962a4660d21646c4bd66",
+  "short_sha": "284fd29c0f",
+  "committed_at": "2026-07-30T19:09:13Z",
+  "message": "fix: use a relative base so the app works at any path",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/284fd29c0f9f9964a3dd962a4660d21646c4bd66",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}

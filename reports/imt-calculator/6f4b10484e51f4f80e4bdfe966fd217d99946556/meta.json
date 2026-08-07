@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "6f4b10484e51f4f80e4bdfe966fd217d99946556",
+  "short_sha": "6f4b10484e",
+  "committed_at": "2026-07-31T12:39:23Z",
+  "message": "feat: Open Graph, Twitter cards, OG image and JSON-LD",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/6f4b10484e51f4f80e4bdfe966fd217d99946556",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.5%"
+      }
+    }
+  ]
+}

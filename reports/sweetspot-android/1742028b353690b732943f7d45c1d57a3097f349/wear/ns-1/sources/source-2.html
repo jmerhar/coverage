@@ -1,0 +1,536 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>wear Coverage Report > WearUiState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: wear<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.wear</a>
+</div>
+
+<h1>Coverage Summary for Class: WearUiState (today.sweetspot.wear)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">WearUiState</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (67/67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.wear
+&nbsp;
+&nbsp;import android.app.Application
+&nbsp;import android.util.Log
+&nbsp;import androidx.appcompat.app.AppCompatDelegate
+&nbsp;import androidx.core.os.LocaleListCompat
+&nbsp;import androidx.lifecycle.AndroidViewModel
+&nbsp;import androidx.lifecycle.viewModelScope
+&nbsp;import kotlinx.coroutines.CoroutineDispatcher
+&nbsp;import kotlinx.coroutines.Dispatchers
+&nbsp;import kotlinx.coroutines.Job
+&nbsp;import kotlinx.coroutines.delay
+&nbsp;import kotlinx.coroutines.flow.MutableStateFlow
+&nbsp;import kotlinx.coroutines.flow.StateFlow
+&nbsp;import kotlinx.coroutines.flow.asStateFlow
+&nbsp;import kotlinx.coroutines.flow.update
+&nbsp;import kotlinx.coroutines.launch
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import today.sweetspot.data.api.PriceFetcherFactory
+&nbsp;import today.sweetspot.data.api.defaultPriceFetcherFactory
+&nbsp;import today.sweetspot.data.cache.FilePriceCache
+&nbsp;import today.sweetspot.data.cache.PriceCache
+&nbsp;import today.sweetspot.data.repository.PriceRepository
+&nbsp;import today.sweetspot.data.stats.FileStatsCollector
+&nbsp;import today.sweetspot.data.stats.StatsCollector
+&nbsp;import today.sweetspot.data.stats.StatsRecord
+&nbsp;import today.sweetspot.data.usage.FileUsageStore
+&nbsp;import today.sweetspot.data.usage.UsageSnapshot
+&nbsp;import today.sweetspot.data.usage.UsageStore
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.Countries
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import today.sweetspot.model.PriceZone
+&nbsp;import today.sweetspot.model.WindowResult
+&nbsp;import today.sweetspot.util.UiText
+&nbsp;import today.sweetspot.util.findCheapestWindow
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZonedDateTime
+&nbsp;
+&nbsp;/**
+&nbsp; * UI state for the Wear OS companion app.
+&nbsp; *
+&nbsp; * @property appliances Appliance list synced from the phone via the Wearable Data Layer.
+&nbsp; * @property isLoading Whether a price fetch is in progress.
+&nbsp; * @property error Error message to display ([UiText], resolved by the UI in the current locale), or `null` if none.
+&nbsp; * @property result The cheapest-window result, or `null` if no search has been performed.
+&nbsp; * @property resultLabel Label shown on the result screen (e.g. &quot;Washer · 2h 30m&quot;), as deferred [UiText].
+&nbsp; * @property priceZone The resolved price zone synced from the phone, or `null` if not yet configured.
+&nbsp; * @property sourceOrder Ordered list of all source IDs synced from the phone, or `null` for zone defaults.
+&nbsp; * @property disabledSources Set of disabled source IDs synced from the phone.
+&nbsp; * @property isLocked Whether the watch app is locked (phone trial expired and not unlocked).
+&nbsp; */
+&nbsp;data class WearUiState(
+<b class="fc">&nbsp;    val appliances: List&lt;Appliance&gt; = emptyList(),</b>
+<b class="fc">&nbsp;    val isLoading: Boolean = false,</b>
+<b class="fc">&nbsp;    val error: UiText? = null,</b>
+<b class="fc">&nbsp;    val result: WindowResult? = null,</b>
+<b class="fc">&nbsp;    val resultLabel: UiText? = null,</b>
+<b class="fc">&nbsp;    val priceZone: PriceZone? = Countries.defaultCountry().zones.first(),</b>
+<b class="fc">&nbsp;    val sourceOrder: List&lt;String&gt;? = null,</b>
+<b class="fc">&nbsp;    val disabledSources: Set&lt;String&gt; = emptySet(),</b>
+<b class="fc">&nbsp;    val isLocked: Boolean = false</b>
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * ViewModel for the Wear OS SweetSpot app.
+&nbsp; *
+&nbsp; * Receives appliances and zone settings from the phone via a [WearSync] (the Wearable Data Layer),
+&nbsp; * fetches electricity prices via [PriceRepository], and runs the cheapest-window algorithm from the
+&nbsp; * shared module. All Data Layer plumbing is isolated in [WearSync] so this class stays testable.
+&nbsp; *
+&nbsp; * @param application Application context.
+&nbsp; * @param priceFetcherFactory Optional factory override for testing. When `null` (production),
+&nbsp; *   the factory is created dynamically from the current source order.
+&nbsp; * @param priceCache Cache for raw price JSON.
+&nbsp; * @param statsCollector Optional stats collector override for testing.
+&nbsp; * @param ioDispatcher Dispatcher for IO-bound work (injectable for testing).
+&nbsp; * @param wearSyncOverride Optional [WearSync] override for testing. When `null` (production), a
+&nbsp; *   real [WearableSync] backed by Google Play Services is used.
+&nbsp; * @param usageStore Local cumulative tap store reported back to the phone (injectable for tests).
+&nbsp; */
+&nbsp;class WearViewModel @JvmOverloads constructor(
+&nbsp;    application: Application,
+&nbsp;    private val priceFetcherFactory: PriceFetcherFactory? = null,
+&nbsp;    private val priceCache: PriceCache = FilePriceCache(application),
+&nbsp;    private val statsCollector: StatsCollector = FileStatsCollector(application.cacheDir),
+&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+&nbsp;    wearSyncOverride: WearSync? = null,
+&nbsp;    private val usageStore: UsageStore = FileUsageStore(application.cacheDir)
+&nbsp;) : AndroidViewModel(application) {
+&nbsp;
+&nbsp;    private val wearSync: WearSync =
+&nbsp;        wearSyncOverride ?: WearableSync(application, viewModelScope, ioDispatcher)
+&nbsp;
+&nbsp;    private var fetchJob: Job? = null
+&nbsp;    private var refreshJob: Job? = null
+&nbsp;
+&nbsp;    /** Whether API stats collection is enabled (synced from phone). */
+&nbsp;    @Volatile
+&nbsp;    private var statsEnabled: Boolean = false
+&nbsp;
+&nbsp;    /** Prices from the last successful fetch, used for periodic recalculation. */
+&nbsp;    private var lastPrices: List&lt;PriceSlot&gt; = emptyList()
+&nbsp;
+&nbsp;    /** Duration from the last appliance tap, used for periodic recalculation. */
+&nbsp;    private var lastDurationHours: Double = 0.0
+&nbsp;
+&nbsp;    /** Timezone from the last fetch, used for periodic recalculation. */
+&nbsp;    private var lastTimeZoneId: ZoneId? = null
+&nbsp;
+&nbsp;    private val _uiState = MutableStateFlow(WearUiState())
+&nbsp;    /** Observable UI state. */
+&nbsp;    val uiState: StateFlow&lt;WearUiState&gt; = _uiState.asStateFlow()
+&nbsp;
+&nbsp;    init {
+&nbsp;        wearSync.observe(::onAppliancesReceived, ::onSettingsReceived)
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCleared() {
+&nbsp;        super.onCleared()
+&nbsp;        stopResultRefresh()
+&nbsp;        wearSync.stop()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Applies an appliance list received from the phone.
+&nbsp;     *
+&nbsp;     * @param json JSON-encoded appliance list from the Data Layer.
+&nbsp;     */
+&nbsp;    internal fun onAppliancesReceived(json: String) {
+&nbsp;        _uiState.update { it.copy(appliances = parseAppliances(json)) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Applies settings received from the phone: resolves the price zone, source order, disabled
+&nbsp;     * sources, stats opt-in, per-app language, and the locked state.
+&nbsp;     *
+&nbsp;     * @param settings Raw settings pushed from the phone.
+&nbsp;     */
+&nbsp;    internal fun onSettingsReceived(settings: WearSettings) {
+&nbsp;        val zone = resolveZone(settings.countryCode, settings.priceZoneId)
+&nbsp;        val sourceOrder = parseSourceOrder(settings.sourceOrder)
+&nbsp;        val disabledSources = parseDisabledSources(settings.disabledSources)
+&nbsp;        statsEnabled = settings.statsEnabled
+&nbsp;        // Honour a phone-side usage purge: a newer reset token zeroes our local store.
+&nbsp;        if (settings.usageResetToken &gt; usageStore.token()) usageStore.reset(settings.usageResetToken)
+&nbsp;        applyLanguage(settings.language)
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                priceZone = zone,
+&nbsp;                sourceOrder = sourceOrder,
+&nbsp;                disabledSources = disabledSources,
+&nbsp;                isLocked = settings.isTrialExpired &amp;&amp; !settings.isUnlocked
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles an appliance tap. Fetches prices and finds the cheapest window.
+&nbsp;     *
+&nbsp;     * @param appliance The tapped appliance.
+&nbsp;     */
+&nbsp;    fun onApplianceTapped(appliance: Appliance) {
+&nbsp;        usageStore.record(appliance.id, System.currentTimeMillis())
+&nbsp;        val h = appliance.durationHours
+&nbsp;        val m = appliance.durationMinutes
+&nbsp;        val durationHours = h + m / 60.0
+&nbsp;        val label = UiText.applianceLabel(appliance.name, h, m)
+&nbsp;
+&nbsp;        val priceZone = _uiState.value.priceZone
+&nbsp;        if (priceZone == null) {
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(error = UiText.Res(R.string.wear_error_no_zone))
+&nbsp;            }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        stopResultRefresh()
+&nbsp;        fetchJob?.cancel()
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(isLoading = true, error = null, result = null, resultLabel = label)
+&nbsp;        }
+&nbsp;
+&nbsp;        val timeZoneId = ZoneId.of(priceZone.timeZoneId)
+&nbsp;        fetchJob = viewModelScope.launch(ioDispatcher) {
+&nbsp;            try {
+&nbsp;                val state = _uiState.value
+&nbsp;                val enabledOrder = state.sourceOrder?.filter { it !in state.disabledSources }
+&nbsp;                val activeCollector = if (statsEnabled) statsCollector else null
+&nbsp;                val factory = priceFetcherFactory
+&nbsp;                    ?: defaultPriceFetcherFactory(BuildConfig.ENTSOE_API_TOKEN, enabledOrder, activeCollector, &quot;watch&quot;)
+&nbsp;                val fetcher = factory.create(priceZone)
+&nbsp;                val repository = PriceRepository(priceCache, timeZoneId, fetcher, cacheKey = priceZone.id)
+&nbsp;                val prices = repository.getPrices().prices
+&nbsp;
+&nbsp;                if (prices.isEmpty()) {
+&nbsp;                    _uiState.update {
+&nbsp;                        it.copy(
+&nbsp;                            isLoading = false,
+&nbsp;                            error = UiText.Res(R.string.wear_error_no_data)
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    return@launch
+&nbsp;                }
+&nbsp;
+&nbsp;                val now = ZonedDateTime.now(timeZoneId)
+&nbsp;                val result = findCheapestWindow(prices, durationHours, now)
+&nbsp;
+&nbsp;                if (result == null) {
+&nbsp;                    _uiState.update {
+&nbsp;                        it.copy(
+&nbsp;                            isLoading = false,
+&nbsp;                            error = UiText.Res(R.string.wear_error_not_enough_data, listOf(UiText.duration(h, m)))
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    return@launch
+&nbsp;                }
+&nbsp;
+&nbsp;                lastPrices = prices
+&nbsp;                lastDurationHours = durationHours
+&nbsp;                lastTimeZoneId = timeZoneId
+&nbsp;
+&nbsp;                _uiState.update {
+&nbsp;                    it.copy(
+&nbsp;                        isLoading = false,
+&nbsp;                        result = result,
+&nbsp;                        error = null
+&nbsp;                    )
+&nbsp;                }
+&nbsp;                startResultRefresh()
+&nbsp;                syncStatsToPhone()
+&nbsp;                syncUsageToPhone()
+&nbsp;            } catch (e: Exception) {
+&nbsp;                Log.w(&quot;WearViewModel&quot;, &quot;Could not fetch prices&quot;, e)
+&nbsp;                _uiState.update {
+&nbsp;                    it.copy(
+&nbsp;                        isLoading = false,
+&nbsp;                        error = UiText.Res(R.string.wear_error_network)
+&nbsp;                    )
+&nbsp;                }
+&nbsp;                syncStatsToPhone()
+&nbsp;                syncUsageToPhone()
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Clears the current result to return to the appliance list. */
+&nbsp;    fun onClearResult() {
+&nbsp;        stopResultRefresh()
+&nbsp;        _uiState.update { it.copy(result = null, resultLabel = null, error = null) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Starts a periodic refresh that recalculates the cheapest window every 60 seconds.
+&nbsp;     *
+&nbsp;     * Filters out elapsed price slots and re-runs [findCheapestWindow] with the current time,
+&nbsp;     * keeping the result screen up-to-date as time passes.
+&nbsp;     */
+&nbsp;    private fun startResultRefresh() {
+&nbsp;        refreshJob?.cancel()
+&nbsp;        refreshJob = viewModelScope.launch {
+&nbsp;            while (true) {
+&nbsp;                delay(60_000)
+&nbsp;                recalculateResult()
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Stops the periodic result refresh.
+&nbsp;     */
+&nbsp;    private fun stopResultRefresh() {
+&nbsp;        refreshJob?.cancel()
+&nbsp;        refreshJob = null
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recalculates the cheapest window using previously fetched prices and the current time.
+&nbsp;     *
+&nbsp;     * Filters [lastPrices] to exclude elapsed slots, then re-runs [findCheapestWindow].
+&nbsp;     * Updates [WearUiState.result] so the result screen stays current.
+&nbsp;     */
+&nbsp;    internal fun recalculateResult() {
+&nbsp;        val prices = lastPrices
+&nbsp;        if (prices.isEmpty() || _uiState.value.result == null) return
+&nbsp;        val timeZoneId = lastTimeZoneId ?: return
+&nbsp;
+&nbsp;        val now = ZonedDateTime.now(timeZoneId)
+&nbsp;        val futurePrices = prices.filter {
+&nbsp;            it.time.plusMinutes(it.durationMinutes.toLong()).isAfter(now)
+&nbsp;        }
+&nbsp;        lastPrices = futurePrices
+&nbsp;
+&nbsp;        val result = if (futurePrices.isNotEmpty()) {
+&nbsp;            findCheapestWindow(futurePrices, lastDurationHours, now)
+&nbsp;        } else null
+&nbsp;
+&nbsp;        _uiState.update { it.copy(result = result) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Applies the language tag received from the phone via the Data Layer.
+&nbsp;     *
+&nbsp;     * An empty or null tag means &quot;system default&quot;.
+&nbsp;     *
+&nbsp;     * @param languageTag BCP 47 language tag, or empty/null for system default.
+&nbsp;     */
+&nbsp;    private fun applyLanguage(languageTag: String?) {
+&nbsp;        val tag = languageTag ?: &quot;&quot;
+&nbsp;        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resolves country code and zone ID from the Data Layer into a [PriceZone].
+&nbsp;     *
+&nbsp;     * @param countryCode ISO country code from the phone, or `null`.
+&nbsp;     * @param priceZoneId Zone ID from the phone, or `null`.
+&nbsp;     * @return The resolved [PriceZone], or `null` for multi-zone countries without a selection.
+&nbsp;     */
+&nbsp;    private fun resolveZone(countryCode: String?, priceZoneId: String?): PriceZone? {
+&nbsp;        if (priceZoneId != null) {
+&nbsp;            Countries.findPriceZoneById(priceZoneId)?.let { return it }
+&nbsp;        }
+&nbsp;        if (countryCode != null) {
+&nbsp;            val country = Countries.findByCode(countryCode) ?: return null
+&nbsp;            return if (country.zones.size == 1) country.zones.first() else null
+&nbsp;        }
+&nbsp;        return Countries.defaultCountry().zones.first()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses a JSON string into a list of [Appliance].
+&nbsp;     *
+&nbsp;     * @param json JSON-encoded appliance list.
+&nbsp;     * @return Parsed list, or empty list if parsing fails.
+&nbsp;     */
+&nbsp;    private fun parseAppliances(json: String): List&lt;Appliance&gt; {
+&nbsp;        return try {
+&nbsp;            Json.decodeFromString&lt;List&lt;Appliance&gt;&gt;(json)
+&nbsp;        } catch (e: Exception) {
+&nbsp;            Log.w(&quot;WearViewModel&quot;, &quot;Failed to parse appliances JSON&quot;, e)
+&nbsp;            emptyList()
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses a source order string from the Data Layer into a list of source IDs.
+&nbsp;     *
+&nbsp;     * An empty or blank string means &quot;use defaults&quot; (returns `null`).
+&nbsp;     *
+&nbsp;     * @param raw JSON-encoded source order string, or `null`/empty for defaults.
+&nbsp;     * @return Ordered list of source IDs, or `null` for defaults.
+&nbsp;     */
+&nbsp;    private fun parseSourceOrder(raw: String?): List&lt;String&gt;? {
+&nbsp;        if (raw.isNullOrBlank()) return null
+&nbsp;        return try {
+&nbsp;            Json.decodeFromString&lt;List&lt;String&gt;&gt;(raw)
+&nbsp;        } catch (e: Exception) {
+&nbsp;            Log.w(&quot;WearViewModel&quot;, &quot;Failed to parse source order JSON&quot;, e)
+&nbsp;            null
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses a disabled sources string from the Data Layer into a set of source IDs.
+&nbsp;     *
+&nbsp;     * An empty or blank string means &quot;none disabled&quot; (returns empty set).
+&nbsp;     *
+&nbsp;     * @param raw JSON-encoded disabled sources string, or `null`/empty for none.
+&nbsp;     * @return Set of disabled source IDs.
+&nbsp;     */
+&nbsp;    private fun parseDisabledSources(raw: String?): Set&lt;String&gt; {
+&nbsp;        if (raw.isNullOrBlank()) return emptySet()
+&nbsp;        return try {
+&nbsp;            Json.decodeFromString&lt;Set&lt;String&gt;&gt;(raw)
+&nbsp;        } catch (e: Exception) {
+&nbsp;            Log.w(&quot;WearViewModel&quot;, &quot;Failed to parse disabled sources JSON&quot;, e)
+&nbsp;            emptySet()
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pushes accumulated stats to the phone via [WearSync].
+&nbsp;     *
+&nbsp;     * Encodes stats records to the binary format used by [FileStatsCollector] and sends them; the
+&nbsp;     * phone merges them into its local stats file. Only runs when stats collection is enabled, and
+&nbsp;     * awaits delivery before clearing local stats to avoid loss. Best-effort — failures are ignored.
+&nbsp;     */
+&nbsp;    private suspend fun syncStatsToPhone() {
+&nbsp;        if (!statsEnabled) return
+&nbsp;        try {
+&nbsp;            val records = statsCollector.readAll()
+&nbsp;            if (records.isEmpty()) return
+&nbsp;            wearSync.pushStats(StatsRecord.encodeToBytes(records))
+&nbsp;            statsCollector.clear()
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Best-effort: stats sync should not crash the watch app
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pushes the watch&#39;s cumulative tap usage to the phone via [WearSync].
+&nbsp;     *
+&nbsp;     * The snapshot is cumulative (not a delta) and stamped with the reset token it was recorded
+&nbsp;     * under, so re-delivery is harmless and a phone-side purge is honoured. Best-effort — failures
+&nbsp;     * are ignored, and the local store is never cleared (the phone keeps only the latest snapshot).
+&nbsp;     */
+&nbsp;    private suspend fun syncUsageToPhone() {
+&nbsp;        try {
+&nbsp;            wearSync.pushUsage(UsageSnapshot.encodeToBytes(usageStore.snapshot()), usageStore.token())
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Best-effort: usage sync should not crash the watch app
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-20 21:06</div>
+</div>
+</body>
+</html>

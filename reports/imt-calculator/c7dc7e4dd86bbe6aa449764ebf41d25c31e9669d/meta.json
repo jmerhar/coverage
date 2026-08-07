@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "c7dc7e4dd86bbe6aa449764ebf41d25c31e9669d",
+  "short_sha": "c7dc7e4dd8",
+  "committed_at": "2026-07-31T10:07:58Z",
+  "message": "docs: add end-to-end Google Analytics guide",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/c7dc7e4dd86bbe6aa449764ebf41d25c31e9669d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "89212e677a3aa787e0250e198ea3a267295f305f",
+  "short_sha": "89212e677a",
+  "committed_at": "2026-07-28T11:24:11Z",
+  "message": "docs: add help & support system architecture reference",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/89212e677a3aa787e0250e198ea3a267295f305f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

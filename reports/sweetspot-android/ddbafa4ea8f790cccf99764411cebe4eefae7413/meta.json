@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "ddbafa4ea8f790cccf99764411cebe4eefae7413",
+  "short_sha": "ddbafa4ea8",
+  "committed_at": "2026-07-28T12:07:04Z",
+  "message": "feat: add Cloudflare Worker for in-app report/feedback",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/ddbafa4ea8f790cccf99764411cebe4eefae7413",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

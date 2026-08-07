@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "2fcbb69b19e4f7017c00e6f50f460ba849c32d7d",
+  "short_sha": "2fcbb69b19",
+  "committed_at": "2026-08-01T18:57:23Z",
+  "message": "docs: note the automated year rollover in the SEO + content plans",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/2fcbb69b19e4f7017c00e6f50f460ba849c32d7d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.0%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ea60f05e69162996031b1587c466c2e172c7ffc2",
+  "short_sha": "ea60f05e69",
+  "committed_at": "2026-08-07T15:43:06Z",
+  "message": "ci: run CI once per pull request (#3)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ea60f05e69162996031b1587c466c2e172c7ffc2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}

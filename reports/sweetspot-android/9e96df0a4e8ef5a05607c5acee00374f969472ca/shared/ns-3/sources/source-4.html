@@ -1,0 +1,315 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > PriceRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: PriceRepository (today.sweetspot.data.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">PriceRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (44/44)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (261/261)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PriceRepository$Companion</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (44/44)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (261/261)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.repository
+&nbsp;
+&nbsp;import today.sweetspot.data.api.EnergyZeroApi
+&nbsp;
+&nbsp;import today.sweetspot.data.api.PriceFetcher
+&nbsp;import today.sweetspot.data.cache.CachedPrice
+&nbsp;import today.sweetspot.data.cache.CachedPriceData
+&nbsp;import today.sweetspot.data.cache.PriceCache
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import java.time.Clock
+&nbsp;import java.time.Instant
+&nbsp;import java.time.LocalDate
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZonedDateTime
+&nbsp;
+&nbsp;/**
+&nbsp; * Result from [PriceRepository.getPrices], pairing price slots with the data source name.
+&nbsp; *
+&nbsp; * @property prices Chronologically sorted list of future [PriceSlot] entries.
+&nbsp; * @property source Human-readable name of the data source (e.g. &quot;ENTSO-E&quot;, &quot;EnergyZero&quot;).
+&nbsp; * @property fromCache True when this result was served entirely from cache (no network fetch this
+&nbsp; *   call). The ViewModel uses it to piggyback a tariff refresh only when prices actually hit the network.
+&nbsp; */
+&nbsp;data class PriceResult(
+&nbsp;    val prices: List&lt;PriceSlot&gt;,
+&nbsp;    val source: String,
+&nbsp;    val fromCache: Boolean = false
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Repository that provides upcoming electricity prices.
+&nbsp; *
+&nbsp; * Uses [PriceCache] to avoid redundant API calls. Always tries the cache first,
+&nbsp; * then checks whether the cached data covers enough upcoming time. When coverage
+&nbsp; * is below [MIN_COVERAGE_HOURS] (e.g. tomorrow&#39;s prices have been published since
+&nbsp; * the last fetch), a re-fetch is attempted — subject to a [COOLDOWN_MS] rate limit
+&nbsp; * to avoid hammering the API.
+&nbsp; *
+&nbsp; * @param cache Cache for parsed price data, keyed by zone.
+&nbsp; * @param timeZoneId Timezone for date boundary calculations and time display.
+&nbsp; * @param fetcher Provider for fetching prices from the upstream API.
+&nbsp; * @param clock Clock for determining the current time (injectable for testing).
+&nbsp; * @param cacheKey Zone identifier used as the cache key (e.g. `&quot;NL&quot;`, `&quot;DE_LU&quot;`).
+&nbsp; */
+&nbsp;class PriceRepository(
+<b class="fc">&nbsp;    private val cache: PriceCache,</b>
+<b class="fc">&nbsp;    private val timeZoneId: ZoneId,</b>
+<b class="fc">&nbsp;    private val fetcher: PriceFetcher = EnergyZeroApi(),</b>
+<b class="fc">&nbsp;    private val clock: Clock = Clock.system(timeZoneId),</b>
+<b class="fc">&nbsp;    private val cacheKey: String = &quot;default&quot;</b>
+&nbsp;) {
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /** Re-fetch if filtered prices cover fewer than this many hours. */
+&nbsp;        internal const val MIN_COVERAGE_HOURS = 12
+&nbsp;
+&nbsp;        /** Minimum interval between API requests (5 minutes). */
+&nbsp;        const val COOLDOWN_MS = 5 * 60 * 1000L
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns all available upcoming price slots with the data source name.
+&nbsp;     *
+&nbsp;     * Reads from cache first. If coverage is below [MIN_COVERAGE_HOURS] and the
+&nbsp;     * [COOLDOWN_MS] rate limit has elapsed, re-fetches from the API in case newer
+&nbsp;     * data is available.
+&nbsp;     *
+&nbsp;     * @return A [PriceResult] with sorted future prices and the source name.
+&nbsp;     * @throws RuntimeException if the initial API call fails and no cache exists.
+&nbsp;     */
+&nbsp;    fun getPrices(): PriceResult {
+<b class="fc">&nbsp;        val now = ZonedDateTime.now(clock)</b>
+&nbsp;
+<b class="fc">&nbsp;        val cached = cache.readCached(cacheKey)</b>
+<b class="pc">&nbsp;        var source = cached?.source ?: &quot;Unknown&quot;</b>
+<b class="fc">&nbsp;        var fetchedFromNetwork = false</b>
+<b class="fc">&nbsp;        var allPrices = if (cached != null) {</b>
+<b class="fc">&nbsp;            cached.prices.map { entry -&gt;</b>
+<b class="fc">&nbsp;                PriceSlot(</b>
+<b class="fc">&nbsp;                    time = Instant.ofEpochSecond(entry.epochSecond).atZone(timeZoneId),</b>
+<b class="fc">&nbsp;                    price = entry.price,</b>
+<b class="fc">&nbsp;                    durationMinutes = entry.durationMinutes</b>
+<b class="fc">&nbsp;                )</b>
+&nbsp;            }
+&nbsp;        } else {
+<b class="fc">&nbsp;            val result = fetchAndCache()</b>
+<b class="fc">&nbsp;            source = result.source</b>
+<b class="fc">&nbsp;            fetchedFromNetwork = true</b>
+<b class="fc">&nbsp;            result.prices</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        var filtered = filterFuture(allPrices, now)</b>
+&nbsp;
+&nbsp;        // If coverage is low, try re-fetching in case new data (e.g. tomorrow&#39;s prices)
+&nbsp;        // has been published since the last fetch. Respects a cooldown to avoid hammering.
+&nbsp;        // On failure, fall back to the stale cached data rather than crashing.
+<b class="fc">&nbsp;        val coverageMinutes = filtered.sumOf { it.durationMinutes.toLong() }</b>
+<b class="fc">&nbsp;        if (coverageMinutes &lt; MIN_COVERAGE_HOURS * 60 &amp;&amp; cache.isCooldownElapsed(COOLDOWN_MS)) {</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                val result = fetchAndCache()</b>
+<b class="fc">&nbsp;                source = result.source</b>
+<b class="fc">&nbsp;                allPrices = result.prices</b>
+<b class="fc">&nbsp;                filtered = filterFuture(allPrices, now)</b>
+<b class="fc">&nbsp;                fetchedFromNetwork = true</b>
+&nbsp;            } catch (e: Exception) {
+&nbsp;                // If we have some stale data, show it rather than crashing.
+&nbsp;                // If we have nothing, let the error propagate.
+<b class="fc">&nbsp;                if (filtered.isEmpty()) throw e</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return PriceResult(filtered, source, fromCache = !fetchedFromNetwork)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Filters out past slots, keeping only those whose end time is after [now].
+&nbsp;     *
+&nbsp;     * A slot is kept if its end time (`time + durationMinutes`) is after [now],
+&nbsp;     * which correctly retains the current slot regardless of its duration.
+&nbsp;     *
+&nbsp;     * @param prices All available prices (unfiltered).
+&nbsp;     * @param now Current time for the filter cutoff.
+&nbsp;     * @return Future prices sorted chronologically.
+&nbsp;     */
+&nbsp;    private fun filterFuture(prices: List&lt;PriceSlot&gt;, now: ZonedDateTime): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        return prices.filter { it.time.plusMinutes(it.durationMinutes.toLong()).isAfter(now) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Computes the date range for an API request: today&#39;s start to day-after-tomorrow&#39;s start.
+&nbsp;     *
+&nbsp;     * @return Pair of (from, to) instants in UTC.
+&nbsp;     */
+&nbsp;    private fun dateRange(): Pair&lt;Instant, Instant&gt; {
+<b class="fc">&nbsp;        val today = LocalDate.now(clock).atStartOfDay(timeZoneId)</b>
+<b class="fc">&nbsp;        val from = today.toInstant()</b>
+<b class="fc">&nbsp;        val to = today.plusDays(2).toInstant()</b>
+<b class="fc">&nbsp;        return from to to</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches fresh prices from the API and writes them to cache.
+&nbsp;     *
+&nbsp;     * @return A [PriceResult] with all price slots (unfiltered) and the source name.
+&nbsp;     */
+&nbsp;    private fun fetchAndCache(): PriceResult {
+<b class="fc">&nbsp;        val (from, to) = dateRange()</b>
+<b class="fc">&nbsp;        val fetchResult = fetcher.fetchPrices(from, to, timeZoneId)</b>
+<b class="fc">&nbsp;        cache.write(</b>
+<b class="fc">&nbsp;            cacheKey,</b>
+<b class="fc">&nbsp;            CachedPriceData(</b>
+<b class="fc">&nbsp;                source = fetchResult.source,</b>
+<b class="fc">&nbsp;                prices = fetchResult.prices.map {</b>
+<b class="fc">&nbsp;                    CachedPrice(it.time.toInstant().epochSecond, it.durationMinutes, it.price)</b>
+&nbsp;                }
+&nbsp;            )
+&nbsp;        )
+<b class="fc">&nbsp;        return PriceResult(fetchResult.prices, fetchResult.source)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 15:07</div>
+</div>
+</body>
+</html>

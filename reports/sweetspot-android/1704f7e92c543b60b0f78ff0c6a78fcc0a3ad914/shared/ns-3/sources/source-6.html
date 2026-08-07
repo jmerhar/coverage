@@ -1,0 +1,716 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > SettingsRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: SettingsRepository (today.sweetspot.data.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SettingsRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (53/53)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.8%
+  </span>
+  <span class="absValue">
+    (55/58)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (100/100)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.7%
+  </span>
+  <span class="absValue">
+    (756/758)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SettingsRepository$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    98.1%
+  </span>
+  <span class="absValue">
+    (53/54)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.8%
+  </span>
+  <span class="absValue">
+    (55/58)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99%
+  </span>
+  <span class="absValue">
+    (100/101)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.6%
+  </span>
+  <span class="absValue">
+    (756/759)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.repository
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import androidx.core.content.edit
+&nbsp;
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.Countries
+&nbsp;
+&nbsp;import today.sweetspot.model.PriceZone
+&nbsp;import java.time.Clock
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;
+&nbsp;/**
+&nbsp; * Persistence layer for user settings.
+&nbsp; *
+&nbsp; * Stores country/zone selection, timezone preference, and appliance list in SharedPreferences.
+&nbsp; * Appliances are JSON-serialized via kotlinx-serialization.
+&nbsp; *
+&nbsp; * @param context Android context for SharedPreferences access.
+&nbsp; */
+<b class="fc">&nbsp;class SettingsRepository(private val context: Context) {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val prefs = context.getSharedPreferences(&quot;sweetspot_settings&quot;, Context.MODE_PRIVATE)</b>
+&nbsp;
+&nbsp;    private companion object {
+&nbsp;        const val KEY_TIMEZONE_ID = &quot;zone_id&quot;
+&nbsp;        const val KEY_APPLIANCES = &quot;appliances&quot;
+&nbsp;        const val KEY_COUNTRY_CODE = &quot;country_code&quot;
+&nbsp;        const val KEY_EV_HOME_CHARGER_KW = &quot;ev_home_charger_kw&quot;
+&nbsp;        const val KEY_EV_DEFAULT_TARGET_SOC = &quot;ev_default_target_soc&quot;
+&nbsp;        const val KEY_EV_LAST_CURRENT_SOC = &quot;ev_last_current_soc&quot;
+&nbsp;        const val KEY_PRICE_ZONE_ID = &quot;price_zone_id&quot;
+&nbsp;        const val KEY_SOURCE_ORDER = &quot;source_order&quot;
+&nbsp;        const val KEY_DISABLED_SOURCES = &quot;disabled_sources&quot;
+&nbsp;        const val KEY_STATS_ENABLED = &quot;stats_enabled&quot;
+&nbsp;        const val KEY_STATS_PROMPT_SHOWN = &quot;stats_prompt_shown&quot;
+&nbsp;        const val KEY_FIRST_LAUNCH_MS = &quot;first_launch_ms&quot;
+&nbsp;        const val KEY_UNLOCKED = &quot;unlocked&quot;
+&nbsp;        const val KEY_DEV_OPTIONS = &quot;dev_options&quot;
+&nbsp;        const val KEY_DEV_UNLOCK = &quot;dev_unlock&quot;
+&nbsp;        const val KEY_COOLDOWN_DISABLED = &quot;cooldown_disabled&quot;
+&nbsp;        const val KEY_TIME_OVERRIDE = &quot;time_override&quot;
+&nbsp;        const val KEY_USE_PRODUCTION_LOGO = &quot;use_production_logo&quot;
+&nbsp;        const val KEY_THEME_MODE = &quot;theme_mode&quot;
+&nbsp;        const val KEY_ALL_IN_ENABLED = &quot;all_in_enabled&quot;
+&nbsp;        const val KEY_SUPPLIER_ID = &quot;all_in_supplier_id&quot;
+&nbsp;        const val KEY_MANUAL_SURCHARGE = &quot;all_in_manual_surcharge&quot;
+&nbsp;
+&nbsp;        /** Trial duration in days. */
+&nbsp;        const val TRIAL_DAYS = 14
+&nbsp;
+&nbsp;        /** Default home charger output in kW (a common 3-phase wall box). */
+&nbsp;        const val DEFAULT_HOME_CHARGER_KW = 11.0f
+&nbsp;
+&nbsp;        /** Default current state of charge (%) prefilled on the EV screen. */
+&nbsp;        const val DEFAULT_CURRENT_SOC = 20
+&nbsp;
+&nbsp;        /** Default target state of charge (%) prefilled on the EV screen. */
+&nbsp;        const val DEFAULT_TARGET_SOC = 80
+&nbsp;
+&nbsp;        /** Lenient parser that ignores unknown fields for forward compatibility. */
+<b class="pc">&nbsp;        val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Country &amp; Price Zone ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the stored country code, or auto-detects on first access.
+&nbsp;     *
+&nbsp;     * On first launch, uses [CountryDetector] to guess the country from SIM/network/locale/timezone.
+&nbsp;     * The detected value is persisted so detection only runs once.
+&nbsp;     */
+&nbsp;    fun getCountryCode(): String {
+<b class="fc">&nbsp;        val stored = prefs.getString(KEY_COUNTRY_CODE, null)</b>
+<b class="fc">&nbsp;        if (stored != null) return stored</b>
+&nbsp;
+<b class="fc">&nbsp;        val detected = CountryDetector.detect(context)</b>
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_COUNTRY_CODE, detected.code) }</b>
+<b class="fc">&nbsp;        return detected.code</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the selected country code.
+&nbsp;     *
+&nbsp;     * Also clears any custom source order, since available sources differ per country.
+&nbsp;     *
+&nbsp;     * @param code ISO 3166-1 alpha-2 country code.
+&nbsp;     */
+&nbsp;    fun setCountryCode(code: String) {
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_COUNTRY_CODE, code) }</b>
+<b class="fc">&nbsp;        clearSourceOrder()</b>
+<b class="fc">&nbsp;        clearDisabledSources()</b>
+&nbsp;        // The chosen supplier and any manual surcharge belong to the previous country&#39;s tariff feed
+&nbsp;        // (different suppliers, currency, and price magnitude); reset both.
+<b class="fc">&nbsp;        setSupplierId(null)</b>
+<b class="fc">&nbsp;        setManualSurcharge(null)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- All-in price ---
+&nbsp;
+&nbsp;    /** Whether the user has enabled the approximate all-in consumer price display. */
+<b class="fc">&nbsp;    fun isAllInEnabled(): Boolean = prefs.getBoolean(KEY_ALL_IN_ENABLED, false)</b>
+&nbsp;
+&nbsp;    /** Persists the all-in enabled preference. */
+&nbsp;    fun setAllInEnabled(enabled: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_ALL_IN_ENABLED, enabled) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns the chosen supplier id (from the tariff feed), or `null` if none is selected. */
+<b class="fc">&nbsp;    fun getSupplierId(): String? = prefs.getString(KEY_SUPPLIER_ID, null)</b>
+&nbsp;
+&nbsp;    /** Persists the chosen supplier id, or clears it when `null`. */
+&nbsp;    fun setSupplierId(id: String?) {
+<b class="fc">&nbsp;        if (id == null) {</b>
+<b class="fc">&nbsp;            prefs.edit { remove(KEY_SUPPLIER_ID) }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            prefs.edit { putString(KEY_SUPPLIER_ID, id) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the manual per-kWh surcharge override (ex-VAT), or `null` when unset.
+&nbsp;     *
+&nbsp;     * A manual override, when present, takes precedence over the chosen supplier&#39;s surcharge.
+&nbsp;     */
+&nbsp;    fun getManualSurcharge(): Double? =
+<b class="fc">&nbsp;        prefs.getString(KEY_MANUAL_SURCHARGE, null)?.toDoubleOrNull()</b>
+&nbsp;
+&nbsp;    /** Persists the manual surcharge override, or clears it when `null`. */
+&nbsp;    fun setManualSurcharge(value: Double?) {
+<b class="fc">&nbsp;        if (value == null) {</b>
+<b class="fc">&nbsp;            prefs.edit { remove(KEY_MANUAL_SURCHARGE) }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            prefs.edit { putString(KEY_MANUAL_SURCHARGE, value.toString()) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the stored price zone ID within the current country, or `null` if using the default (first zone).
+&nbsp;     */
+&nbsp;    fun getPriceZoneId(): String? {
+<b class="fc">&nbsp;        return prefs.getString(KEY_PRICE_ZONE_ID, null)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the selected price zone ID.
+&nbsp;     *
+&nbsp;     * @param id The [PriceZone.id], or `null` to use the country&#39;s first zone.
+&nbsp;     */
+&nbsp;    fun setPriceZoneId(id: String?) {
+<b class="fc">&nbsp;        if (id == null) {</b>
+<b class="fc">&nbsp;            prefs.edit { remove(KEY_PRICE_ZONE_ID) }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            prefs.edit { putString(KEY_PRICE_ZONE_ID, id) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resolves the current country and zone settings to a concrete [PriceZone].
+&nbsp;     *
+&nbsp;     * For single-zone countries, returns the only zone automatically.
+&nbsp;     * For multi-zone countries, returns the stored zone or `null` if the user
+&nbsp;     * hasn&#39;t made a selection yet (zone selection is mandatory).
+&nbsp;     *
+&nbsp;     * @return The resolved [PriceZone], or `null` if a multi-zone country has no selection.
+&nbsp;     */
+&nbsp;    fun getResolvedPriceZone(): PriceZone? {
+<b class="fc">&nbsp;        val country = Countries.findByCode(getCountryCode()) ?: Countries.defaultCountry()</b>
+<b class="fc">&nbsp;        val storedPriceZoneId = getPriceZoneId()</b>
+<b class="fc">&nbsp;        if (storedPriceZoneId != null) {</b>
+<b class="fc">&nbsp;            country.zones.find { it.id == storedPriceZoneId }?.let { return it }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return if (country.zones.size == 1) country.zones.first() else null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Timezone ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the effective timezone.
+&nbsp;     *
+&nbsp;     * Priority:
+&nbsp;     * 1. User&#39;s manually set timezone (if any)
+&nbsp;     * 2. Timezone derived from the selected price zone
+&nbsp;     * 3. System default (if no price zone is selected yet)
+&nbsp;     */
+&nbsp;    fun getTimeZoneId(): ZoneId {
+<b class="fc">&nbsp;        val stored = prefs.getString(KEY_TIMEZONE_ID, null)</b>
+<b class="fc">&nbsp;        if (stored != null) {</b>
+<b class="fc">&nbsp;            return try {</b>
+<b class="fc">&nbsp;                ZoneId.of(stored)</b>
+&nbsp;            } catch (_: Exception) {
+<b class="pc">&nbsp;                getResolvedPriceZone()?.let { ZoneId.of(it.timeZoneId) } ?: ZoneId.systemDefault()</b>
+&nbsp;            }
+&nbsp;        }
+<b class="pc">&nbsp;        return getResolvedPriceZone()?.let { ZoneId.of(it.timeZoneId) } ?: ZoneId.systemDefault()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists a custom timezone selection.
+&nbsp;     *
+&nbsp;     * @param timeZoneId The timezone to store.
+&nbsp;     */
+&nbsp;    fun setTimeZoneId(timeZoneId: ZoneId) {
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_TIMEZONE_ID, timeZoneId.id) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Removes the custom timezone, reverting to zone-derived default. */
+&nbsp;    fun clearTimeZoneId() {
+<b class="fc">&nbsp;        prefs.edit { remove(KEY_TIMEZONE_ID) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns `true` if no custom timezone has been set (using zone-derived default). */
+&nbsp;    fun isUsingDefaultTimezone(): Boolean {
+<b class="fc">&nbsp;        return prefs.getString(KEY_TIMEZONE_ID, null) == null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Data Source Order ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the user&#39;s preferred source display order, or `null` if using defaults.
+&nbsp;     *
+&nbsp;     * The list contains all source IDs in display/priority order (both enabled and disabled).
+&nbsp;     */
+&nbsp;    fun getSourceOrder(): List&lt;String&gt;? {
+<b class="fc">&nbsp;        val stored = prefs.getString(KEY_SOURCE_ORDER, null) ?: return null</b>
+&nbsp;        return try {
+<b class="fc">&nbsp;            json.decodeFromString&lt;List&lt;String&gt;&gt;(stored)</b>
+&nbsp;        } catch (_: Exception) {
+<b class="fc">&nbsp;            null</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the user&#39;s preferred source display order.
+&nbsp;     *
+&nbsp;     * @param order Ordered list of all source IDs (enabled and disabled).
+&nbsp;     */
+&nbsp;    fun setSourceOrder(order: List&lt;String&gt;) {
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_SOURCE_ORDER, json.encodeToString(order)) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Removes the custom source order, reverting to zone-specific defaults. */
+&nbsp;    fun clearSourceOrder() {
+<b class="fc">&nbsp;        prefs.edit { remove(KEY_SOURCE_ORDER) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the set of disabled source IDs.
+&nbsp;     *
+&nbsp;     * @return Set of disabled source IDs, or empty set if all enabled.
+&nbsp;     */
+&nbsp;    fun getDisabledSources(): Set&lt;String&gt; {
+<b class="fc">&nbsp;        val stored = prefs.getString(KEY_DISABLED_SOURCES, null) ?: return emptySet()</b>
+&nbsp;        return try {
+<b class="fc">&nbsp;            json.decodeFromString&lt;Set&lt;String&gt;&gt;(stored)</b>
+&nbsp;        } catch (_: Exception) {
+<b class="fc">&nbsp;            emptySet()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the set of disabled source IDs.
+&nbsp;     *
+&nbsp;     * @param disabled Set of source IDs to disable.
+&nbsp;     */
+&nbsp;    fun setDisabledSources(disabled: Set&lt;String&gt;) {
+<b class="fc">&nbsp;        if (disabled.isEmpty()) {</b>
+<b class="fc">&nbsp;            prefs.edit { remove(KEY_DISABLED_SOURCES) }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            prefs.edit { putString(KEY_DISABLED_SOURCES, json.encodeToString(disabled)) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Removes all disabled sources, re-enabling everything. */
+&nbsp;    fun clearDisabledSources() {
+<b class="fc">&nbsp;        prefs.edit { remove(KEY_DISABLED_SOURCES) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Appliances ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the user&#39;s saved appliances.
+&nbsp;     *
+&nbsp;     * @return List of appliances, or empty list if none saved or on parse error.
+&nbsp;     */
+&nbsp;    fun getAppliances(): List&lt;Appliance&gt; {
+<b class="fc">&nbsp;        val stored = prefs.getString(KEY_APPLIANCES, null) ?: return emptyList()</b>
+&nbsp;        return try {
+<b class="fc">&nbsp;            json.decodeFromString&lt;List&lt;Appliance&gt;&gt;(stored)</b>
+&nbsp;        } catch (_: Exception) {
+<b class="fc">&nbsp;            emptyList()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the full appliance list, replacing any previously stored list.
+&nbsp;     *
+&nbsp;     * @param appliances The appliances to store.
+&nbsp;     */
+&nbsp;    fun setAppliances(appliances: List&lt;Appliance&gt;) {
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_APPLIANCES, json.encodeToString(appliances)) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- EV charging ---
+&nbsp;
+&nbsp;    /** Returns the home charger output in kW. Defaults to 11.0 (a common 3-phase wall box). */
+&nbsp;    fun getEvHomeChargerKw(): Double =
+<b class="fc">&nbsp;        prefs.getFloat(KEY_EV_HOME_CHARGER_KW, DEFAULT_HOME_CHARGER_KW).toDouble()</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the home charger output.
+&nbsp;     *
+&nbsp;     * @param kw Charger output in kW.
+&nbsp;     */
+&nbsp;    fun setEvHomeChargerKw(kw: Double) {
+<b class="fc">&nbsp;        prefs.edit { putFloat(KEY_EV_HOME_CHARGER_KW, kw.toFloat()) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns the default target state of charge (0–100) used to prefill the charge prompt. Defaults to 80. */
+<b class="fc">&nbsp;    fun getEvDefaultTargetSoc(): Int = prefs.getInt(KEY_EV_DEFAULT_TARGET_SOC, DEFAULT_TARGET_SOC)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the default target state of charge.
+&nbsp;     *
+&nbsp;     * @param soc Target SoC (0–100).
+&nbsp;     */
+&nbsp;    fun setEvDefaultTargetSoc(soc: Int) {
+<b class="fc">&nbsp;        prefs.edit { putInt(KEY_EV_DEFAULT_TARGET_SOC, soc) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns the last-used current state of charge (0–100), used to prefill the prompt. Defaults to 20. */
+<b class="fc">&nbsp;    fun getEvLastCurrentSoc(): Int = prefs.getInt(KEY_EV_LAST_CURRENT_SOC, DEFAULT_CURRENT_SOC)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the last-used current state of charge.
+&nbsp;     *
+&nbsp;     * @param soc Current SoC (0–100).
+&nbsp;     */
+&nbsp;    fun setEvLastCurrentSoc(soc: Int) {
+<b class="fc">&nbsp;        prefs.edit { putInt(KEY_EV_LAST_CURRENT_SOC, soc) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Stats ---
+&nbsp;
+&nbsp;    /** Returns whether API stats collection is enabled. Defaults to `false`. */
+<b class="fc">&nbsp;    fun isStatsEnabled(): Boolean = prefs.getBoolean(KEY_STATS_ENABLED, false)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enables or disables API stats collection.
+&nbsp;     *
+&nbsp;     * @param enabled `true` to enable stats collection.
+&nbsp;     */
+&nbsp;    fun setStatsEnabled(enabled: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_STATS_ENABLED, enabled) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns whether the one-time stats opt-in prompt has been shown. */
+<b class="fc">&nbsp;    fun isStatsPromptShown(): Boolean = prefs.getBoolean(KEY_STATS_PROMPT_SHOWN, false)</b>
+&nbsp;
+&nbsp;    /** Marks the stats opt-in prompt as shown so it is never displayed again. */
+&nbsp;    fun setStatsPromptShown() {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_STATS_PROMPT_SHOWN, true) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the timestamp of the app&#39;s first launch, recording it if not yet set.
+&nbsp;     *
+&nbsp;     * Used to delay the stats opt-in prompt until the user has been active for a few days.
+&nbsp;     *
+&nbsp;     * @return Milliseconds since epoch of the first launch.
+&nbsp;     */
+&nbsp;    fun getFirstLaunchMs(): Long {
+<b class="fc">&nbsp;        val stored = prefs.getLong(KEY_FIRST_LAUNCH_MS, 0L)</b>
+<b class="fc">&nbsp;        if (stored != 0L) return stored</b>
+<b class="fc">&nbsp;        val now = System.currentTimeMillis()</b>
+<b class="fc">&nbsp;        prefs.edit { putLong(KEY_FIRST_LAUNCH_MS, now) }</b>
+<b class="fc">&nbsp;        return now</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Trial &amp; Unlock ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the number of full trial days remaining (0–14).
+&nbsp;     *
+&nbsp;     * Based on the elapsed time since [getFirstLaunchMs]. If the app has been unlocked,
+&nbsp;     * returns 0 (the caller should check [isUnlocked] separately).
+&nbsp;     */
+&nbsp;    fun trialDaysRemaining(): Int {
+<b class="fc">&nbsp;        val now = getTimeOverrideMs() ?: System.currentTimeMillis()</b>
+<b class="fc">&nbsp;        val elapsed = now - getFirstLaunchMs()</b>
+<b class="fc">&nbsp;        val elapsedDays = (elapsed / (24 * 60 * 60 * 1000L)).toInt()</b>
+<b class="fc">&nbsp;        return (TRIAL_DAYS - elapsedDays).coerceIn(0, TRIAL_DAYS)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns `true` if the free trial has expired and the app has not been unlocked.
+&nbsp;     *
+&nbsp;     * The trial lasts [TRIAL_DAYS] days from first launch. Returns `false` when the
+&nbsp;     * developer-only subscription bypass ([isDevUnlocked]) is enabled, so a developer
+&nbsp;     * can use the app on their own device without an active subscription.
+&nbsp;     */
+&nbsp;    fun isTrialExpired(): Boolean {
+<b class="fc">&nbsp;        if (isDevUnlocked()) return false</b>
+<b class="fc">&nbsp;        return trialDaysRemaining() &lt;= 0 &amp;&amp; !isUnlocked()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns `true` if the user has purchased the full unlock.
+&nbsp;     *
+&nbsp;     * This is cached locally in SharedPreferences so the unlock state works offline.
+&nbsp;     */
+<b class="fc">&nbsp;    fun isUnlocked(): Boolean = prefs.getBoolean(KEY_UNLOCKED, false)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Caches the unlock purchase state for offline access.
+&nbsp;     *
+&nbsp;     * @param unlocked `true` if the user has a valid purchase, `false` if revoked (e.g. refund).
+&nbsp;     */
+&nbsp;    fun setUnlocked(unlocked: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_UNLOCKED, unlocked) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Developer Options ---
+&nbsp;
+&nbsp;    /** Returns whether hidden developer options have been unlocked. */
+<b class="fc">&nbsp;    fun isDevOptionsEnabled(): Boolean = prefs.getBoolean(KEY_DEV_OPTIONS, false)</b>
+&nbsp;
+&nbsp;    /** Persistently enables hidden developer options. */
+&nbsp;    fun setDevOptionsEnabled() {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_DEV_OPTIONS, true) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns whether the developer-only subscription bypass is enabled.
+&nbsp;     *
+&nbsp;     * When `true`, [isTrialExpired] always returns `false`, so the paywall never
+&nbsp;     * blocks the app. Intended for use on the developer&#39;s own device during the
+&nbsp;     * testing phase, where Play test subscriptions expire every ~30 minutes.
+&nbsp;     */
+<b class="fc">&nbsp;    fun isDevUnlocked(): Boolean = prefs.getBoolean(KEY_DEV_UNLOCK, false)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enables or disables the developer-only subscription bypass.
+&nbsp;     *
+&nbsp;     * @param unlocked `true` to bypass the paywall locally, `false` to restore normal trial/paywall behaviour.
+&nbsp;     */
+&nbsp;    fun setDevUnlocked(unlocked: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_DEV_UNLOCK, unlocked) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns whether the API fetch cooldown is disabled (developer option). */
+<b class="fc">&nbsp;    fun isCooldownDisabled(): Boolean = prefs.getBoolean(KEY_COOLDOWN_DISABLED, false)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enables or disables the API fetch cooldown bypass.
+&nbsp;     *
+&nbsp;     * @param disabled `true` to skip the cooldown between API requests.
+&nbsp;     */
+&nbsp;    fun setCooldownDisabled(disabled: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_COOLDOWN_DISABLED, disabled) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the stored time override as epoch milliseconds, or `null` if no override is set.
+&nbsp;     *
+&nbsp;     * When set, the app behaves as if the current time is the override value,
+&nbsp;     * affecting price filtering, cheapest window calculation, and trial expiration.
+&nbsp;     */
+&nbsp;    fun getTimeOverrideMs(): Long? {
+<b class="fc">&nbsp;        val stored = prefs.getLong(KEY_TIME_OVERRIDE, 0L)</b>
+<b class="fc">&nbsp;        return if (stored != 0L) stored else null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets or clears the time override.
+&nbsp;     *
+&nbsp;     * @param ms Epoch milliseconds to use as the fake &quot;now&quot;, or `null` to clear.
+&nbsp;     */
+&nbsp;    fun setTimeOverrideMs(ms: Long?) {
+<b class="fc">&nbsp;        if (ms == null) {</b>
+<b class="fc">&nbsp;            prefs.edit { remove(KEY_TIME_OVERRIDE) }</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            prefs.edit { putLong(KEY_TIME_OVERRIDE, ms) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a [Clock] that respects the time override developer option.
+&nbsp;     *
+&nbsp;     * When a time override is set, returns a fixed clock at the override instant.
+&nbsp;     * Otherwise returns a normal system clock for the given timezone.
+&nbsp;     *
+&nbsp;     * @param timeZoneId The timezone for the clock.
+&nbsp;     */
+&nbsp;    fun devClock(timeZoneId: ZoneId): Clock {
+<b class="fc">&nbsp;        val overrideMs = getTimeOverrideMs()</b>
+<b class="fc">&nbsp;        return if (overrideMs != null) {</b>
+<b class="fc">&nbsp;            Clock.fixed(Instant.ofEpochMilli(overrideMs), timeZoneId)</b>
+<b class="fc">&nbsp;        } else {</b>
+<b class="fc">&nbsp;            Clock.system(timeZoneId)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Returns whether the production logo should be used instead of the debug logo. */
+<b class="fc">&nbsp;    fun isUseProductionLogo(): Boolean = prefs.getBoolean(KEY_USE_PRODUCTION_LOGO, false)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enables or disables the production logo override.
+&nbsp;     *
+&nbsp;     * @param use `true` to show the production logo in debug builds.
+&nbsp;     */
+&nbsp;    fun setUseProductionLogo(use: Boolean) {
+<b class="fc">&nbsp;        prefs.edit { putBoolean(KEY_USE_PRODUCTION_LOGO, use) }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Theme ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the user&#39;s preferred theme mode key.
+&nbsp;     *
+&nbsp;     * @return One of `&quot;system&quot;`, `&quot;light&quot;`, or `&quot;dark&quot;`. Defaults to `&quot;system&quot;`.
+&nbsp;     */
+&nbsp;    fun getThemeMode(): String {
+<b class="pc">&nbsp;        return prefs.getString(KEY_THEME_MODE, &quot;system&quot;) ?: &quot;system&quot;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persists the user&#39;s preferred theme mode key.
+&nbsp;     *
+&nbsp;     * @param mode One of `&quot;system&quot;`, `&quot;light&quot;`, or `&quot;dark&quot;`.
+&nbsp;     */
+&nbsp;    fun setThemeMode(mode: String) {
+<b class="fc">&nbsp;        prefs.edit { putString(KEY_THEME_MODE, mode) }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-12 09:34</div>
+</div>
+</body>
+</html>

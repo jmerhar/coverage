@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "3b77bbef394784ecca092ab24a44cfccb5628842",
+  "short_sha": "3b77bbef39",
+  "committed_at": "2026-07-28T21:08:01Z",
+  "message": "fix: render FAQ markdown, fix mobile language picker, refresh FAQ & privacy",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/3b77bbef394784ecca092ab24a44cfccb5628842",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "87.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "80.5%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

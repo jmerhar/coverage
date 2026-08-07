@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>wear Coverage Report > ResultScreenKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: wear<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.wear.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: ResultScreenKt (today.sweetspot.wear.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">ResultScreenKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.wear.ui
+&nbsp;
+&nbsp;import androidx.compose.foundation.layout.Box
+&nbsp;import androidx.compose.foundation.layout.fillMaxSize
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.platform.LocalContext
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.text.style.TextAlign
+&nbsp;import androidx.wear.compose.foundation.lazy.AutoCenteringParams
+&nbsp;import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+&nbsp;import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+&nbsp;import androidx.wear.compose.material.CircularProgressIndicator
+&nbsp;import androidx.wear.compose.material.MaterialTheme
+&nbsp;import androidx.wear.compose.material.Text
+&nbsp;import today.sweetspot.util.formatRelative
+&nbsp;import today.sweetspot.util.resolve
+&nbsp;import today.sweetspot.util.shortTimeFormatter
+&nbsp;import today.sweetspot.wear.R
+&nbsp;import today.sweetspot.wear.WearUiState
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZonedDateTime
+&nbsp;
+&nbsp;/**
+&nbsp; * Result screen for the Wear OS app.
+&nbsp; *
+&nbsp; * Shows the cheapest start and end times for the selected appliance, along with
+&nbsp; * relative time indicators (e.g. &quot;now&quot;, &quot;in 2h 30m&quot;) that update every 60 seconds.
+&nbsp; * Scrollable to accommodate longer appliance labels on small watch faces.
+&nbsp; *
+&nbsp; * @param state Current UI state containing the result.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;fun ResultScreen(
+&nbsp;    state: WearUiState
+&nbsp;) {
+&nbsp;    val resources = LocalContext.current.resources
+&nbsp;
+&nbsp;    if (state.isLoading) {
+&nbsp;        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+&nbsp;            CircularProgressIndicator()
+&nbsp;        }
+&nbsp;        return
+&nbsp;    }
+&nbsp;
+&nbsp;    if (state.error != null) {
+&nbsp;        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+&nbsp;            Text(
+&nbsp;                text = state.error.resolve(resources),
+&nbsp;                color = MaterialTheme.colors.error,
+&nbsp;                style = MaterialTheme.typography.body2,
+&nbsp;                textAlign = TextAlign.Center
+&nbsp;            )
+&nbsp;        }
+&nbsp;        return
+&nbsp;    }
+&nbsp;
+&nbsp;    val result = state.result
+&nbsp;    if (result == null) {
+&nbsp;        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+&nbsp;            Text(
+&nbsp;                text = stringResource(R.string.wear_no_result),
+&nbsp;                style = MaterialTheme.typography.body2,
+&nbsp;                textAlign = TextAlign.Center
+&nbsp;            )
+&nbsp;        }
+&nbsp;        return
+&nbsp;    }
+&nbsp;
+&nbsp;    val timeZoneId = remember(state.priceZone) { ZoneId.of(state.priceZone!!.timeZoneId) }
+&nbsp;    val now = ZonedDateTime.now(timeZoneId)
+&nbsp;    // Centre on the label item (index 3: Start caption, time, relative, then label)
+&nbsp;    val listState = rememberScalingLazyListState(initialCenterItemIndex = 3)
+&nbsp;
+&nbsp;    ScalingLazyColumn(
+&nbsp;        modifier = Modifier.fillMaxSize(),
+&nbsp;        state = listState,
+&nbsp;        horizontalAlignment = Alignment.CenterHorizontally,
+&nbsp;        autoCentering = AutoCenteringParams(itemIndex = 3)
+&nbsp;    ) {
+&nbsp;        // Start time
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = stringResource(R.string.wear_start),
+&nbsp;                style = MaterialTheme.typography.caption2,
+&nbsp;                color = MaterialTheme.colors.onSurfaceVariant
+&nbsp;            )
+&nbsp;        }
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = result.startTime.format(shortTimeFormatter),
+&nbsp;                style = MaterialTheme.typography.display3
+&nbsp;            )
+&nbsp;        }
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = formatRelative(result.startTime, now, resources),
+&nbsp;                style = MaterialTheme.typography.caption2,
+&nbsp;                color = MaterialTheme.colors.primary
+&nbsp;            )
+&nbsp;        }
+&nbsp;
+&nbsp;        // Appliance label (centred between start/end for max horizontal space)
+&nbsp;        if (state.resultLabel != null) {
+&nbsp;            item {
+&nbsp;                Text(
+&nbsp;                    text = state.resultLabel.resolve(resources),
+&nbsp;                    style = MaterialTheme.typography.caption1,
+&nbsp;                    color = MaterialTheme.colors.onSurfaceVariant,
+&nbsp;                    textAlign = TextAlign.Center
+&nbsp;                )
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        // End time
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = stringResource(R.string.wear_end),
+&nbsp;                style = MaterialTheme.typography.caption2,
+&nbsp;                color = MaterialTheme.colors.onSurfaceVariant
+&nbsp;            )
+&nbsp;        }
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = result.endTime.format(shortTimeFormatter),
+&nbsp;                style = MaterialTheme.typography.display3
+&nbsp;            )
+&nbsp;        }
+&nbsp;        item {
+&nbsp;            Text(
+&nbsp;                text = formatRelative(result.endTime, now, resources),
+&nbsp;                style = MaterialTheme.typography.caption2,
+&nbsp;                color = MaterialTheme.colors.primary
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:28</div>
+</div>
+</body>
+</html>

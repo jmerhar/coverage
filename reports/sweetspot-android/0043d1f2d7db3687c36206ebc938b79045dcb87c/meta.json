@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "0043d1f2d7db3687c36206ebc938b79045dcb87c",
+  "short_sha": "0043d1f2d7",
+  "committed_at": "2026-07-14T08:40:26Z",
+  "message": "fix(site): add .nojekyll so GitHub Pages serves the /.well-known/ App Links file",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/0043d1f2d7db3687c36206ebc938b79045dcb87c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

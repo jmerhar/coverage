@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "7b4a2e25a087378f9fa2903779b1de2b3387377b",
+  "short_sha": "7b4a2e25a0",
+  "committed_at": "2026-07-31T16:21:40Z",
+  "message": "chore: add bin/psi.mjs \u2014 self-serve PageSpeed Insights reports",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/7b4a2e25a087378f9fa2903779b1de2b3387377b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    }
+  ]
+}

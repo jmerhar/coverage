@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "526c386ba2d2e64596e8fd2365882c44c8baee00",
+  "short_sha": "526c386ba2",
+  "committed_at": "2026-07-30T13:24:26Z",
+  "message": "feat: single reversible share token as the ID, shown inline; fix result tiles",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/526c386ba2d2e64596e8fd2365882c44c8baee00",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.8%"
+      }
+    }
+  ]
+}

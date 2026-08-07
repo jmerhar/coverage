@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "09639d4fe9cdab944044deaad15c0ba56f934659",
+  "short_sha": "09639d4fe9",
+  "committed_at": "2026-07-30T11:13:04Z",
+  "message": "feat: glossary/tile/share/print polish, favicon, and public .npmrc",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/09639d4fe9cdab944044deaad15c0ba56f934659",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "86.4%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "86.4%"
+      }
+    }
+  ]
+}

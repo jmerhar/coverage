@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "5975515a9a6ec032dfba5057fbd6566fb5f93a6d",
+  "short_sha": "5975515a9a",
+  "committed_at": "2026-07-30T20:38:58Z",
+  "message": "ci: pass CODECOV_TOKEN to the Codecov upload",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/5975515a9a6ec032dfba5057fbd6566fb5f93a6d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.7%",
+        "branch": "83.2%"
+      }
+    }
+  ]
+}

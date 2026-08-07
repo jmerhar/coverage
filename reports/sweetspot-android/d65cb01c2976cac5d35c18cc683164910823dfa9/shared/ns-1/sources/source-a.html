@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > GithubIssueApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: GithubIssueApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">GithubIssueApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    31.2%
+  </span>
+  <span class="absValue">
+    (5/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38.4%
+  </span>
+  <span class="absValue">
+    (43/112)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import kotlinx.serialization.SerialName
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;
+&nbsp;/** Public status of a GitHub issue, for the in-app &quot;My reports&quot; tracker. */
+&nbsp;data class IssueStatus(
+&nbsp;    val number: Int,
+&nbsp;    val state: String,
+&nbsp;    val title: String,
+&nbsp;    val comments: Int,
+&nbsp;    val htmlUrl: String
+&nbsp;)
+&nbsp;
+&nbsp;/** The subset of GitHub&#39;s issue JSON that &quot;My reports&quot; needs. */
+&nbsp;@Serializable
+&nbsp;internal data class GithubIssueDto(
+&nbsp;    val number: Int,
+&nbsp;    val state: String,
+&nbsp;    val title: String = &quot;&quot;,
+&nbsp;    val comments: Int = 0,
+&nbsp;    @SerialName(&quot;html_url&quot;) val htmlUrl: String = &quot;&quot;
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Reads **public** GitHub issue status for the in-app &quot;My reports&quot; screen. A public repo needs no
+&nbsp; * auth (60 requests/hour per IP), so the app tracks reports it submitted via the feedback Worker
+&nbsp; * without ever holding a token. Follows the three-layer API pattern (`fetch` → `fetchRaw` + `parse`,
+&nbsp; * `HttpException` on non-2xx) used by the price APIs; `fetchRaw`/`parse` are public for tests.
+&nbsp; */
+&nbsp;open class GithubIssueApi(
+<b class="fc">&nbsp;    private val repo: String = &quot;jmerhar/sweetspot-android&quot;,</b>
+<b class="fc">&nbsp;    private val client: OkHttpClient = sharedHttpClient</b>
+&nbsp;) {
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    /** Fetches and parses the current status of issue [number]. `open` so tests can fake it. */
+<b class="nc">&nbsp;    open fun fetch(number: Int): IssueStatus = parse(fetchRaw(number))</b>
+&nbsp;
+&nbsp;    /** Raw issue JSON from the public GitHub REST API. */
+&nbsp;    fun fetchRaw(number: Int): String {
+<b class="nc">&nbsp;        val request = Request.Builder()</b>
+<b class="nc">&nbsp;            .url(&quot;https://api.github.com/repos/$repo/issues/$number&quot;)</b>
+<b class="nc">&nbsp;            .header(&quot;Accept&quot;, &quot;application/vnd.github+json&quot;)</b>
+<b class="nc">&nbsp;            .header(&quot;User-Agent&quot;, &quot;SweetSpot-app&quot;)</b>
+<b class="nc">&nbsp;            .get()</b>
+<b class="nc">&nbsp;            .build()</b>
+<b class="nc">&nbsp;        return client.newCall(request).execute().use { response -&gt;</b>
+<b class="nc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="nc">&nbsp;                throw HttpException(response.code, &quot;GitHub API returned ${response.code}&quot;)</b>
+&nbsp;            }
+<b class="nc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Parses raw issue JSON into an [IssueStatus]. */
+&nbsp;    fun parse(raw: String): IssueStatus {
+<b class="fc">&nbsp;        val dto = json.decodeFromString&lt;GithubIssueDto&gt;(raw)</b>
+<b class="fc">&nbsp;        return IssueStatus(dto.number, dto.state, dto.title, dto.comments, dto.htmlUrl)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-28 20:52</div>
+</div>
+</body>
+</html>

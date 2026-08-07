@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "da8d17d2cc40bc3139055c39384e94233c357986",
+  "short_sha": "da8d17d2cc",
+  "committed_at": "2026-07-14T08:25:23Z",
+  "message": "feat: share your setup with another household device via QR or link",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/da8d17d2cc40bc3139055c39384e94233c357986",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.5%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

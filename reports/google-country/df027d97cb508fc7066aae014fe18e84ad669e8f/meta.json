@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "df027d97cb508fc7066aae014fe18e84ad669e8f",
+  "short_sha": "df027d97cb",
+  "committed_at": "2026-08-07T09:54:54Z",
+  "message": "chore(ci): bump Actions to node24 majors and add Dependabot (#1)",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/df027d97cb508fc7066aae014fe18e84ad669e8f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}

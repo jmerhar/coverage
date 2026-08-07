@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "3866bb2f8339e00852dd97c8f8f6bce663138891",
+  "short_sha": "3866bb2f83",
+  "committed_at": "2026-08-07T15:42:51Z",
+  "message": "ci: run CI once per pull request (#3)",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/3866bb2f8339e00852dd97c8f8f6bce663138891",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "7b7dc4f50a73c9771da0e283b6e76ae4a0e7a0ec",
+  "short_sha": "7b7dc4f50a",
+  "committed_at": "2026-07-28T07:15:59Z",
+  "message": "feat: add contextual coach marks for advanced controls",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/7b7dc4f50a73c9771da0e283b6e76ae4a0e7a0ec",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

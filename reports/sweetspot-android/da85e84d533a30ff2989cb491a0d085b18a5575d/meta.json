@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "da85e84d533a30ff2989cb491a0d085b18a5575d",
+  "short_sha": "da85e84d53",
+  "committed_at": "2026-07-13T13:55:43Z",
+  "message": "feat: show electric vehicles with a car icon",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/da85e84d533a30ff2989cb491a0d085b18a5575d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.3%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.5%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "81.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.2%",
+        "branch": "83.3%"
+      }
+    }
+  ]
+}

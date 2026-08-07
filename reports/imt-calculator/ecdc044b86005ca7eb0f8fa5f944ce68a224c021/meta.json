@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ecdc044b86005ca7eb0f8fa5f944ce68a224c021",
+  "short_sha": "ecdc044b86",
+  "committed_at": "2026-07-30T14:10:48Z",
+  "message": "fix: match segmented-toggle height to selects and number inputs",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ecdc044b86005ca7eb0f8fa5f944ce68a224c021",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "97.0%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}

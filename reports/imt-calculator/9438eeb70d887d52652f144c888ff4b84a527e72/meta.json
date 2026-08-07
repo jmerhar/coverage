@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "9438eeb70d887d52652f144c888ff4b84a527e72",
+  "short_sha": "9438eeb70d",
+  "committed_at": "2026-07-30T21:25:06Z",
+  "message": "feat: track calculator usage, actions and errors in GA",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/9438eeb70d887d52652f144c888ff4b84a527e72",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    }
+  ]
+}

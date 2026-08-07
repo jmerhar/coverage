@@ -1,0 +1,325 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > AllInPricing</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: AllInPricing (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">AllInPricing</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (156/156)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AllInPricing$AllInComponents</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AllInPricing$PriceBreakdown</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (190/190)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import today.sweetspot.model.TaxComponent
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure functions turning a bare spot price into an approximate all-in consumer price.
+&nbsp; *
+&nbsp; * The transform is **display-only**: it is affine and monotonically increasing in the spot price, so
+&nbsp; * applying it uniformly to a price series never changes which window is cheapest — only the displayed
+&nbsp; * cost. Because [PriceSlot.price] feeds every downstream cost/chart calculation, mapping the price list
+&nbsp; * through [applyAllIn] is enough to make the whole results screen reflect all-in figures.
+&nbsp; *
+&nbsp; * Formula: `allIn = (spot + Σ perKwh-tax.value + surcharge) × Π(1 + percentage-tax.value)`. Per-kWh
+&nbsp; * taxes (e.g. energy tax) and the supplier surcharge are additive and ex-VAT; percentage taxes
+&nbsp; * (e.g. VAT) are multiplicative and applied last.
+&nbsp; */
+&nbsp;object AllInPricing {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The VAT-inclusive fixed portion of the all-in price — the part that does not vary with the
+&nbsp;     * spot price and is therefore identical for every slot in a series.
+&nbsp;     *
+&nbsp;     * Each field is a per-kWh amount with the percentage taxes (e.g. VAT) already folded in, so a
+&nbsp;     * slot&#39;s all-in total decomposes cleanly as `energyTax + surcharge + spot × Π(1 + percentage)`.
+&nbsp;     * The chart uses this to draw the constant left-hand block of every bar and derive the
+&nbsp;     * time-varying spot tip as `total − fixedTotal`.
+&nbsp;     *
+&nbsp;     * @property energyTax Per-kWh taxes (summed), VAT-inclusive.
+&nbsp;     * @property surcharge Supplier per-kWh surcharge, VAT-inclusive.
+&nbsp;     */
+<b class="fc">&nbsp;    data class AllInComponents(</b>
+<b class="fc">&nbsp;        val energyTax: Double,</b>
+<b class="fc">&nbsp;        val surcharge: Double,</b>
+&nbsp;    ) {
+&nbsp;        /** Combined VAT-inclusive fixed cost per kWh (energy tax + surcharge). */
+<b class="fc">&nbsp;        val fixedTotal: Double get() = energyTax + surcharge</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * An all-in price split into its VAT-inclusive parts for display (e.g. a chart tooltip).
+&nbsp;     *
+&nbsp;     * The three parts sum to the all-in total: `spot + energyTax + surcharge == total`.
+&nbsp;     *
+&nbsp;     * @property spot Spot portion (VAT-inclusive); negative when the market price is below zero.
+&nbsp;     * @property energyTax Per-kWh taxes (VAT-inclusive).
+&nbsp;     * @property surcharge Supplier surcharge (VAT-inclusive).
+&nbsp;     */
+<b class="fc">&nbsp;    data class PriceBreakdown(</b>
+<b class="fc">&nbsp;        val spot: Double,</b>
+<b class="fc">&nbsp;        val energyTax: Double,</b>
+<b class="fc">&nbsp;        val surcharge: Double,</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Splits an all-in [total] into its display components using the fixed [components]. The spot
+&nbsp;     * part is whatever remains after the constant fixed block (`total − fixedTotal`).
+&nbsp;     *
+&nbsp;     * @param total The all-in price for a slot.
+&nbsp;     * @param components The VAT-inclusive fixed components.
+&nbsp;     * @return The spot/energy-tax/surcharge breakdown summing to [total].
+&nbsp;     */
+&nbsp;    fun breakdown(total: Double, components: AllInComponents): PriceBreakdown =
+<b class="fc">&nbsp;        PriceBreakdown(</b>
+<b class="fc">&nbsp;            spot = total - components.fixedTotal,</b>
+<b class="fc">&nbsp;            energyTax = components.energyTax,</b>
+<b class="fc">&nbsp;            surcharge = components.surcharge,</b>
+&nbsp;        )
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Decomposes the fixed (spot-independent) part of the all-in price into its VAT-inclusive
+&nbsp;     * components, using the same per-kWh/percentage folding as [marginal].
+&nbsp;     *
+&nbsp;     * The result satisfies `components(taxes, s).fixedTotal + spot × Π(1 + percentage) ==
+&nbsp;     * marginal(spot, taxes, s)` for any `spot`, so the fixed block plus the VAT-inclusive spot tip
+&nbsp;     * always sums to the all-in total.
+&nbsp;     *
+&nbsp;     * @param taxes Country tax components (per-kWh additive + percentage multipliers).
+&nbsp;     * @param surchargePerKwh Chosen supplier&#39;s per-kWh surcharge (ex-VAT).
+&nbsp;     * @return The VAT-inclusive fixed components (energy tax + surcharge).
+&nbsp;     */
+&nbsp;    fun components(taxes: List&lt;TaxComponent&gt;, surchargePerKwh: Double): AllInComponents {
+<b class="fc">&nbsp;        val additive = taxes.filter { it.type == TaxComponent.TYPE_PER_KWH }.sumOf { it.value }</b>
+<b class="fc">&nbsp;        val multiplier = taxes</b>
+<b class="fc">&nbsp;            .filter { it.type == TaxComponent.TYPE_PERCENTAGE }</b>
+<b class="fc">&nbsp;            .fold(1.0) { acc, tax -&gt; acc * (1.0 + tax.value) }</b>
+<b class="fc">&nbsp;        return AllInComponents(</b>
+<b class="fc">&nbsp;            energyTax = additive * multiplier,</b>
+<b class="fc">&nbsp;            surcharge = surchargePerKwh * multiplier,</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Computes the all-in price for a single spot price.
+&nbsp;     *
+&nbsp;     * @param spot Bare spot price (e.g. EUR/kWh).
+&nbsp;     * @param taxes Country tax components (per-kWh additive + percentage multipliers).
+&nbsp;     * @param surchargePerKwh Chosen supplier&#39;s per-kWh surcharge (ex-VAT).
+&nbsp;     * @return The all-in consumer price for [spot].
+&nbsp;     */
+&nbsp;    fun marginal(spot: Double, taxes: List&lt;TaxComponent&gt;, surchargePerKwh: Double): Double {
+<b class="fc">&nbsp;        val additive = taxes.filter { it.type == TaxComponent.TYPE_PER_KWH }.sumOf { it.value }</b>
+<b class="fc">&nbsp;        val multiplier = taxes</b>
+<b class="fc">&nbsp;            .filter { it.type == TaxComponent.TYPE_PERCENTAGE }</b>
+<b class="fc">&nbsp;            .fold(1.0) { acc, tax -&gt; acc * (1.0 + tax.value) }</b>
+<b class="fc">&nbsp;        return (spot + additive + surchargePerKwh) * multiplier</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a copy of [prices] with each slot&#39;s price mapped to its all-in value (time and duration
+&nbsp;     * preserved), so all downstream cost/chart code reflects all-in automatically.
+&nbsp;     */
+&nbsp;    fun applyAllIn(
+&nbsp;        prices: List&lt;PriceSlot&gt;,
+&nbsp;        taxes: List&lt;TaxComponent&gt;,
+&nbsp;        surchargePerKwh: Double
+<b class="fc">&nbsp;    ): List&lt;PriceSlot&gt; = prices.map { it.copy(price = marginal(it.price, taxes, surchargePerKwh)) }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-20 22:35</div>
+</div>
+</body>
+</html>

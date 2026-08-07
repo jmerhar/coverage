@@ -1,0 +1,225 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > FormatUtilsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.util</a>
+</div>
+
+<h1>Coverage Summary for Class: FormatUtilsKt (today.sweetspot.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">FormatUtilsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (250/250)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.util
+&nbsp;
+&nbsp;import android.content.res.Resources
+&nbsp;import today.sweetspot.shared.R
+&nbsp;import java.text.NumberFormat
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;import java.util.Currency
+&nbsp;import java.util.Locale
+&nbsp;
+&nbsp;/** 24-hour short time formatter (e.g. &quot;14:00&quot;). All 30 supported countries use 24h format. */
+<b class="fc">&nbsp;val shortTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Formats a kW value, dropping the decimal for whole numbers (11.0 → &quot;11&quot;, 7.4 → &quot;7.4&quot;).
+&nbsp; *
+&nbsp; * Uses the device locale for the decimal separator.
+&nbsp; *
+&nbsp; * @param value Power in kW.
+&nbsp; * @return Formatted kW string without a unit suffix.
+&nbsp; */
+&nbsp;fun formatKw(value: Double): String =
+<b class="fc">&nbsp;    if (value == value.toLong().toDouble()) value.toLong().toString()</b>
+<b class="fc">&nbsp;    else String.format(Locale.getDefault(), &quot;%.1f&quot;, value)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Formats an hour/minute pair as a 24-hour &quot;HH:mm&quot; label (e.g. 7, 5 → &quot;07:05&quot;).
+&nbsp; *
+&nbsp; * @param hour Hour of day (0–23).
+&nbsp; * @param minute Minute (0–59).
+&nbsp; * @return Zero-padded &quot;HH:mm&quot; string.
+&nbsp; */
+&nbsp;fun formatHhMm(hour: Int, minute: Int): String =
+<b class="fc">&nbsp;    String.format(Locale.getDefault(), &quot;%02d:%02d&quot;, hour, minute)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Formats a price using the device locale&#39;s currency conventions.
+&nbsp; *
+&nbsp; * Handles symbol placement (before/after), decimal separator, thousands separator,
+&nbsp; * and spacing automatically per locale. For example, `formatPrice(0.0877, 4)` produces
+&nbsp; * `&quot;€ 0,0877&quot;` in Dutch but `&quot;0,0877 €&quot;` in German.
+&nbsp; *
+&nbsp; * @param price Price amount.
+&nbsp; * @param decimals Number of decimal places to display.
+&nbsp; * @param currencyCode ISO 4217 currency code (defaults to EUR, the spot-price currency). An
+&nbsp; *   unrecognised code falls back to EUR so a bad feed never crashes formatting.
+&nbsp; * @return Locale-formatted currency string.
+&nbsp; */
+<b class="fc">&nbsp;fun formatPrice(price: Double, decimals: Int, currencyCode: String = &quot;EUR&quot;): String {</b>
+<b class="fc">&nbsp;    val formatter = NumberFormat.getCurrencyInstance(Locale.getDefault()).apply {</b>
+<b class="fc">&nbsp;        currency = runCatching { Currency.getInstance(currencyCode) }.getOrDefault(Currency.getInstance(&quot;EUR&quot;))</b>
+<b class="fc">&nbsp;        minimumFractionDigits = decimals</b>
+<b class="fc">&nbsp;        maximumFractionDigits = decimals</b>
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;    return formatter.format(price)</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Returns the display symbol for a currency code (e.g. &quot;EUR&quot; → &quot;€&quot;), in the device locale.
+&nbsp; * Falls back to the code itself if it isn&#39;t a recognised ISO 4217 currency.
+&nbsp; *
+&nbsp; * @param currencyCode ISO 4217 currency code.
+&nbsp; * @return The locale-specific currency symbol, or the code on failure.
+&nbsp; */
+&nbsp;fun currencySymbol(currencyCode: String): String =
+<b class="fc">&nbsp;    runCatching { Currency.getInstance(currencyCode).getSymbol(Locale.getDefault()) }.getOrDefault(currencyCode)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Formats a duration as a human-readable string.
+&nbsp; *
+&nbsp; * When [resources] is provided, uses localised string resources. When `null`, falls back
+&nbsp; * to English formatting so existing tests work without an Android context.
+&nbsp; *
+&nbsp; * @param hours Hours component (0–24).
+&nbsp; * @param minutes Minutes component (0–55).
+&nbsp; * @param resources Optional Android resources for localised formatting.
+&nbsp; * @return Formatted string like &quot;2h&quot;, &quot;30m&quot;, or &quot;2h 30m&quot;.
+&nbsp; *         Returns &quot;0m&quot; when both hours and minutes are zero.
+&nbsp; */
+<b class="fc">&nbsp;fun formatDuration(hours: Int, minutes: Int, resources: Resources? = null): String {</b>
+&nbsp;    // Branch on the localisation mode once, rather than per line: `resources?.getX(...) ?: english`
+&nbsp;    // on every arm would add an unreachable &quot;resources non-null but getX returned null&quot; branch to
+&nbsp;    // each line. This keeps the English fallback for pure (non-Robolectric) tests while leaving only
+&nbsp;    // real, coverable branches.
+<b class="fc">&nbsp;    return if (resources != null) {</b>
+<b class="fc">&nbsp;        when {</b>
+<b class="fc">&nbsp;            hours == 0 -&gt; resources.getString(R.string.duration_minutes_only, minutes)</b>
+<b class="fc">&nbsp;            minutes == 0 -&gt; resources.getQuantityString(R.plurals.duration_hours_only, hours, hours)</b>
+<b class="fc">&nbsp;            else -&gt; resources.getQuantityString(R.plurals.duration_hours_minutes, hours, hours, minutes)</b>
+&nbsp;        }
+&nbsp;    } else {
+<b class="fc">&nbsp;        when {</b>
+<b class="fc">&nbsp;            hours == 0 -&gt; &quot;${minutes}m&quot;</b>
+<b class="fc">&nbsp;            minutes == 0 -&gt; &quot;${hours}h&quot;</b>
+<b class="fc">&nbsp;            else -&gt; &quot;${hours}h ${minutes}m&quot;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-15 09:08</div>
+</div>
+</body>
+</html>

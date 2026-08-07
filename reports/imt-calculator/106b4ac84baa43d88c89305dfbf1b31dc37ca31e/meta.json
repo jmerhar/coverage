@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "106b4ac84baa43d88c89305dfbf1b31dc37ca31e",
+  "short_sha": "106b4ac84b",
+  "committed_at": "2026-07-30T21:08:17Z",
+  "message": "feat: per-route GA page views (SPA tracking)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/106b4ac84baa43d88c89305dfbf1b31dc37ca31e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "88.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "88.8%"
+      }
+    }
+  ]
+}

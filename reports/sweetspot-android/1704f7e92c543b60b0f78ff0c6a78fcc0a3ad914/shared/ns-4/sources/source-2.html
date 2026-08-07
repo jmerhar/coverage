@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > FileStatsCollector</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.stats</a>
+</div>
+
+<h1>Coverage Summary for Class: FileStatsCollector (today.sweetspot.data.stats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">FileStatsCollector</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.4%
+  </span>
+  <span class="absValue">
+    (222/228)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.stats
+&nbsp;
+&nbsp;import java.io.DataInputStream
+&nbsp;import java.io.DataOutputStream
+&nbsp;import java.io.EOFException
+&nbsp;import java.io.File
+&nbsp;import java.io.FileOutputStream
+&nbsp;
+&nbsp;/**
+&nbsp; * File-backed [StatsCollector] using an append-only binary format.
+&nbsp; *
+&nbsp; * Each record is appended individually to avoid reading and rewriting the entire file.
+&nbsp; * The file is stored in [cacheDir] as `api_stats_v2.bin` — using cache storage is intentional
+&nbsp; * since the data is transient (meant to be sent and deleted). If the system clears it,
+&nbsp; * only unreported stats are lost, which is acceptable.
+&nbsp; *
+&nbsp; * Binary format per record: see [StatsRecord.writeTo].
+&nbsp; *
+&nbsp; * @param cacheDir The directory to store the stats file in.
+&nbsp; */
+<b class="fc">&nbsp;class FileStatsCollector(private val cacheDir: File) : StatsCollector {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val file = File(cacheDir, &quot;api_stats_v2.bin&quot;)</b>
+<b class="fc">&nbsp;    private val legacyFile = File(cacheDir, &quot;api_stats.bin&quot;)</b>
+<b class="fc">&nbsp;    private val lock = Any()</b>
+&nbsp;
+<b class="fc">&nbsp;    init {</b>
+&nbsp;        // Delete incompatible v1 stats file (no durationMs field).
+<b class="fc">&nbsp;        if (legacyFile.exists()) legacyFile.delete()</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    override fun record(record: StatsRecord) {
+<b class="fc">&nbsp;        synchronized(lock) {</b>
+<b class="pc">&nbsp;            DataOutputStream(FileOutputStream(file, true).buffered()).use { out -&gt;</b>
+<b class="fc">&nbsp;                StatsRecord.writeTo(record, out)</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun readAll(): List&lt;StatsRecord&gt; {
+<b class="fc">&nbsp;        synchronized(lock) {</b>
+<b class="fc">&nbsp;            if (!file.exists()) return emptyList()</b>
+<b class="fc">&nbsp;            return try {</b>
+<b class="pc">&nbsp;                DataInputStream(file.inputStream().buffered()).use { input -&gt;</b>
+<b class="fc">&nbsp;                    val records = mutableListOf&lt;StatsRecord&gt;()</b>
+<b class="fc">&nbsp;                    while (true) {</b>
+&nbsp;                        try {
+<b class="fc">&nbsp;                            records.add(StatsRecord.readFrom(input))</b>
+&nbsp;                        } catch (_: EOFException) {
+&nbsp;                            break
+&nbsp;                        } catch (_: Exception) {
+&nbsp;                            break // partial corruption — keep records read so far
+&nbsp;                        }
+&nbsp;                    }
+<b class="fc">&nbsp;                    records</b>
+&nbsp;                }
+&nbsp;            } catch (_: Exception) {
+<b class="fc">&nbsp;                emptyList()</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun clear() {
+<b class="fc">&nbsp;        synchronized(lock) {</b>
+<b class="fc">&nbsp;            file.delete()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-12 09:34</div>
+</div>
+</body>
+</html>

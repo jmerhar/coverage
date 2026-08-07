@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "042a291846e35ec046328157fb92974bea33e3a2",
+  "short_sha": "042a291846",
+  "committed_at": "2026-07-31T19:15:41Z",
+  "message": "fix: IMT Jovem also exempts the 0.8% acquisition stamp duty",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/042a291846e35ec046328157fb92974bea33e3a2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}

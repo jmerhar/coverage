@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ApplianceIcon</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ApplianceIcon (today.sweetspot.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApplianceIcon</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.model
+&nbsp;
+&nbsp;import androidx.annotation.DrawableRes
+&nbsp;import androidx.annotation.StringRes
+&nbsp;import today.sweetspot.shared.R
+&nbsp;
+&nbsp;/**
+&nbsp; * An icon option for appliances, displayed in the icon picker.
+&nbsp; *
+&nbsp; * @property id Unique string identifier (e.g. &quot;washing_machine&quot;, &quot;electricity&quot;) stored in [Appliance.icon].
+&nbsp; * @property iconRes Drawable resource ID for the Material Symbol vector.
+&nbsp; * @property labelRes String resource ID for the human-readable label.
+&nbsp; */
+<b class="fc">&nbsp;data class ApplianceIcon(val id: String, @DrawableRes val iconRes: Int, @StringRes val labelRes: Int)</b>
+&nbsp;
+&nbsp;/** All available appliance icons, grouped by household appliances and generic icons. */
+&nbsp;val applianceIcons: List&lt;ApplianceIcon&gt; = listOf(
+&nbsp;    // Laundry &amp; cleaning
+&nbsp;    ApplianceIcon(&quot;washing_machine&quot;, R.drawable.ic_washing_machine, R.string.icon_washing_machine),
+&nbsp;    ApplianceIcon(&quot;dryer&quot;, R.drawable.ic_dryer, R.string.icon_dryer),
+&nbsp;    ApplianceIcon(&quot;iron&quot;, R.drawable.ic_iron, R.string.icon_iron),
+&nbsp;    ApplianceIcon(&quot;dishwasher&quot;, R.drawable.ic_dishwasher, R.string.icon_dishwasher),
+&nbsp;    ApplianceIcon(&quot;vacuum&quot;, R.drawable.ic_vacuum, R.string.icon_vacuum),
+&nbsp;    // Kitchen
+&nbsp;    ApplianceIcon(&quot;oven&quot;, R.drawable.ic_oven, R.string.icon_oven),
+&nbsp;    ApplianceIcon(&quot;kettle&quot;, R.drawable.ic_kettle, R.string.icon_kettle),
+&nbsp;    // Heating, cooling &amp; air
+&nbsp;    ApplianceIcon(&quot;heat_pump&quot;, R.drawable.ic_heat_pump, R.string.icon_heat_pump),
+&nbsp;    ApplianceIcon(&quot;heater&quot;, R.drawable.ic_heater, R.string.icon_heater),
+&nbsp;    ApplianceIcon(&quot;air_conditioner&quot;, R.drawable.ic_air_conditioner, R.string.icon_air_conditioner),
+&nbsp;    ApplianceIcon(&quot;thermostat&quot;, R.drawable.ic_thermostat, R.string.icon_thermostat),
+&nbsp;    ApplianceIcon(&quot;fan&quot;, R.drawable.ic_fan, R.string.icon_fan),
+&nbsp;    ApplianceIcon(&quot;dehumidifier&quot;, R.drawable.ic_dehumidifier, R.string.icon_dehumidifier),
+&nbsp;    // Water &amp; wellness
+&nbsp;    ApplianceIcon(&quot;water_heater&quot;, R.drawable.ic_water_heater, R.string.icon_water_heater),
+&nbsp;    ApplianceIcon(&quot;hot_tub&quot;, R.drawable.ic_hot_tub, R.string.icon_hot_tub),
+&nbsp;    ApplianceIcon(&quot;sauna&quot;, R.drawable.ic_sauna, R.string.icon_sauna),
+&nbsp;    ApplianceIcon(&quot;pool_pump&quot;, R.drawable.ic_pool_pump, R.string.icon_pool_pump),
+&nbsp;    // Outdoor &amp; transport
+&nbsp;    ApplianceIcon(&quot;lawn_mower&quot;, R.drawable.ic_lawn_mower, R.string.icon_lawn_mower),
+&nbsp;    ApplianceIcon(&quot;sprinkler&quot;, R.drawable.ic_sprinkler, R.string.icon_sprinkler),
+&nbsp;    ApplianceIcon(&quot;ev_charger&quot;, R.drawable.ic_ev_charger, R.string.icon_ev_charger),
+&nbsp;    ApplianceIcon(&quot;solar_battery&quot;, R.drawable.ic_solar_battery, R.string.icon_solar_battery),
+&nbsp;    // Electronics
+&nbsp;    ApplianceIcon(&quot;tv&quot;, R.drawable.ic_tv, R.string.icon_tv),
+&nbsp;    // Generic
+&nbsp;    ApplianceIcon(&quot;electricity&quot;, R.drawable.ic_electricity, R.string.icon_electricity),
+&nbsp;    ApplianceIcon(&quot;power&quot;, R.drawable.ic_power, R.string.icon_power),
+&nbsp;    ApplianceIcon(&quot;timer&quot;, R.drawable.ic_timer, R.string.icon_timer),
+&nbsp;    ApplianceIcon(&quot;light&quot;, R.drawable.ic_light, R.string.icon_light),
+&nbsp;    ApplianceIcon(&quot;device&quot;, R.drawable.ic_device, R.string.icon_device),
+&nbsp;    ApplianceIcon(&quot;home&quot;, R.drawable.ic_home, R.string.icon_home),
+&nbsp;    ApplianceIcon(&quot;favorite&quot;, R.drawable.ic_favorite, R.string.icon_favorite),
+&nbsp;    ApplianceIcon(&quot;other&quot;, R.drawable.ic_other, R.string.icon_other),
+&nbsp;)
+&nbsp;
+&nbsp;private val iconMap: Map&lt;String, Int&gt; = applianceIcons.associate { it.id to it.iconRes }
+&nbsp;
+&nbsp;/**
+&nbsp; * Resolves an icon ID to its drawable resource.
+&nbsp; *
+&nbsp; * @param id Icon identifier from [applianceIcons].
+&nbsp; * @return The corresponding drawable resource ID, or the &quot;electricity&quot; icon if the ID is unknown.
+&nbsp; */
+&nbsp;@DrawableRes
+&nbsp;fun applianceIconFor(id: String): Int = iconMap[id] ?: R.drawable.ic_electricity
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-08 19:46</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+name: Publish coverage site
+
+# Rebuilds and deploys the site whenever a source project pushes a new report.
+#
+# This workflow runs from the `reports` branch, which holds the published reports: a push resolves
+# workflows from the branch that was pushed, so this file must exist there to fire. The copy on the
+# default branch is the version-controlled original — edit it here, then sync it to `reports`.
+#
+# Reports are kept on their own branch so that the default branch stays small enough for source
+# projects to fetch the tooling cheaply. The generator lives with that tooling, so this checks the
+# default branch out sparsely to get it.
+#
+# Deploys via the GitHub Actions Pages pipeline (no branch serving): the index pages are generated on
+# every deploy rather than committed, which keeps the site consistent with whatever reports exist.
+on:
+  push:
+    branches: [reports]
+    paths:
+      - 'reports/**'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let queued source pushes coalesce; never cancel an in-flight deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # The reports themselves — the whole branch, since every report is served.
+      - uses: actions/checkout@v7
+
+      # The site generator, from the default branch. bin/ only: the rest is not needed to build.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          sparse-checkout: bin
+          path: .tooling
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      # Generate the index/cross-link pages in-place under reports/ (not committed).
+      - run: python3 .tooling/bin/build-site.py reports
+
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: reports
+      - id: deployment
+        uses: actions/deploy-pages@v5

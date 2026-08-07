@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "a800e1ce262f8235674845f3ba8919e2b436a664",
+  "short_sha": "a800e1ce26",
+  "committed_at": "2026-07-27T22:01:59Z",
+  "message": "feat: show a skippable first-launch intro, re-openable from Settings",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/a800e1ce262f8235674845f3ba8919e2b436a664",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > ThreadItem</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: ThreadItem (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ThreadItem</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import kotlinx.serialization.SerialName
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import today.sweetspot.util.HelpLinks
+&nbsp;import java.time.Instant
+&nbsp;
+&nbsp;/** Public status of a GitHub issue, for the in-app &quot;My reports&quot; tracker. */
+&nbsp;data class IssueStatus(
+&nbsp;    val number: Int,
+&nbsp;    val state: String,
+&nbsp;    val title: String,
+&nbsp;    val comments: Int,
+&nbsp;    val htmlUrl: String
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * One entry in an issue&#39;s public conversation — either the issue body itself (the first item) or a
+&nbsp; * comment. [author] is the GitHub login. [mine] is true when the author is the feedback bot, i.e. this
+&nbsp; * entry is the reporter&#39;s own (the app posts on their behalf), so the UI labels it &quot;You&quot; rather than
+&nbsp; * support. [createdAtMs] is 0 when the timestamp is unparseable.
+&nbsp; */
+<b class="fc">&nbsp;data class ThreadItem(</b>
+<b class="fc">&nbsp;    val author: String,</b>
+<b class="fc">&nbsp;    val body: String,</b>
+<b class="fc">&nbsp;    val createdAtMs: Long,</b>
+<b class="fc">&nbsp;    val mine: Boolean</b>
+&nbsp;)
+&nbsp;
+&nbsp;/** An issue&#39;s full public conversation, for the in-app thread view. */
+&nbsp;data class IssueThread(
+&nbsp;    val number: Int,
+&nbsp;    val title: String,
+&nbsp;    val state: String,
+&nbsp;    val htmlUrl: String,
+&nbsp;    val items: List&lt;ThreadItem&gt;
+&nbsp;)
+&nbsp;
+&nbsp;/** The subset of GitHub&#39;s issue JSON that &quot;My reports&quot; needs. */
+&nbsp;@Serializable
+&nbsp;internal data class GithubIssueDto(
+&nbsp;    val number: Int,
+&nbsp;    val state: String,
+&nbsp;    val title: String = &quot;&quot;,
+&nbsp;    val comments: Int = 0,
+&nbsp;    @SerialName(&quot;html_url&quot;) val htmlUrl: String = &quot;&quot;
+&nbsp;)
+&nbsp;
+&nbsp;/** A GitHub account (only the login is used). */
+&nbsp;@Serializable
+&nbsp;internal data class GithubUserDto(val login: String = &quot;&quot;)
+&nbsp;
+&nbsp;/** The fuller issue JSON used for the thread head (adds body, author, and creation time). */
+&nbsp;@Serializable
+&nbsp;internal data class GithubIssueFullDto(
+&nbsp;    val number: Int,
+&nbsp;    val state: String = &quot;&quot;,
+&nbsp;    val title: String = &quot;&quot;,
+&nbsp;    val body: String? = null,
+&nbsp;    @SerialName(&quot;created_at&quot;) val createdAt: String = &quot;&quot;,
+&nbsp;    @SerialName(&quot;html_url&quot;) val htmlUrl: String = &quot;&quot;,
+&nbsp;    val user: GithubUserDto? = null
+&nbsp;)
+&nbsp;
+&nbsp;/** One issue comment. */
+&nbsp;@Serializable
+&nbsp;internal data class GithubCommentDto(
+&nbsp;    val body: String = &quot;&quot;,
+&nbsp;    @SerialName(&quot;created_at&quot;) val createdAt: String = &quot;&quot;,
+&nbsp;    val user: GithubUserDto? = null
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Reads **public** GitHub issue status for the in-app &quot;My reports&quot; screen. A public repo needs no
+&nbsp; * auth (60 requests/hour per IP), so the app tracks reports it submitted via the feedback Worker
+&nbsp; * without ever holding a token. Follows the three-layer API pattern (`fetch` → `fetchRaw` + `parse`,
+&nbsp; * `HttpException` on non-2xx) used by the price APIs; `fetchRaw`/`parse` are public for tests.
+&nbsp; */
+&nbsp;open class GithubIssueApi(
+&nbsp;    private val repo: String = &quot;jmerhar/sweetspot-android&quot;,
+&nbsp;    private val client: OkHttpClient = sharedHttpClient
+&nbsp;) {
+&nbsp;
+&nbsp;    private val json = Json { ignoreUnknownKeys = true }
+&nbsp;
+&nbsp;    /** Fetches and parses the current status of issue [number]. `open` so tests can fake it. */
+&nbsp;    open fun fetch(number: Int): IssueStatus = parse(fetchRaw(number))
+&nbsp;
+&nbsp;    /** Raw issue JSON from the public GitHub REST API. */
+&nbsp;    fun fetchRaw(number: Int): String =
+&nbsp;        getRaw(&quot;https://api.github.com/repos/$repo/issues/$number&quot;)
+&nbsp;
+&nbsp;    /** GETs [url] from the public GitHub REST API, throwing [HttpException] on a non-2xx response. */
+&nbsp;    private fun getRaw(url: String): String {
+&nbsp;        val request = Request.Builder()
+&nbsp;            .url(url)
+&nbsp;            .header(&quot;Accept&quot;, &quot;application/vnd.github+json&quot;)
+&nbsp;            .header(&quot;User-Agent&quot;, &quot;SweetSpot-app&quot;)
+&nbsp;            .get()
+&nbsp;            .build()
+&nbsp;        return client.newCall(request).execute().use { response -&gt;
+&nbsp;            if (!response.isSuccessful) {
+&nbsp;                throw HttpException(response.code, &quot;GitHub API returned ${response.code}&quot;)
+&nbsp;            }
+&nbsp;            response.body.string()
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Parses raw issue JSON into an [IssueStatus]. */
+&nbsp;    fun parse(raw: String): IssueStatus {
+&nbsp;        val dto = json.decodeFromString&lt;GithubIssueDto&gt;(raw)
+&nbsp;        return IssueStatus(dto.number, dto.state, dto.title, dto.comments, dto.htmlUrl)
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Fetches and assembles the full public conversation of issue [number]. `open` so tests fake it. */
+&nbsp;    open fun fetchThread(number: Int): IssueThread = parseThread(fetchRaw(number), fetchCommentsRaw(number))
+&nbsp;
+&nbsp;    /** Raw comments JSON (a top-level array) from the public GitHub REST API. */
+&nbsp;    fun fetchCommentsRaw(number: Int): String =
+&nbsp;        getRaw(&quot;https://api.github.com/repos/$repo/issues/$number/comments?per_page=100&quot;)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Builds an [IssueThread] from the issue JSON and its comments JSON. The issue body is the first
+&nbsp;     * item, followed by the comments in the order GitHub returns them (chronological).
+&nbsp;     */
+&nbsp;    fun parseThread(issueRaw: String, commentsRaw: String): IssueThread {
+&nbsp;        val issue = json.decodeFromString&lt;GithubIssueFullDto&gt;(issueRaw)
+&nbsp;        val head = toItem(issue.user?.login ?: &quot;&quot;, issue.body ?: &quot;&quot;, issue.createdAt)
+&nbsp;        val comments = json.decodeFromString&lt;List&lt;GithubCommentDto&gt;&gt;(commentsRaw)
+&nbsp;            .map { toItem(it.user?.login ?: &quot;&quot;, it.body, it.createdAt) }
+&nbsp;        return IssueThread(issue.number, issue.title, issue.state, issue.htmlUrl, listOf(head) + comments)
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Builds a [ThreadItem], marking it [ThreadItem.mine] when authored by the feedback bot. */
+&nbsp;    private fun toItem(author: String, body: String, createdAt: String): ThreadItem =
+&nbsp;        ThreadItem(author, stripReplyPrefix(stripAppFooter(body)), parseIsoToMs(createdAt), mine = author.equals(HelpLinks.BOT_LOGIN, ignoreCase = true))
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Trims the Worker&#39;s app footer and the diagnostics block that follows it from an issue body, so
+&nbsp;     * the in-app thread shows only the reporter&#39;s own text. A body without the marker (every comment)
+&nbsp;     * is unchanged. The full body — footer and diagnostics included — remains visible on GitHub.
+&nbsp;     */
+&nbsp;    private fun stripAppFooter(body: String): String =
+&nbsp;        body.substringBefore(HelpLinks.ISSUE_BODY_FOOTER).trimEnd()
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Strips the Worker&#39;s reporter-reply prefix from a comment body. The Worker posts a reporter&#39;s
+&nbsp;     * in-app reply as the bot with a leading marker so GitHub readers can tell it&#39;s the reporter; the
+&nbsp;     * app already labels it &quot;You&quot;, so the marker is redundant here (and its removal makes the displayed
+&nbsp;     * body match the optimistic copy the app appends on send). A body without the marker is unchanged.
+&nbsp;     */
+&nbsp;    private fun stripReplyPrefix(body: String): String =
+&nbsp;        if (body.startsWith(HelpLinks.REPLY_PREFIX)) body.removePrefix(HelpLinks.REPLY_PREFIX).trimStart(&#39;\n&#39;, &#39; &#39;)
+&nbsp;        else body
+&nbsp;
+&nbsp;    /** Parses an ISO-8601 UTC timestamp (e.g. `2024-01-02T03:04:05Z`) to epoch millis; 0 on failure. */
+&nbsp;    private fun parseIsoToMs(iso: String): Long =
+&nbsp;        try {
+&nbsp;            if (iso.isBlank()) 0L else Instant.parse(iso).toEpochMilli()
+&nbsp;        } catch (_: Exception) {
+&nbsp;            0L
+&nbsp;        }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-30 09:28</div>
+</div>
+</body>
+</html>

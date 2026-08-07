@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "14c8c95307cead103ebb068115c52f4982216326",
+  "short_sha": "14c8c95307",
+  "committed_at": "2026-07-31T17:04:38Z",
+  "message": "fix: never show a fallback typeface for display and body text",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/14c8c95307cead103ebb068115c52f4982216326",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.7%"
+      }
+    }
+  ]
+}

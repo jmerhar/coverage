@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "6e183839f03d9ae8bbd477a24620d73ae9b33774",
+  "short_sha": "6e183839f0",
+  "committed_at": "2026-08-05T17:00:42Z",
+  "message": "chore: mark the Chrome Web Store listing as published",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/6e183839f03d9ae8bbd477a24620d73ae9b33774",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    }
+  ]
+}

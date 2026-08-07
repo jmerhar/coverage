@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "043a0c501578082df411b093b50aba97acb24472",
+  "short_sha": "043a0c5015",
+  "committed_at": "2026-07-31T10:04:49Z",
+  "message": "fix: use a hyphen-free GA display name and validate names up front",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/043a0c501578082df411b093b50aba97acb24472",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    }
+  ]
+}

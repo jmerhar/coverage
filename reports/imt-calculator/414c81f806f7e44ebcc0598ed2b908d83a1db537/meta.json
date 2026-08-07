@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "414c81f806f7e44ebcc0598ed2b908d83a1db537",
+  "short_sha": "414c81f806",
+  "committed_at": "2026-07-31T10:45:10Z",
+  "message": "docs: add Description column to the custom-definition tables",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/414c81f806f7e44ebcc0598ed2b908d83a1db537",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    }
+  ]
+}

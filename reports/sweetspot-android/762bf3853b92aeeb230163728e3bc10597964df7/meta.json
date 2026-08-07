@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "762bf3853b92aeeb230163728e3bc10597964df7",
+  "short_sha": "762bf3853b",
+  "committed_at": "2026-07-29T08:18:59Z",
+  "message": "feat: in-app replies to reports via the Worker (Phase B)",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/762bf3853b92aeeb230163728e3bc10597964df7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "86.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "91.2%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "79.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "d26acd4f27413dffafc1f676a7ce47a620a26889",
+  "short_sha": "d26acd4f27",
+  "committed_at": "2026-07-31T10:30:04Z",
+  "message": "feat: rename the switch dimension and reconcile GA display names",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/d26acd4f27413dffafc1f676a7ce47a620a26889",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.8%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > EnergyZeroApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: EnergyZeroApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">EnergyZeroApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (139/139)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EnergyZeroApi$parse$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (139/139)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import kotlinx.serialization.SerialName
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;
+&nbsp;/**
+&nbsp; * A single price entry from the EnergyZero API response.
+&nbsp; *
+&nbsp; * @property readingDate ISO-8601 timestamp string for the start of this hourly slot.
+&nbsp; * @property price Electricity price in EUR/kWh.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;internal data class EnergyZeroPriceEntry(
+&nbsp;    val readingDate: String,
+&nbsp;    val price: Double
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Top-level response from the EnergyZero electricity prices endpoint.
+&nbsp; *
+&nbsp; * @property prices List of hourly price entries.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;internal data class EnergyZeroResponse(
+&nbsp;    @SerialName(&quot;Prices&quot;) val prices: List&lt;EnergyZeroPriceEntry&gt;
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Client for the EnergyZero electricity price API (NL-only).
+&nbsp; *
+&nbsp; * Fetches hourly electricity prices for today and tomorrow. The raw JSON
+&nbsp; * can be cached by [PriceCache] to avoid redundant network requests.
+&nbsp; */
+<b class="fc">&nbsp;class EnergyZeroApi(private val client: OkHttpClient = sharedHttpClient) : PriceFetcher {</b>
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches and parses electricity prices from the EnergyZero API.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @param timeZoneId Timezone to convert UTC timestamps to local time.
+&nbsp;     * @return A [FetchResult] with sorted hourly price slots and source &quot;EnergyZero&quot;.
+&nbsp;     * @throws RuntimeException if the HTTP request fails.
+&nbsp;     */
+&nbsp;    override fun fetchPrices(from: Instant, to: Instant, timeZoneId: ZoneId): FetchResult {
+<b class="fc">&nbsp;        return FetchResult(parse(fetchRaw(from, to), timeZoneId), &quot;EnergyZero&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches raw JSON from the EnergyZero API for the given date range.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @return Raw JSON response body.
+&nbsp;     * @throws RuntimeException if the HTTP request fails or the body is empty.
+&nbsp;     */
+&nbsp;    fun fetchRaw(from: Instant, to: Instant): String {
+<b class="fc">&nbsp;        val url = &quot;https://api.energyzero.nl/v1/energyprices&quot; +</b>
+<b class="fc">&nbsp;            &quot;?fromDate=${DateTimeFormatter.ISO_INSTANT.format(from)}&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;tillDate=${DateTimeFormatter.ISO_INSTANT.format(to)}&quot; +</b>
+&nbsp;            &quot;&amp;interval=4&amp;usageType=1&quot;
+&nbsp;
+<b class="fc">&nbsp;        val request = Request.Builder().url(url).get().build()</b>
+<b class="fc">&nbsp;        return client.newCall(request).execute().use { response -&gt;</b>
+<b class="fc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="fc">&nbsp;                throw HttpException(response.code, &quot;EnergyZero API returned ${response.code}&quot;)</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses raw EnergyZero JSON into a sorted list of [PriceSlot] entries.
+&nbsp;     *
+&nbsp;     * @param raw Raw JSON string from [fetchRaw].
+&nbsp;     * @param timeZoneId Timezone to convert UTC timestamps to local time.
+&nbsp;     * @return Chronologically sorted list of hourly price slots (60-minute duration).
+&nbsp;     */
+&nbsp;    fun parse(raw: String, timeZoneId: ZoneId): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        val parsed = json.decodeFromString&lt;EnergyZeroResponse&gt;(raw)</b>
+<b class="fc">&nbsp;        return parsed.prices.map { entry -&gt;</b>
+<b class="fc">&nbsp;            val instant = Instant.parse(entry.readingDate)</b>
+<b class="fc">&nbsp;            val time = instant.atZone(timeZoneId)</b>
+<b class="fc">&nbsp;            PriceSlot(time = time, price = entry.price, durationMinutes = 60)</b>
+<b class="fc">&nbsp;        }.sortedBy { it.time }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:28</div>
+</div>
+</body>
+</html>

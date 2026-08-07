@@ -1,0 +1,340 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > EnergyChartsApi</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: EnergyChartsApi (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">EnergyChartsApi</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.7%
+  </span>
+  <span class="absValue">
+    (42/43)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.5%
+  </span>
+  <span class="absValue">
+    (307/315)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EnergyChartsApi$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">EnergyChartsApi$parse$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.7%
+  </span>
+  <span class="absValue">
+    (43/44)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.5%
+  </span>
+  <span class="absValue">
+    (308/316)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import kotlinx.serialization.SerialName
+&nbsp;import kotlinx.serialization.Serializable
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import okhttp3.OkHttpClient
+&nbsp;import okhttp3.Request
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;
+&nbsp;/**
+&nbsp; * JSON response from the Energy-Charts day-ahead price API.
+&nbsp; *
+&nbsp; * Prices are in EUR/MWh. The [unixSeconds] and [price] arrays are parallel —
+&nbsp; * index `i` in both arrays represents the same time slot. Null entries in [price]
+&nbsp; * indicate gaps (no auction result) and are filtered out during parsing.
+&nbsp; *
+&nbsp; * @property unixSeconds Unix timestamps (seconds) for the start of each slot.
+&nbsp; * @property price Day-ahead prices in EUR/MWh, with `null` for gaps.
+&nbsp; */
+&nbsp;@Serializable
+&nbsp;internal data class EnergyChartsResponse(
+&nbsp;    @SerialName(&quot;unix_seconds&quot;) val unixSeconds: List&lt;Long&gt;,
+&nbsp;    val price: List&lt;Double?&gt;
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * Client for the Energy-Charts day-ahead price API.
+&nbsp; *
+&nbsp; * Covers 15 European bidding zones with 15-minute or 60-minute resolution
+&nbsp; * (zone-dependent). Prices are returned in EUR/MWh and converted to EUR/kWh
+&nbsp; * during parsing. No authentication required. Licensed under CC BY 4.0.
+&nbsp; *
+&nbsp; * Resolution is auto-detected from the gap between the first two timestamps:
+&nbsp; * 900 seconds → 15-minute slots, 3600 seconds → 60-minute slots.
+&nbsp; *
+&nbsp; * @param zoneId SweetSpot zone ID (e.g. `&quot;DE_LU&quot;`, `&quot;AT&quot;`, `&quot;IT_NORD&quot;`).
+&nbsp; */
+&nbsp;class EnergyChartsApi(
+&nbsp;    zoneId: String,
+<b class="fc">&nbsp;    private val client: OkHttpClient = sharedHttpClient</b>
+&nbsp;) : PriceFetcher {
+&nbsp;
+<b class="pc">&nbsp;    private val bzn = ZONE_TO_BZN[zoneId]</b>
+<b class="nc">&nbsp;        ?: error(&quot;No Energy-Charts mapping for zone: $zoneId&quot;)</b>
+&nbsp;
+<b class="fc">&nbsp;    private val json = Json { ignoreUnknownKeys = true }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches and parses electricity prices from the Energy-Charts API.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @param timeZoneId Timezone to convert timestamps to local time.
+&nbsp;     * @return A [FetchResult] with sorted price slots and source &quot;Energy-Charts&quot;.
+&nbsp;     * @throws RuntimeException if the HTTP request fails.
+&nbsp;     */
+&nbsp;    override fun fetchPrices(from: Instant, to: Instant, timeZoneId: ZoneId): FetchResult {
+<b class="fc">&nbsp;        return FetchResult(parse(fetchRaw(from, to), timeZoneId), &quot;Energy-Charts&quot;)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches raw JSON from the Energy-Charts API for the given date range.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @return Raw JSON response body.
+&nbsp;     * @throws RuntimeException if the HTTP request fails or the body is empty.
+&nbsp;     */
+&nbsp;    fun fetchRaw(from: Instant, to: Instant): String {
+<b class="fc">&nbsp;        val url = &quot;https://api.energy-charts.info/price&quot; +</b>
+<b class="fc">&nbsp;            &quot;?bzn=$bzn&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;start=${DateTimeFormatter.ISO_INSTANT.format(from)}&quot; +</b>
+<b class="fc">&nbsp;            &quot;&amp;end=${DateTimeFormatter.ISO_INSTANT.format(to)}&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        val request = Request.Builder().url(url).get().build()</b>
+<b class="fc">&nbsp;        return client.newCall(request).execute().use { response -&gt;</b>
+<b class="fc">&nbsp;            if (!response.isSuccessful) {</b>
+<b class="fc">&nbsp;                throw HttpException(response.code, &quot;Energy-Charts API returned ${response.code}&quot;)</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            response.body.string()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses raw Energy-Charts JSON into a sorted list of [PriceSlot] entries.
+&nbsp;     *
+&nbsp;     * Filters out entries where the price is `null` (gaps with no auction result).
+&nbsp;     * Converts EUR/MWh to EUR/kWh by dividing by 1000. Auto-detects slot duration
+&nbsp;     * from the gap between the first two timestamps (15 or 60 minutes).
+&nbsp;     *
+&nbsp;     * @param raw Raw JSON string from [fetchRaw].
+&nbsp;     * @param timeZoneId Timezone to convert timestamps to local time.
+&nbsp;     * @return Chronologically sorted list of price slots.
+&nbsp;     * @throws IllegalArgumentException if the parallel arrays have different lengths.
+&nbsp;     */
+&nbsp;    fun parse(raw: String, timeZoneId: ZoneId): List&lt;PriceSlot&gt; {
+<b class="fc">&nbsp;        val parsed = json.decodeFromString&lt;EnergyChartsResponse&gt;(raw)</b>
+&nbsp;
+<b class="fc">&nbsp;        require(parsed.unixSeconds.size == parsed.price.size) {</b>
+<b class="fc">&nbsp;            &quot;Mismatched array lengths: ${parsed.unixSeconds.size} timestamps vs ${parsed.price.size} prices&quot;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (parsed.unixSeconds.isEmpty()) return emptyList()</b>
+&nbsp;
+<b class="fc">&nbsp;        val durationMinutes = if (parsed.unixSeconds.size &gt;= 2) {</b>
+<b class="fc">&nbsp;            ((parsed.unixSeconds[1] - parsed.unixSeconds[0]) / 60).toInt()</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            60 // Default to hourly for single-entry responses</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return parsed.unixSeconds.zip(parsed.price)</b>
+<b class="fc">&nbsp;            .filter { (_, price) -&gt; price != null }</b>
+<b class="fc">&nbsp;            .map { (epochSecond, price) -&gt;</b>
+<b class="fc">&nbsp;                val time = Instant.ofEpochSecond(epochSecond).atZone(timeZoneId)</b>
+<b class="fc">&nbsp;                PriceSlot(time = time, price = price!! / 1000.0, durationMinutes = durationMinutes)</b>
+&nbsp;            }
+<b class="fc">&nbsp;            .sortedBy { it.time }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /**
+&nbsp;         * Maps SweetSpot zone IDs to Energy-Charts `bzn` parameter values.
+&nbsp;         *
+&nbsp;         * Most zone IDs map directly; exceptions are `DE_LU` → `&quot;DE-LU&quot;`
+&nbsp;         * and `IT_NORD` → `&quot;IT-North&quot;`.
+&nbsp;         */
+<b class="fc">&nbsp;        val ZONE_TO_BZN: Map&lt;String, String&gt; = mapOf(</b>
+<b class="fc">&nbsp;            &quot;AT&quot; to &quot;AT&quot;,</b>
+<b class="fc">&nbsp;            &quot;BE&quot; to &quot;BE&quot;,</b>
+<b class="fc">&nbsp;            &quot;CH&quot; to &quot;CH&quot;,</b>
+<b class="fc">&nbsp;            &quot;CZ&quot; to &quot;CZ&quot;,</b>
+<b class="fc">&nbsp;            &quot;DE_LU&quot; to &quot;DE-LU&quot;,</b>
+<b class="fc">&nbsp;            &quot;DK1&quot; to &quot;DK1&quot;,</b>
+<b class="fc">&nbsp;            &quot;DK2&quot; to &quot;DK2&quot;,</b>
+<b class="fc">&nbsp;            &quot;FR&quot; to &quot;FR&quot;,</b>
+<b class="fc">&nbsp;            &quot;HU&quot; to &quot;HU&quot;,</b>
+<b class="fc">&nbsp;            &quot;IT_NORD&quot; to &quot;IT-North&quot;,</b>
+<b class="fc">&nbsp;            &quot;NL&quot; to &quot;NL&quot;,</b>
+<b class="fc">&nbsp;            &quot;NO2&quot; to &quot;NO2&quot;,</b>
+<b class="fc">&nbsp;            &quot;PL&quot; to &quot;PL&quot;,</b>
+<b class="fc">&nbsp;            &quot;SE4&quot; to &quot;SE4&quot;,</b>
+<b class="fc">&nbsp;            &quot;SI&quot; to &quot;SI&quot;</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-13 17:49</div>
+</div>
+</body>
+</html>

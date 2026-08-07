@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "ca328305c7f378d3b4ee8d976bab6b2d46b4cb3d",
+  "short_sha": "ca328305c7",
+  "committed_at": "2026-07-31T12:04:43Z",
+  "message": "feat: prerender routes to static HTML (SSG) for crawlability",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/ca328305c7f378d3b4ee8d976bab6b2d46b4cb3d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "90.2%"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "90b7297b1576a89db58af6b26e6d0638b8dda149",
+  "short_sha": "90b7297b15",
+  "committed_at": "2026-07-31T16:41:22Z",
+  "message": "fix: eliminate load-time theme flash and mid-load font swap",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/90b7297b1576a89db58af6b26e6d0638b8dda149",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.3%",
+        "branch": "90.8%"
+      }
+    }
+  ]
+}

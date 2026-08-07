@@ -1,0 +1,1465 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > SweetSpotViewModelKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot</a>
+</div>
+
+<h1>Coverage Summary for Class: SweetSpotViewModelKt (today.sweetspot)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SweetSpotViewModelKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot
+&nbsp;
+&nbsp;import android.app.Activity
+&nbsp;import android.app.Application
+&nbsp;import androidx.appcompat.app.AppCompatDelegate
+&nbsp;import androidx.core.os.LocaleListCompat
+&nbsp;import androidx.lifecycle.AndroidViewModel
+&nbsp;import androidx.lifecycle.viewModelScope
+&nbsp;import com.google.android.gms.wearable.PutDataMapRequest
+&nbsp;import com.google.android.gms.wearable.Wearable
+&nbsp;import today.sweetspot.data.api.PriceFetcherFactory
+&nbsp;import today.sweetspot.data.api.defaultPriceFetcherFactory
+&nbsp;import today.sweetspot.data.billing.BillingRepository
+&nbsp;import today.sweetspot.data.billing.PlayBillingRepository
+&nbsp;import today.sweetspot.data.cache.FilePriceCache
+&nbsp;import today.sweetspot.data.cache.PriceCache
+&nbsp;import today.sweetspot.data.repository.CountryDetector
+&nbsp;import today.sweetspot.data.repository.EvVehicleRepository
+&nbsp;import today.sweetspot.data.repository.PriceRepository
+&nbsp;import today.sweetspot.data.repository.SettingsRepository
+&nbsp;import today.sweetspot.data.stats.FileStatsCollector
+&nbsp;import today.sweetspot.data.stats.HttpStatsPoster
+&nbsp;import today.sweetspot.data.stats.StatsCollector
+&nbsp;import today.sweetspot.data.stats.StatsPoster
+&nbsp;import today.sweetspot.data.stats.StatsRecord
+&nbsp;import today.sweetspot.data.stats.StatsReporter
+&nbsp;import today.sweetspot.model.Appliance
+&nbsp;import today.sweetspot.model.Countries
+&nbsp;import today.sweetspot.model.Country
+&nbsp;import today.sweetspot.model.EvSpec
+&nbsp;import today.sweetspot.model.EvVehicle
+&nbsp;import today.sweetspot.model.PriceSlot
+&nbsp;import today.sweetspot.model.PriceZone
+&nbsp;import today.sweetspot.model.WindowResult
+&nbsp;import today.sweetspot.util.UiText
+&nbsp;import today.sweetspot.util.findWindowAlternatives
+&nbsp;import kotlinx.coroutines.CoroutineDispatcher
+&nbsp;import kotlinx.coroutines.Dispatchers
+&nbsp;import kotlinx.coroutines.Job
+&nbsp;import kotlinx.coroutines.delay
+&nbsp;import kotlinx.coroutines.flow.MutableStateFlow
+&nbsp;import kotlinx.coroutines.flow.StateFlow
+&nbsp;import kotlinx.coroutines.flow.asStateFlow
+&nbsp;import kotlinx.coroutines.flow.update
+&nbsp;import kotlinx.coroutines.launch
+&nbsp;
+&nbsp;import kotlinx.serialization.json.Json
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;import java.time.ZonedDateTime
+&nbsp;import java.util.UUID
+&nbsp;
+&nbsp;/**
+&nbsp; * Distinguishes inline validation errors (shown as [ErrorBox]) from
+&nbsp; * transient network errors (shown as a snackbar).
+&nbsp; */
+&nbsp;sealed interface AppError {
+&nbsp;    val message: UiText
+&nbsp;
+&nbsp;    /** Validation or data error shown inline below the form. */
+&nbsp;    data class Validation(override val message: UiText) : AppError
+&nbsp;
+&nbsp;    /** Network or fetch error shown as a snackbar. Unique [id] ensures consecutive identical messages still trigger the snackbar. */
+&nbsp;    data class Network(override val message: UiText, val id: Long = System.nanoTime()) : AppError
+&nbsp;}
+&nbsp;
+&nbsp;/** Maximum number of vehicle picker results shown at once. */
+&nbsp;private const val EV_SEARCH_LIMIT = 50
+&nbsp;
+&nbsp;/**
+&nbsp; * UI state for the main screen.
+&nbsp; *
+&nbsp; * @property durationHours Selected hours component of the duration (0–24).
+&nbsp; * @property durationMinutes Selected minutes component of the duration (0, 5, 10, ..., 55).
+&nbsp; * @property isLoading Whether a price fetch is in progress.
+&nbsp; * @property error Error to display, or `null` if none.
+&nbsp; * @property result The currently-displayed window, or `null` if no search has been performed.
+&nbsp; *           This is the cheapest window initially, but the &quot;earlier&quot;/&quot;cheaper&quot; buttons can move
+&nbsp; *           it to an earlier (and costlier) alternative — see [windowAlternatives].
+&nbsp; * @property resultLabel Label shown in the results screen top bar (e.g. &quot;Washing machine · 2h 30m&quot;),
+&nbsp; *           as deferred [UiText] resolved by the UI in the current locale.
+&nbsp; * @property windowAlternatives Progressively-earlier window options, cheapest first (index 0).
+&nbsp; *           [result] is `windowAlternatives[windowOffset]`. Empty when there is no result.
+&nbsp; * @property windowOffset Index into [windowAlternatives] of the currently-displayed window
+&nbsp; *           (0 = cheapest). Advanced by &quot;earlier&quot;, reduced by &quot;cheaper&quot;.
+&nbsp; * @property allPrices All price slots for the next 24h, used by the bar chart.
+&nbsp; * @property priceSource Name of the data source (e.g. &quot;ENTSO-E&quot;, &quot;EnergyZero&quot;), or `null` if no result.
+&nbsp; * @property showSettings Whether the settings screen is currently visible.
+&nbsp; * @property timeZoneId Active timezone for price date boundaries and display.
+&nbsp; * @property isUsingDefaultTimezone Whether the timezone is the zone-derived default (vs. user-selected).
+&nbsp; * @property appliances User-configured appliances with preset durations.
+&nbsp; * @property countryCode ISO code of the selected country.
+&nbsp; * @property priceZone The resolved price zone for fetching prices, or `null` if a multi-zone country has no selection yet.
+&nbsp; * @property sourceOrder Ordered list of all source IDs for display/priority, or `null` for zone defaults.
+&nbsp; * @property disabledSources Set of source IDs that are disabled, or empty if all enabled.
+&nbsp; * @property countries All supported countries for the country picker.
+&nbsp; * @property showStatsPrompt Whether the stats opt-in prompt dialog should be shown.
+&nbsp; * @property isStatsEnabled Whether API stats collection is enabled.
+&nbsp; * @property isTrialExpired Whether the 14-day free trial has expired.
+&nbsp; * @property isUnlocked Whether the app has been unlocked via in-app purchase.
+&nbsp; * @property trialDaysRemaining Number of trial days remaining (0–14).
+&nbsp; * @property showPaywall Whether the paywall screen should block the app.
+&nbsp; * @property productPrice Localized price string for the unlock purchase (e.g. &quot;€2.99&quot;), or `null` if not loaded.
+&nbsp; * @property showThankYou Whether the thank-you dialog should be shown after a successful purchase.
+&nbsp; * @property devOptionsEnabled Whether hidden developer options are visible.
+&nbsp; * @property isDevUnlocked Whether the developer-only subscription bypass is enabled.
+&nbsp; * @property isCooldownDisabled Whether the API fetch cooldown is bypassed (developer option).
+&nbsp; * @property timeOverrideMs Developer time override as epoch millis, or `null` when using real time.
+&nbsp; * @property now The current effective time, reflecting any active time override. Used by the UI for relative time display.
+&nbsp; * @property useProductionLogo Whether to show the production logo instead of the debug logo (debug builds only).
+&nbsp; * @property themeMode The user&#39;s preferred theme mode.
+&nbsp; * @property evHomeChargerKw The user&#39;s home charger output in kW (set once in Settings).
+&nbsp; * @property evDefaultTargetSoc Default target state of charge (%) used to prefill the charge prompt.
+&nbsp; * @property evLastCurrentSoc Last-used current state of charge (%), used to prefill the charge prompt.
+&nbsp; * @property deadlineEnabled Whether the optional &quot;ready by&quot; deadline is active for searches.
+&nbsp; * @property deadlineHour Hour-of-day component of the &quot;ready by&quot; deadline (0–23).
+&nbsp; * @property deadlineMinute Minute component of the &quot;ready by&quot; deadline (0–59).
+&nbsp; * @property searchDeadline The deadline resolved at search time, or `null` when disabled.
+&nbsp; * @property searchPowerKw Load power (kW) used to scale displayed costs, or `null` for per-1-kW.
+&nbsp; */
+&nbsp;data class UiState(
+&nbsp;    val durationHours: Int = 1,
+&nbsp;    val durationMinutes: Int = 0,
+&nbsp;    val isLoading: Boolean = false,
+&nbsp;    val error: AppError? = null,
+&nbsp;    val result: WindowResult? = null,
+&nbsp;    val resultLabel: UiText? = null,
+&nbsp;    val windowAlternatives: List&lt;WindowResult&gt; = emptyList(),
+&nbsp;    val windowOffset: Int = 0,
+&nbsp;    val allPrices: List&lt;PriceSlot&gt; = emptyList(),
+&nbsp;    val priceSource: String? = null,
+&nbsp;    val showSettings: Boolean = false,
+&nbsp;    val timeZoneId: ZoneId = ZoneId.systemDefault(),
+&nbsp;    val isUsingDefaultTimezone: Boolean = true,
+&nbsp;    val appliances: List&lt;Appliance&gt; = emptyList(),
+&nbsp;    val countryCode: String = Countries.defaultCountry().code,
+&nbsp;    val priceZone: PriceZone? = Countries.defaultCountry().zones.first(),
+&nbsp;    val sourceOrder: List&lt;String&gt;? = null,
+&nbsp;    val disabledSources: Set&lt;String&gt; = emptySet(),
+&nbsp;    val countries: List&lt;Country&gt; = Countries.all,
+&nbsp;    val showStatsPrompt: Boolean = false,
+&nbsp;    val isStatsEnabled: Boolean = false,
+&nbsp;    val isTrialExpired: Boolean = false,
+&nbsp;    val isUnlocked: Boolean = false,
+&nbsp;    val trialDaysRemaining: Int = 14,
+&nbsp;    val showPaywall: Boolean = false,
+&nbsp;    val productPrice: String? = null,
+&nbsp;    val showThankYou: Boolean = false,
+&nbsp;    val devOptionsEnabled: Boolean = false,
+&nbsp;    val isDevUnlocked: Boolean = false,
+&nbsp;    val isCooldownDisabled: Boolean = false,
+&nbsp;    val timeOverrideMs: Long? = null,
+&nbsp;    val now: ZonedDateTime = ZonedDateTime.now(),
+&nbsp;    val useProductionLogo: Boolean = false,
+&nbsp;    val themeMode: ThemeMode = ThemeMode.SYSTEM,
+&nbsp;    // --- EV charging ---
+&nbsp;    val evHomeChargerKw: Double = 11.0,
+&nbsp;    val evDefaultTargetSoc: Int = 80,
+&nbsp;    val evLastCurrentSoc: Int = 20,
+&nbsp;    // --- Universal &quot;ready by&quot; deadline ---
+&nbsp;    val deadlineEnabled: Boolean = false,
+&nbsp;    val deadlineHour: Int = 7,
+&nbsp;    val deadlineMinute: Int = 0,
+&nbsp;    /**
+&nbsp;     * The &quot;ready by&quot; deadline resolved at search time (the next occurrence of [deadlineHour]:
+&nbsp;     * [deadlineMinute]), or `null` when disabled. Threaded into the window finder and the periodic
+&nbsp;     * refresh so the chosen window finishes in time.
+&nbsp;     */
+&nbsp;    val searchDeadline: ZonedDateTime? = null,
+&nbsp;    /**
+&nbsp;     * Load power (kW) for the current search, used only to scale displayed costs. `null` keeps the
+&nbsp;     * per-1-kW behaviour (and disclaimer). Set from an appliance&#39;s [Appliance.powerKw] or, for EV
+&nbsp;     * charging, the effective charging power.
+&nbsp;     */
+&nbsp;    val searchPowerKw: Double? = null
+&nbsp;)
+&nbsp;
+&nbsp;/**
+&nbsp; * ViewModel for the SweetSpot app.
+&nbsp; *
+&nbsp; * Owns all UI state via [uiState]. Handles duration selection, price fetching,
+&nbsp; * cheapest-window calculation, timezone configuration, country/zone selection,
+&nbsp; * and appliance CRUD.
+&nbsp; *
+&nbsp; * @param application Application context.
+&nbsp; * @param priceFetcherFactory Optional factory override for testing. When `null` (production),
+&nbsp; *   the factory is created dynamically from the current source order.
+&nbsp; * @param priceCache Cache for raw price JSON.
+&nbsp; * @param statsCollector Optional stats collector override for testing.
+&nbsp; * @param ioDispatcher Dispatcher for IO-bound work (injectable for testing).
+&nbsp; * @param billingRepository Optional billing repository override. When `null` (production),
+&nbsp; *   creates a [PlayBillingRepository]. Pass a fake for tests.
+&nbsp; * @param evVehicleRepositoryOverride Optional EV database override for testing. When `null`
+&nbsp; *   (production), the bundled `ev-vehicles.json` asset is loaded lazily on first use.
+&nbsp; * @param statsPoster Optional stats HTTP poster override for testing. When `null` (production),
+&nbsp; *   the real [HttpStatsPoster] is used. A fake lets tests drive stats reporting without a network.
+&nbsp; * @param watchStatsBridgeOverride Optional [WatchStatsBridge] override for testing. When `null`
+&nbsp; *   (production), a real [WearableStatsBridge] backed by Google Play Services is used.
+&nbsp; */
+&nbsp;class SweetSpotViewModel @JvmOverloads constructor(
+&nbsp;    application: Application,
+&nbsp;    private val priceFetcherFactory: PriceFetcherFactory? = null,
+&nbsp;    private val priceCache: PriceCache = FilePriceCache(application),
+&nbsp;    private val statsCollector: StatsCollector = FileStatsCollector(application.cacheDir),
+&nbsp;    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+&nbsp;    private val billingRepository: BillingRepository? = null,
+&nbsp;    private val evVehicleRepositoryOverride: EvVehicleRepository? = null,
+&nbsp;    statsPoster: StatsPoster? = null,
+&nbsp;    watchStatsBridgeOverride: WatchStatsBridge? = null
+&nbsp;) : AndroidViewModel(application) {
+&nbsp;
+&nbsp;    private val settingsRepository = SettingsRepository(application)
+&nbsp;    private val statsReporter = StatsReporter(
+&nbsp;        statsCollector,
+&nbsp;        application.getSharedPreferences(&quot;sweetspot_stats&quot;, android.content.Context.MODE_PRIVATE),
+&nbsp;        BuildConfig.VERSION_NAME,
+&nbsp;        languageProvider = {
+&nbsp;            val locales = AppCompatDelegate.getApplicationLocales()
+&nbsp;            if (locales.isEmpty) &quot;&quot; else locales.toLanguageTags()
+&nbsp;        },
+&nbsp;        statusProvider = {
+&nbsp;            when {
+&nbsp;                settingsRepository.isUnlocked() -&gt; &quot;subscribed&quot;
+&nbsp;                settingsRepository.isTrialExpired() -&gt; &quot;expired&quot;
+&nbsp;                else -&gt; &quot;trial&quot;
+&nbsp;            }
+&nbsp;        },
+&nbsp;        poster = statsPoster ?: HttpStatsPoster(BuildConfig.VERSION_NAME)
+&nbsp;    )
+&nbsp;
+&nbsp;    /** Receives watch API-reliability stats via the Data Layer (real impl, or a fake in tests). */
+&nbsp;    private val watchStatsBridge: WatchStatsBridge =
+&nbsp;        watchStatsBridgeOverride ?: WearableStatsBridge(application)
+&nbsp;
+&nbsp;    private var fetchJob: Job? = null
+&nbsp;    private var refreshJob: Job? = null
+&nbsp;
+&nbsp;    /** Whether [evVehicleRepository] has finished loading (set after the eager load in [init]). */
+&nbsp;    @Volatile
+&nbsp;    private var evDbReady: Boolean = false
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The bundled EV vehicle database, backing the &quot;add vehicle&quot; picker in Settings. In production
+&nbsp;     * it is parsed from the `ev-vehicles.json` asset; tests may inject a small fixture via the
+&nbsp;     * constructor. Loaded eagerly off the main thread in [init] so [searchEvVehicles] is synchronous.
+&nbsp;     */
+&nbsp;    private val evVehicleRepository: EvVehicleRepository by lazy {
+&nbsp;        evVehicleRepositoryOverride ?: EvVehicleRepository(
+&nbsp;            getApplication&lt;Application&gt;().assets.open(&quot;ev-vehicles.json&quot;)
+&nbsp;                .bufferedReader().use { it.readText() }
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    private val _uiState = MutableStateFlow(
+&nbsp;        UiState(
+&nbsp;            timeZoneId = settingsRepository.getTimeZoneId(),
+&nbsp;            isUsingDefaultTimezone = settingsRepository.isUsingDefaultTimezone(),
+&nbsp;            appliances = settingsRepository.getAppliances(),
+&nbsp;            countryCode = settingsRepository.getCountryCode(),
+&nbsp;            priceZone = settingsRepository.getResolvedPriceZone(),
+&nbsp;            sourceOrder = settingsRepository.getSourceOrder(),
+&nbsp;            disabledSources = settingsRepository.getDisabledSources(),
+&nbsp;            countries = countriesWithDetectedFirst(application),
+&nbsp;            isStatsEnabled = settingsRepository.isStatsEnabled(),
+&nbsp;            isTrialExpired = settingsRepository.isTrialExpired(),
+&nbsp;            isUnlocked = settingsRepository.isUnlocked(),
+&nbsp;            trialDaysRemaining = settingsRepository.trialDaysRemaining(),
+&nbsp;            showPaywall = shouldShowPaywall(BuildConfig.DEBUG, settingsRepository.isTrialExpired(), settingsRepository.isUnlocked()),
+&nbsp;            devOptionsEnabled = settingsRepository.isDevOptionsEnabled(),
+&nbsp;            isDevUnlocked = settingsRepository.isDevUnlocked(),
+&nbsp;            isCooldownDisabled = settingsRepository.isCooldownDisabled(),
+&nbsp;            timeOverrideMs = settingsRepository.getTimeOverrideMs(),
+&nbsp;            now = currentNow(settingsRepository.getTimeZoneId()),
+&nbsp;            useProductionLogo = settingsRepository.isUseProductionLogo(),
+&nbsp;            themeMode = ThemeMode.fromKey(settingsRepository.getThemeMode()),
+&nbsp;            evHomeChargerKw = settingsRepository.getEvHomeChargerKw(),
+&nbsp;            evDefaultTargetSoc = settingsRepository.getEvDefaultTargetSoc(),
+&nbsp;            evLastCurrentSoc = settingsRepository.getEvLastCurrentSoc()
+&nbsp;        )
+&nbsp;    )
+&nbsp;
+&nbsp;    /** Observable UI state. */
+&nbsp;    val uiState: StateFlow&lt;UiState&gt; = _uiState.asStateFlow()
+&nbsp;
+&nbsp;    /** Active billing repository: injected fake, production PlayBillingRepository, or null for debug builds. */
+&nbsp;    private val activeBilling: BillingRepository? = when {
+&nbsp;        billingRepository != null -&gt; billingRepository
+&nbsp;        BuildConfig.DEBUG -&gt; null
+&nbsp;        else -&gt; PlayBillingRepository(application, settingsRepository, viewModelScope)
+&nbsp;    }
+&nbsp;
+&nbsp;    init {
+&nbsp;        // Record first launch time for stats prompt delay
+&nbsp;        settingsRepository.getFirstLaunchMs()
+&nbsp;        checkStatsPrompt()
+&nbsp;        // Parse the bundled EV database off the main thread so the vehicle picker search is instant.
+&nbsp;        viewModelScope.launch(ioDispatcher) {
+&nbsp;            evVehicleRepository.vehicles
+&nbsp;            evDbReady = true
+&nbsp;        }
+&nbsp;        // Connect billing and observe unlock state
+&nbsp;        activeBilling?.let { billing -&gt;
+&nbsp;            billing.connect()
+&nbsp;            viewModelScope.launch {
+&nbsp;                billing.isUnlocked.collect { unlocked -&gt;
+&nbsp;                    _uiState.update {
+&nbsp;                        it.copy(
+&nbsp;                            isUnlocked = unlocked,
+&nbsp;                            showPaywall = shouldShowPaywall(BuildConfig.DEBUG, settingsRepository.isTrialExpired(), unlocked),
+&nbsp;                            showThankYou = it.showThankYou || (unlocked &amp;&amp; !it.isUnlocked)
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    syncSettingsToWear()
+&nbsp;                }
+&nbsp;            }
+&nbsp;            viewModelScope.launch {
+&nbsp;                billing.productPrice.collect { price -&gt;
+&nbsp;                    _uiState.update { it.copy(productPrice = price) }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;        // Listen for watch stats via the Data Layer
+&nbsp;        watchStatsBridge.observe(::onWatchStatsReceived)
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onCleared() {
+&nbsp;        super.onCleared()
+&nbsp;        stopResultRefresh()
+&nbsp;        activeBilling?.disconnect()
+&nbsp;        watchStatsBridge.stop()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the effective &quot;now&quot; for the given timezone, respecting any active time override.
+&nbsp;     *
+&nbsp;     * @param timeZoneId Timezone to apply.
+&nbsp;     */
+&nbsp;    private fun currentNow(timeZoneId: ZoneId): ZonedDateTime {
+&nbsp;        val overrideMs = settingsRepository.getTimeOverrideMs()
+&nbsp;        return if (overrideMs != null) {
+&nbsp;            Instant.ofEpochMilli(overrideMs).atZone(timeZoneId)
+&nbsp;        } else {
+&nbsp;            ZonedDateTime.now(timeZoneId)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates the selected duration from the picker.
+&nbsp;     *
+&nbsp;     * @param hours Hours component (0–24).
+&nbsp;     * @param minutes Minutes component (0–55, in 5-minute steps).
+&nbsp;     */
+&nbsp;    fun onDurationChanged(hours: Int, minutes: Int) {
+&nbsp;        _uiState.update { it.copy(durationHours = hours, durationMinutes = minutes) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Opens the settings screen. */
+&nbsp;    fun onShowSettings() {
+&nbsp;        _uiState.update { it.copy(showSettings = true) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Closes the settings screen and refreshes the appliance list from storage. */
+&nbsp;    fun onHideSettings() {
+&nbsp;        val appliances = settingsRepository.getAppliances()
+&nbsp;        _uiState.update { it.copy(showSettings = false, appliances = appliances) }
+&nbsp;        syncAppliancesToWear(appliances)
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- EV charging ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Searches the bundled vehicle database for the &quot;add vehicle&quot; picker in Settings.
+&nbsp;     *
+&nbsp;     * Runs synchronously over the in-memory list (loaded eagerly in [init]); returns an empty
+&nbsp;     * list if the database has not finished loading yet or the query is blank.
+&nbsp;     *
+&nbsp;     * @param query Free-text search over brand/model/variant.
+&nbsp;     * @return Up to [EV_SEARCH_LIMIT] matching vehicles.
+&nbsp;     */
+&nbsp;    fun searchEvVehicles(query: String): List&lt;EvVehicle&gt; {
+&nbsp;        if (!evDbReady || query.isBlank()) return emptyList()
+&nbsp;        return evVehicleRepository.search(query).take(EV_SEARCH_LIMIT)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a vehicle as an EV-type [Appliance] and persists it.
+&nbsp;     *
+&nbsp;     * Used by both database picks and custom entries — the caller supplies the resolved specs.
+&nbsp;     *
+&nbsp;     * @param name Display name (e.g. &quot;VW ID.3&quot; or a custom label).
+&nbsp;     * @param batteryKwh Usable battery capacity in kWh.
+&nbsp;     * @param acMaxPowerKw Maximum AC charging power in kW.
+&nbsp;     */
+&nbsp;    fun onAddVehicle(name: String, batteryKwh: Double, acMaxPowerKw: Double) {
+&nbsp;        val vehicle = Appliance(
+&nbsp;            id = UUID.randomUUID().toString(),
+&nbsp;            name = name,
+&nbsp;            durationHours = 0,
+&nbsp;            durationMinutes = 0,
+&nbsp;            icon = &quot;ev_charger&quot;,
+&nbsp;            ev = EvSpec(batteryKwh, acMaxPowerKw)
+&nbsp;        )
+&nbsp;        val updated = _uiState.value.appliances + vehicle
+&nbsp;        settingsRepository.setAppliances(updated)
+&nbsp;        _uiState.update { it.copy(appliances = updated) }
+&nbsp;        syncAppliancesToWear(updated)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates and persists the home charger output.
+&nbsp;     *
+&nbsp;     * @param kw Charger output in kW.
+&nbsp;     */
+&nbsp;    fun onEvHomeChargerChanged(kw: Double) {
+&nbsp;        settingsRepository.setEvHomeChargerKw(kw)
+&nbsp;        _uiState.update { it.copy(evHomeChargerKw = kw) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates and persists the default target state of charge used to prefill the charge prompt.
+&nbsp;     *
+&nbsp;     * @param soc Target SoC (0–100).
+&nbsp;     */
+&nbsp;    fun onEvDefaultTargetChanged(soc: Int) {
+&nbsp;        settingsRepository.setEvDefaultTargetSoc(soc)
+&nbsp;        _uiState.update { it.copy(evDefaultTargetSoc = soc) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Toggles the optional universal &quot;ready by&quot; deadline. */
+&nbsp;    fun onDeadlineEnabledChanged(enabled: Boolean) {
+&nbsp;        _uiState.update { it.copy(deadlineEnabled = enabled) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the &quot;ready by&quot; deadline time of day.
+&nbsp;     *
+&nbsp;     * @param hour Hour of day (0–23).
+&nbsp;     * @param minute Minute (0–59).
+&nbsp;     */
+&nbsp;    fun onDeadlineChanged(hour: Int, minute: Int) {
+&nbsp;        _uiState.update { it.copy(deadlineHour = hour, deadlineMinute = minute) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resolves the active &quot;ready by&quot; deadline to a concrete instant: the next occurrence of the
+&nbsp;     * configured time of day at or after [now], or `null` when the deadline is disabled.
+&nbsp;     */
+&nbsp;    private fun resolveDeadline(now: ZonedDateTime): ZonedDateTime? {
+&nbsp;        val state = _uiState.value
+&nbsp;        if (!state.deadlineEnabled) return null
+&nbsp;        var dl = now.withHour(state.deadlineHour).withMinute(state.deadlineMinute).withSecond(0).withNano(0)
+&nbsp;        if (!dl.isAfter(now)) dl = dl.plusDays(1)
+&nbsp;        return dl
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Computes the charging duration for a vehicle appliance from a state-of-charge range and
+&nbsp;     * runs the cheapest-window search (honouring the universal &quot;ready by&quot; deadline if set).
+&nbsp;     *
+&nbsp;     * Effective charging power is the lesser of the vehicle&#39;s max AC power and the home charger
+&nbsp;     * output. Duration uses a pure-linear model, appropriate for slow AC charging.
+&nbsp;     *
+&nbsp;     * @param appliance The tapped vehicle appliance (must have a non-null [Appliance.ev]).
+&nbsp;     * @param currentSoc Current state of charge (0–100).
+&nbsp;     * @param targetSoc Target state of charge (0–100).
+&nbsp;     */
+&nbsp;    fun onEvApplianceFind(appliance: Appliance, currentSoc: Int, targetSoc: Int) {
+&nbsp;        val spec = appliance.ev ?: return
+&nbsp;
+&nbsp;        if (targetSoc &lt;= currentSoc) {
+&nbsp;            _uiState.update { it.copy(error = AppError.Validation(UiText.Res(R.string.ev_error_invalid_soc))) }
+&nbsp;            return
+&nbsp;        }
+&nbsp;        val priceZone = _uiState.value.priceZone
+&nbsp;        if (priceZone == null) {
+&nbsp;            _uiState.update { it.copy(error = AppError.Validation(UiText.Res(R.string.error_no_zone))) }
+&nbsp;            return
+&nbsp;        }
+&nbsp;        val effectivePowerKw = minOf(spec.acMaxPowerKw, _uiState.value.evHomeChargerKw)
+&nbsp;        if (effectivePowerKw &lt;= 0.0) {
+&nbsp;            _uiState.update { it.copy(error = AppError.Validation(UiText.Res(R.string.ev_error_invalid_charger))) }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        // Pure-linear AC charging model: energy needed / effective power.
+&nbsp;        val energyKwh = (targetSoc - currentSoc) / 100.0 * spec.batteryKwh
+&nbsp;        val totalMinutes = Math.round(energyKwh / effectivePowerKw * 60).toInt().coerceAtLeast(1)
+&nbsp;        val roundedDurationHours = totalMinutes / 60.0
+&nbsp;
+&nbsp;        val timeZoneId = _uiState.value.timeZoneId
+&nbsp;        val deadline = resolveDeadline(currentNow(timeZoneId))
+&nbsp;
+&nbsp;        // Remember the current SoC to prefill the prompt next time.
+&nbsp;        settingsRepository.setEvLastCurrentSoc(currentSoc)
+&nbsp;
+&nbsp;        val label = UiText.Raw(&quot;${appliance.name} · ${currentSoc}→${targetSoc}%&quot;)
+&nbsp;
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                evLastCurrentSoc = currentSoc,
+&nbsp;                durationHours = totalMinutes / 60,
+&nbsp;                durationMinutes = totalMinutes % 60,
+&nbsp;                isLoading = true,
+&nbsp;                error = null,
+&nbsp;                result = null,
+&nbsp;                resultLabel = label,
+&nbsp;                searchDeadline = deadline,
+&nbsp;                searchPowerKw = effectivePowerKw
+&nbsp;            )
+&nbsp;        }
+&nbsp;
+&nbsp;        stopResultRefresh()
+&nbsp;        fetchJob?.cancel()
+&nbsp;        fetchJob = viewModelScope.launch(ioDispatcher) {
+&nbsp;            fetchAndFind(roundedDurationHours, label, timeZoneId, priceZone)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates the timezone selection.
+&nbsp;     *
+&nbsp;     * @param timeZoneId The chosen timezone, or `null` to revert to zone-derived default.
+&nbsp;     */
+&nbsp;    fun onTimezoneSelected(timeZoneId: ZoneId?) {
+&nbsp;        if (timeZoneId == null) {
+&nbsp;            settingsRepository.clearTimeZoneId()
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(timeZoneId = settingsRepository.getTimeZoneId(), isUsingDefaultTimezone = true)
+&nbsp;            }
+&nbsp;        } else {
+&nbsp;            settingsRepository.setTimeZoneId(timeZoneId)
+&nbsp;            _uiState.update { it.copy(timeZoneId = timeZoneId, isUsingDefaultTimezone = false) }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles country selection from the settings picker.
+&nbsp;     *
+&nbsp;     * Saves the country code, resolves the first zone for that country,
+&nbsp;     * updates timezone to the zone&#39;s timezone (unless manually overridden),
+&nbsp;     * and syncs settings to the watch.
+&nbsp;     *
+&nbsp;     * @param code ISO 3166-1 alpha-2 country code.
+&nbsp;     */
+&nbsp;    fun onCountrySelected(code: String) {
+&nbsp;        settingsRepository.setCountryCode(code)
+&nbsp;        settingsRepository.setPriceZoneId(null)
+&nbsp;        val zone = settingsRepository.getResolvedPriceZone()
+&nbsp;        val timeZoneId = settingsRepository.getTimeZoneId()
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                countryCode = code,
+&nbsp;                priceZone = zone,
+&nbsp;                timeZoneId = timeZoneId,
+&nbsp;                sourceOrder = null,
+&nbsp;                disabledSources = emptySet()
+&nbsp;            )
+&nbsp;        }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles price zone selection within the current country.
+&nbsp;     *
+&nbsp;     * Saves the zone ID, updates timezone to the zone&#39;s timezone (unless manually overridden),
+&nbsp;     * and syncs settings to the watch.
+&nbsp;     *
+&nbsp;     * @param priceZoneId The [PriceZone.id] selected.
+&nbsp;     */
+&nbsp;    fun onPriceZoneSelected(priceZoneId: String) {
+&nbsp;        settingsRepository.setPriceZoneId(priceZoneId)
+&nbsp;        val zone = settingsRepository.getResolvedPriceZone()
+&nbsp;        val timeZoneId = settingsRepository.getTimeZoneId()
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                priceZone = zone,
+&nbsp;                timeZoneId = timeZoneId
+&nbsp;            )
+&nbsp;        }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates the data source display/priority order.
+&nbsp;     *
+&nbsp;     * Saves the ordered list of all source IDs and syncs to the watch.
+&nbsp;     *
+&nbsp;     * @param order Ordered list of all source IDs (enabled and disabled).
+&nbsp;     */
+&nbsp;    fun onSourceOrderChanged(order: List&lt;String&gt;) {
+&nbsp;        settingsRepository.setSourceOrder(order)
+&nbsp;        _uiState.update { it.copy(sourceOrder = order) }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates which data sources are disabled.
+&nbsp;     *
+&nbsp;     * @param disabled Set of source IDs to disable.
+&nbsp;     */
+&nbsp;    fun onDisabledSourcesChanged(disabled: Set&lt;String&gt;) {
+&nbsp;        settingsRepository.setDisabledSources(disabled)
+&nbsp;        _uiState.update { it.copy(disabledSources = disabled) }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Resets the data source order and disabled set to zone defaults and syncs to the watch. */
+&nbsp;    fun onResetSourceOrder() {
+&nbsp;        settingsRepository.clearSourceOrder()
+&nbsp;        settingsRepository.clearDisabledSources()
+&nbsp;        _uiState.update { it.copy(sourceOrder = null, disabledSources = emptySet()) }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles a quick-duration button tap. Sets the picker values and immediately triggers a search.
+&nbsp;     *
+&nbsp;     * @param hours Hours component of the quick duration.
+&nbsp;     * @param minutes Minutes component of the quick duration.
+&nbsp;     */
+&nbsp;    fun onQuickDuration(hours: Int, minutes: Int) {
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                durationHours = hours,
+&nbsp;                durationMinutes = minutes,
+&nbsp;                resultLabel = UiText.duration(hours, minutes)
+&nbsp;            )
+&nbsp;        }
+&nbsp;        onFindClicked()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles an appliance chip tap. Sets the picker to the appliance&#39;s duration
+&nbsp;     * and immediately triggers a search.
+&nbsp;     *
+&nbsp;     * @param appliance The tapped appliance.
+&nbsp;     */
+&nbsp;    fun onApplianceDuration(appliance: Appliance) {
+&nbsp;        val label = UiText.applianceLabel(appliance.name, appliance.durationHours, appliance.durationMinutes)
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                durationHours = appliance.durationHours,
+&nbsp;                durationMinutes = appliance.durationMinutes,
+&nbsp;                resultLabel = label
+&nbsp;            )
+&nbsp;        }
+&nbsp;        onFindClicked(appliance.powerKw)
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Clears the current result and returns to the form screen. */
+&nbsp;    fun onClearResult() {
+&nbsp;        stopResultRefresh()
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                result = null,
+&nbsp;                resultLabel = null,
+&nbsp;                windowAlternatives = emptyList(),
+&nbsp;                windowOffset = 0,
+&nbsp;                allPrices = emptyList(),
+&nbsp;                priceSource = null,
+&nbsp;                error = null,
+&nbsp;                searchDeadline = null,
+&nbsp;                searchPowerKw = null
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Moves the displayed window one step earlier, to the next-cheapest window that starts sooner.
+&nbsp;     *
+&nbsp;     * Advances [UiState.windowOffset] within [UiState.windowAlternatives]. No-op when already at
+&nbsp;     * the earliest available window (the last alternative). Each step is costlier but starts sooner.
+&nbsp;     */
+&nbsp;    fun onEarlierWindow() {
+&nbsp;        _uiState.update { state -&gt;
+&nbsp;            val next = state.windowOffset + 1
+&nbsp;            if (next &gt;= state.windowAlternatives.size) return@update state
+&nbsp;            state.copy(windowOffset = next, result = state.windowAlternatives[next])
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Moves the displayed window one step back toward the cheapest window.
+&nbsp;     *
+&nbsp;     * Reduces [UiState.windowOffset], reversing [onEarlierWindow]. No-op when already showing the
+&nbsp;     * cheapest window (offset 0).
+&nbsp;     */
+&nbsp;    fun onCheaperWindow() {
+&nbsp;        _uiState.update { state -&gt;
+&nbsp;            val prev = state.windowOffset - 1
+&nbsp;            if (prev &lt; 0) return@update state
+&nbsp;            state.copy(windowOffset = prev, result = state.windowAlternatives[prev])
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Starts a periodic refresh that recalculates the cheapest window every 60 seconds.
+&nbsp;     *
+&nbsp;     * Filters out elapsed price slots and re-runs [findCheapestWindow] with the current time,
+&nbsp;     * keeping the result screen up-to-date as time passes.
+&nbsp;     */
+&nbsp;    private fun startResultRefresh() {
+&nbsp;        refreshJob?.cancel()
+&nbsp;        refreshJob = viewModelScope.launch {
+&nbsp;            while (true) {
+&nbsp;                delay(60_000)
+&nbsp;                recalculateResult()
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Stops the periodic result refresh.
+&nbsp;     */
+&nbsp;    private fun stopResultRefresh() {
+&nbsp;        refreshJob?.cancel()
+&nbsp;        refreshJob = null
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recalculates the window alternatives using already-fetched prices and the current time.
+&nbsp;     *
+&nbsp;     * Filters [UiState.allPrices] to exclude elapsed slots, then re-runs [findWindowAlternatives].
+&nbsp;     * Preserves the user&#39;s current selection by matching the previously-displayed window&#39;s start
+&nbsp;     * time in the rebuilt list; if that window has elapsed, falls back to the cheapest (offset 0).
+&nbsp;     * Updates [UiState.result], [UiState.windowAlternatives], [UiState.windowOffset], and
+&nbsp;     * [UiState.allPrices] so the chart and summary stay current.
+&nbsp;     */
+&nbsp;    internal fun recalculateResult() {
+&nbsp;        val state = _uiState.value
+&nbsp;        val prices = state.allPrices
+&nbsp;        if (prices.isEmpty() || state.result == null) return
+&nbsp;
+&nbsp;        val timeZoneId = state.timeZoneId
+&nbsp;        val now = currentNow(timeZoneId)
+&nbsp;        val futurePrices = prices.filter {
+&nbsp;            it.time.plusMinutes(it.durationMinutes.toLong()).isAfter(now)
+&nbsp;        }
+&nbsp;
+&nbsp;        val durationHours = state.durationHours + state.durationMinutes / 60.0
+&nbsp;        val alternatives = if (futurePrices.isNotEmpty()) {
+&nbsp;            findWindowAlternatives(futurePrices, durationHours, now, state.searchDeadline)
+&nbsp;        } else emptyList()
+&nbsp;
+&nbsp;        // No window fits any more — every slot has elapsed, or a &quot;ready by&quot; deadline has now
+&nbsp;        // passed. Keep the last result on screen (the search already happened) and stop refreshing
+&nbsp;        // rather than nulling the result and flipping the UI back to the form.
+&nbsp;        if (alternatives.isEmpty()) {
+&nbsp;            stopResultRefresh()
+&nbsp;            _uiState.update { it.copy(now = now) }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        // Keep showing the window the user navigated to, matched by start time. If it has
+&nbsp;        // elapsed out of the list, fall back to the cheapest window.
+&nbsp;        val selectedStart = state.result.startTime.toEpochSecond()
+&nbsp;        val offset = alternatives.indexOfFirst { it.startTime.toEpochSecond() == selectedStart }
+&nbsp;            .let { if (it &gt;= 0) it else 0 }
+&nbsp;
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                result = alternatives.getOrNull(offset),
+&nbsp;                windowAlternatives = alternatives,
+&nbsp;                windowOffset = offset,
+&nbsp;                allPrices = futurePrices,
+&nbsp;                now = now
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clears all cached price data if the API cooldown has elapsed.
+&nbsp;     *
+&nbsp;     * @return A user-facing message ([UiText], resolved by the UI): confirmation if cleared, or cooldown warning.
+&nbsp;     */
+&nbsp;    fun onClearCache(): UiText {
+&nbsp;        val cooldownDisabled = settingsRepository.isCooldownDisabled()
+&nbsp;        val remaining = if (cooldownDisabled) 0L else priceCache.cooldownRemainingMs(PriceRepository.COOLDOWN_MS)
+&nbsp;        return if (remaining &gt; 0) {
+&nbsp;            val minutes = (remaining / 60_000).toInt() + 1
+&nbsp;            UiText.Plural(R.plurals.error_cooldown, minutes, listOf(minutes))
+&nbsp;        } else {
+&nbsp;            priceCache.clear()
+&nbsp;            UiText.Res(R.string.snackbar_cache_cleared)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Re-fetches prices and recalculates the cheapest window from the results screen.
+&nbsp;     *
+&nbsp;     * If the API cooldown is still active, shows a &quot;try again in X minutes&quot; snackbar.
+&nbsp;     * Otherwise, clears the zone cache, preserves the existing result, and re-runs
+&nbsp;     * the fetch-and-find flow.
+&nbsp;     */
+&nbsp;    fun onRefreshResults() {
+&nbsp;        val cooldownDisabled = settingsRepository.isCooldownDisabled()
+&nbsp;        val remaining = if (cooldownDisabled) 0L else priceCache.cooldownRemainingMs(PriceRepository.COOLDOWN_MS)
+&nbsp;        if (remaining &gt; 0) {
+&nbsp;            val minutes = (remaining / 60_000).toInt() + 1
+&nbsp;            _uiState.update { it.copy(error = AppError.Network(UiText.Plural(R.plurals.error_cooldown, minutes, listOf(minutes)))) }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        val state = _uiState.value
+&nbsp;        val priceZone = state.priceZone ?: return
+&nbsp;        priceCache.clearForZone(priceZone.id)
+&nbsp;
+&nbsp;        val h = state.durationHours
+&nbsp;        val m = state.durationMinutes
+&nbsp;        val durationHours = h + m / 60.0
+&nbsp;        val durationText = UiText.duration(h, m)
+&nbsp;
+&nbsp;        _uiState.update { it.copy(isLoading = true, error = null) }
+&nbsp;
+&nbsp;        val timeZoneId = state.timeZoneId
+&nbsp;        stopResultRefresh()
+&nbsp;        fetchJob?.cancel()
+&nbsp;        fetchJob = viewModelScope.launch(ioDispatcher) {
+&nbsp;            fetchAndFind(durationHours, durationText, timeZoneId, priceZone)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a new appliance and persists it.
+&nbsp;     *
+&nbsp;     * @param name Display name.
+&nbsp;     * @param durationHours Hours component of the default duration.
+&nbsp;     * @param durationMinutes Minutes component of the default duration.
+&nbsp;     * @param icon Icon ID from the appliance icon registry.
+&nbsp;     * @param powerKw Optional load rating in kW, or `null` for the default per-1-kW cost display.
+&nbsp;     */
+&nbsp;    fun onAddAppliance(name: String, durationHours: Int, durationMinutes: Int, icon: String, powerKw: Double? = null) {
+&nbsp;        val appliance = Appliance(
+&nbsp;            id = UUID.randomUUID().toString(),
+&nbsp;            name = name,
+&nbsp;            durationHours = durationHours,
+&nbsp;            durationMinutes = durationMinutes,
+&nbsp;            icon = icon,
+&nbsp;            powerKw = powerKw
+&nbsp;        )
+&nbsp;        val updated = _uiState.value.appliances + appliance
+&nbsp;        settingsRepository.setAppliances(updated)
+&nbsp;        _uiState.update { it.copy(appliances = updated) }
+&nbsp;        syncAppliancesToWear(updated)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Replaces an existing appliance (matched by ID) and persists the change.
+&nbsp;     *
+&nbsp;     * @param appliance The updated appliance.
+&nbsp;     */
+&nbsp;    fun onUpdateAppliance(appliance: Appliance) {
+&nbsp;        val updated = _uiState.value.appliances.map {
+&nbsp;            if (it.id == appliance.id) appliance else it
+&nbsp;        }
+&nbsp;        settingsRepository.setAppliances(updated)
+&nbsp;        _uiState.update { it.copy(appliances = updated) }
+&nbsp;        syncAppliancesToWear(updated)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Deletes an appliance by ID and persists the change.
+&nbsp;     *
+&nbsp;     * @param id The appliance ID to remove.
+&nbsp;     */
+&nbsp;    fun onDeleteAppliance(id: String) {
+&nbsp;        val updated = _uiState.value.appliances.filter { it.id != id }
+&nbsp;        settingsRepository.setAppliances(updated)
+&nbsp;        _uiState.update { it.copy(appliances = updated) }
+&nbsp;        syncAppliancesToWear(updated)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pushes the current appliance list to the Wearable Data Layer so
+&nbsp;     * the Wear OS companion app receives it.
+&nbsp;     *
+&nbsp;     * Silently ignores failures (e.g. Play Services unavailable) since
+&nbsp;     * watch sync is best-effort and should never crash the phone app.
+&nbsp;     *
+&nbsp;     * EV-type appliances are excluded — the watch has no state-of-charge UI in this version.
+&nbsp;     *
+&nbsp;     * @param appliances The appliance list to sync (EV appliances are filtered out).
+&nbsp;     */
+&nbsp;    private fun syncAppliancesToWear(appliances: List&lt;Appliance&gt;) {
+&nbsp;        try {
+&nbsp;            val json = Json.encodeToString(appliances.filterNot { it.isEv })
+&nbsp;            val request = PutDataMapRequest.create(&quot;/appliances&quot;).apply {
+&nbsp;                dataMap.putString(&quot;json&quot;, json)
+&nbsp;                dataMap.putLong(&quot;ts&quot;, System.currentTimeMillis())
+&nbsp;            }.asPutDataRequest().setUrgent()
+&nbsp;            Wearable.getDataClient(getApplication()).putDataItem(request)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Best-effort: watch sync should not crash the phone app
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Called when the user picks a new per-app language in Settings.
+&nbsp;     *
+&nbsp;     * Syncs the tag to the watch via the Data Layer and then triggers the locale switch.
+&nbsp;     * Setting the locale here (before the Compose navigation state changes) avoids a
+&nbsp;     * flash of the old language when the picker closes and the Activity recreates.
+&nbsp;     */
+&nbsp;    fun onLanguageChanged(languageTag: String) {
+&nbsp;        syncSettingsToWear(languageTag = languageTag)
+&nbsp;        AppCompatDelegate.setApplicationLocales(
+&nbsp;            LocaleListCompat.forLanguageTags(languageTag)
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Applies the selected theme mode and persists it.
+&nbsp;     *
+&nbsp;     * @param mode The selected [ThemeMode].
+&nbsp;     */
+&nbsp;    fun onThemeModeChanged(mode: ThemeMode) {
+&nbsp;        settingsRepository.setThemeMode(mode.key)
+&nbsp;        _uiState.update { it.copy(themeMode = mode) }
+&nbsp;        AppCompatDelegate.setDefaultNightMode(mode.nightMode)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pushes country and zone settings to the Wearable Data Layer so the
+&nbsp;     * watch can use the same price zone as the phone.
+&nbsp;     *
+&nbsp;     * @param languageTag Explicit language tag override. When `null`, reads from
+&nbsp;     *   [AppCompatDelegate.getApplicationLocales] (correct for non-language syncs).
+&nbsp;     *
+&nbsp;     * Silently ignores failures since watch sync is best-effort.
+&nbsp;     */
+&nbsp;    private fun syncSettingsToWear(languageTag: String? = null) {
+&nbsp;        try {
+&nbsp;            val state = _uiState.value
+&nbsp;            val priceZone = state.priceZone ?: return
+&nbsp;            val resolvedTag = languageTag ?: run {
+&nbsp;                val locales = AppCompatDelegate.getApplicationLocales()
+&nbsp;                if (locales.isEmpty) &quot;&quot; else locales.toLanguageTags()
+&nbsp;            }
+&nbsp;            val request = PutDataMapRequest.create(&quot;/settings&quot;).apply {
+&nbsp;                dataMap.putString(&quot;country_code&quot;, state.countryCode)
+&nbsp;                dataMap.putString(&quot;price_zone_id&quot;, priceZone.id)
+&nbsp;                dataMap.putString(&quot;source_order&quot;, state.sourceOrder?.let { Json.encodeToString(it) } ?: &quot;&quot;)
+&nbsp;                dataMap.putString(&quot;disabled_sources&quot;, state.disabledSources.takeIf { it.isNotEmpty() }?.let { Json.encodeToString(it) } ?: &quot;&quot;)
+&nbsp;                dataMap.putString(&quot;language&quot;, resolvedTag)
+&nbsp;                dataMap.putBoolean(&quot;stats_enabled&quot;, settingsRepository.isStatsEnabled())
+&nbsp;                dataMap.putBoolean(&quot;is_trial_expired&quot;, settingsRepository.isTrialExpired())
+&nbsp;                dataMap.putBoolean(&quot;is_unlocked&quot;, settingsRepository.isUnlocked())
+&nbsp;                dataMap.putLong(&quot;ts&quot;, System.currentTimeMillis())
+&nbsp;            }.asPutDataRequest().setUrgent()
+&nbsp;            Wearable.getDataClient(getApplication()).putDataItem(request)
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Best-effort: watch sync should not crash the phone app
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Validates the current duration, fetches prices, and finds the cheapest window.
+&nbsp;     *
+&nbsp;     * Sets [UiState.isLoading] while working. On success, populates [UiState.result]
+&nbsp;     * and [UiState.allPrices]. On failure, sets [UiState.error].
+&nbsp;     *
+&nbsp;     * @param powerKw Optional load rating (kW) used to scale displayed costs. `null` (the default,
+&nbsp;     *   used by the Find button and quick-duration chips) keeps the per-1-kW behaviour.
+&nbsp;     */
+&nbsp;    fun onFindClicked(powerKw: Double? = null) {
+&nbsp;        val h = _uiState.value.durationHours
+&nbsp;        val m = _uiState.value.durationMinutes
+&nbsp;
+&nbsp;        if (h == 0 &amp;&amp; m == 0) {
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(
+&nbsp;                    error = AppError.Validation(UiText.Res(R.string.error_zero_duration)),
+&nbsp;                    result = null,
+&nbsp;                    allPrices = emptyList()
+&nbsp;                )
+&nbsp;            }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        val priceZone = _uiState.value.priceZone
+&nbsp;        if (priceZone == null) {
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(
+&nbsp;                    error = AppError.Validation(UiText.Res(R.string.error_no_zone)),
+&nbsp;                    result = null,
+&nbsp;                    allPrices = emptyList()
+&nbsp;                )
+&nbsp;            }
+&nbsp;            return
+&nbsp;        }
+&nbsp;
+&nbsp;        val durationHours = h + m / 60.0
+&nbsp;        val durationText = UiText.duration(h, m)
+&nbsp;
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                isLoading = true,
+&nbsp;                error = null,
+&nbsp;                result = null,
+&nbsp;                resultLabel = it.resultLabel ?: durationText,
+&nbsp;                searchDeadline = resolveDeadline(currentNow(it.timeZoneId)),
+&nbsp;                searchPowerKw = powerKw
+&nbsp;            )
+&nbsp;        }
+&nbsp;
+&nbsp;        val timeZoneId = _uiState.value.timeZoneId
+&nbsp;        stopResultRefresh()
+&nbsp;        fetchJob?.cancel()
+&nbsp;        fetchJob = viewModelScope.launch(ioDispatcher) {
+&nbsp;            fetchAndFind(durationHours, durationText, timeZoneId, priceZone)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetches prices from the repository and runs the cheapest-window algorithm.
+&nbsp;     *
+&nbsp;     * Called on [Dispatchers.IO]. Updates [_uiState] with the result or an error.
+&nbsp;     * On success, starts the periodic refresh via [startResultRefresh].
+&nbsp;     *
+&nbsp;     * @param durationHours Duration in decimal hours.
+&nbsp;     * @param durationText Human-readable duration label ([UiText]) used in the &quot;not enough data&quot; error.
+&nbsp;     * @param timeZoneId Timezone snapshot captured before the IO dispatch.
+&nbsp;     * @param priceZone The price zone to fetch data for.
+&nbsp;     */
+&nbsp;    private fun fetchAndFind(durationHours: Double, durationText: UiText, timeZoneId: ZoneId, priceZone: PriceZone) {
+&nbsp;        try {
+&nbsp;            val state = _uiState.value
+&nbsp;            val enabledOrder = state.sourceOrder?.filter { it !in state.disabledSources }
+&nbsp;            val activeCollector = if (settingsRepository.isStatsEnabled()) statsCollector else null
+&nbsp;            val factory = priceFetcherFactory
+&nbsp;                ?: defaultPriceFetcherFactory(BuildConfig.ENTSOE_API_TOKEN, enabledOrder, activeCollector, &quot;phone&quot;)
+&nbsp;            val fetcher = factory.create(priceZone)
+&nbsp;            if (settingsRepository.isCooldownDisabled()) priceCache.resetCooldown()
+&nbsp;            val repository = PriceRepository(priceCache, timeZoneId, fetcher, clock = settingsRepository.devClock(timeZoneId), cacheKey = priceZone.id)
+&nbsp;            val priceResult = repository.getPrices()
+&nbsp;            val prices = priceResult.prices
+&nbsp;
+&nbsp;            if (prices.isEmpty()) {
+&nbsp;                _uiState.update {
+&nbsp;                    it.copy(
+&nbsp;                        isLoading = false,
+&nbsp;                        error = AppError.Validation(UiText.Res(R.string.error_no_data)),
+&nbsp;                        allPrices = emptyList(),
+&nbsp;                        priceSource = null
+&nbsp;                    )
+&nbsp;                }
+&nbsp;                return
+&nbsp;            }
+&nbsp;
+&nbsp;            val now = currentNow(timeZoneId)
+&nbsp;            val deadline = _uiState.value.searchDeadline
+&nbsp;            val alternatives = findWindowAlternatives(prices, durationHours, now, deadline)
+&nbsp;
+&nbsp;            if (alternatives.isEmpty()) {
+&nbsp;                val message = if (deadline != null) {
+&nbsp;                    UiText.Res(R.string.ev_error_deadline_unreachable)
+&nbsp;                } else {
+&nbsp;                    val coverageHours = prices.sumOf { it.durationMinutes.toLong() } / 60
+&nbsp;                    UiText.Plural(R.plurals.error_not_enough_data, coverageHours.toInt(), listOf(durationText, coverageHours))
+&nbsp;                }
+&nbsp;                _uiState.update {
+&nbsp;                    it.copy(
+&nbsp;                        isLoading = false,
+&nbsp;                        error = AppError.Validation(message),
+&nbsp;                        allPrices = prices
+&nbsp;                    )
+&nbsp;                }
+&nbsp;                return
+&nbsp;            }
+&nbsp;
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(
+&nbsp;                    isLoading = false,
+&nbsp;                    result = alternatives.first(),
+&nbsp;                    windowAlternatives = alternatives,
+&nbsp;                    windowOffset = 0,
+&nbsp;                    allPrices = prices,
+&nbsp;                    priceSource = priceResult.source,
+&nbsp;                    error = null,
+&nbsp;                    now = now
+&nbsp;                )
+&nbsp;            }
+&nbsp;            startResultRefresh()
+&nbsp;            tryReportStats()
+&nbsp;        } catch (e: Exception) {
+&nbsp;            _uiState.update {
+&nbsp;                it.copy(
+&nbsp;                    isLoading = false,
+&nbsp;                    error = AppError.Network(UiText.Res(R.string.error_network, listOf(e.message ?: &quot;&quot;))),
+&nbsp;                    allPrices = emptyList(),
+&nbsp;                    priceSource = null
+&nbsp;                )
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks whether the stats opt-in prompt should be shown.
+&nbsp;     *
+&nbsp;     * Shows the prompt once, after the user has been using the app for at least 3 days,
+&nbsp;     * unless stats are already enabled (e.g. the user enabled them manually in settings).
+&nbsp;     */
+&nbsp;    private fun checkStatsPrompt() {
+&nbsp;        if (settingsRepository.isStatsPromptShown()) return
+&nbsp;        if (settingsRepository.isStatsEnabled()) return
+&nbsp;        val firstLaunch = settingsRepository.getFirstLaunchMs()
+&nbsp;        val daysSinceFirst = (System.currentTimeMillis() - firstLaunch) / (24 * 60 * 60 * 1000L)
+&nbsp;        if (daysSinceFirst &gt;= 3) {
+&nbsp;            _uiState.update { it.copy(showStatsPrompt = true) }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the user enabling stats from the opt-in prompt.
+&nbsp;     *
+&nbsp;     * Sets stats as enabled and marks the prompt as shown.
+&nbsp;     */
+&nbsp;    fun onStatsPromptEnabled() {
+&nbsp;        settingsRepository.setStatsEnabled(true)
+&nbsp;        settingsRepository.setStatsPromptShown()
+&nbsp;        _uiState.update { it.copy(showStatsPrompt = false, isStatsEnabled = true) }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the user dismissing the stats opt-in prompt.
+&nbsp;     *
+&nbsp;     * Marks the prompt as shown so it is never displayed again.
+&nbsp;     */
+&nbsp;    fun onStatsPromptDismissed() {
+&nbsp;        settingsRepository.setStatsPromptShown()
+&nbsp;        _uiState.update { it.copy(showStatsPrompt = false) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Toggles API stats collection from the settings screen.
+&nbsp;     *
+&nbsp;     * @param enabled Whether stats collection should be enabled.
+&nbsp;     */
+&nbsp;    fun onStatsEnabledChanged(enabled: Boolean) {
+&nbsp;        settingsRepository.setStatsEnabled(enabled)
+&nbsp;        _uiState.update { it.copy(isStatsEnabled = enabled) }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Attempts to report stats to the server if opt-in is enabled and the interval has elapsed.
+&nbsp;     *
+&nbsp;     * Called after a successful price fetch. Runs on the IO dispatcher.
+&nbsp;     */
+&nbsp;    private fun tryReportStats() {
+&nbsp;        if (!settingsRepository.isStatsEnabled()) return
+&nbsp;        try {
+&nbsp;            statsReporter.reportIfDue()
+&nbsp;        } catch (_: Exception) {
+&nbsp;            // Best-effort: stats reporting should never affect the main flow
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Receives stats records from the watch via the Wearable Data Layer.
+&nbsp;     *
+&nbsp;     * Appends each watch record to the phone&#39;s local stats file so they
+&nbsp;     * are included in the next report.
+&nbsp;     *
+&nbsp;     * @param records Stats records from the watch.
+&nbsp;     */
+&nbsp;    fun onWatchStatsReceived(records: List&lt;StatsRecord&gt;) {
+&nbsp;        if (!settingsRepository.isStatsEnabled()) return
+&nbsp;        for (record in records) {
+&nbsp;            statsCollector.record(record)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Purchase ---
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Re-queries subscription state to detect expiry when the app returns to foreground.
+&nbsp;     *
+&nbsp;     * Called from [MainActivity.onResume].
+&nbsp;     */
+&nbsp;    fun onResume() {
+&nbsp;        activeBilling?.onResume()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Launches the subscription purchase flow.
+&nbsp;     *
+&nbsp;     * @param activity The activity to host the purchase UI.
+&nbsp;     */
+&nbsp;    fun onPurchaseClicked(activity: Activity) {
+&nbsp;        activeBilling?.launchPurchaseFlow(activity)
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Re-queries existing purchases to restore subscription state.
+&nbsp;     *
+&nbsp;     * Useful for users who previously subscribed on another device or after reinstalling.
+&nbsp;     */
+&nbsp;    fun onRestorePurchases() {
+&nbsp;        activeBilling?.queryPurchases()
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Dismisses the thank-you dialog shown after a successful purchase. */
+&nbsp;    fun onThankYouDismissed() {
+&nbsp;        _uiState.update { it.copy(showThankYou = false) }
+&nbsp;    }
+&nbsp;
+&nbsp;    // --- Developer options ---
+&nbsp;    // (Watch stats arrive via [watchStatsBridge]; the decoded records are handled by
+&nbsp;    //  [onWatchStatsReceived]. The Data Layer plumbing lives in [WearableStatsBridge].)
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Persistently enables hidden developer options (triggered by 7-tap on version number).
+&nbsp;     */
+&nbsp;    fun onDevOptionsUnlocked() {
+&nbsp;        settingsRepository.setDevOptionsEnabled()
+&nbsp;        _uiState.update { it.copy(devOptionsEnabled = true) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resets the unlock/payment state, re-enabling the trial paywall.
+&nbsp;     *
+&nbsp;     * Clears the local unlock flag and updates the UI state. Does not affect
+&nbsp;     * the actual Google Play purchase — only the local cached state.
+&nbsp;     */
+&nbsp;    fun onDevResetUnlock() {
+&nbsp;        settingsRepository.setUnlocked(false)
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                isUnlocked = false,
+&nbsp;                showPaywall = shouldShowPaywall(BuildConfig.DEBUG, settingsRepository.isTrialExpired(), settingsRepository.isUnlocked())
+&nbsp;            )
+&nbsp;        }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enables or disables the developer-only subscription bypass.
+&nbsp;     *
+&nbsp;     * When enabled, the paywall is suppressed on this device regardless of trial
+&nbsp;     * or subscription state. Intended for the developer&#39;s own phone during the
+&nbsp;     * testing phase, where Play test subscriptions expire every ~30 minutes.
+&nbsp;     * Also propagates to the watch via the Data Layer so the wear app unlocks too.
+&nbsp;     *
+&nbsp;     * @param enabled `true` to bypass the paywall locally, `false` to restore normal behaviour.
+&nbsp;     */
+&nbsp;    fun onDevUnlockChanged(enabled: Boolean) {
+&nbsp;        settingsRepository.setDevUnlocked(enabled)
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                isDevUnlocked = enabled,
+&nbsp;                isTrialExpired = settingsRepository.isTrialExpired(),
+&nbsp;                showPaywall = shouldShowPaywall(BuildConfig.DEBUG, settingsRepository.isTrialExpired(), settingsRepository.isUnlocked())
+&nbsp;            )
+&nbsp;        }
+&nbsp;        syncSettingsToWear()
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Toggles the API fetch cooldown bypass.
+&nbsp;     *
+&nbsp;     * When disabled, all API cooldown checks are skipped, allowing immediate fetches.
+&nbsp;     *
+&nbsp;     * @param disabled `true` to disable the cooldown.
+&nbsp;     */
+&nbsp;    fun onDevCooldownDisabledChanged(disabled: Boolean) {
+&nbsp;        settingsRepository.setCooldownDisabled(disabled)
+&nbsp;        _uiState.update { it.copy(isCooldownDisabled = disabled) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets or clears the developer time override.
+&nbsp;     *
+&nbsp;     * When set, the app behaves as if the current time is the override value.
+&nbsp;     * Clears cached prices so the next fetch uses the overridden date range.
+&nbsp;     *
+&nbsp;     * @param ms Epoch milliseconds for the fake &quot;now&quot;, or `null` to clear.
+&nbsp;     */
+&nbsp;    fun onDevTimeOverrideChanged(ms: Long?) {
+&nbsp;        settingsRepository.setTimeOverrideMs(ms)
+&nbsp;        priceCache.clear()
+&nbsp;        val timeZoneId = _uiState.value.timeZoneId
+&nbsp;        _uiState.update {
+&nbsp;            it.copy(
+&nbsp;                timeOverrideMs = ms,
+&nbsp;                now = currentNow(timeZoneId),
+&nbsp;                isTrialExpired = settingsRepository.isTrialExpired(),
+&nbsp;                trialDaysRemaining = settingsRepository.trialDaysRemaining(),
+&nbsp;                showPaywall = shouldShowPaywall(BuildConfig.DEBUG, settingsRepository.isTrialExpired(), settingsRepository.isUnlocked())
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Toggles the production logo override for debug builds.
+&nbsp;     *
+&nbsp;     * @param use `true` to show the production logo.
+&nbsp;     */
+&nbsp;    fun onDevUseProductionLogoChanged(use: Boolean) {
+&nbsp;        settingsRepository.setUseProductionLogo(use)
+&nbsp;        _uiState.update { it.copy(useProductionLogo = use) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resets the stats report timer, allowing immediate stats reporting.
+&nbsp;     */
+&nbsp;    fun onDevResetStatsTimer() {
+&nbsp;        statsReporter.resetReportTimer()
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Decides whether the subscription paywall should block the app.
+&nbsp; *
+&nbsp; * Pure so the rule is unit-testable for both build types (release unit tests always run with
+&nbsp; * `BuildConfig.DEBUG == true`, so the debug-skip branch is otherwise unreachable in tests).
+&nbsp; *
+&nbsp; * @param isDebug Whether this is a debug build (paywall is always skipped in debug).
+&nbsp; * @param trialExpired Whether the free trial has expired.
+&nbsp; * @param unlocked Whether the app has been unlocked via subscription.
+&nbsp; * @return `true` only for a release build with an expired trial and no active unlock.
+&nbsp; */
+&nbsp;internal fun shouldShowPaywall(isDebug: Boolean, trialExpired: Boolean, unlocked: Boolean): Boolean =
+<b class="fc">&nbsp;    !isDebug &amp;&amp; trialExpired &amp;&amp; !unlocked</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Returns the country list with the auto-detected country moved to the top.
+&nbsp; *
+&nbsp; * @param application Application context for [CountryDetector].
+&nbsp; * @return [Countries.all] with the detected country first, rest in alphabetical order.
+&nbsp; */
+&nbsp;private fun countriesWithDetectedFirst(application: Application): List&lt;Country&gt; {
+<b class="fc">&nbsp;    val detectedCode = CountryDetector.detect(application).code</b>
+<b class="fc">&nbsp;    val (detected, rest) = Countries.all.partition { it.code == detectedCode }</b>
+<b class="fc">&nbsp;    return detected + rest</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-07-09 16:16</div>
+</div>
+</body>
+</html>

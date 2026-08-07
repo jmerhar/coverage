@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "f1a37e51a887a58db6d173b61711e57160a18745",
+  "short_sha": "f1a37e51a8",
+  "committed_at": "2026-07-30T09:57:04Z",
+  "message": "refactor: drop the finder's unused notLaterThan deadline path",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/f1a37e51a887a58db6d173b61711e57160a18745",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "86.3%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "91.2%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "79.0%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

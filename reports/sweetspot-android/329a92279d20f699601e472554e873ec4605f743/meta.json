@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "329a92279d20f699601e472554e873ec4605f743",
+  "short_sha": "329a92279d",
+  "committed_at": "2026-07-13T17:13:49Z",
+  "message": "fix: avoid \"a 11 kW load\" article error in the cost disclaimer",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/329a92279d20f699601e472554e873ec4605f743",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "88.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "81.2%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

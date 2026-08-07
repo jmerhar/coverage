@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "fd856054ccdf19f1d9e6d7fb48dba886a4465124",
+  "short_sha": "fd856054cc",
+  "committed_at": "2026-07-31T08:45:16Z",
+  "message": "feat: send exact figures as GA metrics, update privacy note",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/fd856054ccdf19f1d9e6d7fb48dba886a4465124",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.7%"
+      }
+    }
+  ]
+}

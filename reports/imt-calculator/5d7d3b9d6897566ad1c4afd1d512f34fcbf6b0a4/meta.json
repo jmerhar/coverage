@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "5d7d3b9d6897566ad1c4afd1d512f34fcbf6b0a4",
+  "short_sha": "5d7d3b9d68",
+  "committed_at": "2026-07-31T19:53:47Z",
+  "message": "docs: reorganize reference/ into sources + Markdown renditions",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/5d7d3b9d6897566ad1c4afd1d512f34fcbf6b0a4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.5%",
+        "branch": "92.0%"
+      }
+    }
+  ]
+}

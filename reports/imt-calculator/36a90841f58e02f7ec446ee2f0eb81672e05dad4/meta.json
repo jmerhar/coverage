@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "36a90841f58e02f7ec446ee2f0eb81672e05dad4",
+  "short_sha": "36a90841f5",
+  "committed_at": "2026-07-30T19:19:13Z",
+  "message": "layout: align form rows across columns",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/36a90841f58e02f7ec446ee2f0eb81672e05dad4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.9%",
+        "branch": "85.9%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "96.9%",
+        "branch": "85.9%"
+      }
+    }
+  ]
+}

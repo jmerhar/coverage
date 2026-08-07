@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "50ea30d2b7c004fd453adeca203f8c40b1f90e6f",
+  "short_sha": "50ea30d2b7",
+  "committed_at": "2026-07-31T07:38:21Z",
+  "message": "fix: report distinct GA pages for hash routes",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/50ea30d2b7c004fd453adeca203f8c40b1f90e6f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "89.4%"
+      }
+    }
+  ]
+}

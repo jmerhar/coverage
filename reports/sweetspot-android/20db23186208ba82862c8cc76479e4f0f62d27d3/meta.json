@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "20db23186208ba82862c8cc76479e4f0f62d27d3",
+  "short_sha": "20db231862",
+  "committed_at": "2026-07-20T22:35:38Z",
+  "message": "feat: press-and-hold the price chart for a per-slot price tooltip",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/20db23186208ba82862c8cc76479e4f0f62d27d3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "88.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "99.6%",
+        "branch": "92.4%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "82.3%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "83.9%"
+      }
+    }
+  ]
+}

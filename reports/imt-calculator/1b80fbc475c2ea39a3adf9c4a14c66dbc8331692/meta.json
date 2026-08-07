@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "1b80fbc475c2ea39a3adf9c4a14c66dbc8331692",
+  "short_sha": "1b80fbc475",
+  "committed_at": "2026-07-31T08:40:41Z",
+  "message": "feat: add numeric vpt_ratio metric and refine ratio bands",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/1b80fbc475c2ea39a3adf9c4a14c66dbc8331692",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "90.0%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "90.0%"
+      }
+    }
+  ]
+}

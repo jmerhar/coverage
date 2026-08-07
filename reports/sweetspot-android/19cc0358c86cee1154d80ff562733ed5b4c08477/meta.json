@@ -1,0 +1,41 @@
+{
+  "project": "sweetspot-android",
+  "sha": "19cc0358c86cee1154d80ff562733ed5b4c08477",
+  "short_sha": "19cc0358c8",
+  "committed_at": "2026-08-07T10:16:40Z",
+  "message": "chore(deps): bump the actions group with 3 updates (#13)",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/19cc0358c86cee1154d80ff562733ed5b4c08477",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%"
+      }
+    }
+  ]
+}

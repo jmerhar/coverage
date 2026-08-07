@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "739c7bccab19abb2455eed6ccda063b2859e5b7b",
+  "short_sha": "739c7bccab",
+  "committed_at": "2026-08-01T09:22:20Z",
+  "message": "docs: update SEO + content plans (five guides, glossary, sitemap, Phase 3)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/739c7bccab19abb2455eed6ccda063b2859e5b7b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
