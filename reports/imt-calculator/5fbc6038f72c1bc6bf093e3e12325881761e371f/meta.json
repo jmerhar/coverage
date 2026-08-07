@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "5fbc6038f72c1bc6bf093e3e12325881761e371f",
+  "short_sha": "5fbc6038f7",
+  "committed_at": "2026-08-07T21:31:44Z",
+  "message": "refactor(ci): use the shared coverage tooling",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/5fbc6038f72c1bc6bf093e3e12325881761e371f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}
