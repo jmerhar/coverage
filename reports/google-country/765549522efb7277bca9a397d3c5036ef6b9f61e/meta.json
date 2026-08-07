@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "765549522efb7277bca9a397d3c5036ef6b9f61e",
+  "short_sha": "765549522e",
+  "committed_at": "2026-08-07T21:28:39Z",
+  "message": "refactor(ci): use the shared coverage tooling",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/765549522efb7277bca9a397d3c5036ef6b9f61e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
