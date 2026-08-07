@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "dd43f1d4e23b2d44e3cdc137174448d81c2597c5",
+  "short_sha": "dd43f1d4e2",
+  "committed_at": "2026-08-07T21:47:52Z",
+  "message": "refactor(ci): use the shared coverage tooling",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/dd43f1d4e23b2d44e3cdc137174448d81c2597c5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
