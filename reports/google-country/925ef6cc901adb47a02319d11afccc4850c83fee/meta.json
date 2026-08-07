@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "925ef6cc901adb47a02319d11afccc4850c83fee",
+  "short_sha": "925ef6cc90",
+  "committed_at": "2026-08-07T22:37:43Z",
+  "message": "fix: refresh the fetched coverage engine instead of caching it forever",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/925ef6cc901adb47a02319d11afccc4850c83fee",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
