@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "27b2054b02ce4cc4556f04adc194cf0945bc0709",
+  "short_sha": "27b2054b02",
+  "committed_at": "2026-08-07T22:33:11Z",
+  "message": "fix(ci): restore the merged-only coverage report and the 98% gate",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/27b2054b02ce4cc4556f04adc194cf0945bc0709",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
