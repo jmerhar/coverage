@@ -108,8 +108,11 @@ publish() {
   if git -C "$checkout" diff --cached --quiet; then
     return 3
   fi
+  # gpgsign off explicitly: this is a machine-made commit in a throwaway clone, and a developer whose
+  # global config signs every commit would otherwise have this fail for want of a key.
   git -C "$checkout" \
     -c user.name="coverage-bot" -c user.email="coverage-bot@users.noreply.github.com" \
+    -c commit.gpgsign=false \
     commit --quiet -m "coverage: $project @ ${sha:0:10}"
   git -C "$checkout" push --quiet origin "HEAD:$DATA_BRANCH"
 }

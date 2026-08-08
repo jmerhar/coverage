@@ -25,6 +25,12 @@ work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 cd "$work" || exit 1
 
+# Run against no git configuration but the repositories' own. Whatever the developer has set globally
+# — commit signing, a default branch, hooks, templates — would otherwise decide whether these throwaway
+# repositories behave like the ones in CI.
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_SYSTEM=/dev/null
+
 # A bare repository with a populated `reports` branch, as the site's data branch looks.
 git init -q --bare remote.git
 git init -q seed && (

@@ -150,7 +150,7 @@ Suite names must be a single path segment (letters, digits, dots, underscores, d
 become directory names and URL segments; a name containing a dot needs quoting in TOML
 (`[suites."v1.2"]`).
 
-### 3. Three CI steps
+### 3. The CI steps
 
 ```yaml
 jobs:
@@ -163,8 +163,14 @@ jobs:
 
       - uses: jmerhar/coverage/.github/actions/summary@v1
 
-      # Any coverage uploads (Codecov and the like) belong here — before the gate, so their data
-      # still lands when the gate fails.
+      # Optional. Uploads each suite's coverage under its own flag, and your JUnit report as test
+      # results, so Codecov shows flakes, failure history and slowest tests. Nothing here can fail
+      # the build; drop the step, or the `junit` input, if you don't want either half.
+      - uses: jmerhar/coverage/.github/actions/codecov@v1
+        if: ${{ !cancelled() }}        # so a *failing* suite still reports its failures
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          junit: junit/*.xml            # file, glob, or comma-separated list
 
       - uses: jmerhar/coverage/.github/actions/gate@v1
 
@@ -173,6 +179,22 @@ jobs:
         with:
           token: ${{ secrets.COVERAGE_PAGES_TOKEN }}
 ```
+
+Order matters in one place: the Codecov upload goes **before** the gate, so the data still lands when
+the gate fails.
+
+The Codecov *coverage* file is derived from each suite's `format` — Kover and Clover already write a
+dialect Codecov reads, and the others write one beside the report the summaries read — so you name no
+files. A **JUnit path cannot be derived**, since it's wherever your test runner was told to write, so
+that stays an input. Configure your runner to produce one:
+
+| Runner | |
+|---|---|
+| vitest | `reporters: ["default", ["junit", { outputFile: "junit/vitest.xml" }]]` |
+| pytest | `--junitxml=junit/backend.xml` |
+| bats | `--report-formatter junit --output junit` |
+| Gradle | writes `<module>/build/test-results/<task>/TEST-*.xml` already |
+| PHPUnit | `--log-junit coverage/junit.xml` |
 
 That's it — the next push shows up at `https://jmerhar.github.io/coverage/<project>/`.
 
