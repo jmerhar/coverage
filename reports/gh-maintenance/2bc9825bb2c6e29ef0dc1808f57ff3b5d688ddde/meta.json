@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "2bc9825bb2c6e29ef0dc1808f57ff3b5d688ddde",
+  "short_sha": "2bc9825bb2",
+  "committed_at": "2026-08-08T17:58:38Z",
+  "message": "Revert \"fix(ci): spell out the bats invocations instead of splatting an empty array\"",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/2bc9825bb2c6e29ef0dc1808f57ff3b5d688ddde",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
