@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "d49bd51601984ff911e0b3df67d9391b580b5576",
+  "short_sha": "d49bd51601",
+  "committed_at": "2026-08-08T08:35:24Z",
+  "message": "docs: scope the coverage note to what this repo owns",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/d49bd51601984ff911e0b3df67d9391b580b5576",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
