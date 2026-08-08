@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "eaab0f913d833d347163100658f48add34037a55",
+  "short_sha": "eaab0f913d",
+  "committed_at": "2026-08-08T10:17:32Z",
+  "message": "ci: report test results to Codecov, not just coverage",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/eaab0f913d833d347163100658f48add34037a55",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
