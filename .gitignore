@@ -1,5 +1,12 @@
 # bin/test-coverage-report.py imports the engine by path, which caches bytecode next to it.
 __pycache__/
 
+# This repository's own coverage run: coverage.py's data files, and the report bin/test-all.sh and CI
+# produce from them (see coverage.toml).
+.coverage
+.coverage.*
+coverage/
+coverage-upload/
+
 # JetBrains IDE workspace.
 .idea/

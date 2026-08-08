@@ -1,18 +1,20 @@
 name: Test tooling
 
-# The scripts here are the coverage gate and the source of the published numbers for every project on
-# the site, so a regression would mis-report or stop gating all of them at once.
+# These scripts are the coverage gate and the source of the published numbers for every project on the
+# site, so a regression here would mis-report or stop gating all of them at once.
+#
+# The coverage steps deliberately use the actions from this checkout (./.github/actions/...) rather
+# than a released tag: for this repository the tooling *is* the product, so CI has to exercise the
+# version under review, not the last one published.
 on:
   push:
     branches: [main]
-    paths:
-      - 'bin/**'
-      - '.github/**'
   pull_request:
   workflow_dispatch: {}
 
 permissions:
   contents: read
+  statuses: write
 
 jobs:
   test:
@@ -24,9 +26,61 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Unit tests
-        run: python3 bin/test-coverage-report.py
+      - name: Install coverage.py
+        run: python3 -m pip install --disable-pip-version-check --quiet coverage
+
+      # Runs every suite: the Python ones under coverage, the shell ones directly.
+      - name: Tests
+        run: PYTHON_RUNNER="python3 -m coverage run -p" bin/test-all.sh
+
+      - name: Assemble the coverage report
+        run: |
+          python3 -m coverage combine
+          python3 -m coverage json -o coverage/coverage.json
+          python3 -m coverage html -d coverage/htmlcov
+          python3 -m coverage report --precision=1
 
       # shellcheck is preinstalled on GitHub-hosted runners.
       - name: ShellCheck
         run: shellcheck bin/*.sh .github/actions/lib/*.sh
+
+      # publish.yml runs from the `reports` branch, because a push resolves workflows from the branch
+      # it targets; the copy here is the original. Nothing enforces that they match, so a change made
+      # here and not synced would leave the deploy running old code — silently, since both branches
+      # look fine on their own. Read the other copy over the API rather than fetching the branch,
+      # whose working tree is the entire report archive.
+      - name: The deploy workflow matches the report branch's copy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh api "repos/$GITHUB_REPOSITORY/contents/.github/workflows/publish.yml?ref=reports" \
+                 --jq .content | base64 -d > /tmp/publish-on-reports.yml; then
+            echo "::warning::Could not read publish.yml from the reports branch; skipping the check."
+            exit 0
+          fi
+          if diff -u /tmp/publish-on-reports.yml .github/workflows/publish.yml; then
+            echo "publish.yml is in sync with the reports branch."
+            exit 0
+          fi
+          # On a pull request the two cannot yet agree: the branch is synced after merging. Flag it
+          # for the reviewer instead of blocking, then fail once it has landed and stayed unsynced.
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            echo "::warning::publish.yml differs from the reports branch — sync it after merging."
+          else
+            echo "::error::publish.yml differs from the copy on the reports branch, which is the one"
+            echo "::error::that actually deploys. Push this file to the reports branch."
+            exit 1
+          fi
+
+      - uses: ./.github/actions/summary
+
+      - uses: ./.github/actions/gate
+
+      # Publishes this repository's own coverage to the site it hosts. Skips with a notice until
+      # COVERAGE_PAGES_TOKEN exists: a push made with the default GITHUB_TOKEN would not trigger the
+      # deploy workflow, so the report would sit on the branch unpublished.
+      - uses: ./.github/actions/publish
+        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          token: ${{ secrets.COVERAGE_PAGES_TOKEN }}
+          description: Coverage of the shared tooling

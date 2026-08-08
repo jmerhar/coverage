@@ -19,6 +19,9 @@ _SPEC = importlib.util.spec_from_file_location(
 cr = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(cr)
 
+# The field separator the collect table uses; asserted through the module so the tests follow it.
+SEP = cr.COLLECT_SEPARATOR
+
 
 def write(path, text):
     """Write `text` to `path`, creating parent directories as needed."""
@@ -112,6 +115,13 @@ class ParserTest(TempCwd):
         kcov("c.json", line=(108, 108))
         cfg = config({"s": suite("kcov", "c.json")})
         self.assertEqual(cr.counts(cfg)["s"], {"line": (108, 108)})
+
+    def test_kover_counter_the_tool_omitted_is_dropped(self):
+        # A Kover report only carries the counters its module produced; a module with no branches at
+        # all has no BRANCH counter, which must not become a 0% column.
+        write("r.xml", '<report><counter type="LINE" covered="9" missed="1"/></report>')
+        cfg = config({"s": suite("kover", "r.xml")})
+        self.assertEqual(cr.counts(cfg)["s"], {"line": (9, 10)})
 
     def test_kover_converts_missed_to_total(self):
         kover("r.xml", line=(90, 10), branch=(40, 10), instruction=(980, 20))
@@ -316,11 +326,11 @@ class GateTest(TempCwd):
 class CollectTest(TempCwd):
     def test_emits_key_html_and_require(self):
         cfg = config({"s": suite("kcov", "c.json", html="coverage", require=["data/bcov.css"])})
-        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\tdata/bcov.css\t\t")
+        self.assertEqual(cr.render_collect(cfg), SEP.join(("s", "coverage", "data/bcov.css", "", "")))
 
     def test_optional_fields_are_empty_when_absent(self):
         cfg = config({"s": suite("kcov", "c.json", html="coverage")})
-        self.assertEqual(cr.render_collect(cfg), "s\tcoverage\t\t\t")
+        self.assertEqual(cr.render_collect(cfg), SEP.join(("s", "coverage", "", "", "")))
 
     def test_emits_include_and_index(self):
         spec = suite("kcov", "c.json", html="coverage")
@@ -328,7 +338,7 @@ class CollectTest(TempCwd):
         spec["index"] = "kcov-merged/index.html"
         self.assertEqual(
             cr.render_collect(config({"s": spec})),
-            "s\tcoverage\t\tkcov-merged,data\tkcov-merged/index.html")
+            SEP.join(("s", "coverage", "", "kcov-merged,data", "kcov-merged/index.html")))
 
     def test_field_count_is_stable(self):
         # collect-coverage.sh reads these positionally, so a dropped field would silently shift the
@@ -336,7 +346,7 @@ class CollectTest(TempCwd):
         spec = suite("kcov", "c.json", html="coverage", require=["a"])
         spec["include"] = ["b"]
         spec["index"] = "c.html"
-        self.assertEqual(len(cr.render_collect(config({"s": spec})).split("\t")), 5)
+        self.assertEqual(len(cr.render_collect(config({"s": spec})).split(SEP)), 5)
 
     def test_missing_html_exits(self):
         cfg = config({"s": suite("kcov", "c.json")})
@@ -406,6 +416,58 @@ class ConfigTest(TempCwd):
                   f'[suites.app]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n{field}={value}\n')
             with self.assertRaises(SystemExit, msg=f"accepted {field}={value}"):
                 cr.load_config("coverage.toml")
+
+
+class CommandLineTest(TempCwd):
+    """The CLI itself: which renderer each --format selects, and what --gate exits with."""
+
+    def run_cli(self, *argv):
+        import contextlib
+        import io
+        out = io.StringIO()
+        old = cr.sys.argv
+        cr.sys.argv = ["coverage-report.py", *argv]
+        try:
+            with contextlib.redirect_stdout(out):
+                cr.main()
+        finally:
+            cr.sys.argv = old
+        return out.getvalue()
+
+    def setUp(self):
+        super().setUp()
+        istanbul("c.json", line=(99, 100))
+        write("coverage.toml",
+              '[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\nhtml="h"\ngate=98.0\n')
+
+    def test_default_format_is_the_markdown_table(self):
+        self.assertIn("## Coverage", self.run_cli())
+
+    def test_reports_format_emits_the_manifest(self):
+        self.assertEqual(json.loads(self.run_cli("--format", "reports"))[0]["name"], "total")
+
+    def test_collect_format_emits_the_publishing_table(self):
+        self.assertEqual(self.run_cli("--format", "collect").strip().split(SEP)[:2], ["app", "h"])
+
+    def test_gate_exits_zero_when_it_passes(self):
+        with self.assertRaises(SystemExit) as e:
+            self.run_cli("--gate")
+        self.assertEqual(e.exception.code, 0)
+
+    def test_gate_exits_nonzero_when_it_fails(self):
+        istanbul("c.json", line=(1, 100))
+        with self.assertRaises(SystemExit) as e:
+            self.run_cli("--gate")
+        self.assertEqual(e.exception.code, 1)
+
+    def test_config_path_is_configurable(self):
+        os.rename("coverage.toml", "elsewhere.toml")
+        self.assertIn("## Coverage", self.run_cli("--config", "elsewhere.toml"))
+
+    def test_a_missing_config_exits(self):
+        os.remove("coverage.toml")
+        with self.assertRaises(SystemExit):
+            self.run_cli()
 
 
 if __name__ == "__main__":

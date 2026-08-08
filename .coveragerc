@@ -1,0 +1,13 @@
+# Coverage settings for this repository's own tooling. Kept here rather than in the workflow so a
+# local `python3 -m coverage run -p bin/test-all.sh` measures exactly what CI does.
+[run]
+source = bin
+# The test suites themselves are not the code under test.
+omit = bin/test-*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    # The module-level entry point cannot run while the module is imported by its tests. Its body is
+    # a single main() call; the CLI it dispatches is tested by calling main() directly.
+    if __name__ == .__main__.:

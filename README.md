@@ -204,12 +204,34 @@ python3 bin/coverage-report.py --config /path/to/project/coverage.toml --format 
 python3 bin/coverage-report.py --config /path/to/project/coverage.toml --gate
 ```
 
-Run the tooling's own tests, and regenerate the site from a checkout of the `reports` branch:
+Run every test suite, and regenerate the site from a checkout of the `reports` branch:
 
 ```bash
-python3 bin/test-coverage-report.py
+bin/test-all.sh                                        # all five suites
 python3 bin/build-site.py <reports-checkout>/reports    # then open its reports/index.html
 ```
+
+| Suite | Covers |
+|---|---|
+| `test-coverage-report.py` | the parsers, percentage maths, gate and config validation |
+| `test-build-site.py` | the generated pages, their links, ordering and escaping |
+| `test-make-meta.py` | the `meta.json` contract |
+| `test-collect-coverage.sh` | what actually reaches the site, including the symlink and entry-point traps |
+| `test-add-report.sh` | publishing to the report branch, against a throwaway local repository |
+
+**This repo publishes its own coverage** to the site it hosts, using its own actions — the Python is
+measured with coverage.py (see `.coveragerc` and `coverage.toml`) and gated like any other project.
+To measure locally:
+
+```bash
+pip install coverage
+PYTHON_RUNNER="python3 -m coverage run -p" bin/test-all.sh
+python3 -m coverage combine && python3 -m coverage json -o coverage/coverage.json
+python3 bin/coverage-report.py --format md
+```
+
+The shell suites run in CI but are not coverage-measured: kcov would mean a container round-trip for
+~250 lines of glue that its own tests already exercise.
 
 `bin/add-report.sh` takes `--data-repo` as a path or URL, so a publish can be exercised end to end
 against a throwaway repository instead of the real site.

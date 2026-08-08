@@ -1,0 +1,16 @@
+# Coverage configuration for this repository's own tooling — the site host measured by the same
+# scripts it publishes for everyone else, so a regression in them shows up as a coverage change here
+# rather than only in someone else's project.
+#
+# One suite: the Python engine, generator and manifest builder, measured with coverage.py (see
+# .coveragerc) by bin/test-all.sh. The two shell suites run in CI as well but are not measured — kcov
+# would mean a container round-trip for ~250 lines of glue, and they are covered by their own tests.
+
+[suites.tooling]
+label = "Tooling (Python)"
+format = "coveragepy"
+report = "coverage/coverage.json"
+html = "coverage/htmlcov"
+# The Python scripts are fully covered; the gate sits just under that so a real regression fails CI
+# while the odd defensive line is tolerated. Never lower it to make a red build pass.
+gate = 98.0
