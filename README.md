@@ -231,10 +231,10 @@ bin/run-shell-coverage.sh          # local kcov if installed, else the pinned co
 python3 bin/coverage-report.py --format md
 ```
 
-The shell scripts are half the tooling and where both bugs found so far actually lived, so measuring
-only the Python would report 100% for about half the code. A handful of shell lines are unreachable
-from a test by design — the refusing-to-publish guards only fire if the stripping above them failed —
-and the gate tracks the achievable figure rather than those guards being deleted to flatter it.
+The shell scripts are half the tooling, so measuring only the Python would report a figure for about
+half the code. A handful of shell lines are unreachable from a test — the refusing-to-publish guards
+only fire if the stripping above them failed, and the GitHub remote needs a real github.com target —
+so the shell gate sits at what a passing suite can reach.
 
 `bin/add-report.sh` takes `--data-repo` as a path or URL, so a publish can be exercised end to end
 against a throwaway repository instead of the real site.

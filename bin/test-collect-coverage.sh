@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Tests for bin/collect-coverage.sh (no network, no dependencies beyond git-less coreutils).
 #
-# This script decides what actually reaches the site. Its two historical failure modes are both
-# silent: a copy that dereferences a coverage tool's symlinks republishes a duplicate tree per link,
-# and a report whose entry point is not where the site looks leaves a dead link on the commit page.
-# Both are asserted here.
+# This script decides what actually reaches the site, and it can fail silently in two ways: a copy that
+# dereferences a coverage tool's symlinks republishes a duplicate tree per link, and a report whose
+# entry point is not where the site looks leaves a dead link on the commit page. Both are asserted
+# here, since neither shows up as a failing build.
 #
 # Run: bin/test-collect-coverage.sh
 set -uo pipefail
