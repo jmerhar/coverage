@@ -17,8 +17,9 @@ Usage (run from the project root, after the suites have produced their reports):
   --format reports    The JSON "reports" array consumed by bin/make-meta.py: a leading combined
                       "total" entry (no ``path``, so the site renders it as the headline) followed
                       by one linkable entry per suite.
-  --format collect    Tab-separated ``key<TAB>html<TAB>require,…<TAB>include,…<TAB>index`` for
-                      collect-coverage.sh, so that the config is parsed in exactly one place.
+  --format collect    One record per suite for collect-coverage.sh, so that the config is parsed in
+                      exactly one place: ``key``, ``html``, ``require,…``, ``include,…``, ``index``
+                      joined by US (0x1f). See COLLECT_SEPARATOR for why not a tab.
   --gate              Check each suite's LINE coverage against its ``gate`` and exit non-zero if any
                       suite is below its bound or has no report.
 
@@ -64,6 +65,11 @@ HEADINGS = {"line": "Line", "branch": "Branch", "instruction": "Instruction", "m
 # A gate passes when coverage rounds up to its bound: reports carry one decimal, so a suite sitting
 # at 97.96% displays as "98.0%" and must not fail a "≥ 98" gate for a difference it cannot show.
 ROUNDING_TOLERANCE = 0.05
+
+# Field separator for --format collect. US (0x1f) rather than a tab because bash's `read` treats tab
+# as whitespace and so collapses runs of them: a suite with an empty field would silently shift every
+# later field along, publishing the wrong thing. Non-whitespace separators preserve empty fields.
+COLLECT_SEPARATOR = "\x1f"
 
 
 def _parse_istanbul(path):
@@ -192,8 +198,8 @@ def load_config(path):
 
 def _check_relative_path(key, field, value):
     """Reject a configured path that cannot be used safely, explaining which rule it broke."""
-    if "," in value or "\t" in value:
-        sys.exit(f"coverage-report: suite '{key}' has a comma or tab in {field}: {value!r}")
+    if "," in value or COLLECT_SEPARATOR in value or "\t" in value or "\n" in value:
+        sys.exit(f"coverage-report: suite '{key}' has a separator character in {field}: {value!r}")
     if value.startswith("/"):
         sys.exit(f"coverage-report: suite '{key}' has an absolute {field}: {value!r}")
     if ".." in value.split("/"):
@@ -292,17 +298,18 @@ def render_reports(config):
 
 
 def render_collect(config):
-    """The suite → publishing table, tab-separated, for collect-coverage.sh.
+    """The suite → publishing table for collect-coverage.sh, one record per line.
 
     Publishing needs each suite's ``html`` directory plus its optional ``require``, ``include`` and
     ``index``, none of which the summaries use. Emitting them here keeps ``coverage.toml`` parsed in
-    one language. Lists are comma-joined, which is why load_config rejects commas in these paths.
+    one language. Fields are joined by COLLECT_SEPARATOR and lists by commas, which is why
+    load_config rejects both characters in these paths.
     """
     lines = []
     for key, spec in config["suites"].items():
         if "html" not in spec:
             sys.exit(f"coverage-report: suite '{key}' is missing 'html', needed to publish it")
-        lines.append("\t".join((
+        lines.append(COLLECT_SEPARATOR.join((
             key,
             spec["html"],
             ",".join(spec.get("require", [])),

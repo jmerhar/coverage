@@ -23,10 +23,15 @@ report="$here/coverage-report.py"
 
 suites="$(python3 "$report" --config "$config" --format collect)"
 
+# Fields are separated by US (0x1f), not a tab: bash's `read` treats tab as whitespace and collapses
+# runs of it, so a suite that leaves a field empty would shift every later field along — publishing
+# the whole report tree where only part was asked for, and losing the declared entry point.
+sep=$'\x1f'
+
 rm -rf "$out"
 mkdir -p "$out"
 
-while IFS=$'\t' read -r key html require include index; do
+while IFS="$sep" read -r key html require include index; do
   [ -n "$key" ] || continue
   if [ ! -d "$html" ]; then
     echo "collect-coverage: suite '$key' has no HTML report at $html" >&2
@@ -108,4 +113,4 @@ if find "$out" -name '*.so' | grep -q .; then
   exit 1
 fi
 
-echo "Collected coverage upload in $out/ (suites: $(cut -f1 <<< "$suites" | paste -sd, -))"
+echo "Collected coverage upload in $out/ (suites: $(cut -d"$sep" -f1 <<< "$suites" | paste -sd, -))"
