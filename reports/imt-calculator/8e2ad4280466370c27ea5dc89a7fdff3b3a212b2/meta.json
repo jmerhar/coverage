@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "8e2ad4280466370c27ea5dc89a7fdff3b3a212b2",
+  "short_sha": "8e2ad42804",
+  "committed_at": "2026-08-08T10:13:47Z",
+  "message": "ci: report test results to Codecov, not just coverage",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/8e2ad4280466370c27ea5dc89a7fdff3b3a212b2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.1%"
+      }
+    }
+  ]
+}
