@@ -1,0 +1,23 @@
+{
+  "project": "coverage",
+  "sha": "c7fa536f79992f629cf89050ffdf89bb601cd95e",
+  "short_sha": "c7fa536f79",
+  "committed_at": "2026-08-08T07:51:36Z",
+  "message": "fix: publish a report even when its tool wrote a .gitignore into it",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/c7fa536f79992f629cf89050ffdf89bb601cd95e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "tooling",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
