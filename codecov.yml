@@ -1,0 +1,12 @@
+# Codecov is informational only — the enforcing gate runs in CI, with its threshold in coverage.toml.
+# Uploads use the CODECOV_TOKEN repo secret. One suite (the Python tooling), so no per-flag split.
+coverage:
+  status:
+    project:
+      default:
+        informational: true
+    patch:
+      default:
+        informational: true
+
+comment: false

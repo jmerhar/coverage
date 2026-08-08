@@ -33,11 +33,13 @@ jobs:
       - name: Tests
         run: PYTHON_RUNNER="python3 -m coverage run -p" bin/test-all.sh
 
+      # json drives the summary, gate and manifest; html is what gets published; xml is for Codecov.
       - name: Assemble the coverage report
         run: |
           python3 -m coverage combine
           python3 -m coverage json -o coverage/coverage.json
           python3 -m coverage html -d coverage/htmlcov
+          python3 -m coverage xml -o coverage/coverage.xml
           python3 -m coverage report --precision=1
 
       # shellcheck is preinstalled on GitHub-hosted runners.
@@ -73,6 +75,16 @@ jobs:
           fi
 
       - uses: ./.github/actions/summary
+
+      # Informational, never fails the build (see codecov.yml); the gate below is the actual check.
+      # Runs before it so coverage still lands when the gate fails.
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/coverage.xml
+          disable_search: true
+          fail_ci_if_error: false
 
       - uses: ./.github/actions/gate
 
