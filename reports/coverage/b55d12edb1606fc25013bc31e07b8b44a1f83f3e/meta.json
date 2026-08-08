@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "b55d12edb1606fc25013bc31e07b8b44a1f83f3e",
+  "short_sha": "b55d12edb1",
+  "committed_at": "2026-08-08T10:08:22Z",
+  "message": "fix(test): make the collect failure cases fail for the reason they name",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/b55d12edb1606fc25013bc31e07b8b44a1f83f3e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.2%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "90.2%"
+      }
+    }
+  ]
+}
