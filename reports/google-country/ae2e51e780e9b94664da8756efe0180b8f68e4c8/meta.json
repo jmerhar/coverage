@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "ae2e51e780e9b94664da8756efe0180b8f68e4c8",
+  "short_sha": "ae2e51e780",
+  "committed_at": "2026-08-08T10:13:22Z",
+  "message": "ci: report test results to Codecov, not just coverage",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/ae2e51e780e9b94664da8756efe0180b8f68e4c8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
