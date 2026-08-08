@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "12147b9e61fea1f8bb579dbed58ed751cbc74451",
+  "short_sha": "12147b9e61",
+  "committed_at": "2026-08-08T10:38:15Z",
+  "message": "fix: keep Codecov non-fatal, and the publish commit signable-config-proof",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/12147b9e61fea1f8bb579dbed58ed751cbc74451",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "92.9%"
+      }
+    }
+  ]
+}
