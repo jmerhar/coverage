@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "c83adbb6cd9651155a52741253b85b380290bd96",
+  "short_sha": "c83adbb6cd",
+  "committed_at": "2026-08-08T08:11:36Z",
+  "message": "test: measure the shell half of the tooling too",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/c83adbb6cd9651155a52741253b85b380290bd96",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.1%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "90.2%"
+      }
+    }
+  ]
+}
