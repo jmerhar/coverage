@@ -96,6 +96,16 @@ sed 's#html = "cov"#html = "cov4"#; s#cov/kcov#cov4/kcov#' c1.toml > c4.toml
 bash "$collect" up4 c4.toml >/dev/null 2>&1
 check_no_file "shared object stripped" up4/scripts/libkcov.so
 
+echo "== a tool's own .gitignore is stripped"
+# coverage.py writes one containing `*` into its HTML output. Publishing is a `git add`, so leaving it
+# in place drops the whole report and the commit page links to nothing.
+rm -rf cov13 && fixture cov13
+printf '# Created by coverage.py\n*\n' > cov13/.gitignore
+sed 's#html = "cov"#html = "cov13"#; s#cov/kcov#cov13/kcov#' c1.toml > c13.toml
+bash "$collect" up13 c13.toml >/dev/null 2>&1
+check_no_file "the .gitignore is not published" up13/scripts/.gitignore
+check_file "the report itself still is" up13/scripts/index.html
+
 echo "== require asserts a file survived the copy"
 config c5.toml 'require = ["data/bcov.css"]'
 bash "$collect" up5 c5.toml >/dev/null 2>&1

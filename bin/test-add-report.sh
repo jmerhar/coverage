@@ -81,6 +81,18 @@ bash "$add" --project demo --sha "$SHA_A" --message m --commit-url u --report-di
   --data-repo "$REMOTE" --branch reports >/dev/null 2>&1
 check "a file from the previous upload is gone" "" "$(at "reports/demo/$SHA_A/app/stale.html")"
 
+echo "== an ignore rule cannot silently empty the published report"
+# Publishing is a `git add`, and coverage.py writes a .gitignore containing `*` into its HTML output.
+# Without --force the push succeeds carrying only meta.json, which reads as a successful publish.
+rm -rf up4 && mkdir -p up4/app && echo "<html>kept</html>" > up4/app/index.html
+printf '# Created by coverage.py\n*\n' > up4/app/.gitignore
+cp up/reports.json up4/reports.json
+SHA_C="3333333333333333333333333333333333333333"
+bash "$add" --project demo --sha "$SHA_C" --message m --commit-url u --report-dir up4 \
+  --data-repo "$REMOTE" --branch reports >/dev/null 2>&1
+check "the report is published despite the ignore rule" "<html>kept</html>" \
+  "$(at "reports/demo/$SHA_C/app/index.html")"
+
 echo "== the published layout is the one the site expects"
 check "no stray paths outside the commit directory" 0 \
   "$(listing | grep -cv -E '^reports/(demo|existing)/[0-9a-f]+/')"

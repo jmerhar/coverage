@@ -100,6 +100,12 @@ python3 "$report" --config "$config" --format reports > "$out/reports.json"
 find "$out" -type l -delete
 find "$out" -name '*.so' -delete
 
+# A .gitignore has no meaning on a static site, and publishing is a `git add`: coverage.py writes one
+# containing `*` into its HTML output, which would silently drop the entire report and leave the
+# commit page linking to nothing. add-report.sh also forces the add, but the file should not be
+# published either way.
+find "$out" -name '.gitignore' -delete
+
 # Belt and braces: a future tool version could introduce something else unpublishable, and it must
 # fail here rather than in the coverage repository, far from the code that produced it.
 if find "$out" -type l | grep -q .; then

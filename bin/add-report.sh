@@ -101,7 +101,10 @@ publish() {
     --project "$project" --sha "$sha" --message "$message" --commit-url "$commit_url" \
     --reports "$report_dir/reports.json" > "$checkout/$dest/meta.json"
 
-  git -C "$checkout" add -A "$dest"
+  # --force so nothing assembled can be dropped by an ignore rule: a coverage tool that writes a
+  # .gitignore into its HTML output (coverage.py writes one containing `*`) would otherwise publish an
+  # empty directory, and the failure is invisible here — the push succeeds, carrying only meta.json.
+  git -C "$checkout" add --force -A "$dest"
   if git -C "$checkout" diff --cached --quiet; then
     return 3
   fi
