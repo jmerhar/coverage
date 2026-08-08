@@ -107,12 +107,14 @@ run_collect up13 c13.toml >/dev/null 2>&1
 check_no_file "the .gitignore is not published" up13/scripts/.gitignore
 check_file "the report itself still is" up13/scripts/index.html
 
+# Each of these has to fail for the reason it names, not at an earlier check — a report that is missing
+# its assets must reach the assertion about assets, so the rest of its tree has to be intact.
 echo "== the assets a kcov report resolves must survive the copy"
 # Its per-file pages reference ../data/bcov.css; without it the line highlighting silently vanishes.
-rm -rf cov5 && fixture cov5 && rm -rf cov5/data
+rm -rf cov5 && fixture cov5 && rm -f cov5/data/bcov.css
 sed 's#html = "cov"#html = "cov5"#; s#cov/kcov#cov5/kcov#' c1.toml > c5.toml
 run_collect up5 c5.toml >/dev/null 2>&1
-check "a kcov report without its data/ fails" 1 $?
+check "a kcov report whose stylesheet is missing fails" 1 $?
 
 echo "== failures the site would otherwise show as a dead link"
 rm -rf cov7 && fixture cov7 && rm -f cov7/kcov-merged/index.html
@@ -120,19 +122,25 @@ sed 's#html = "cov"#html = "cov7"#; s#cov/kcov#cov7/kcov#' c1.toml > c7.toml
 run_collect up7 c7.toml >/dev/null 2>&1
 check "a kcov report directory with no index.html fails" 1 $?
 
-rm -rf cov8 && mkdir -p cov8/kcov-merged
-printf '{"covered_lines": 1, "total_lines": 1}\n' > cov8/kcov-merged/coverage.json
-sed 's#html = "cov"#html = "cov8"#; s#cov/kcov#cov8/kcov#' c1.toml > c8.toml
+# A self-contained report is published whole and its own index.html is the entry point, so a report
+# without one has nothing for the site to link to.
+rm -rf istan8 && mkdir -p istan8
+printf '{"total":{"lines":{"covered":1,"total":1},"branches":{"covered":0,"total":0}}}\n' \
+  > istan8/coverage-summary.json
+sed 's#istan/#istan8/#g; s#"istan"#"istan8"#' c2.toml > c8.toml
 run_collect up8 c8.toml >/dev/null 2>&1
-check "a report with no index.html fails" 1 $?
+check "a self-contained report with no index.html fails" 1 $?
 
-sed 's#html = "cov"#html = "absent-dir"#' c1.toml > c9.toml
+# The html directory itself is absent, while `report` still resolves inside it so the derivation is
+# happy and the collector is the one that objects.
+rm -rf cov9
+sed 's#html = "cov"#html = "cov9"#; s#cov/kcov#cov9/kcov#' c1.toml > c9.toml
 run_collect up9 c9.toml >/dev/null 2>&1
 check "a missing html directory fails" 1 $?
 
 # The derived report directory comes from `report`; if kcov never wrote it, fail rather than publish
 # an output root full of per-invocation reports.
-sed 's#html = "cov"#html = "cov"#; s#cov/kcov-merged#cov/absent-dir#' c1.toml > c10.toml
+sed 's#cov/kcov-merged#cov/absent-dir#' c1.toml > c10.toml
 run_collect up10 c10.toml >/dev/null 2>&1
 check "a report directory kcov never wrote fails" 1 $?
 
