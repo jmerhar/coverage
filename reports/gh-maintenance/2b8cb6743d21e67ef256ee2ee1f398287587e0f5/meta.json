@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "2b8cb6743d21e67ef256ee2ee1f398287587e0f5",
+  "short_sha": "2b8cb6743d",
+  "committed_at": "2026-08-08T08:49:23Z",
+  "message": "refactor: let the shared tooling derive kcov's publishing layout",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/2b8cb6743d21e67ef256ee2ee1f398287587e0f5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
