@@ -73,16 +73,21 @@ runs:
         if [ -n "$JUNIT" ]; then
           # Test analytics tracks per-test pass/fail, flakiness and run time, so a failing suite is
           # exactly the interesting case; the caller's `if:` decides whether we get here.
-          matched=0
+          #
+          # All of them go up in one invocation. A per-file upload would mean one round trip each, and
+          # a Gradle project has one report per test class — dozens of them.
+          files=()
           IFS=',' read -ra patterns <<< "$JUNIT"
           for pattern in "${patterns[@]}"; do
             for file in $pattern; do
-              [ -f "$file" ] || continue
-              upload test_results tests "$file"
-              matched=$((matched + 1))
+              [ -f "$file" ] && files+=(-f "$file")
             done
           done
-          if [ "$matched" -eq 0 ]; then
+          if [ "${#files[@]}" -eq 0 ]; then
             echo "::warning::Codecov: no test results matched '$JUNIT'; skipping."
+          else
+            echo "Codecov: uploading $(( ${#files[@]} / 2 )) test-result file(s)"
+            codecovcli upload-process --disable-search --report-type test_results \
+              -F tests -n tests "${files[@]}"
           fi
         fi
