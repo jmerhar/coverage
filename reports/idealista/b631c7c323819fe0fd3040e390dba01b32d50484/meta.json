@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "b631c7c323819fe0fd3040e390dba01b32d50484",
+  "short_sha": "b631c7c323",
+  "committed_at": "2026-08-08T10:24:12Z",
+  "message": "ci: report test results to Codecov, not just coverage",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/b631c7c323819fe0fd3040e390dba01b32d50484",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.8%",
+        "branch": "91.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "96.5%",
+        "branch": "92.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
