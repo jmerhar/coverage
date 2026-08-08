@@ -324,29 +324,43 @@ class GateTest(TempCwd):
 
 
 class CollectTest(TempCwd):
-    def test_emits_key_html_and_require(self):
-        cfg = config({"s": suite("kcov", "c.json", html="coverage", require=["data/bcov.css"])})
-        self.assertEqual(cr.render_collect(cfg), SEP.join(("s", "coverage", "data/bcov.css", "", "")))
+    """What each format has to be assembled into for publishing, derived rather than configured."""
 
-    def test_optional_fields_are_empty_when_absent(self):
-        cfg = config({"s": suite("kcov", "c.json", html="coverage")})
-        self.assertEqual(cr.render_collect(cfg), SEP.join(("s", "coverage", "", "", "")))
+    def test_a_self_contained_report_is_published_whole(self):
+        for fmt in ("istanbul", "coveragepy", "kover", "clover"):
+            cfg = config({"s": suite(fmt, "r", html="h")})
+            self.assertEqual(cr.render_collect(cfg), SEP.join(("s", "h", "", "", "")), fmt)
 
-    def test_emits_include_and_index(self):
-        spec = suite("kcov", "c.json", html="coverage")
-        spec["include"] = ["kcov-merged", "data"]
-        spec["index"] = "kcov-merged/index.html"
+    def test_kcov_publishes_only_its_report_directory_and_the_shared_assets(self):
+        # kcov writes one report per traced invocation beside the merged one, each covering only the
+        # runs that targeted a single script; publishing the output root would show them all.
+        cfg = config({"s": suite("kcov", "coverage/kcov-merged/coverage.json", html="coverage")})
         self.assertEqual(
-            cr.render_collect(config({"s": spec})),
-            SEP.join(("s", "coverage", "", "kcov-merged,data", "kcov-merged/index.html")))
+            cr.render_collect(cfg),
+            SEP.join(("s", "coverage", "data/bcov.css", "kcov-merged,data", "kcov-merged/index.html")))
+
+    def test_the_kcov_report_directory_comes_from_the_report_path(self):
+        # It is only called "kcov-merged" when more than one script was traced into one directory.
+        cfg = config({"s": suite("kcov", "cov/watch-all.sh.abc123/coverage.json", html="cov")})
+        self.assertIn("watch-all.sh.abc123,data", cr.render_collect(cfg))
+        self.assertTrue(cr.render_collect(cfg).endswith("watch-all.sh.abc123/index.html"))
+
+    def test_a_kcov_report_outside_its_html_directory_exits(self):
+        cfg = config({"s": suite("kcov", "elsewhere/kcov-merged/coverage.json", html="coverage")})
+        with self.assertRaises(SystemExit):
+            cr.render_collect(cfg)
+
+    def test_a_kcov_report_directly_in_its_html_directory_exits(self):
+        # There would be nothing to redirect to, and no way to leave the per-invocation reports behind.
+        cfg = config({"s": suite("kcov", "coverage/coverage.json", html="coverage")})
+        with self.assertRaises(SystemExit):
+            cr.render_collect(cfg)
 
     def test_field_count_is_stable(self):
         # collect-coverage.sh reads these positionally, so a dropped field would silently shift the
         # rest — an empty `include` becoming the index, for instance.
-        spec = suite("kcov", "c.json", html="coverage", require=["a"])
-        spec["include"] = ["b"]
-        spec["index"] = "c.html"
-        self.assertEqual(len(cr.render_collect(config({"s": spec})).split(SEP)), 5)
+        cfg = config({"s": suite("kcov", "coverage/kcov-merged/coverage.json", html="coverage")})
+        self.assertEqual(len(cr.render_collect(cfg).split(SEP)), 5)
 
     def test_missing_html_exits(self):
         cfg = config({"s": suite("kcov", "c.json")})
@@ -384,12 +398,14 @@ class ConfigTest(TempCwd):
         with self.assertRaises(SystemExit):
             cr.load_config("coverage.toml")
 
-    def test_comma_in_a_published_path_exits(self):
-        # The publishing table comma-joins these, so a comma would split one path into two.
-        for field in ("include", "require"):
+    def test_a_separator_character_in_a_path_exits(self):
+        # The publishing table joins fields with one separator and lists with commas, and the paths
+        # published out of `html` are derived from these two, so either would split one path into two.
+        for field, value in (("report", "a,b.json"), ("html", "a,b"), ("report", "a\tb.json")):
             write("coverage.toml",
-                  f'[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\n{field}=["a,b"]\n')
-            with self.assertRaises(SystemExit):
+                  f'[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\nhtml="h"\n'
+                  f'{field}="""{value}"""\n')
+            with self.assertRaises(SystemExit, msg=f"accepted {field}={value!r}"):
                 cr.load_config("coverage.toml")
 
     def test_suite_name_must_be_one_safe_path_segment(self):
@@ -409,13 +425,13 @@ class ConfigTest(TempCwd):
                   f'[suites.{declared}]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n')
             self.assertIn(name, cr.load_config("coverage.toml")["suites"])
 
-    def test_published_paths_may_not_escape_the_suite(self):
-        for field, value in (("include", '["../up"]'), ("require", '["/etc/passwd"]'),
-                             ("index", '"../../x.html"')):
-            write("coverage.toml",
-                  f'[suites.app]\nlabel="x"\nformat="istanbul"\nreport="c.json"\n{field}={value}\n')
-            with self.assertRaises(SystemExit, msg=f"accepted {field}={value}"):
-                cr.load_config("coverage.toml")
+    def test_unknown_keys_are_ignored(self):
+        # A project that still carries a key from an older schema keeps working rather than failing
+        # its build on a config the tooling has stopped needing.
+        write("coverage.toml",
+              '[suites.app]\nlabel="x"\nformat="istanbul"\nreport="c.json"\nhtml="h"\n'
+              'include=["a"]\nindex="a/index.html"\n')
+        self.assertEqual(cr.load_config("coverage.toml")["suites"]["app"]["label"], "x")
 
 
 class CommandLineTest(TempCwd):

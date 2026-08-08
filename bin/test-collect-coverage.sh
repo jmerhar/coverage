@@ -59,29 +59,40 @@ $2
 EOF
 }
 
-echo "== whole-directory publish (the default)"
+echo "== a kcov suite publishes its report directory and the assets it resolves"
 fixture cov
 config c1.toml ""
 run_collect up1 c1.toml >/dev/null 2>&1; rc=$?
 check "exits 0" 0 "$rc"
-check_file "root index published" up1/scripts/index.html
 check_file "merged report published" up1/scripts/kcov-merged/index.html
+check_file "the data/ its pages resolve as ../data/bcov.css" up1/scripts/data/bcov.css
+check_contains "the suite root redirects to it" 'url=kcov-merged/index.html' up1/scripts/index.html
+# kcov's own top-level page aggregates the per-invocation reports, so it must not be the entry point.
+if grep -qF 'root' up1/scripts/index.html; then
+  fail "kcov's own top-level page is not the entry point" "index.html is the tool's own page"
+else
+  pass "kcov's own top-level page is not the entry point"
+fi
 check_file "manifest written" up1/reports.json
 check_contains "manifest names the suite" '"path": "scripts"' up1/reports.json
 
-echo "== include publishes only the named subpaths"
-config c2.toml 'include = ["kcov-merged", "data"]
-index = "kcov-merged/index.html"'
+echo "== a self-contained report is published whole, with its own index as the entry point"
+mkdir -p istan/lcov-report
+printf '{"total":{"lines":{"covered":9,"total":10},"branches":{"covered":0,"total":0}}}\n' \
+  > istan/coverage-summary.json
+echo "<html>istanbul</html>" > istan/index.html
+echo "<html>detail</html>" > istan/lcov-report/index.html
+cat > c2.toml <<'EOF'
+[suites.app]
+label = "App"
+format = "istanbul"
+report = "istan/coverage-summary.json"
+html = "istan"
+EOF
 run_collect up2 c2.toml >/dev/null 2>&1
-check_file "included report" up2/scripts/kcov-merged/index.html
-check_file "included assets" up2/scripts/data/bcov.css
-check_contains "index redirects to the entry point" 'url=kcov-merged/index.html' up2/scripts/index.html
-# The suite root is the generated redirect, not the tool's own top-level report.
-if grep -qF 'root' up2/scripts/index.html; then
-  fail "root report not published in place of the redirect" "index.html is the tool's own page"
-else
-  pass "root report not published in place of the redirect"
-fi
+check "exits 0" 0 $?
+check_contains "the tool's own index is the entry point" 'istanbul' up2/app/index.html
+check_file "the rest of the tree comes along" up2/app/lcov-report/index.html
 
 echo "== a symlinked directory is not dereferenced into a duplicate tree"
 rm -rf cov3 && fixture cov3
@@ -111,18 +122,18 @@ run_collect up13 c13.toml >/dev/null 2>&1
 check_no_file "the .gitignore is not published" up13/scripts/.gitignore
 check_file "the report itself still is" up13/scripts/index.html
 
-echo "== require asserts a file survived the copy"
-config c5.toml 'require = ["data/bcov.css"]'
+echo "== the assets a kcov report resolves must survive the copy"
+# Its per-file pages reference ../data/bcov.css; without it the line highlighting silently vanishes.
+rm -rf cov5 && fixture cov5 && rm -rf cov5/data
+sed 's#html = "cov"#html = "cov5"#; s#cov/kcov#cov5/kcov#' c1.toml > c5.toml
 run_collect up5 c5.toml >/dev/null 2>&1
-check "satisfied require passes" 0 $?
-config c6.toml 'require = ["data/absent.css"]'
-run_collect up6 c6.toml >/dev/null 2>&1
-check "unsatisfied require fails" 1 $?
+check "a kcov report without its data/ fails" 1 $?
 
 echo "== failures the site would otherwise show as a dead link"
-config c7.toml 'index = "kcov-merged/absent.html"'
+rm -rf cov7 && fixture cov7 && rm -f cov7/kcov-merged/index.html
+sed 's#html = "cov"#html = "cov7"#; s#cov/kcov#cov7/kcov#' c1.toml > c7.toml
 run_collect up7 c7.toml >/dev/null 2>&1
-check "index pointing at nothing fails" 1 $?
+check "a kcov report directory with no index.html fails" 1 $?
 
 rm -rf cov8 && mkdir -p cov8/kcov-merged
 printf '{"covered_lines": 1, "total_lines": 1}\n' > cov8/kcov-merged/coverage.json
@@ -134,9 +145,11 @@ sed 's#html = "cov"#html = "absent-dir"#' c1.toml > c9.toml
 run_collect up9 c9.toml >/dev/null 2>&1
 check "a missing html directory fails" 1 $?
 
-config c10.toml 'include = ["absent-subpath"]'
+# The derived report directory comes from `report`; if kcov never wrote it, fail rather than publish
+# an output root full of per-invocation reports.
+sed 's#html = "cov"#html = "cov"#; s#cov/kcov-merged#cov/absent-dir#' c1.toml > c10.toml
 run_collect up10 c10.toml >/dev/null 2>&1
-check "an include that does not exist fails" 1 $?
+check "a report directory kcov never wrote fails" 1 $?
 
 echo "== the output directory is rebuilt, not merged into"
 config c11.toml ""

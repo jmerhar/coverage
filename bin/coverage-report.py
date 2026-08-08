@@ -35,19 +35,16 @@ The ``coverage.toml`` schema::
     report = "frontend/coverage/coverage-summary.json"  # the machine-readable summary
     html   = "frontend/coverage"                        # HTML directory (collect-coverage.sh)
     gate   = 98.0                                       # omit to make the suite informational
-    include = ["kcov-merged", "data"]                   # optional: publish only these subpaths of html
-    index   = "kcov-merged/index.html"                  # optional: the report's entry point
-    require = ["data/bcov.css"]                         # optional: files the HTML must ship with
 
-``include`` publishes a subset of ``html`` rather than all of it, for tools that write more than one
-report into one directory. ``index`` names the entry point when it is not ``index.html`` at the top of
-the suite; the collector writes a redirect there, since that is what the site links to.
+Every suite takes the same five keys whatever the tool. What each tool's output has to be assembled
+into for publishing is derived from ``format`` — see _publishing — rather than restated per project.
 
 A suite's key is the subdirectory its HTML is published under, so it is also the manifest ``path``
 the site links to. Suites keep their declared order in the table and the manifest.
 """
 import argparse
 import json
+import os
 import re
 import sys
 import tomllib
@@ -185,25 +182,14 @@ def load_config(path):
                 f"coverage-report: suite '{key}' has unknown format '{spec['format']}' "
                 f"(known: {', '.join(sorted(PARSERS))})"
             )
-        # The publishing table is tab-separated with comma-joined lists, so a path containing either
-        # would be silently split into the wrong files. These paths are also resolved inside the
-        # suite's own directory, so they must not climb out of it.
-        for field in ("include", "require"):
-            for value in spec.get(field, []):
-                _check_relative_path(key, field, value)
-        if "index" in spec:
-            _check_relative_path(key, "index", spec["index"])
+        # The publishing table joins its fields with COLLECT_SEPARATOR and its lists with commas, and
+        # the paths published out of `html` are derived from these two, so either character in them
+        # would silently split one path into two.
+        for field in ("html", "report"):
+            value = spec.get(field, "")
+            if any(c in value for c in (",", COLLECT_SEPARATOR, "\t", "\n")):
+                sys.exit(f"coverage-report: suite '{key}' has a separator character in {field}: {value!r}")
     return config
-
-
-def _check_relative_path(key, field, value):
-    """Reject a configured path that cannot be used safely, explaining which rule it broke."""
-    if "," in value or COLLECT_SEPARATOR in value or "\t" in value or "\n" in value:
-        sys.exit(f"coverage-report: suite '{key}' has a separator character in {field}: {value!r}")
-    if value.startswith("/"):
-        sys.exit(f"coverage-report: suite '{key}' has an absolute {field}: {value!r}")
-    if ".." in value.split("/"):
-        sys.exit(f"coverage-report: suite '{key}' has a '..' segment in {field}: {value!r}")
 
 
 def counts(config):
@@ -297,24 +283,47 @@ def render_reports(config):
     return json.dumps(reports, indent=2)
 
 
+def _publishing(key, spec):
+    """What to publish out of a suite's ``html``: (subpaths, entry point, files that must survive).
+
+    Derived from the format because it describes the coverage tool's output layout, not the project.
+    An empty subpath list means publish the whole directory, and an empty entry point means the site's
+    ``index.html`` is already at the top of it — true of every tool that writes one self-contained
+    report.
+
+    kcov does not: it writes the report the summaries read into its own subdirectory, beside a shared
+    ``data/`` whose stylesheet the report's per-file pages resolve as ``../data/bcov.css``. Publishing
+    the whole output root would also publish kcov's per-invocation reports, each covering only the runs
+    that targeted one script, so each lists every file while crediting a slice of the hits. The
+    subdirectory is taken from ``report`` rather than assumed to be ``kcov-merged``, which is the name
+    only when more than one script was traced into the same directory.
+    """
+    if spec["format"] != "kcov":
+        return [], "", []
+    report_dir = os.path.relpath(os.path.dirname(spec["report"]), spec["html"])
+    if report_dir == os.curdir or report_dir.split(os.sep)[0] == os.pardir:
+        sys.exit(
+            f"coverage-report: suite '{key}' expects its kcov report in a subdirectory of "
+            f"'{spec['html']}', but 'report' resolves to '{report_dir}'"
+        )
+    return [report_dir, "data"], f"{report_dir}/index.html", ["data/bcov.css"]
+
+
 def render_collect(config):
     """The suite → publishing table for collect-coverage.sh, one record per line.
 
-    Publishing needs each suite's ``html`` directory plus its optional ``require``, ``include`` and
-    ``index``, none of which the summaries use. Emitting them here keeps ``coverage.toml`` parsed in
-    one language. Fields are joined by COLLECT_SEPARATOR and lists by commas, which is why
-    load_config rejects both characters in these paths.
+    Publishing needs each suite's ``html`` directory plus what _publishing derives from its format,
+    none of which the summaries use. Emitting it here keeps ``coverage.toml`` parsed in one language.
+    Fields are joined by COLLECT_SEPARATOR and lists by commas, which is why load_config rejects both
+    characters in these paths.
     """
     lines = []
     for key, spec in config["suites"].items():
         if "html" not in spec:
             sys.exit(f"coverage-report: suite '{key}' is missing 'html', needed to publish it")
+        include, index, require = _publishing(key, spec)
         lines.append(COLLECT_SEPARATOR.join((
-            key,
-            spec["html"],
-            ",".join(spec.get("require", [])),
-            ",".join(spec.get("include", [])),
-            spec.get("index", ""),
+            key, spec["html"], ",".join(require), ",".join(include), index,
         )))
     return "\n".join(lines)
 

@@ -21,12 +21,6 @@ label = "Tooling (shell)"
 format = "kcov"
 report = "coverage/shell/kcov-merged/coverage.json"
 html = "coverage/shell"
-# kcov writes one report per traced invocation alongside the merged one; each covers only the runs
-# that targeted a single script, so publishing them would show every file crediting a slice of the
-# hits. Only the merged report goes out, with the data/ its per-file pages resolve as ../data/bcov.css.
-include = ["kcov-merged", "data"]
-index = "kcov-merged/index.html"
-require = ["data/bcov.css"]
 # Lower than the Python because some lines are unreachable from a test: the refusing-to-publish guards
 # in collect-coverage.sh only fire if the stripping above them failed, and add-report.sh's GitHub
 # remote needs a real github.com target. The bound is what a passing suite can reach, so raising it
