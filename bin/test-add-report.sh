@@ -10,6 +10,11 @@ set -uo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 add="$here/add-report.sh"
+
+# Invoke the script under test. $SHELL_RUNNER lets a coverage run wrap this — kcov must be handed the
+# script itself, not `bash script`, or it instruments the bash binary and reports nothing at all.
+# shellcheck disable=SC2086  # SHELL_RUNNER is a command with arguments, deliberately split
+run_add() { ${SHELL_RUNNER:-} "$add" "$@"; }
 passed=0 failed=0
 SHA_A="1111111111111111111111111111111111111111"
 SHA_B="2222222222222222222222222222222222222222"
@@ -46,7 +51,7 @@ upload up
 
 publish() { # sha, extra args...
   local sha="$1"; shift
-  bash "$add" --project demo --sha "$sha" --message "a commit" \
+  run_add --project demo --sha "$sha" --message "a commit" \
     --commit-url "https://example.com/c/1" --report-dir up \
     --data-repo "$REMOTE" --branch reports "$@" 2>&1 | grep -v '^warning:'
 }
@@ -72,12 +77,12 @@ echo "== republishing the same commit replaces its directory"
 rm -rf up2 && mkdir -p up2/app && echo "<html>new</html>" > up2/app/index.html
 echo "<html>stale</html>" > up2/app/stale.html
 cp up/reports.json up2/reports.json
-bash "$add" --project demo --sha "$SHA_A" --message m --commit-url u --report-dir up2 \
+run_add --project demo --sha "$SHA_A" --message m --commit-url u --report-dir up2 \
   --data-repo "$REMOTE" --branch reports >/dev/null 2>&1
 check "content is replaced" "<html>new</html>" "$(at "reports/demo/$SHA_A/app/index.html")"
 rm -rf up3 && mkdir -p up3/app && echo "<html>third</html>" > up3/app/index.html
 cp up/reports.json up3/reports.json
-bash "$add" --project demo --sha "$SHA_A" --message m --commit-url u --report-dir up3 \
+run_add --project demo --sha "$SHA_A" --message m --commit-url u --report-dir up3 \
   --data-repo "$REMOTE" --branch reports >/dev/null 2>&1
 check "a file from the previous upload is gone" "" "$(at "reports/demo/$SHA_A/app/stale.html")"
 
@@ -88,7 +93,7 @@ rm -rf up4 && mkdir -p up4/app && echo "<html>kept</html>" > up4/app/index.html
 printf '# Created by coverage.py\n*\n' > up4/app/.gitignore
 cp up/reports.json up4/reports.json
 SHA_C="3333333333333333333333333333333333333333"
-bash "$add" --project demo --sha "$SHA_C" --message m --commit-url u --report-dir up4 \
+run_add --project demo --sha "$SHA_C" --message m --commit-url u --report-dir up4 \
   --data-repo "$REMOTE" --branch reports >/dev/null 2>&1
 check "the report is published despite the ignore rule" "<html>kept</html>" \
   "$(at "reports/demo/$SHA_C/app/index.html")"
@@ -99,24 +104,44 @@ check "no stray paths outside the commit directory" 0 \
 
 echo "== refusals"
 mkdir -p empty
-bash "$add" --project demo --sha "$SHA_A" --report-dir empty --data-repo "$REMOTE" >/dev/null 2>&1
+run_add --project demo --sha "$SHA_A" --report-dir empty --data-repo "$REMOTE" >/dev/null 2>&1
 check "a report dir without reports.json is refused" 2 $?
-bash "$add" --sha "$SHA_A" --report-dir up --data-repo "$REMOTE" >/dev/null 2>&1
+run_add --sha "$SHA_A" --report-dir up --data-repo "$REMOTE" >/dev/null 2>&1
 check "a missing --project is refused" 2 $?
-bash "$add" --project demo --report-dir up --data-repo "$REMOTE" >/dev/null 2>&1
+run_add --project demo --report-dir up --data-repo "$REMOTE" >/dev/null 2>&1
 check "a missing --sha is refused" 2 $?
-bash "$add" --project demo --sha "$SHA_A" --data-repo "$REMOTE" >/dev/null 2>&1
+run_add --project demo --sha "$SHA_A" --data-repo "$REMOTE" >/dev/null 2>&1
 check "a missing --report-dir is refused" 2 $?
-bash "$add" --project demo --sha "$SHA_A" --report-dir up --nonsense x >/dev/null 2>&1
+run_add --project demo --sha "$SHA_A" --report-dir up --nonsense x >/dev/null 2>&1
 check "an unknown argument is refused" 2 $?
 (unset COVERAGE_PAGES_TOKEN GITHUB_TOKEN
- bash "$add" --project demo --sha "$SHA_A" --report-dir up --data-repo owner/name >/dev/null 2>&1
+ run_add --project demo --sha "$SHA_A" --report-dir up --data-repo owner/name >/dev/null 2>&1
  exit $?)
 check "a GitHub target without a token is refused" 2 $?
 
 echo "== a caller may still pass a checkout, which is ignored"
 publish "$SHA_B" --repo /nonexistent-checkout >/dev/null
 check "publishes anyway" "<html>report</html>" "$(at "reports/demo/$SHA_B/app/index.html")"
+
+echo "== the token may be passed explicitly rather than through the environment"
+SHA_D="4444444444444444444444444444444444444444"
+publish "$SHA_D" --token unused-for-a-local-remote >/dev/null
+check "--token is accepted" "<html>report</html>" "$(at "reports/demo/$SHA_D/app/index.html")"
+
+# Concurrent publishes from different repositories race for the branch tip, so a rejected push is
+# expected rather than exceptional. Slow by design: the backoff between attempts is real.
+echo "== a push that keeps failing is retried, then reported (~9s: the backoff is real)"
+git init -q --bare unwritable.git
+chmod -R a-w unwritable.git
+run_add --project demo --sha "$SHA_A" --message m --commit-url u --report-dir up \
+  --data-repo "file://$work/unwritable.git" --branch main > retry.log 2>&1
+check "exits non-zero once the attempts are exhausted" 1 $?
+if grep -q 'retrying from a fresh clone' retry.log && grep -q 'after 3 attempts' retry.log; then
+  pass "reports each retry and the final failure"
+else
+  fail "reports each retry and the final failure" "$(tr '\n' ' ' < retry.log | tail -c 150)"
+fi
+chmod -R u+w unwritable.git
 
 printf '\n%s passed, %s failed\n' "$passed" "$failed"
 [ "$failed" -eq 0 ]

@@ -35,13 +35,19 @@ for suite in "${PYTHON_SUITES[@]}"; do
   # shellcheck disable=SC2086  # PYTHON_RUNNER is a command with arguments, deliberately split
   run "$suite" $PYTHON_RUNNER "$here/$suite"
 done
-for suite in "${SHELL_SUITES[@]}"; do
-  run "$suite" bash "$here/$suite"
-done
+# CI runs these through bin/run-shell-coverage.sh instead, which drives them under kcov to measure
+# them; skipping here keeps them from running twice.
+if [ -z "${SKIP_SHELL_SUITES:-}" ]; then
+  for suite in "${SHELL_SUITES[@]}"; do
+    run "$suite" bash "$here/$suite"
+  done
+fi
 
 printf '\n'
 if [ ${#failed[@]} -gt 0 ]; then
   printf 'FAILED: %s\n' "${failed[*]}"
   exit 1
 fi
-printf 'All %s suites passed.\n' "$((${#PYTHON_SUITES[@]} + ${#SHELL_SUITES[@]}))"
+ran=${#PYTHON_SUITES[@]}
+[ -z "${SKIP_SHELL_SUITES:-}" ] && ran=$((ran + ${#SHELL_SUITES[@]}))
+printf 'All %s suites passed.\n' "$ran"

@@ -29,18 +29,24 @@ jobs:
       - name: Install coverage.py
         run: python3 -m pip install --disable-pip-version-check --quiet coverage
 
-      # Runs every suite: the Python ones under coverage, the shell ones directly.
-      - name: Tests
-        run: PYTHON_RUNNER="python3 -m coverage run -p" bin/test-all.sh
+      # The shell suites are skipped here and run under kcov below, which measures them as it goes.
+      - name: Tests (Python, under coverage)
+        run: |
+          PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
 
       # json drives the summary, gate and manifest; html is what gets published; xml is for Codecov.
-      - name: Assemble the coverage report
+      - name: Assemble the Python coverage report
         run: |
           python3 -m coverage combine
           python3 -m coverage json -o coverage/coverage.json
           python3 -m coverage html -d coverage/htmlcov
           python3 -m coverage xml -o coverage/coverage.xml
           python3 -m coverage report --precision=1
+
+      # kcov has no Ubuntu 24.04 package, so this falls back to the pinned upstream image. It runs the
+      # shell suites, so their failures fail the build here.
+      - name: Tests (shell, under kcov)
+        run: bin/run-shell-coverage.sh
 
       # shellcheck is preinstalled on GitHub-hosted runners.
       - name: ShellCheck
@@ -77,12 +83,24 @@ jobs:
       - uses: ./.github/actions/summary
 
       # Informational, never fails the build (see codecov.yml); the gate below is the actual check.
-      # Runs before it so coverage still lands when the gate fails.
-      - name: Upload coverage to Codecov
+      # Runs before it so coverage still lands when the gate fails. One flag per suite, so each half
+      # of the tooling is browsable on its own.
+      - name: Upload Python coverage to Codecov
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage/coverage.xml
+          flags: python
+          name: python
+          disable_search: true
+          fail_ci_if_error: false
+      - name: Upload shell coverage to Codecov
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/shell/kcov-merged/cobertura.xml
+          flags: shell
+          name: shell
           disable_search: true
           fail_ci_if_error: false
 

@@ -2,15 +2,34 @@
 # scripts it publishes for everyone else, so a regression in them shows up as a coverage change here
 # rather than only in someone else's project.
 #
-# One suite: the Python engine, generator and manifest builder, measured with coverage.py (see
-# .coveragerc) by bin/test-all.sh. The two shell suites run in CI as well but are not measured — kcov
-# would mean a container round-trip for ~250 lines of glue, and they are covered by their own tests.
+# Two suites, because the tooling is half Python and half shell, and the shell half is where both of
+# the bugs found so far actually lived. Measuring only the Python would report 100% for about half the
+# code. Produce both reports with:
+#   PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
+#   bin/run-shell-coverage.sh
 
-[suites.tooling]
+[suites.python]
 label = "Tooling (Python)"
 format = "coveragepy"
 report = "coverage/coverage.json"
 html = "coverage/htmlcov"
-# The Python scripts are fully covered; the gate sits just under that so a real regression fails CI
-# while the odd defensive line is tolerated. Never lower it to make a red build pass.
+# Fully covered; the gate sits just under that so a real regression fails CI while the odd defensive
+# line is tolerated. Never lower it to make a red build pass.
 gate = 98.0
+
+[suites.shell]
+label = "Tooling (shell)"
+format = "kcov"
+report = "coverage/shell/kcov-merged/coverage.json"
+html = "coverage/shell"
+# kcov writes one report per traced invocation alongside the merged one; each covers only the runs
+# that targeted a single script, so publishing them would show every file crediting a slice of the
+# hits. Only the merged report goes out, with the data/ its per-file pages resolve as ../data/bcov.css.
+include = ["kcov-merged", "data"]
+index = "kcov-merged/index.html"
+require = ["data/bcov.css"]
+# Lower than the Python because eleven lines are deliberately unreachable from a test: the
+# refusing-to-publish guards in collect-coverage.sh only fire if the stripping above them failed, and
+# add-report.sh's GitHub remote needs a real github.com target. The gate tracks the achievable figure
+# rather than the guards being deleted to flatter it.
+gate = 88.0

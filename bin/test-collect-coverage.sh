@@ -11,6 +11,11 @@ set -uo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 collect="$here/collect-coverage.sh"
+
+# Invoke the script under test. $SHELL_RUNNER lets a coverage run wrap this — kcov must be handed the
+# script itself, not `bash script`, or it instruments the bash binary and reports nothing at all.
+# shellcheck disable=SC2086  # SHELL_RUNNER is a command with arguments, deliberately split
+run_collect() { ${SHELL_RUNNER:-} "$collect" "$@"; }
 passed=0 failed=0
 
 pass() { passed=$((passed + 1)); printf '  ok   %s\n' "$1"; }
@@ -57,7 +62,7 @@ EOF
 echo "== whole-directory publish (the default)"
 fixture cov
 config c1.toml ""
-bash "$collect" up1 c1.toml >/dev/null 2>&1; rc=$?
+run_collect up1 c1.toml >/dev/null 2>&1; rc=$?
 check "exits 0" 0 "$rc"
 check_file "root index published" up1/scripts/index.html
 check_file "merged report published" up1/scripts/kcov-merged/index.html
@@ -67,7 +72,7 @@ check_contains "manifest names the suite" '"path": "scripts"' up1/reports.json
 echo "== include publishes only the named subpaths"
 config c2.toml 'include = ["kcov-merged", "data"]
 index = "kcov-merged/index.html"'
-bash "$collect" up2 c2.toml >/dev/null 2>&1
+run_collect up2 c2.toml >/dev/null 2>&1
 check_file "included report" up2/scripts/kcov-merged/index.html
 check_file "included assets" up2/scripts/data/bcov.css
 check_contains "index redirects to the entry point" 'url=kcov-merged/index.html' up2/scripts/index.html
@@ -82,7 +87,7 @@ echo "== a symlinked directory is not dereferenced into a duplicate tree"
 rm -rf cov3 && fixture cov3
 ln -s "$work/cov3/kcov-merged" cov3/alias
 sed 's#html = "cov"#html = "cov3"#; s#cov/kcov#cov3/kcov#' c1.toml > c3.toml
-bash "$collect" up3 c3.toml >/dev/null 2>&1
+run_collect up3 c3.toml >/dev/null 2>&1
 check_no_file "the symlink itself is stripped" up3/scripts/alias
 check_no_file "the link target is not copied through it" up3/scripts/alias/index.html
 # The fixture has two of its own: the tool's root report and the merged one. Dereferencing the link
@@ -93,7 +98,7 @@ echo "== runtime helpers are stripped"
 rm -rf cov4 && fixture cov4
 echo "binary" > cov4/libkcov.so
 sed 's#html = "cov"#html = "cov4"#; s#cov/kcov#cov4/kcov#' c1.toml > c4.toml
-bash "$collect" up4 c4.toml >/dev/null 2>&1
+run_collect up4 c4.toml >/dev/null 2>&1
 check_no_file "shared object stripped" up4/scripts/libkcov.so
 
 echo "== a tool's own .gitignore is stripped"
@@ -102,42 +107,42 @@ echo "== a tool's own .gitignore is stripped"
 rm -rf cov13 && fixture cov13
 printf '# Created by coverage.py\n*\n' > cov13/.gitignore
 sed 's#html = "cov"#html = "cov13"#; s#cov/kcov#cov13/kcov#' c1.toml > c13.toml
-bash "$collect" up13 c13.toml >/dev/null 2>&1
+run_collect up13 c13.toml >/dev/null 2>&1
 check_no_file "the .gitignore is not published" up13/scripts/.gitignore
 check_file "the report itself still is" up13/scripts/index.html
 
 echo "== require asserts a file survived the copy"
 config c5.toml 'require = ["data/bcov.css"]'
-bash "$collect" up5 c5.toml >/dev/null 2>&1
+run_collect up5 c5.toml >/dev/null 2>&1
 check "satisfied require passes" 0 $?
 config c6.toml 'require = ["data/absent.css"]'
-bash "$collect" up6 c6.toml >/dev/null 2>&1
+run_collect up6 c6.toml >/dev/null 2>&1
 check "unsatisfied require fails" 1 $?
 
 echo "== failures the site would otherwise show as a dead link"
 config c7.toml 'index = "kcov-merged/absent.html"'
-bash "$collect" up7 c7.toml >/dev/null 2>&1
+run_collect up7 c7.toml >/dev/null 2>&1
 check "index pointing at nothing fails" 1 $?
 
 rm -rf cov8 && mkdir -p cov8/kcov-merged
 printf '{"covered_lines": 1, "total_lines": 1}\n' > cov8/kcov-merged/coverage.json
 sed 's#html = "cov"#html = "cov8"#; s#cov/kcov#cov8/kcov#' c1.toml > c8.toml
-bash "$collect" up8 c8.toml >/dev/null 2>&1
+run_collect up8 c8.toml >/dev/null 2>&1
 check "a report with no index.html fails" 1 $?
 
 sed 's#html = "cov"#html = "absent-dir"#' c1.toml > c9.toml
-bash "$collect" up9 c9.toml >/dev/null 2>&1
+run_collect up9 c9.toml >/dev/null 2>&1
 check "a missing html directory fails" 1 $?
 
 config c10.toml 'include = ["absent-subpath"]'
-bash "$collect" up10 c10.toml >/dev/null 2>&1
+run_collect up10 c10.toml >/dev/null 2>&1
 check "an include that does not exist fails" 1 $?
 
 echo "== the output directory is rebuilt, not merged into"
 config c11.toml ""
-bash "$collect" up11 c11.toml >/dev/null 2>&1
+run_collect up11 c11.toml >/dev/null 2>&1
 echo stale > up11/scripts/stale.html
-bash "$collect" up11 c11.toml >/dev/null 2>&1
+run_collect up11 c11.toml >/dev/null 2>&1
 check_no_file "a previous run's file is gone" up11/scripts/stale.html
 
 echo "== two suites land in their own directories"
@@ -155,7 +160,7 @@ format = "kcov"
 report = "covB/kcov-merged/coverage.json"
 html = "covB"
 EOF
-bash "$collect" up12 c12.toml >/dev/null 2>&1
+run_collect up12 c12.toml >/dev/null 2>&1
 check_file "first suite" up12/one/index.html
 check_file "second suite" up12/two/index.html
 

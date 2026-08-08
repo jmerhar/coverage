@@ -219,19 +219,22 @@ python3 bin/build-site.py <reports-checkout>/reports    # then open its reports/
 | `test-collect-coverage.sh` | what actually reaches the site, including the symlink and entry-point traps |
 | `test-add-report.sh` | publishing to the report branch, against a throwaway local repository |
 
-**This repo publishes its own coverage** to the site it hosts, using its own actions — the Python is
-measured with coverage.py (see `.coveragerc` and `coverage.toml`) and gated like any other project.
-To measure locally:
+**This repo publishes its own coverage** to the site it hosts, using its own actions, as two suites —
+the Python measured with coverage.py, the shell with kcov, both gated like any other project. To
+measure locally:
 
 ```bash
 pip install coverage
-PYTHON_RUNNER="python3 -m coverage run -p" bin/test-all.sh
+PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
 python3 -m coverage combine && python3 -m coverage json -o coverage/coverage.json
+bin/run-shell-coverage.sh          # local kcov if installed, else the pinned container
 python3 bin/coverage-report.py --format md
 ```
 
-The shell suites run in CI but are not coverage-measured: kcov would mean a container round-trip for
-~250 lines of glue that its own tests already exercise.
+The shell scripts are half the tooling and where both bugs found so far actually lived, so measuring
+only the Python would report 100% for about half the code. A handful of shell lines are unreachable
+from a test by design — the refusing-to-publish guards only fire if the stripping above them failed —
+and the gate tracks the achievable figure rather than those guards being deleted to flatter it.
 
 `bin/add-report.sh` takes `--data-repo` as a path or URL, so a publish can be exercised end to end
 against a throwaway repository instead of the real site.
