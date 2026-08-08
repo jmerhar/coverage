@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "f88b079c020f52a6548d87428d16ace9c4e00a1d",
+  "short_sha": "f88b079c02",
+  "committed_at": "2026-08-08T10:25:42Z",
+  "message": "perf(ci): upload all test results in one Codecov invocation",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/f88b079c020f52a6548d87428d16ace9c4e00a1d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.2%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "90.2%"
+      }
+    }
+  ]
+}
