@@ -8,5 +8,8 @@ __pycache__/
 coverage/
 coverage-upload/
 
+# JUnit reports for Codecov's test analytics, written by bin/test-all.sh when $JUNIT_DIR is set.
+junit/
+
 # JetBrains IDE workspace.
 .idea/

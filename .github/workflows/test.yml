@@ -26,13 +26,15 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install coverage.py
-        run: python3 -m pip install --disable-pip-version-check --quiet coverage
+      # pytest only to write the JUnit report Codecov's test analytics reads; the suites are unittest.
+      - name: Install coverage.py and pytest
+        run: python3 -m pip install --disable-pip-version-check --quiet coverage pytest
 
       # The shell suites are skipped here and run under kcov below, which measures them as it goes.
       - name: Tests (Python, under coverage)
         run: |
-          PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
+          PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 JUNIT_DIR=junit \
+            bin/test-all.sh
 
       # json drives the summary, gate and manifest; html is what gets published; xml is for Codecov.
       - name: Assemble the Python coverage report
@@ -46,11 +48,12 @@ jobs:
       # kcov has no Ubuntu 24.04 package, so this falls back to the pinned upstream image. It runs the
       # shell suites, so their failures fail the build here.
       - name: Tests (shell, under kcov)
-        run: bin/run-shell-coverage.sh
+        run: JUNIT_DIR=junit bin/run-shell-coverage.sh
 
       # shellcheck is preinstalled on GitHub-hosted runners.
       - name: ShellCheck
-        run: shellcheck bin/*.sh .github/actions/lib/*.sh
+        # -x so it follows bin/test-lib.sh, which the shell suites source.
+        run: shellcheck -x bin/*.sh .github/actions/lib/*.sh
 
       # publish.yml runs from the `reports` branch, because a push resolves workflows from the branch
       # it targets; the copy here is the original. Nothing enforces that they match, so a change made
@@ -83,26 +86,14 @@ jobs:
       - uses: ./.github/actions/summary
 
       # Informational, never fails the build (see codecov.yml); the gate below is the actual check.
-      # Runs before it so coverage still lands when the gate fails. One flag per suite, so each half
-      # of the tooling is browsable on its own.
-      - name: Upload Python coverage to Codecov
-        uses: codecov/codecov-action@v7
+      # Runs before it so coverage still lands when the gate fails. `!cancelled()` so a failing suite
+      # still reports its failures, which is the point of test analytics — the files it uploads are
+      # derived from coverage.toml, one flag per suite.
+      - uses: ./.github/actions/codecov
+        if: ${{ !cancelled() }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/coverage.xml
-          flags: python
-          name: python
-          disable_search: true
-          fail_ci_if_error: false
-      - name: Upload shell coverage to Codecov
-        uses: codecov/codecov-action@v7
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/shell/kcov-merged/cobertura.xml
-          flags: shell
-          name: shell
-          disable_search: true
-          fail_ci_if_error: false
+          junit: junit/*.xml
 
       - uses: ./.github/actions/gate
 

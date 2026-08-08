@@ -368,6 +368,37 @@ class CollectTest(TempCwd):
             cr.render_collect(cfg)
 
 
+class CodecovTest(TempCwd):
+    """Which file Codecov wants, derived from the tool rather than restated per project."""
+
+    def test_a_tool_writing_codecovs_dialect_uploads_its_own_report(self):
+        for fmt, report in (("kover", "m/build/reports/kover/reportDebug.xml"),
+                            ("clover", "src/coverage/clover.xml")):
+            cfg = config({"s": suite(fmt, report)})
+            self.assertEqual(cr.render_codecov(cfg), SEP.join(("s", report)), fmt)
+
+    def test_other_tools_upload_the_sibling_they_write_for_codecov(self):
+        for fmt, report, expected in (
+                ("istanbul", "coverage/coverage-summary.json", "coverage/lcov.info"),
+                ("coveragepy", "backend/coverage.json", "backend/coverage.xml"),
+                ("kcov", "coverage/kcov-merged/coverage.json", "coverage/kcov-merged/cobertura.xml")):
+            cfg = config({"s": suite(fmt, report)})
+            self.assertEqual(cr.render_codecov(cfg), SEP.join(("s", expected)), fmt)
+
+    def test_each_suite_uploads_under_its_own_flag(self):
+        # Without per-suite flags a multi-suite project's halves are indistinguishable in Codecov.
+        cfg = config({"backend": suite("coveragepy", "b/coverage.json"),
+                      "frontend": suite("istanbul", "f/coverage-summary.json")})
+        self.assertEqual(
+            cr.render_codecov(cfg),
+            "\n".join((SEP.join(("backend", "b/coverage.xml")),
+                       SEP.join(("frontend", "f/lcov.info")))))
+
+    def test_a_report_at_the_project_root_still_resolves(self):
+        cfg = config({"s": suite("istanbul", "coverage-summary.json")})
+        self.assertEqual(cr.render_codecov(cfg), SEP.join(("s", "lcov.info")))
+
+
 class ConfigTest(TempCwd):
     def test_reads_a_toml_file(self):
         write("coverage.toml", '[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\ngate=98.0\n')
@@ -401,10 +432,13 @@ class ConfigTest(TempCwd):
     def test_a_separator_character_in_a_path_exits(self):
         # The publishing table joins fields with one separator and lists with commas, and the paths
         # published out of `html` are derived from these two, so either would split one path into two.
-        for field, value in (("report", "a,b.json"), ("html", "a,b"), ("report", "a\tb.json")):
+        for field, value in (("report", "a,b.json"), ("html", "a,b"),
+                             ("report", "a\\tb.json"), ("html", f"a{cr.COLLECT_SEPARATOR}b")):
+            paths = {"report": "c.json", "html": "h"}
+            paths[field] = value
             write("coverage.toml",
-                  f'[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\nhtml="h"\n'
-                  f'{field}="""{value}"""\n')
+                  f'[suites.app]\nlabel="App"\nformat="istanbul"\n'
+                  f'report="{paths["report"]}"\nhtml="{paths["html"]}"\n')
             with self.assertRaises(SystemExit, msg=f"accepted {field}={value!r}"):
                 cr.load_config("coverage.toml")
 

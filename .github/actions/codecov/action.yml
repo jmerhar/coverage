@@ -1,0 +1,88 @@
+name: Upload to Codecov
+description: Upload each suite's coverage under its own flag, and optionally the test results, from coverage.toml.
+
+# Codecov is informational: it never fails the build, because the gate action is the actual check. The
+# uploads therefore run before the gate, so the data still lands when the gate fails.
+#
+# Guard the calling step with `if: ${{ !cancelled() }}` when you want test results for *failing* runs —
+# which is the point of test analytics. Without it a failed test step skips this one, and the flakes and
+# failures you most wanted to see never reach Codecov.
+#
+# Which file Codecov wants is derived from each suite's `format`, so there is nothing to configure:
+# Kover and Clover write a dialect it reads, and the others write one beside the report the summaries
+# read. A JUnit path cannot be derived — it is wherever the test runner was told to write — so it is an
+# input.
+#
+# This drives codecovcli, the CLI that codecov-action wraps, because a composite action cannot loop
+# `uses:` steps and per-suite flags need one upload each.
+
+inputs:
+  token:
+    description: Codecov upload token. Skips with a notice when empty.
+    required: true
+  junit:
+    description: JUnit XML to upload as test results (file, glob, or comma-separated list). Omit to skip.
+    required: false
+    default: ""
+  config:
+    description: Path to the project's coverage.toml, relative to working-directory.
+    required: false
+    default: coverage.toml
+  working-directory:
+    description: Directory to run in. Report paths in coverage.toml are resolved from here.
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - name: Upload to Codecov
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        CODECOV_TOKEN: ${{ inputs.token }}
+        JUNIT: ${{ inputs.junit }}
+      run: |
+        if [ -z "${CODECOV_TOKEN}" ]; then
+          echo "::notice::No Codecov token supplied; skipping upload."
+          exit 0
+        fi
+        source "$GITHUB_ACTION_PATH/../lib/resolve.sh"
+
+        python3 -m pip install --disable-pip-version-check --quiet codecov-cli
+
+        # Never fail the build: -Z is deliberately not passed, so the CLI reports problems and exits 0.
+        # --disable-search so only the files named here are uploaded, not whatever else the tree holds.
+        upload() { # report-type, flag, file
+          echo "Codecov: uploading $3 (${1}, flag ${2})"
+          codecovcli upload-process --disable-search --report-type "$1" -F "$2" -n "$2" -f "$3"
+        }
+
+        sep=$'\x1f'
+        while IFS="$sep" read -r flag file; do
+          [ -n "$flag" ] || continue
+          if [ ! -f "$file" ]; then
+            # The tool writes this dialect only when asked for it, and Codecov is informational, so a
+            # missing file is worth saying out loud but not worth failing over.
+            echo "::warning::Codecov: no coverage file for suite '$flag' at $file; skipping."
+            continue
+          fi
+          upload coverage "$flag" "$file"
+        done <<< "$(python3 "$COVERAGE_BIN/coverage-report.py" --config "${{ inputs.config }}" --format codecov)"
+
+        if [ -n "$JUNIT" ]; then
+          # Test analytics tracks per-test pass/fail, flakiness and run time, so a failing suite is
+          # exactly the interesting case; the caller's `if:` decides whether we get here.
+          matched=0
+          IFS=',' read -ra patterns <<< "$JUNIT"
+          for pattern in "${patterns[@]}"; do
+            for file in $pattern; do
+              [ -f "$file" ] || continue
+              upload test_results tests "$file"
+              matched=$((matched + 1))
+            done
+          done
+          if [ "$matched" -eq 0 ]; then
+            echo "::warning::Codecov: no test results matched '$JUNIT'; skipping."
+          fi
+        fi

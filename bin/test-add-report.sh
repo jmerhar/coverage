@@ -15,13 +15,11 @@ add="$here/add-report.sh"
 # script itself, not `bash script`, or it instruments the bash binary and reports nothing at all.
 # shellcheck disable=SC2086  # SHELL_RUNNER is a command with arguments, deliberately split
 run_add() { ${SHELL_RUNNER:-} "$add" "$@"; }
-passed=0 failed=0
+# shellcheck source=bin/test-lib.sh
+source "$here/test-lib.sh"
+
 SHA_A="1111111111111111111111111111111111111111"
 SHA_B="2222222222222222222222222222222222222222"
-
-pass() { passed=$((passed + 1)); printf '  ok   %s\n' "$1"; }
-fail() { failed=$((failed + 1)); printf '  FAIL %s\n     %s\n' "$1" "${2:-}"; }
-check() { if [ "$2" = "$3" ]; then pass "$1"; else fail "$1" "expected [$2], got [$3]"; fi; }
 
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
@@ -143,5 +141,4 @@ else
 fi
 chmod -R u+w unwritable.git
 
-printf '\n%s passed, %s failed\n' "$passed" "$failed"
-[ "$failed" -eq 0 ]
+test_summary

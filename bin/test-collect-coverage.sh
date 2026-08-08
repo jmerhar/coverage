@@ -16,23 +16,8 @@ collect="$here/collect-coverage.sh"
 # script itself, not `bash script`, or it instruments the bash binary and reports nothing at all.
 # shellcheck disable=SC2086  # SHELL_RUNNER is a command with arguments, deliberately split
 run_collect() { ${SHELL_RUNNER:-} "$collect" "$@"; }
-passed=0 failed=0
-
-pass() { passed=$((passed + 1)); printf '  ok   %s\n' "$1"; }
-fail() { failed=$((failed + 1)); printf '  FAIL %s\n     %s\n' "$1" "${2:-}"; }
-
-check() { # name, expected, actual
-  if [ "$2" = "$3" ]; then pass "$1"; else fail "$1" "expected [$2], got [$3]"; fi
-}
-check_file() { # name, path
-  if [ -f "$2" ]; then pass "$1"; else fail "$1" "missing file: $2"; fi
-}
-check_no_file() { # name, path
-  if [ ! -e "$2" ]; then pass "$1"; else fail "$1" "should not exist: $2"; fi
-}
-check_contains() { # name, needle, file
-  if grep -qF -- "$2" "$3" 2>/dev/null; then pass "$1"; else fail "$1" "[$2] not in $3"; fi
-}
+# shellcheck source=bin/test-lib.sh
+source "$here/test-lib.sh"
 
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
@@ -177,5 +162,4 @@ run_collect up12 c12.toml >/dev/null 2>&1
 check_file "first suite" up12/one/index.html
 check_file "second suite" up12/two/index.html
 
-printf '\n%s passed, %s failed\n' "$passed" "$failed"
-[ "$failed" -eq 0 ]
+test_summary

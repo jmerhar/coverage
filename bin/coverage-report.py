@@ -20,6 +20,8 @@ Usage (run from the project root, after the suites have produced their reports):
   --format collect    One record per suite for collect-coverage.sh, so that the config is parsed in
                       exactly one place: ``key``, ``html``, ``require,…``, ``include,…``, ``index``
                       joined by US (0x1f). See COLLECT_SEPARATOR for why not a tab.
+  --format codecov    One record per suite for the codecov action: ``key`` (used as the upload flag)
+                      and the file Codecov parses, likewise US-joined.
   --gate              Check each suite's LINE coverage against its ``gate`` and exit non-zero if any
                       suite is below its bound or has no report.
 
@@ -309,6 +311,31 @@ def _publishing(key, spec):
     return [report_dir, "data"], f"{report_dir}/index.html", ["data/bcov.css"]
 
 
+# The file Codecov parses, per format. Kover and Clover already write a dialect it reads, so the report
+# the summaries read is also the upload; the others write one beside that report under a fixed name.
+CODECOV_FILES = {"istanbul": "lcov.info", "coveragepy": "coverage.xml", "kcov": "cobertura.xml"}
+
+
+def render_codecov(config):
+    """The suite → Codecov upload table: the flag to upload under, and the file to upload.
+
+    Derived rather than configured, for the same reason as _publishing: which file Codecov wants is a
+    property of the coverage tool. Each suite is uploaded under its own flag so the halves of a
+    multi-suite project stay separable in Codecov's UI.
+
+    A tool that writes its Codecov dialect only when asked (istanbul's ``lcov``, coverage.py's ``xml``)
+    may not have produced the file; the action reports that rather than failing, since Codecov is
+    informational here and the gate is the actual check.
+    """
+    lines = []
+    for key, spec in config["suites"].items():
+        fmt = spec["format"]
+        path = spec["report"] if fmt not in CODECOV_FILES else os.path.join(
+            os.path.dirname(spec["report"]), CODECOV_FILES[fmt])
+        lines.append(COLLECT_SEPARATOR.join((key, path)))
+    return "\n".join(lines)
+
+
 def render_collect(config):
     """The suite → publishing table for collect-coverage.sh, one record per line.
 
@@ -369,7 +396,7 @@ def run_gate(config):
 def main():
     ap = argparse.ArgumentParser(description="Summarise or gate per-suite coverage.")
     ap.add_argument("--config", default="coverage.toml", help="path to coverage.toml")
-    ap.add_argument("--format", choices=("md", "reports", "collect"), default="md")
+    ap.add_argument("--format", choices=("md", "reports", "collect", "codecov"), default="md")
     ap.add_argument("--gate", action="store_true",
                     help="check LINE coverage against each suite's gate; exit non-zero if below")
     args = ap.parse_args()
@@ -377,7 +404,9 @@ def main():
     config = load_config(args.config)
     if args.gate:
         raise SystemExit(run_gate(config))
-    print({"md": render_markdown, "reports": render_reports, "collect": render_collect}[args.format](config))
+    renderers = {"md": render_markdown, "reports": render_reports,
+                 "collect": render_collect, "codecov": render_codecov}
+    print(renderers[args.format](config))
 
 
 if __name__ == "__main__":
