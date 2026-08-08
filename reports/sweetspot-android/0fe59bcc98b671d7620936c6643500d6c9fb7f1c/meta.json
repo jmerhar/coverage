@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "0fe59bcc98b671d7620936c6643500d6c9fb7f1c",
+  "short_sha": "0fe59bcc98",
+  "committed_at": "2026-08-08T10:20:52Z",
+  "message": "ci: upload coverage and test results through the shared codecov action",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/0fe59bcc98b671d7620936c6643500d6c9fb7f1c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
