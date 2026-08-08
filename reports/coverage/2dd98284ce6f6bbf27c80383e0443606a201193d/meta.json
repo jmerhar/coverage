@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "2dd98284ce6f6bbf27c80383e0443606a201193d",
+  "short_sha": "2dd98284ce",
+  "committed_at": "2026-08-08T08:34:54Z",
+  "message": "docs: state the coverage rationale without narrating the changes behind it",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/2dd98284ce6f6bbf27c80383e0443606a201193d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.1%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "90.2%"
+      }
+    }
+  ]
+}
