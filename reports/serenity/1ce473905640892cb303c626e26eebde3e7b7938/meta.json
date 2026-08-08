@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "1ce473905640892cb303c626e26eebde3e7b7938",
+  "short_sha": "1ce4739056",
+  "committed_at": "2026-08-08T10:20:13Z",
+  "message": "ci: upload coverage and test results through the shared codecov action",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/1ce473905640892cb303c626e26eebde3e7b7938",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.5%",
+        "methods": "91.7%"
+      }
+    }
+  ]
+}
