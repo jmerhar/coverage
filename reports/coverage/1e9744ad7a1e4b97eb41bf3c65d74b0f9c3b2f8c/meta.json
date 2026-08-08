@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "1e9744ad7a1e4b97eb41bf3c65d74b0f9c3b2f8c",
+  "short_sha": "1e9744ad7a",
+  "committed_at": "2026-08-08T08:45:58Z",
+  "message": "refactor: derive a tool's publishing layout from its format",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/1e9744ad7a1e4b97eb41bf3c65d74b0f9c3b2f8c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "96.4%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.6%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "88.4%"
+      }
+    }
+  ]
+}
