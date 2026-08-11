@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "7bda72cf338ad5b4141531a17d17cd955d2c35f8",
+  "short_sha": "7bda72cf33",
+  "committed_at": "2026-08-11T16:19:05Z",
+  "message": "docs: say why the publish commit cannot be signed",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/7bda72cf338ad5b4141531a17d17cd955d2c35f8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.2%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "90.2%"
+      }
+    }
+  ]
+}
