@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "eb9b25f137e2ef87aa3c99123f3cdc8ecb1a8742",
+  "short_sha": "eb9b25f137",
+  "committed_at": "2026-08-11T18:07:59Z",
+  "message": "docs: document how coverage is measured",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/eb9b25f137e2ef87aa3c99123f3cdc8ecb1a8742",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "25.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "25.9%"
+      }
+    }
+  ]
+}
