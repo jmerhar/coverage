@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "38226988ec750821b4524ac1133ca27f1ed8b9ac",
+  "short_sha": "38226988ec",
+  "committed_at": "2026-08-11T22:08:06Z",
+  "message": "test(compare-dirs): cover the comparison, its options and the counts",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/38226988ec750821b4524ac1133ca27f1ed8b9ac",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "43.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "43.6%"
+      }
+    }
+  ]
+}
