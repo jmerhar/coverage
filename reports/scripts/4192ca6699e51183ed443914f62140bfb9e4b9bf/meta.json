@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "4192ca6699e51183ed443914f62140bfb9e4b9bf",
+  "short_sha": "4192ca6699",
+  "committed_at": "2026-08-11T20:37:30Z",
+  "message": "test: credit the bin/ suites by linking their tool instead of copying it",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/4192ca6699e51183ed443914f62140bfb9e4b9bf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "34.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "34.6%"
+      }
+    }
+  ]
+}
