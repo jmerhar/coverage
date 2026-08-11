@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a99505e085a1656b40e008b55b5fb0a3026acc94",
+  "short_sha": "a99505e085",
+  "committed_at": "2026-08-11T18:14:36Z",
+  "message": "test: clear GITHUB_ACTIONS rather than assuming it is unset",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a99505e085a1656b40e008b55b5fb0a3026acc94",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "25.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "25.9%"
+      }
+    }
+  ]
+}
