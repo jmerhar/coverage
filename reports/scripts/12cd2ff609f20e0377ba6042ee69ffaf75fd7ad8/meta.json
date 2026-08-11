@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "12cd2ff609f20e0377ba6042ee69ffaf75fd7ad8",
+  "short_sha": "12cd2ff609",
+  "committed_at": "2026-08-11T21:40:42Z",
+  "message": "test(remove-sidecars): cover pairing, the prompts and deletion",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/12cd2ff609f20e0377ba6042ee69ffaf75fd7ad8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "38.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "38.9%"
+      }
+    }
+  ]
+}
