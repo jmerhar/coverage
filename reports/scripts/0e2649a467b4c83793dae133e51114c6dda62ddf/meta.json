@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "0e2649a467b4c83793dae133e51114c6dda62ddf",
+  "short_sha": "0e2649a467",
+  "committed_at": "2026-08-11T23:41:22Z",
+  "message": "refactor(dmarc-report): reshape the statements coverage cannot credit",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/0e2649a467b4c83793dae133e51114c6dda62ddf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "51.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "51.7%"
+      }
+    }
+  ]
+}
