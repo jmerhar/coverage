@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "685fa7c2d08796267d0f17304da22fc8a9a82fae",
+  "short_sha": "685fa7c2d0",
+  "committed_at": "2026-08-11T21:55:17Z",
+  "message": "feat(stats): distinguish a broken ingestion path from a quiet one",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/685fa7c2d08796267d0f17304da22fc8a9a82fae",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
