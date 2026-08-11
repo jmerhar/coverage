@@ -108,8 +108,11 @@ publish() {
   if git -C "$checkout" diff --cached --quiet; then
     return 3
   fi
-  # gpgsign off explicitly: this is a machine-made commit in a throwaway clone, and a developer whose
-  # global config signs every commit would otherwise have this fail for want of a key.
+  # gpgsign off explicitly. This clone is a scratch directory, so any signing key a developer scopes to
+  # their working tree (a gitdir-conditional include, say) does not reach it, while a global
+  # commit.gpgsign does — leaving git told to sign with no key to sign with. Signing would be
+  # meaningless here in any case: a bot commit in a directory that exists for one push, on a branch
+  # whose every other commit CI makes unsigned.
   git -C "$checkout" \
     -c user.name="coverage-bot" -c user.email="coverage-bot@users.noreply.github.com" \
     -c commit.gpgsign=false \
