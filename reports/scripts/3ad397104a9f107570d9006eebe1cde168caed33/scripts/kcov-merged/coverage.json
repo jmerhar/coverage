@@ -1,0 +1,28 @@
+{
+  "files": [
+    {"file": "/src/scripts/photography/photo-backup.sh", "percent_covered": "21.48", "covered_lines": "29", "total_lines": "135"},
+    {"file": "/src/scripts/system/mdcheck-progress.sh", "percent_covered": "17.07", "covered_lines": "35", "total_lines": "205"},
+    {"file": "/src/bin/update-readme-table.sh", "percent_covered": "76.60", "covered_lines": "36", "total_lines": "47"},
+    {"file": "/src/bin/compile-includes.sh", "percent_covered": "98.61", "covered_lines": "71", "total_lines": "72"},
+    {"file": "/src/scripts/photography/remove-sidecars.sh", "percent_covered": "23.78", "covered_lines": "44", "total_lines": "185"},
+    {"file": "/src/scripts/utility/dmarc-report.sh", "percent_covered": "15.04", "covered_lines": "54", "total_lines": "359"},
+    {"file": "/src/scripts/system/local-backup.sh", "percent_covered": "24.47", "covered_lines": "23", "total_lines": "94"},
+    {"file": "/src/scripts/utility/subtitle-report.sh", "percent_covered": "24.85", "covered_lines": "82", "total_lines": "330"},
+    {"file": "/src/scripts/lib/common.sh", "percent_covered": "91.07", "covered_lines": "102", "total_lines": "112"},
+    {"file": "/src/scripts/utility/unlock-pdf.sh", "percent_covered": "45.45", "covered_lines": "15", "total_lines": "33"},
+    {"file": "/src/scripts/utility/compare-dirs.sh", "percent_covered": "36.36", "covered_lines": "96", "total_lines": "264"},
+    {"file": "/src/scripts/utility/subtitle-sync.sh", "percent_covered": "17.80", "covered_lines": "81", "total_lines": "455"},
+    {"file": "/src/scripts/system/nopasswd-sudo.sh", "percent_covered": "15.38", "covered_lines": "12", "total_lines": "78"},
+    {"file": "/src/bin/check-manifest.sh", "percent_covered": "90.36", "covered_lines": "75", "total_lines": "83"},
+    {"file": "/src/bin/check-bash-version.sh", "percent_covered": "95.71", "covered_lines": "67", "total_lines": "70"},
+    {"file": "/src/scripts/system/prune-orphaned-torrents.sh", "percent_covered": "11.30", "covered_lines": "39", "total_lines": "345"},
+    {"file": "/src/bin/package-script.sh", "percent_covered": "93.72", "covered_lines": "224", "total_lines": "239"}
+  ],
+  "percent_covered": "34.93",
+  "covered_lines": 1085,
+  "total_lines": 3106,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "update-readme-table.sh",
+  "date": "2026-08-11 20:56:50"
+}
