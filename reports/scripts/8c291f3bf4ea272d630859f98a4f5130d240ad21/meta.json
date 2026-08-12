@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "8c291f3bf4ea272d630859f98a4f5130d240ad21",
+  "short_sha": "8c291f3bf4",
+  "committed_at": "2026-08-12T08:39:31Z",
+  "message": "chore(coverage): raise the gate to 58% after covering subtitle-report",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/8c291f3bf4ea272d630859f98a4f5130d240ad21",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "58.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "58.6%"
+      }
+    }
+  ]
+}
