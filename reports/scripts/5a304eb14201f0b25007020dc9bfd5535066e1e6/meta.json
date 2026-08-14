@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "5a304eb14201f0b25007020dc9bfd5535066e1e6",
+  "short_sha": "5a304eb142",
+  "committed_at": "2026-08-14T15:42:01Z",
+  "message": "docs(coverage): record why the last ~113 lines cannot be credited, and what failed",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/5a304eb14201f0b25007020dc9bfd5535066e1e6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "89.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "89.0%"
+      }
+    }
+  ]
+}
