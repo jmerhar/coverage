@@ -1,0 +1,28 @@
+{
+  "files": [
+    {"file": "/src/scripts/utility/unlock-pdf.sh", "percent_covered": "45.45", "covered_lines": "15", "total_lines": "33"},
+    {"file": "/src/scripts/utility/subtitle-sync.sh", "percent_covered": "90.13", "covered_lines": "429", "total_lines": "476"},
+    {"file": "/src/bin/compile-includes.sh", "percent_covered": "98.61", "covered_lines": "71", "total_lines": "72"},
+    {"file": "/src/scripts/lib/common.sh", "percent_covered": "91.30", "covered_lines": "105", "total_lines": "115"},
+    {"file": "/src/scripts/system/local-backup.sh", "percent_covered": "24.47", "covered_lines": "23", "total_lines": "94"},
+    {"file": "/src/scripts/utility/subtitle-report.sh", "percent_covered": "89.97", "covered_lines": "314", "total_lines": "349"},
+    {"file": "/src/scripts/photography/remove-sidecars.sh", "percent_covered": "87.63", "covered_lines": "170", "total_lines": "194"},
+    {"file": "/src/scripts/utility/dmarc-report.sh", "percent_covered": "78.96", "covered_lines": "349", "total_lines": "442"},
+    {"file": "/src/scripts/photography/photo-backup.sh", "percent_covered": "21.48", "covered_lines": "29", "total_lines": "135"},
+    {"file": "/src/bin/update-readme-table.sh", "percent_covered": "76.60", "covered_lines": "36", "total_lines": "47"},
+    {"file": "/src/scripts/system/mdcheck-progress.sh", "percent_covered": "17.07", "covered_lines": "35", "total_lines": "205"},
+    {"file": "/src/bin/check-manifest.sh", "percent_covered": "90.36", "covered_lines": "75", "total_lines": "83"},
+    {"file": "/src/bin/package-script.sh", "percent_covered": "93.72", "covered_lines": "224", "total_lines": "239"},
+    {"file": "/src/scripts/system/nopasswd-sudo.sh", "percent_covered": "15.38", "covered_lines": "12", "total_lines": "78"},
+    {"file": "/src/bin/check-bash-version.sh", "percent_covered": "95.71", "covered_lines": "67", "total_lines": "70"},
+    {"file": "/src/scripts/system/prune-orphaned-torrents.sh", "percent_covered": "11.30", "covered_lines": "39", "total_lines": "345"},
+    {"file": "/src/scripts/utility/compare-dirs.sh", "percent_covered": "92.78", "covered_lines": "244", "total_lines": "263"}
+  ],
+  "percent_covered": "69.04",
+  "covered_lines": 2237,
+  "total_lines": 3240,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "update-readme-table.sh",
+  "date": "2026-08-14 10:25:57"
+}
