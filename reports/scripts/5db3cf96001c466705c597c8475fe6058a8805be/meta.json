@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "5db3cf96001c466705c597c8475fe6058a8805be",
+  "short_sha": "5db3cf9600",
+  "committed_at": "2026-08-14T23:36:01Z",
+  "message": "fix(test): clear GITHUB_ACTIONS in the annotation test so it means something in CI",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/5db3cf96001c466705c597c8475fe6058a8805be",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "92.2%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "92.2%"
+      }
+    }
+  ]
+}
