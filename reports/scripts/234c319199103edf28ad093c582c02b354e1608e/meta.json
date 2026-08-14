@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "234c319199103edf28ad093c582c02b354e1608e",
+  "short_sha": "234c319199",
+  "committed_at": "2026-08-14T14:55:55Z",
+  "message": "docs: describe the environment seams, and stop repeating a claim about load_config",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/234c319199103edf28ad093c582c02b354e1608e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "88.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "88.6%"
+      }
+    }
+  ]
+}
