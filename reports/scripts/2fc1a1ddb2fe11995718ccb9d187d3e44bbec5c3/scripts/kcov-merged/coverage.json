@@ -1,0 +1,30 @@
+{
+  "files": [
+    {"file": "/src/scripts/utility/unlock-pdf.sh", "percent_covered": "81.82", "covered_lines": "27", "total_lines": "33"},
+    {"file": "/src/scripts/photography/remove-sidecars.sh", "percent_covered": "87.63", "covered_lines": "170", "total_lines": "194"},
+    {"file": "/src/scripts/utility/dmarc-report.sh", "percent_covered": "78.96", "covered_lines": "349", "total_lines": "442"},
+    {"file": "/src/bin/compile-includes.sh", "percent_covered": "98.61", "covered_lines": "71", "total_lines": "72"},
+    {"file": "/src/scripts/utility/subtitle-report.sh", "percent_covered": "89.97", "covered_lines": "314", "total_lines": "349"},
+    {"file": "/src/bin/smoke-package-all.sh", "percent_covered": "89.29", "covered_lines": "25", "total_lines": "28"},
+    {"file": "/src/scripts/system/local-backup.sh", "percent_covered": "95.92", "covered_lines": "94", "total_lines": "98"},
+    {"file": "/src/scripts/lib/common.sh", "percent_covered": "91.30", "covered_lines": "105", "total_lines": "115"},
+    {"file": "/src/scripts/utility/subtitle-sync.sh", "percent_covered": "90.13", "covered_lines": "429", "total_lines": "476"},
+    {"file": "/src/bin/compile-all-includes.sh", "percent_covered": "95.45", "covered_lines": "21", "total_lines": "22"},
+    {"file": "/src/scripts/utility/compare-dirs.sh", "percent_covered": "92.78", "covered_lines": "244", "total_lines": "263"},
+    {"file": "/src/bin/check-manifest.sh", "percent_covered": "90.36", "covered_lines": "75", "total_lines": "83"},
+    {"file": "/src/bin/package-script.sh", "percent_covered": "95.58", "covered_lines": "238", "total_lines": "249"},
+    {"file": "/src/scripts/system/nopasswd-sudo.sh", "percent_covered": "96.47", "covered_lines": "82", "total_lines": "85"},
+    {"file": "/src/scripts/system/prune-orphaned-torrents.sh", "percent_covered": "78.95", "covered_lines": "285", "total_lines": "361"},
+    {"file": "/src/bin/check-bash-version.sh", "percent_covered": "96.30", "covered_lines": "78", "total_lines": "81"},
+    {"file": "/src/scripts/photography/photo-backup.sh", "percent_covered": "88.89", "covered_lines": "120", "total_lines": "135"},
+    {"file": "/src/bin/update-readme-table.sh", "percent_covered": "76.60", "covered_lines": "36", "total_lines": "47"},
+    {"file": "/src/scripts/system/mdcheck-progress.sh", "percent_covered": "94.09", "covered_lines": "207", "total_lines": "220"}
+  ],
+  "percent_covered": "88.58",
+  "covered_lines": 2970,
+  "total_lines": 3353,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "update-readme-table.sh",
+  "date": "2026-08-14 14:53:45"
+}
