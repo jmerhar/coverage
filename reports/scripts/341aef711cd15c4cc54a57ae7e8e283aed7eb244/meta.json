@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "341aef711cd15c4cc54a57ae7e8e283aed7eb244",
+  "short_sha": "341aef711c",
+  "committed_at": "2026-08-14T10:26:09Z",
+  "message": "chore(coverage): raise the gate to 68% after covering subtitle-sync",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/341aef711cd15c4cc54a57ae7e8e283aed7eb244",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "69.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "69.0%"
+      }
+    }
+  ]
+}
