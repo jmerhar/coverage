@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "42c297ab840c53688a9dd29700584f00bddfc4bf",
+  "short_sha": "42c297ab84",
+  "committed_at": "2026-08-14T21:49:44Z",
+  "message": "feat(scraper): resume an interrupted target pass instead of restarting it",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/42c297ab840c53688a9dd29700584f00bddfc4bf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
