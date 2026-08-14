@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "a8a8ae7bbc3e461af2f12d3210b982af7259ffd9",
+  "short_sha": "a8a8ae7bbc",
+  "committed_at": "2026-08-14T22:49:03Z",
+  "message": "docs: add a hosting resilience plan",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/a8a8ae7bbc3e461af2f12d3210b982af7259ffd9",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}
