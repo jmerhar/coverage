@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "ef0714f13d6f46f06bf9313b478a6e5d9dcc74d8",
+  "short_sha": "ef0714f13d",
+  "committed_at": "2026-08-14T22:29:05Z",
+  "message": "fix(system): claim the deploy guard before opening the confirm dialog",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/ef0714f13d6f46f06bf9313b478a6e5d9dcc74d8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}
