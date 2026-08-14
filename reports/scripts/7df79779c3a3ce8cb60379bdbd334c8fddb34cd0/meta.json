@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "7df79779c3a3ce8cb60379bdbd334c8fddb34cd0",
+  "short_sha": "7df79779c3",
+  "committed_at": "2026-08-14T11:38:18Z",
+  "message": "fix(test): stop asserting a torrent name is absent from output under coverage",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/7df79779c3a3ce8cb60379bdbd334c8fddb34cd0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "76.3%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "76.3%"
+      }
+    }
+  ]
+}
