@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "cfd772794b52cf8556913b428123afcc2b28fe4d",
+  "short_sha": "cfd772794b",
+  "committed_at": "2026-08-14T13:16:59Z",
+  "message": "chore(coverage): raise the gate to 80% after covering local-backup",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/cfd772794b52cf8556913b428123afcc2b28fe4d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "81.1%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "81.1%"
+      }
+    }
+  ]
+}
