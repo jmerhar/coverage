@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "4734489242d71985cf7e59cf5cb9a584cc1d439b",
+  "short_sha": "4734489242",
+  "committed_at": "2026-08-14T10:36:07Z",
+  "message": "fix(test): stop the output-fabricating stubs writing outside a temp directory",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/4734489242d71985cf7e59cf5cb9a584cc1d439b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "69.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "69.0%"
+      }
+    }
+  ]
+}
