@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "4e51361c8fa01a3865cea578702d79490cf6b925",
+  "short_sha": "4e51361c8f",
+  "committed_at": "2026-08-14T22:07:52Z",
+  "message": "feat(captcha): show the resume window in the settings dashboard",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/4e51361c8fa01a3865cea578702d79490cf6b925",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}
