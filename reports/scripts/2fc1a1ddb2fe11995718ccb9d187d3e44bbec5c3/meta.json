@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "2fc1a1ddb2fe11995718ccb9d187d3e44bbec5c3",
+  "short_sha": "2fc1a1ddb2",
+  "committed_at": "2026-08-14T14:54:01Z",
+  "message": "chore(coverage): raise the gate to 88% and record what the remainder is",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/2fc1a1ddb2fe11995718ccb9d187d3e44bbec5c3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "88.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "88.6%"
+      }
+    }
+  ]
+}
