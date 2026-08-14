@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "11aa88dd6680d09c463488f9855e2262daa2fcb6",
+  "short_sha": "11aa88dd66",
+  "committed_at": "2026-08-14T23:21:50Z",
+  "message": "refactor: move the awk and jq programs into files, and check them",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/11aa88dd6680d09c463488f9855e2262daa2fcb6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "92.2%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "92.2%"
+      }
+    }
+  ]
+}
