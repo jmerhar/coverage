@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "cb7287e8f3bd9c07c6d100f8e80613576201cfb4",
+  "short_sha": "cb7287e8f3",
+  "committed_at": "2026-08-14T22:37:22Z",
+  "message": "fix(scraper): clear the restart marker once the pass has resumed",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/cb7287e8f3bd9c07c6d100f8e80613576201cfb4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "91.0%"
+      }
+    }
+  ]
+}
