@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "b28f24c3db91e8fb6e3141ff0b8582d5848960bb",
+  "short_sha": "b28f24c3db",
+  "committed_at": "2026-08-14T22:22:37Z",
+  "message": "refactor: give each script its own directory and generate the README indexes",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/b28f24c3db91e8fb6e3141ff0b8582d5848960bb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "89.1%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "89.1%"
+      }
+    }
+  ]
+}
