@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "d8347d6abe2031f85512183d464c9ae94df4c641",
+  "short_sha": "d8347d6abe",
+  "committed_at": "2026-08-14T12:49:59Z",
+  "message": "chore(coverage): raise the gate to 78% after covering photo-backup",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/d8347d6abe2031f85512183d464c9ae94df4c641",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "79.1%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "79.1%"
+      }
+    }
+  ]
+}
