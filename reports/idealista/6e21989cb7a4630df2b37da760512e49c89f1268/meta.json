@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "6e21989cb7a4630df2b37da760512e49c89f1268",
+  "short_sha": "6e21989cb7",
+  "committed_at": "2026-08-15T12:23:10Z",
+  "message": "feat(auth): declare permissions in one fail-closed registry",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/6e21989cb7a4630df2b37da760512e49c89f1268",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
