@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "dd5938d2a6b29913655e2eac47b62d0b3a62b254",
+  "short_sha": "dd5938d2a6",
+  "committed_at": "2026-08-15T00:05:57Z",
+  "message": "refactor(test): group the suites to mirror the tree they cover",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/dd5938d2a6b29913655e2eac47b62d0b3a62b254",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "92.2%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "92.2%"
+      }
+    }
+  ]
+}

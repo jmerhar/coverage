@@ -1,0 +1,27 @@
+var data = {files:[
+{"link":"mdcheck-progress.sh.5fe83b1e.html","title":"mdcheck-progress.sh","summary_name":"/src/scripts/system/mdcheck-progress/mdcheck-progress.sh","covered_class":"lineCov","covered":"97.7","covered_lines":"211","uncovered_lines":"5","total_lines" : "216"},
+{"link":"nopasswd-sudo.sh.bd97dc02.html","title":"nopasswd-sudo.sh","summary_name":"/src/scripts/system/nopasswd-sudo/nopasswd-sudo.sh","covered_class":"lineCov","covered":"96.5","covered_lines":"82","uncovered_lines":"3","total_lines" : "85"},
+{"link":"subtitle-report.sh.a9330229.html","title":"subtitle-report.sh","summary_name":"/src/scripts/utility/subtitle-report/subtitle-report.sh","covered_class":"lineCov","covered":"90.0","covered_lines":"314","uncovered_lines":"35","total_lines" : "349"},
+{"link":"unlock-pdf.sh.4047df28.html","title":"unlock-pdf.sh","summary_name":"/src/scripts/utility/unlock-pdf/unlock-pdf.sh","covered_class":"lineCov","covered":"81.8","covered_lines":"27","uncovered_lines":"6","total_lines" : "33"},
+{"link":"remove-sidecars.sh.b9577f0e.html","title":"remove-sidecars.sh","summary_name":"/src/scripts/photography/remove-sidecars/remove-sidecars.sh","covered_class":"lineCov","covered":"90.5","covered_lines":"172","uncovered_lines":"18","total_lines" : "190"},
+{"link":"photo-backup.sh.b8565856.html","title":"photo-backup.sh","summary_name":"/src/scripts/photography/photo-backup/photo-backup.sh","covered_class":"lineCov","covered":"88.9","covered_lines":"120","uncovered_lines":"15","total_lines" : "135"},
+{"link":"update-readme-table.sh.11bd6ed9.html","title":"update-readme-table.sh","summary_name":"/src/bin/update-readme-table.sh","covered_class":"lineCov","covered":"95.8","covered_lines":"92","uncovered_lines":"4","total_lines" : "96"},
+{"link":"compile-includes.sh.5dd22507.html","title":"compile-includes.sh","summary_name":"/src/bin/compile-includes.sh","covered_class":"lineCov","covered":"99.0","covered_lines":"101","uncovered_lines":"1","total_lines" : "102"},
+{"link":"prune-orphaned-torrents.sh.50613a9d.html","title":"prune-orphaned-torrents.sh","summary_name":"/src/scripts/system/prune-orphaned-torrents/prune-orphaned-torrents.sh","covered_class":"lineCov","covered":"95.2","covered_lines":"298","uncovered_lines":"15","total_lines" : "313"},
+{"link":"dmarc-report.sh.6b6ef448.html","title":"dmarc-report.sh","summary_name":"/src/scripts/utility/dmarc-report/dmarc-report.sh","covered_class":"lineCov","covered":"86.2","covered_lines":"367","uncovered_lines":"59","total_lines" : "426"},
+{"link":"update-all-tables.sh.6f49bb15.html","title":"update-all-tables.sh","summary_name":"/src/bin/update-all-tables.sh","covered_class":"lineCov","covered":"92.7","covered_lines":"38","uncovered_lines":"3","total_lines" : "41"},
+{"link":"common.sh.a300c621.html","title":"common.sh","summary_name":"/src/scripts/lib/common.sh","covered_class":"lineCov","covered":"91.9","covered_lines":"113","uncovered_lines":"10","total_lines" : "123"},
+{"link":"compare-dirs.sh.e243eb1.html","title":"compare-dirs.sh","summary_name":"/src/scripts/utility/compare-dirs/compare-dirs.sh","covered_class":"lineCov","covered":"92.8","covered_lines":"244","uncovered_lines":"19","total_lines" : "263"},
+{"link":"local-backup.sh.9fc15960.html","title":"local-backup.sh","summary_name":"/src/scripts/system/local-backup/local-backup.sh","covered_class":"lineCov","covered":"95.9","covered_lines":"94","uncovered_lines":"4","total_lines" : "98"},
+{"link":"check-published-form.sh.61214a02.html","title":"check-published-form.sh","summary_name":"/src/bin/check-published-form.sh","covered_class":"lineCov","covered":"83.3","covered_lines":"70","uncovered_lines":"14","total_lines" : "84"},
+{"link":"check-programs.sh.901bf0d1.html","title":"check-programs.sh","summary_name":"/src/bin/check-programs.sh","covered_class":"lineCov","covered":"92.0","covered_lines":"69","uncovered_lines":"6","total_lines" : "75"},
+{"link":"package-script.sh.48f72cb1.html","title":"package-script.sh","summary_name":"/src/bin/package-script.sh","covered_class":"lineCov","covered":"97.1","covered_lines":"238","uncovered_lines":"7","total_lines" : "245"},
+{"link":"check-manifest.sh.7116ae16.html","title":"check-manifest.sh","summary_name":"/src/bin/check-manifest.sh","covered_class":"lineCov","covered":"90.7","covered_lines":"78","uncovered_lines":"8","total_lines" : "86"},
+{"link":"check-bash-version.sh.5c37d13d.html","title":"check-bash-version.sh","summary_name":"/src/bin/check-bash-version.sh","covered_class":"lineCov","covered":"96.3","covered_lines":"78","uncovered_lines":"3","total_lines" : "81"},
+{"link":"compile-all-includes.sh.286cbf2a.html","title":"compile-all-includes.sh","summary_name":"/src/bin/compile-all-includes.sh","covered_class":"lineCov","covered":"95.5","covered_lines":"21","uncovered_lines":"1","total_lines" : "22"},
+{"link":"smoke-package-all.sh.18adac95.html","title":"smoke-package-all.sh","summary_name":"/src/bin/smoke-package-all.sh","covered_class":"lineCov","covered":"89.3","covered_lines":"25","uncovered_lines":"3","total_lines" : "28"},
+{"link":"subtitle-sync.sh.744f85e1.html","title":"subtitle-sync.sh","summary_name":"/src/scripts/utility/subtitle-sync/subtitle-sync.sh","covered_class":"lineCov","covered":"91.9","covered_lines":"430","uncovered_lines":"38","total_lines" : "468"},
+]};
+var percent_low = 25;var percent_high = 75;
+var header = { "command" : "update-all-tables.sh", "date" : "2026-08-15 00:05:44", "instrumented" : 3559, "covered" : 3282,};
+var merged_data = [];
