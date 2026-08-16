@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "120544790b00468f9fdf51cee5a87e154f36c77b",
+  "short_sha": "120544790b",
+  "committed_at": "2026-08-16T11:04:47Z",
+  "message": "fix(subtitle-sync): recognise all 183 languages, not 24",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/120544790b00468f9fdf51cee5a87e154f36c77b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
