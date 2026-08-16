@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "9911cc792d761248fdcba3a302353b3f8cb1a59f",
+  "short_sha": "9911cc792d",
+  "committed_at": "2026-08-16T09:57:34Z",
+  "message": "refactor(lib): split common.sh into core, config and program",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/9911cc792d761248fdcba3a302353b3f8cb1a59f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "92.1%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "92.1%"
+      }
+    }
+  ]
+}
