@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "fe9c2607e77b88e89638a96402ff4ecd7225f5c7",
+  "short_sha": "fe9c2607e7",
+  "committed_at": "2026-08-16T14:16:21Z",
+  "message": "refactor: use the shared logging everywhere, and log what commands say",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/fe9c2607e77b88e89638a96402ff4ecd7225f5c7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
