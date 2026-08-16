@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "592ed5fded5a68acd19f9cc887343a9c3354363a",
+  "short_sha": "592ed5fded",
+  "committed_at": "2026-08-16T09:31:45Z",
+  "message": "refactor(compile): resolve includes transitively, inlining each file once",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/592ed5fded5a68acd19f9cc887343a9c3354363a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "92.2%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "92.2%"
+      }
+    }
+  ]
+}
