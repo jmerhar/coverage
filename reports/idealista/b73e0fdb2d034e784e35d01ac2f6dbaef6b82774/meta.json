@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "b73e0fdb2d034e784e35d01ac2f6dbaef6b82774",
+  "short_sha": "b73e0fdb2d",
+  "committed_at": "2026-08-16T09:37:18Z",
+  "message": "chore(scraper): make a pass affordable again \u2014 re-enrich 45d, resume 96h, quiet window off",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/b73e0fdb2d034e784e35d01ac2f6dbaef6b82774",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
