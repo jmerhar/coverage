@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "9061cd16cb27ced4d48e7903df0e62c91efcb094",
+  "short_sha": "9061cd16cb",
+  "committed_at": "2026-08-16T10:38:04Z",
+  "message": "refactor(lib): extract colors, platform and prompt from the scripts",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/9061cd16cb27ced4d48e7903df0e62c91efcb094",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.0%"
+      }
+    }
+  ]
+}
