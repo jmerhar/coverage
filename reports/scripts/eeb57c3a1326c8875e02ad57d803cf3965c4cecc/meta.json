@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "eeb57c3a1326c8875e02ad57d803cf3965c4cecc",
+  "short_sha": "eeb57c3a13",
+  "committed_at": "2026-08-17T09:36:36Z",
+  "message": "docs: remove the doc blocks left behind by the functions that moved to libraries",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/eeb57c3a1326c8875e02ad57d803cf3965c4cecc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
