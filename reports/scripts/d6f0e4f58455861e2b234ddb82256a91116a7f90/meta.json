@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "d6f0e4f58455861e2b234ddb82256a91116a7f90",
+  "short_sha": "d6f0e4f584",
+  "committed_at": "2026-08-17T10:41:40Z",
+  "message": "fix(release): keep the commit message off a stdout that other commands write to",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/d6f0e4f58455861e2b234ddb82256a91116a7f90",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.4%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.4%"
+      }
+    }
+  ]
+}
