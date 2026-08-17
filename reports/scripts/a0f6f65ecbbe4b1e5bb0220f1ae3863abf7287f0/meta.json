@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a0f6f65ecbbe4b1e5bb0220f1ae3863abf7287f0",
+  "short_sha": "a0f6f65ecb",
+  "committed_at": "2026-08-17T10:37:58Z",
+  "message": "fix(compare-dirs): report an unknown long option by name",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a0f6f65ecbbe4b1e5bb0220f1ae3863abf7287f0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
