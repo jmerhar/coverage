@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "fda12d659254867e347bb00306491a3221880579",
+  "short_sha": "fda12d6592",
+  "committed_at": "2026-08-17T11:04:11Z",
+  "message": "test: cover prune-orphaned-torrents' failed-deletion reporting",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/fda12d659254867e347bb00306491a3221880579",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.4%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.4%"
+      }
+    }
+  ]
+}
