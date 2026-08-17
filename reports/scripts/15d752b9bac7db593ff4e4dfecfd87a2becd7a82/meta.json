@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "15d752b9bac7db593ff4e4dfecfd87a2becd7a82",
+  "short_sha": "15d752b9ba",
+  "committed_at": "2026-08-17T09:24:10Z",
+  "message": "feat: give every script long options and one set of command-line diagnostics",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/15d752b9bac7db593ff4e4dfecfd87a2becd7a82",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
