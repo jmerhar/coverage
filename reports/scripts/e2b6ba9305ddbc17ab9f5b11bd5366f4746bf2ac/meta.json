@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "e2b6ba9305ddbc17ab9f5b11bd5366f4746bf2ac",
+  "short_sha": "e2b6ba9305",
+  "committed_at": "2026-08-17T09:46:30Z",
+  "message": "test: raise the coverage gate to 92",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/e2b6ba9305ddbc17ab9f5b11bd5366f4746bf2ac",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
