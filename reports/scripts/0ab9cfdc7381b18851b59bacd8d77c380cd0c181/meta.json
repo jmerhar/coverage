@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "0ab9cfdc7381b18851b59bacd8d77c380cd0c181",
+  "short_sha": "0ab9cfdc73",
+  "committed_at": "2026-08-18T15:21:47Z",
+  "message": "docs: fix CLAUDE.md drift in the library table and include pattern",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/0ab9cfdc7381b18851b59bacd8d77c380cd0c181",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
