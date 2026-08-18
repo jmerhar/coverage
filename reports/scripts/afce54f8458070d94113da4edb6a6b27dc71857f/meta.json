@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "afce54f8458070d94113da4edb6a6b27dc71857f",
+  "short_sha": "afce54f845",
+  "committed_at": "2026-08-18T17:58:08Z",
+  "message": "refactor(bin): restructure into subdirectories with a shared library",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/afce54f8458070d94113da4edb6a6b27dc71857f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.6%"
+      }
+    }
+  ]
+}
