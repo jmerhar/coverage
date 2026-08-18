@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "7af8771792c19bcf8ab32bd0978cd86ac1d2aa4f",
+  "short_sha": "7af8771792",
+  "committed_at": "2026-08-18T14:39:00Z",
+  "message": "refactor(docs): replace README script tables with heading + tagline indexes (#4)",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/7af8771792c19bcf8ab32bd0978cd86ac1d2aa4f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
