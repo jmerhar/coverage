@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "ed9fc03b09b703964fccc7594a44af9ecbb33c03",
+  "short_sha": "ed9fc03b09",
+  "committed_at": "2026-08-18T15:42:00Z",
+  "message": "docs: fix the four remaining audit gaps",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/ed9fc03b09b703964fccc7594a44af9ecbb33c03",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.5%"
+      }
+    }
+  ]
+}
