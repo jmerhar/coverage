@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "aa7cd5566ec20036b525453426335460c3269127",
+  "short_sha": "aa7cd5566e",
+  "committed_at": "2026-08-19T16:26:04Z",
+  "message": "feat: target the Portuguese \"simulador\" queries on the calculator page (#5)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/aa7cd5566ec20036b525453426335460c3269127",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    }
+  ]
+}
