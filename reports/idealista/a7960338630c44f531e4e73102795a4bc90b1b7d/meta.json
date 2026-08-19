@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "a7960338630c44f531e4e73102795a4bc90b1b7d",
+  "short_sha": "a796033863",
+  "committed_at": "2026-08-19T21:36:03Z",
+  "message": "fix(scraper): back off after an unexpected error instead of retrying at full speed",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/a7960338630c44f531e4e73102795a4bc90b1b7d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "93.9%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
