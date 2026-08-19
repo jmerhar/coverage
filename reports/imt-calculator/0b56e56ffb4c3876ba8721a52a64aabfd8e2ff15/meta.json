@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "0b56e56ffb4c3876ba8721a52a64aabfd8e2ff15",
+  "short_sha": "0b56e56ffb",
+  "committed_at": "2026-08-19T14:42:04Z",
+  "message": "fix: make the language pair crawlable and stop redirecting between them (#4)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/0b56e56ffb4c3876ba8721a52a64aabfd8e2ff15",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    }
+  ]
+}
