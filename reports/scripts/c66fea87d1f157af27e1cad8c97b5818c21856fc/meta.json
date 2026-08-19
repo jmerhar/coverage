@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "c66fea87d1f157af27e1cad8c97b5818c21856fc",
+  "short_sha": "c66fea87d1",
+  "committed_at": "2026-08-19T12:33:45Z",
+  "message": "fix(bin): close four latent gaps in the internal tooling",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/c66fea87d1f157af27e1cad8c97b5818c21856fc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.7%"
+      }
+    }
+  ]
+}
