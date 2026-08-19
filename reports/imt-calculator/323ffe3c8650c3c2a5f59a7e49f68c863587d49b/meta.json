@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "323ffe3c8650c3c2a5f59a7e49f68c863587d49b",
+  "short_sha": "323ffe3c86",
+  "committed_at": "2026-08-19T16:52:59Z",
+  "message": "feat: explain IMT below the calculator, in both languages (#7)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/323ffe3c8650c3c2a5f59a7e49f68c863587d49b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
