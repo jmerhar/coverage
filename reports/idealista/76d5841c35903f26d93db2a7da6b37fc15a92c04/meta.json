@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "76d5841c35903f26d93db2a7da6b37fc15a92c04",
+  "short_sha": "76d5841c35",
+  "committed_at": "2026-08-19T21:04:01Z",
+  "message": "fix(scraper): store a cleared pass cursor as SQL NULL, not JSON null",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/76d5841c35903f26d93db2a7da6b37fc15a92c04",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
