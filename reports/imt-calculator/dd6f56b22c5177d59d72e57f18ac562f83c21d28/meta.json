@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "dd6f56b22c5177d59d72e57f18ac562f83c21d28",
+  "short_sha": "dd6f56b22c",
+  "committed_at": "2026-08-19T16:32:46Z",
+  "message": "feat: link the guides from each other and from the calculator (#6)",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/dd6f56b22c5177d59d72e57f18ac562f83c21d28",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.5%"
+      }
+    }
+  ]
+}
