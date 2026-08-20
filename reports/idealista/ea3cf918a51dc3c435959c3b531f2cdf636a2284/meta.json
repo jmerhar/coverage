@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "ea3cf918a51dc3c435959c3b531f2cdf636a2284",
+  "short_sha": "ea3cf918a5",
+  "committed_at": "2026-08-20T12:03:23Z",
+  "message": "docs(scraper): qualify the backfill's idempotency claim",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/ea3cf918a51dc3c435959c3b531f2cdf636a2284",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
