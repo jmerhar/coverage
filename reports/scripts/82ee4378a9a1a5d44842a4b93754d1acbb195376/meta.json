@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "82ee4378a9a1a5d44842a4b93754d1acbb195376",
+  "short_sha": "82ee4378a9",
+  "committed_at": "2026-08-20T22:09:30Z",
+  "message": "feat(memory-pressure-alert): install its own launchd agent, and report used memory",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/82ee4378a9a1a5d44842a4b93754d1acbb195376",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.7%"
+      }
+    }
+  ]
+}
