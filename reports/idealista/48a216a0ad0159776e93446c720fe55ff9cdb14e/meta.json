@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "48a216a0ad0159776e93446c720fe55ff9cdb14e",
+  "short_sha": "48a216a0ad",
+  "committed_at": "2026-08-20T11:56:24Z",
+  "message": "fix(captcha): add the unknown field to the inline chart fixtures",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/48a216a0ad0159776e93446c720fe55ff9cdb14e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
