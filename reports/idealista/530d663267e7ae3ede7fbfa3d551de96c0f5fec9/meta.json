@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "530d663267e7ae3ede7fbfa3d551de96c0f5fec9",
+  "short_sha": "530d663267",
+  "committed_at": "2026-08-20T20:19:41Z",
+  "message": "fix(logging): stop httpx writing the Telegram bot token to the log",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/530d663267e7ae3ede7fbfa3d551de96c0f5fec9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
