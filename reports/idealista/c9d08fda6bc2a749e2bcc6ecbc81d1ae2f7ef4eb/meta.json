@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "c9d08fda6bc2a749e2bcc6ecbc81d1ae2f7ef4eb",
+  "short_sha": "c9d08fda6b",
+  "committed_at": "2026-08-20T08:50:42Z",
+  "message": "refactor(scraper): order targets by staleness alone",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/c9d08fda6bc2a749e2bcc6ecbc81d1ae2f7ef4eb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
