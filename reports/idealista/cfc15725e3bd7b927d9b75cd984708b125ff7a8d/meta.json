@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "cfc15725e3bd7b927d9b75cd984708b125ff7a8d",
+  "short_sha": "cfc15725e3",
+  "committed_at": "2026-08-20T09:49:39Z",
+  "message": "feat(scraper): capture and report a challenge that carries no captcha URL",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/cfc15725e3bd7b927d9b75cd984708b125ff7a8d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
