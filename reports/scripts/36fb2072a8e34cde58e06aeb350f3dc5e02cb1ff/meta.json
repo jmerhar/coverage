@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "36fb2072a8e34cde58e06aeb350f3dc5e02cb1ff",
+  "short_sha": "36fb2072a8",
+  "committed_at": "2026-08-20T20:56:35Z",
+  "message": "feat(memory-pressure-alert): warn while a Mac fills up, not once it has stalled",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/36fb2072a8e34cde58e06aeb350f3dc5e02cb1ff",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.6%"
+      }
+    }
+  ]
+}
