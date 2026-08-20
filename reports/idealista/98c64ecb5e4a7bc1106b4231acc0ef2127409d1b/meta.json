@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "98c64ecb5e4a7bc1106b4231acc0ef2127409d1b",
+  "short_sha": "98c64ecb5e",
+  "committed_at": "2026-08-20T08:58:54Z",
+  "message": "feat(scraper): measure time spent scraping, and report progress from it",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/98c64ecb5e4a7bc1106b4231acc0ef2127409d1b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
