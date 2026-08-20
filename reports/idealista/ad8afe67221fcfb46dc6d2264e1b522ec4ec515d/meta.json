@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "ad8afe67221fcfb46dc6d2264e1b522ec4ec515d",
+  "short_sha": "ad8afe6722",
+  "committed_at": "2026-08-20T11:23:52Z",
+  "message": "fix(scraper): close the silent and unreachable paths in captcha handling",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/ad8afe67221fcfb46dc6d2264e1b522ec4ec515d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
