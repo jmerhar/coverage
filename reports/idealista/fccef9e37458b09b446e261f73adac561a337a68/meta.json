@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "fccef9e37458b09b446e261f73adac561a337a68",
+  "short_sha": "fccef9e374",
+  "committed_at": "2026-08-20T11:40:06Z",
+  "message": "fix(captcha): label unclassified events consistently, correct the docs",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/fccef9e37458b09b446e261f73adac561a337a68",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
