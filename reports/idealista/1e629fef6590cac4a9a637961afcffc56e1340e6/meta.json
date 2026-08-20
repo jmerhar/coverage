@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "1e629fef6590cac4a9a637961afcffc56e1340e6",
+  "short_sha": "1e629fef65",
+  "committed_at": "2026-08-20T10:31:35Z",
+  "message": "fix(scraper): stop treating DataDome's client tag as a served captcha",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/1e629fef6590cac4a9a637961afcffc56e1340e6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
