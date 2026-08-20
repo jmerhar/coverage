@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "3312f427d6d3eeebb50c20334101b7de34da5efc",
+  "short_sha": "3312f427d6",
+  "committed_at": "2026-08-20T08:51:10Z",
+  "message": "docs: correct the prod scraper settings recorded in CLAUDE.md",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/3312f427d6d3eeebb50c20334101b7de34da5efc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
