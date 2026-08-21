@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "0e11422ddcd35b0384f48598dc46fbd13638e362",
+  "short_sha": "0e11422ddc",
+  "committed_at": "2026-08-21T14:08:22Z",
+  "message": "feat(scraper): cap delist checks per pass and count their fetches",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/0e11422ddcd35b0384f48598dc46fbd13638e362",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
