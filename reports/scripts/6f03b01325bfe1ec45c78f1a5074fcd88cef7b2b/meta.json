@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "6f03b01325bfe1ec45c78f1a5074fcd88cef7b2b",
+  "short_sha": "6f03b01325",
+  "committed_at": "2026-08-21T11:44:35Z",
+  "message": "feat(ufw-docker-expose): add a Docker port exposer that survives renumbering",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/6f03b01325bfe1ec45c78f1a5074fcd88cef7b2b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.7%"
+      }
+    }
+  ]
+}
