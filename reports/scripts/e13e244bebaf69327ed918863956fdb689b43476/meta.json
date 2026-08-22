@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "e13e244bebaf69327ed918863956fdb689b43476",
+  "short_sha": "e13e244beb",
+  "committed_at": "2026-08-22T13:24:31Z",
+  "message": "refactor: join every line continuation in measured shell, so kcov sees the lines",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/e13e244bebaf69327ed918863956fdb689b43476",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.8%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.8%"
+      }
+    }
+  ]
+}
