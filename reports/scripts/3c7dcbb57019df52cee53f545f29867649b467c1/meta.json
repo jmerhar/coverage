@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "3c7dcbb57019df52cee53f545f29867649b467c1",
+  "short_sha": "3c7dcbb570",
+  "committed_at": "2026-08-22T14:18:39Z",
+  "message": "feat(memory-pressure-alert): say it as a warning, in gigabytes",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/3c7dcbb57019df52cee53f545f29867649b467c1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.8%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.8%"
+      }
+    }
+  ]
+}
