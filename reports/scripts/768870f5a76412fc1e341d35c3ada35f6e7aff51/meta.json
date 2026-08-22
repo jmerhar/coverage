@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "768870f5a76412fc1e341d35c3ada35f6e7aff51",
+  "short_sha": "768870f5a7",
+  "committed_at": "2026-08-22T14:58:42Z",
+  "message": "feat(bin): check that no measured file carries a line continuation",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/768870f5a76412fc1e341d35c3ada35f6e7aff51",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "93.8%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "93.8%"
+      }
+    }
+  ]
+}
