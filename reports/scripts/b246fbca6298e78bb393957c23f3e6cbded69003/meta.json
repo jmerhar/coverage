@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "b246fbca6298e78bb393957c23f3e6cbded69003",
+  "short_sha": "b246fbca62",
+  "committed_at": "2026-08-23T12:55:26Z",
+  "message": "fix(test): stop the coverage harness suites inheriting CI's JUNIT_DIR",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/b246fbca6298e78bb393957c23f3e6cbded69003",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.0%"
+      }
+    }
+  ]
+}
