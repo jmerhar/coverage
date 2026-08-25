@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a1a50d61799c8cee7df48e03dd115962774487b1",
+  "short_sha": "a1a50d6179",
+  "committed_at": "2026-08-25T17:43:43Z",
+  "message": "docs(coverage): record the measured figure with link-series measured",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a1a50d61799c8cee7df48e03dd115962774487b1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.1%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.1%"
+      }
+    }
+  ]
+}
