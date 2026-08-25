@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "bfb690d3ac1f91555575d1883b048492a295b338",
+  "short_sha": "bfb690d3ac",
+  "committed_at": "2026-08-25T21:17:55Z",
+  "message": "test: cover the paths the new suites had missed, and record the figure",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/bfb690d3ac1f91555575d1883b048492a295b338",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
