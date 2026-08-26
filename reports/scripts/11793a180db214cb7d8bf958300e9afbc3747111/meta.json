@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "11793a180db214cb7d8bf958300e9afbc3747111",
+  "short_sha": "11793a180d",
+  "committed_at": "2026-08-26T20:19:05Z",
+  "message": "fix(mam-session): name the permission a session-type refusal is about",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/11793a180db214cb7d8bf958300e9afbc3747111",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
