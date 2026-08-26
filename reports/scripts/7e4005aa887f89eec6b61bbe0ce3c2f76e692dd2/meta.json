@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "7e4005aa887f89eec6b61bbe0ce3c2f76e692dd2",
+  "short_sha": "7e4005aa88",
+  "committed_at": "2026-08-26T18:58:52Z",
+  "message": "feat(mam-session): keep a tracker session pointed at the current address",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/7e4005aa887f89eec6b61bbe0ce3c2f76e692dd2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
