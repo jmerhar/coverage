@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "f6db5d64e4b39b747c840e28d630e0e4be382e7e",
+  "short_sha": "f6db5d64e4",
+  "committed_at": "2026-08-26T12:33:50Z",
+  "message": "fix(transcode-audio): let --dry-run predict a refusal instead of promising a write",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/f6db5d64e4b39b747c840e28d630e0e4be382e7e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
