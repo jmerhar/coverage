@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "126a2a4466cd5420bcb539ba9de8ff44f969a14d",
+  "short_sha": "126a2a4466",
+  "committed_at": "2026-08-26T20:44:21Z",
+  "message": "feat(package): install a config that holds a credential as 0600",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/126a2a4466cd5420bcb539ba9de8ff44f969a14d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
