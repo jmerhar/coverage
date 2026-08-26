@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "b4628640b0117af9bd395858d8674bcf6b94dff7",
+  "short_sha": "b4628640b0",
+  "committed_at": "2026-08-26T12:52:34Z",
+  "message": "fix(transcode-audio): an original whose conversion exists is done, not failed",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/b4628640b0117af9bd395858d8674bcf6b94dff7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
