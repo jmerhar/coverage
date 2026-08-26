@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "679674cb3d9ab2994fd1481c3aad420b8db1f98b",
+  "short_sha": "679674cb3d",
+  "committed_at": "2026-08-26T12:15:00Z",
+  "message": "fix(transcode-audio): ask ffprobe for the field the filter selects on",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/679674cb3d9ab2994fd1481c3aad420b8db1f98b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
