@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "c6d6ec8aad8b7a55d0ec3fd29bd544e3f7156aa1",
+  "short_sha": "c6d6ec8aad",
+  "committed_at": "2026-08-27T17:41:58Z",
+  "message": "chore(deps): bump actions/setup-java from 5 to 6 in the actions group (#15)",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/c6d6ec8aad8b7a55d0ec3fd29bd544e3f7156aa1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.1%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
