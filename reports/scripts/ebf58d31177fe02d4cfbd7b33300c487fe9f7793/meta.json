@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "ebf58d31177fe02d4cfbd7b33300c487fe9f7793",
+  "short_sha": "ebf58d3117",
+  "committed_at": "2026-08-27T13:02:10Z",
+  "message": "fix(subtitle-sync): detect ad breaks rather than assuming them",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/ebf58d31177fe02d4cfbd7b33300c487fe9f7793",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
