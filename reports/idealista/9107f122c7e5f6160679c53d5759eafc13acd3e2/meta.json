@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "9107f122c7e5f6160679c53d5759eafc13acd3e2",
+  "short_sha": "9107f122c7",
+  "committed_at": "2026-08-31T16:21:12Z",
+  "message": "fix(ci): give the schema export a dummy database password",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/9107f122c7e5f6160679c53d5759eafc13acd3e2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
