@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "7d24f1f1fc0e73e2bb29827228f0d95b846bc9eb",
+  "short_sha": "7d24f1f1fc",
+  "committed_at": "2026-08-31T16:16:56Z",
+  "message": "fix: leave the database URL empty rather than failing at import",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/7d24f1f1fc0e73e2bb29827228f0d95b846bc9eb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.2%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
