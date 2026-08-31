@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "eb5d934a7a6fd15842e04d1516a3cd699c48b1f5",
+  "short_sha": "eb5d934a7a",
+  "committed_at": "2026-08-31T15:50:06Z",
+  "message": "refactor: interpolate the database password instead of hardcoding it twice",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/eb5d934a7a6fd15842e04d1516a3cd699c48b1f5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
