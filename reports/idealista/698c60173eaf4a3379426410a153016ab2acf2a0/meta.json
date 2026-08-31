@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "698c60173eaf4a3379426410a153016ab2acf2a0",
+  "short_sha": "698c60173e",
+  "committed_at": "2026-08-31T16:10:46Z",
+  "message": "refactor: compose the database URL from parts instead of embedding a password",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/698c60173eaf4a3379426410a153016ab2acf2a0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
