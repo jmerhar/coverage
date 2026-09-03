@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "1b1b2a89f43afb2270a70f60366da7de287b4fe1",
+  "short_sha": "1b1b2a89f4",
+  "committed_at": "2026-09-03T08:55:03Z",
+  "message": "fix(scraper): import playwright's timeout optionally, not at call time",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/1b1b2a89f43afb2270a70f60366da7de287b4fe1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
