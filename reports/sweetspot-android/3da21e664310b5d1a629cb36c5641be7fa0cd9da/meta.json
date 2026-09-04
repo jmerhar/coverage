@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "3da21e664310b5d1a629cb36c5641be7fa0cd9da",
+  "short_sha": "3da21e6643",
+  "committed_at": "2026-09-04T14:30:34Z",
+  "message": "docs: say 30 Energy-Charts zones on the site, and pin the release track",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/3da21e664310b5d1a629cb36c5641be7fa0cd9da",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
