@@ -1,0 +1,248 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>shared Coverage Report > FallbackPriceFetcher</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: shared<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">today.sweetspot.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: FallbackPriceFetcher (today.sweetspot.data.api)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">FallbackPriceFetcher</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (116/116)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FallbackPriceFetcher$Companion</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (116/116)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package today.sweetspot.data.api
+&nbsp;
+&nbsp;import java.time.Instant
+&nbsp;import java.time.ZoneId
+&nbsp;
+&nbsp;/**
+&nbsp; * A [PriceFetcher] that tries multiple fetchers in order and returns the first successful result.
+&nbsp; *
+&nbsp; * Used to provide resilience when the primary data source is unavailable. For example,
+&nbsp; * NL uses ENTSO-E as primary and EnergyZero as fallback.
+&nbsp; *
+&nbsp; * Because the fetchers run in sequence, their timeouts add up: a zone with three sources
+&nbsp; * can otherwise keep the caller waiting for three full per-request timeouts before
+&nbsp; * reporting failure. [budgetMillis] caps that by stopping the chain once the budget is
+&nbsp; * spent, trading the chance of a later source succeeding against how long a user waits
+&nbsp; * to be told there are no prices.
+&nbsp; *
+&nbsp; * @param fetchers Ordered list of fetchers to try. Must not be empty.
+&nbsp; * @param budgetMillis Total time to spend on the chain before giving up on the remaining
+&nbsp; *   sources. Must be positive: zero or less would leave every fetcher after the first
+&nbsp; *   unreachable, silently turning a multi-source zone into a single-source one.
+&nbsp; * @param nanoTime Monotonic time source in nanoseconds (injectable for testing).
+&nbsp; * @throws IllegalArgumentException if [fetchers] is empty or [budgetMillis] is not positive.
+&nbsp; */
+&nbsp;class FallbackPriceFetcher(
+<b class="fc">&nbsp;    internal val fetchers: List&lt;PriceFetcher&gt;,</b>
+<b class="fc">&nbsp;    private val budgetMillis: Long = DEFAULT_BUDGET_MILLIS,</b>
+<b class="fc">&nbsp;    private val nanoTime: () -&gt; Long = System::nanoTime</b>
+&nbsp;) : PriceFetcher {
+&nbsp;
+<b class="fc">&nbsp;    init {</b>
+<b class="fc">&nbsp;        require(fetchers.isNotEmpty()) { &quot;At least one fetcher required&quot; }</b>
+<b class="fc">&nbsp;        require(budgetMillis &gt; 0) { &quot;Budget must be positive, got $budgetMillis&quot; }</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Tries each fetcher in order and returns the first result that actually has prices.
+&nbsp;     *
+&nbsp;     * A fetcher that responds successfully but with no prices (e.g. HTTP 200 and a well-formed but
+&nbsp;     * empty day-ahead document) is not useful, so the chain keeps going — a later source may still
+&nbsp;     * have data. If no fetcher yields prices, an empty result is returned when at least one
+&nbsp;     * responded (the caller treats an empty list as &quot;not enough data&quot;); the last exception is
+&nbsp;     * thrown only when every fetcher failed outright.
+&nbsp;     *
+&nbsp;     * The budget is checked after each attempt, so it only ever decides whether to start the
+&nbsp;     * *next* source and the first fetcher always runs. The outcome is therefore always drawn
+&nbsp;     * from a real attempt, which is what lets this return a result or throw rather than finish
+&nbsp;     * with nothing to report. Checking after an attempt also matches what the budget can
+&nbsp;     * actually control: a fetcher already in progress cannot be interrupted here, so one source
+&nbsp;     * may overrun the budget, bounding the total at roughly the budget plus a single source&#39;s
+&nbsp;     * timeout.
+&nbsp;     *
+&nbsp;     * @param from Start of the requested period (inclusive).
+&nbsp;     * @param to End of the requested period (exclusive).
+&nbsp;     * @param timeZoneId Timezone to convert timestamps to local time.
+&nbsp;     * @return The first non-empty [FetchResult], or an empty one if every fetcher tried was empty.
+&nbsp;     * @throws Exception the exception thrown by the last fetcher if every fetcher tried threw.
+&nbsp;     */
+&nbsp;    override fun fetchPrices(from: Instant, to: Instant, timeZoneId: ZoneId): FetchResult {
+<b class="fc">&nbsp;        val startNanos = nanoTime()</b>
+<b class="fc">&nbsp;        var lastException: Exception? = null</b>
+<b class="fc">&nbsp;        var lastEmpty: FetchResult? = null</b>
+<b class="fc">&nbsp;        for (fetcher in fetchers) {</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                val result = fetcher.fetchPrices(from, to, timeZoneId)</b>
+<b class="fc">&nbsp;                if (result.prices.isNotEmpty()) return result</b>
+<b class="fc">&nbsp;                lastEmpty = result</b>
+&nbsp;            } catch (e: Exception) {
+<b class="fc">&nbsp;                lastException = e</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (elapsedMillis(startNanos) &gt;= budgetMillis) break</b>
+&nbsp;        }
+&nbsp;        // Safe: the loop body runs at least once, so it recorded an empty result or an exception.
+<b class="fc">&nbsp;        return lastEmpty ?: throw lastException!!</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Milliseconds elapsed since [startNanos] on the injected monotonic time source. */
+<b class="fc">&nbsp;    private fun elapsedMillis(startNanos: Long): Long = (nanoTime() - startNanos) / 1_000_000</b>
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        /**
+&nbsp;         * Default time budget for a whole fallback chain.
+&nbsp;         *
+&nbsp;         * Sized against the two ways a source fails. A refusal comes back fast — observed
+&nbsp;         * ENTSO-E 503s land in well under four seconds — so in that case the budget never
+&nbsp;         * binds and every source still gets its turn, which is the behaviour the chain
+&nbsp;         * exists for. A hanging source instead burns its full connect-plus-read timeout,
+&nbsp;         * and it is only there that this cuts in, keeping the wait to roughly this budget
+&nbsp;         * plus one source&#39;s timeout instead of one timeout per source in the zone.
+&nbsp;         */
+&nbsp;        const val DEFAULT_BUDGET_MILLIS: Long = 30_000
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-09-04 14:16</div>
+</div>
+</body>
+</html>
