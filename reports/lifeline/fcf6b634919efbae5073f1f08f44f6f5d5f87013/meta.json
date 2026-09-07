@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "fcf6b634919efbae5073f1f08f44f6f5d5f87013",
+  "short_sha": "fcf6b63491",
+  "committed_at": "2026-09-07T10:12:00Z",
+  "message": "feat: log what the application does, not only what its libraries do",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/fcf6b634919efbae5073f1f08f44f6f5d5f87013",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "95.7%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.9%"
+      }
+    }
+  ]
+}
