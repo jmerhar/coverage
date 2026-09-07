@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "1e62f0ea1373277dcc465b067023fbc7c445d0c8",
+  "short_sha": "1e62f0ea13",
+  "committed_at": "2026-09-07T01:51:34Z",
+  "message": "feat: write the log to a file, with the level a runtime setting",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/1e62f0ea1373277dcc465b067023fbc7c445d0c8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "95.9%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.9%"
+      }
+    }
+  ]
+}
