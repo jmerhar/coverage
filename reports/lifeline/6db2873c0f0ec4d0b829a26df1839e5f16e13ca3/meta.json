@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "6db2873c0f0ec4d0b829a26df1839e5f16e13ca3",
+  "short_sha": "6db2873c0f",
+  "committed_at": "2026-09-07T01:02:44Z",
+  "message": "fix: every element without an explicit colour was painted its own background",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/6db2873c0f0ec4d0b829a26df1839e5f16e13ca3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "96.1%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "91.9%"
+      }
+    }
+  ]
+}
