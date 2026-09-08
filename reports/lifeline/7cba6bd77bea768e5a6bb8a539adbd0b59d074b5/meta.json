@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "7cba6bd77bea768e5a6bb8a539adbd0b59d074b5",
+  "short_sha": "7cba6bd77b",
+  "committed_at": "2026-09-08T15:59:22Z",
+  "message": "fix: quiet the frontend test output",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/7cba6bd77bea768e5a6bb8a539adbd0b59d074b5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "95.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}
