@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "52fea5940c5e93b7a87c8ef543dd103b0c171eef",
+  "short_sha": "52fea5940c",
+  "committed_at": "2026-09-08T19:24:58Z",
+  "message": "fix: compare a browser-mode site in a browser",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/52fea5940c5e93b7a87c8ef543dd103b0c171eef",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "94.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "95.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "93.3%"
+      }
+    }
+  ]
+}
