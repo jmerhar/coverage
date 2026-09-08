@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "26e4d89978558559906b20f7dc66c9b71e3ea4c3",
+  "short_sha": "26e4d89978",
+  "committed_at": "2026-09-08T18:44:36Z",
+  "message": "feat: discover the login URL instead of asking for it up front",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/26e4d89978558559906b20f7dc66c9b71e3ea4c3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "93.9%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "95.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "93.1%"
+      }
+    }
+  ]
+}
