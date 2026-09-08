@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "765f802eb54afd3e1c8b584c82bc8ad385daa550",
+  "short_sha": "765f802eb5",
+  "committed_at": "2026-09-08T16:48:38Z",
+  "message": "docs: install from the compose file alone, without cloning",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/765f802eb54afd3e1c8b584c82bc8ad385daa550",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.8%",
+        "branch": "94.9%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}
