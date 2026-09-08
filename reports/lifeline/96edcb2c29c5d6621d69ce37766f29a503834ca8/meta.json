@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "96edcb2c29c5d6621d69ce37766f29a503834ca8",
+  "short_sha": "96edcb2c29",
+  "committed_at": "2026-09-08T15:54:12Z",
+  "message": "fix: only print a setup token while there is still setup to do",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/96edcb2c29c5d6621d69ce37766f29a503834ca8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "95.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "92.0%"
+      }
+    }
+  ]
+}
