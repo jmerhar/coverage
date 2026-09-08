@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "8ef7f30003d086f1db1a5ee55783c63224e8030d",
+  "short_sha": "8ef7f30003",
+  "committed_at": "2026-09-08T17:06:57Z",
+  "message": "feat: split the site form in two, and say what each field is for",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/8ef7f30003d086f1db1a5ee55783c63224e8030d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "95.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.5%"
+      }
+    }
+  ]
+}
