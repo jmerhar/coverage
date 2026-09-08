@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "50f4edba337aa50d41a5a633d52a5b0cbd35f7d7",
+  "short_sha": "50f4edba33",
+  "committed_at": "2026-09-08T17:52:34Z",
+  "message": "feat: pause and resume a site from the list",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/50f4edba337aa50d41a5a633d52a5b0cbd35f7d7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "95.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "92.7%"
+      }
+    }
+  ]
+}
