@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "bc18857f30e69e9623c140ed39a84f25e6f4a6e9",
+  "short_sha": "bc18857f30",
+  "committed_at": "2026-09-08T21:28:42Z",
+  "message": "feat: recognise both spellings of the verb on a logged-out page",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/bc18857f30e69e9623c140ed39a84f25e6f4a6e9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "95.1%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "93.7%"
+      }
+    }
+  ]
+}
