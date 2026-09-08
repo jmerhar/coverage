@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "97685d7380335d4093da2fc8c4cfbc8c7c21e292",
+  "short_sha": "97685d7380",
+  "committed_at": "2026-09-08T16:22:21Z",
+  "message": "chore: actually stop tracking the editor configuration",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/97685d7380335d4093da2fc8c4cfbc8c7c21e292",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "95.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "91.7%"
+      }
+    }
+  ]
+}
