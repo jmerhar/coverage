@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "092f9a0780ac7234e078852ba670cfbed17dab54",
+  "short_sha": "092f9a0780",
+  "committed_at": "2026-09-08T19:41:26Z",
+  "message": "feat: try a set of detection rules before saving them",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/092f9a0780ac7234e078852ba670cfbed17dab54",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "95.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.1%",
+        "branch": "93.5%"
+      }
+    }
+  ]
+}
