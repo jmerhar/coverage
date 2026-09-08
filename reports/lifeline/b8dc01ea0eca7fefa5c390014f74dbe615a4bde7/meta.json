@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "b8dc01ea0eca7fefa5c390014f74dbe615a4bde7",
+  "short_sha": "b8dc01ea0e",
+  "committed_at": "2026-09-08T13:29:19Z",
+  "message": "feat: make passwords workable in the login panel",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/b8dc01ea0eca7fefa5c390014f74dbe615a4bde7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "93.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.0%",
+        "branch": "95.7%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "92.0%"
+      }
+    }
+  ]
+}
