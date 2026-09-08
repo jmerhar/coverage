@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "9a69e32bf74a353a78f5e2a5db83d8b014310e31",
+  "short_sha": "9a69e32bf7",
+  "committed_at": "2026-09-08T19:59:24Z",
+  "message": "feat: report what each detection rule did, not only the verdict",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/9a69e32bf74a353a78f5e2a5db83d8b014310e31",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "95.1%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "93.7%"
+      }
+    }
+  ]
+}
