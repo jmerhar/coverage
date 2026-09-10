@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "774204a06809b99d8e054f2467f792e4ad0897eb",
+  "short_sha": "774204a068",
+  "committed_at": "2026-09-10T20:57:57Z",
+  "message": "fix: never let jitter push a check past the session it renews",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/774204a06809b99d8e054f2467f792e4ad0897eb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    }
+  ]
+}
