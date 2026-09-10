@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "c305eee31b8175e1d8b30104c6aa5df2466d2091",
+  "short_sha": "c305eee31b",
+  "committed_at": "2026-09-10T12:44:02Z",
+  "message": "feat: say what a captured session holds, not how many cookies it has",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/c305eee31b8175e1d8b30104c6aa5df2466d2091",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    }
+  ]
+}
