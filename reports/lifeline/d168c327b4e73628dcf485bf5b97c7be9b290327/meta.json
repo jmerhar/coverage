@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "d168c327b4e73628dcf485bf5b97c7be9b290327",
+  "short_sha": "d168c327b4",
+  "committed_at": "2026-09-10T21:28:46Z",
+  "message": "feat: say in the form when an interval leaves no room for the session",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/d168c327b4e73628dcf485bf5b97c7be9b290327",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
