@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "140e03f9e09d0a65714ff4fe39a454ec19a1774c",
+  "short_sha": "140e03f9e0",
+  "committed_at": "2026-09-10T21:53:29Z",
+  "message": "feat: ask sites to answer in a language of your choosing",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/140e03f9e09d0a65714ff4fe39a454ec19a1774c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
