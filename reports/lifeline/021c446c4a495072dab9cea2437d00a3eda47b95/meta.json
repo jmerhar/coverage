@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "021c446c4a495072dab9cea2437d00a3eda47b95",
+  "short_sha": "021c446c4a",
+  "committed_at": "2026-09-10T11:24:12Z",
+  "message": "fix: forget everything a site stored, not only its cookies",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/021c446c4a495072dab9cea2437d00a3eda47b95",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "95.0%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
