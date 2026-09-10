@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "61b2259241516df5fc01cdc8e66d13391e9e11a0",
+  "short_sha": "61b2259241",
+  "committed_at": "2026-09-10T10:31:06Z",
+  "message": "feat: ask one question about spotting a dead session, and answer it first",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/61b2259241516df5fc01cdc8e66d13391e9e11a0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "95.1%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
