@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "2f41f947673891aeb94590ec6d2c5c129865eacb",
+  "short_sha": "2f41f94767",
+  "committed_at": "2026-09-10T13:12:02Z",
+  "message": "fix: notice a reissued session that is not a cookie",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/2f41f947673891aeb94590ec6d2c5c129865eacb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    }
+  ]
+}
