@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "1255c0263832096677ee1d3b10819dc3f37816f8",
+  "short_sha": "1255c02638",
+  "committed_at": "2026-09-10T09:19:55Z",
+  "message": "fix: read a browser-checked page after it has built itself",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/1255c0263832096677ee1d3b10819dc3f37816f8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.6%",
+        "branch": "95.1%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "93.7%"
+      }
+    }
+  ]
+}
