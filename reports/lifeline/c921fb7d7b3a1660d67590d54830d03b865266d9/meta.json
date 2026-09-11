@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "c921fb7d7b3a1660d67590d54830d03b865266d9",
+  "short_sha": "c921fb7d7b",
+  "committed_at": "2026-09-11T10:46:59Z",
+  "message": "fix: shorten the schedule when the interval is shortened",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/c921fb7d7b3a1660d67590d54830d03b865266d9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
