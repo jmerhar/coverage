@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "69ce77d059aa7452d2b7e973430fa0bb62dad330",
+  "short_sha": "69ce77d059",
+  "committed_at": "2026-09-11T23:14:00Z",
+  "message": "fix: let make dev install npm packages through a mirror",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/69ce77d059aa7452d2b7e973430fa0bb62dad330",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    }
+  ]
+}
