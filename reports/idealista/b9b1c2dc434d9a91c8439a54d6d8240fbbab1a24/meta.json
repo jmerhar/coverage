@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "b9b1c2dc434d9a91c8439a54d6d8240fbbab1a24",
+  "short_sha": "b9b1c2dc43",
+  "committed_at": "2026-09-11T10:41:11Z",
+  "message": "perf(compose): keep the 17 GB HTML archive on the array",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/b9b1c2dc434d9a91c8439a54d6d8240fbbab1a24",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
