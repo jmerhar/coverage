@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "0f5cc162127fc753eb3de95257a20db075489682",
+  "short_sha": "0f5cc16212",
+  "committed_at": "2026-09-11T23:51:41Z",
+  "message": "fix: move the switch knob to the on side when it is on",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/0f5cc162127fc753eb3de95257a20db075489682",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
