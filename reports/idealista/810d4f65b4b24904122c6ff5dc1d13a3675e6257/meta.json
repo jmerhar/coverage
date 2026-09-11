@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "810d4f65b4b24904122c6ff5dc1d13a3675e6257",
+  "short_sha": "810d4f65b4",
+  "committed_at": "2026-09-11T11:13:18Z",
+  "message": "fix(compose): set the tmpfs mode so the browser can write its cache",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/810d4f65b4b24904122c6ff5dc1d13a3675e6257",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
