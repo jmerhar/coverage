@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "61f6bde06a933647f9946b44c80223749e031bec",
+  "short_sha": "61f6bde06a",
+  "committed_at": "2026-09-11T11:09:37Z",
+  "message": "perf(compose): hold Chromium's caches in RAM instead of on the host's root SSD",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/61f6bde06a933647f9946b44c80223749e031bec",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
