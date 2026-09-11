@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "b64fa3f887633fd91d4c2e68f60403c417cbb2f8",
+  "short_sha": "b64fa3f887",
+  "committed_at": "2026-09-11T22:26:31Z",
+  "message": "fix: apply an interval change in both directions",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/b64fa3f887633fd91d4c2e68f60403c417cbb2f8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.4%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.2%"
+      }
+    }
+  ]
+}
