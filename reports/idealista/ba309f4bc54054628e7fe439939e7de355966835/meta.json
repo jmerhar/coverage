@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "ba309f4bc54054628e7fe439939e7de355966835",
+  "short_sha": "ba309f4bc5",
+  "committed_at": "2026-09-11T15:05:41Z",
+  "message": "perf(compose): give the scraper a RAM /tmp, and prune superseded browser builds",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/ba309f4bc54054628e7fe439939e7de355966835",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
