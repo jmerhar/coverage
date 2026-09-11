@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "6d8aa1244bc826160038aa9e2cafd6f9d0e5e44b",
+  "short_sha": "6d8aa1244b",
+  "committed_at": "2026-09-11T15:14:12Z",
+  "message": "refactor(scraper): prune superseded browser builds in the client, not a sidecar",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/6d8aa1244bc826160038aa9e2cafd6f9d0e5e44b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
