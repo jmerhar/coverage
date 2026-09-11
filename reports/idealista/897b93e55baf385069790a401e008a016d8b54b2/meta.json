@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "897b93e55baf385069790a401e008a016d8b54b2",
+  "short_sha": "897b93e55b",
+  "committed_at": "2026-09-11T15:08:08Z",
+  "message": "fix(compose): make the scraper wait on the prune, not the api",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/897b93e55baf385069790a401e008a016d8b54b2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
