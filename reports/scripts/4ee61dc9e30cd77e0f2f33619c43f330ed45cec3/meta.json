@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "4ee61dc9e30cd77e0f2f33619c43f330ed45cec3",
+  "short_sha": "4ee61dc9e3",
+  "committed_at": "2026-09-30T14:50:30Z",
+  "message": "fix(dmarc-report): keep the subnet list out of a traced conditional",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/4ee61dc9e30cd77e0f2f33619c43f330ed45cec3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
