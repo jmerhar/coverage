@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a1c00a6f0ee36b8027e7b2ee74733efcf0e72f60",
+  "short_sha": "a1c00a6f0e",
+  "committed_at": "2026-10-02T11:40:52Z",
+  "message": "fix(dmarc-report): keep the geolocation response out of a traced conditional",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a1c00a6f0ee36b8027e7b2ee74733efcf0e72f60",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
