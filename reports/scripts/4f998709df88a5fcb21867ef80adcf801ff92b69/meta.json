@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "4f998709df88a5fcb21867ef80adcf801ff92b69",
+  "short_sha": "4f998709df",
+  "committed_at": "2026-10-03T00:21:55Z",
+  "message": "fix: keep multi-line values out of [[ ]] tests across the tree",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/4f998709df88a5fcb21867ef80adcf801ff92b69",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
