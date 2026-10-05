@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "21c4ce6e311a9cccc98dc08df261c37f4f0c80dc",
+  "short_sha": "21c4ce6e31",
+  "committed_at": "2026-10-05T00:48:19Z",
+  "message": "chore(test): run the suite in parallel when GNU parallel is available",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/21c4ce6e311a9cccc98dc08df261c37f4f0c80dc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.2%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.2%"
+      }
+    }
+  ]
+}
