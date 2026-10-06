@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "7e86f625721249f88ba5064b33e8f13a315e7377",
+  "short_sha": "7e86f62572",
+  "committed_at": "2026-10-06T08:35:23Z",
+  "message": "fix(link-series)!: require an explicit directory",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/7e86f625721249f88ba5064b33e8f13a315e7377",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.3%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.3%"
+      }
+    }
+  ]
+}
