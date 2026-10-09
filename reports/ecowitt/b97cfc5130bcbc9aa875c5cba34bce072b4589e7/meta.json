@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "b97cfc5130bcbc9aa875c5cba34bce072b4589e7",
+  "short_sha": "b97cfc5130",
+  "committed_at": "2026-10-09T16:59:11Z",
+  "message": "docs: add notes for planned features",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/b97cfc5130bcbc9aa875c5cba34bce072b4589e7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
