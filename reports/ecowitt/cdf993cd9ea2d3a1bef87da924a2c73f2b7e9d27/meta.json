@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "cdf993cd9ea2d3a1bef87da924a2c73f2b7e9d27",
+  "short_sha": "cdf993cd9e",
+  "committed_at": "2026-10-09T20:10:07Z",
+  "message": "docs: describe the Grafana alert rules",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/cdf993cd9ea2d3a1bef87da924a2c73f2b7e9d27",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
