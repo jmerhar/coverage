@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "b4646fbbd01b5fe304b876acaa6686909a576d82",
+  "short_sha": "b4646fbbd0",
+  "committed_at": "2026-10-09T09:33:41Z",
+  "message": "feat: refresh the reference pressure as soon as the configuration changes",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/b4646fbbd01b5fe304b876acaa6686909a576d82",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
