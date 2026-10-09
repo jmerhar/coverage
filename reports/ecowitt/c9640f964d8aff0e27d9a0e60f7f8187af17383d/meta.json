@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "c9640f964d8aff0e27d9a0e60f7f8187af17383d",
+  "short_sha": "c9640f964d",
+  "committed_at": "2026-10-09T08:40:04Z",
+  "message": "docs: describe the spool, its bound, and how writes are classified",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/c9640f964d8aff0e27d9a0e60f7f8187af17383d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
