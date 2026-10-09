@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "57bbd27fcc43ad716d28b58e4199c08dc479a827",
+  "short_sha": "57bbd27fcc",
+  "committed_at": "2026-10-09T15:37:10Z",
+  "message": "docs: describe the Grafana dashboard and how to install it",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/57bbd27fcc43ad716d28b58e4199c08dc479a827",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
