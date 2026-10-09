@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "d05ba2459f7e8509226a267f8a03d939a71274c6",
+  "short_sha": "d05ba2459f",
+  "committed_at": "2026-10-09T02:04:10Z",
+  "message": "docs: describe the stored schema and the data path",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d05ba2459f7e8509226a267f8a03d939a71274c6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
