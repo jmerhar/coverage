@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "a6ae8e2a1c379ce5c3d877341a96ee4f391a6d10",
+  "short_sha": "a6ae8e2a1c",
+  "committed_at": "2026-10-09T02:46:17Z",
+  "message": "fix: stop logging every InfluxDB write at INFO",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/a6ae8e2a1c379ce5c3d877341a96ee4f391a6d10",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
