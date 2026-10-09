@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "2fec0695af1662d142dc08971f1db60f3f598fa9",
+  "short_sha": "2fec0695af",
+  "committed_at": "2026-10-09T10:53:32Z",
+  "message": "docs: mention the location button and how page scripts are tested",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2fec0695af1662d142dc08971f1db60f3f598fa9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
