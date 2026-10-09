@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "8dd434a11b7581bff0a30f807621357bfbccfb4a",
+  "short_sha": "8dd434a11b",
+  "committed_at": "2026-10-09T09:30:03Z",
+  "message": "docs: describe the setup page, the login and the calibration checks",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/8dd434a11b7581bff0a30f807621357bfbccfb4a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
