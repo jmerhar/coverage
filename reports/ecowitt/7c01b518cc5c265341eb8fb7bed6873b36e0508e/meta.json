@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "7c01b518cc5c265341eb8fb7bed6873b36e0508e",
+  "short_sha": "7c01b518cc",
+  "committed_at": "2026-10-09T14:52:32Z",
+  "message": "docs: describe how the page scripts are measured",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/7c01b518cc5c265341eb8fb7bed6873b36e0508e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
