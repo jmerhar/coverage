@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "e23b69d664cf7c77c8a1be3ab9fb332a4fae4121",
+  "short_sha": "e23b69d664",
+  "committed_at": "2026-10-09T19:31:46Z",
+  "message": "docs: describe the heartbeat setting",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/e23b69d664cf7c77c8a1be3ab9fb332a4fae4121",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
