@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "2f3ac1de72cc14d2de351b31c96e78a681a24834",
+  "short_sha": "2f3ac1de72",
+  "committed_at": "2026-10-09T16:21:59Z",
+  "message": "fix: fit the dashboard to a 1000 px wide window",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2f3ac1de72cc14d2de351b31c96e78a681a24834",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
