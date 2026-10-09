@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "79c4e7ffdd48c8fc1bb8a5267a55d075a3b3d9bc",
+  "short_sha": "79c4e7ffdd",
+  "committed_at": "2026-10-09T09:50:11Z",
+  "message": "style: show pressure on the status page rounded and with its unit's usual spelling",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/79c4e7ffdd48c8fc1bb8a5267a55d075a3b3d9bc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
