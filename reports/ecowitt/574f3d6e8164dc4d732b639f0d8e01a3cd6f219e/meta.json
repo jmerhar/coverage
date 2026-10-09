@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "574f3d6e8164dc4d732b639f0d8e01a3cd6f219e",
+  "short_sha": "574f3d6e81",
+  "committed_at": "2026-10-09T16:04:20Z",
+  "message": "fix: make the dashboard's titles, tables and charts fit their panels",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/574f3d6e8164dc4d732b639f0d8e01a3cd6f219e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
