@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "1f10f59a419656c56aa1b92edeec73871eac699b",
+  "short_sha": "1f10f59a41",
+  "committed_at": "2026-10-09T20:36:15Z",
+  "message": "feat: list firing alerts on the dashboard, and match its staleness column to the alert",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1f10f59a419656c56aa1b92edeec73871eac699b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
