@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "9c08567180b759d869ab1ed3e86adbe862001cf6",
+  "short_sha": "9c08567180",
+  "committed_at": "2026-10-09T09:45:15Z",
+  "message": "fix: show sea-level pressure on the status page, not its temperature source",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/9c08567180b759d869ab1ed3e86adbe862001cf6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
