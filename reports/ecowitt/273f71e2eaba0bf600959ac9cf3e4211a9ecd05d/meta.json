@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "273f71e2eaba0bf600959ac9cf3e4211a9ecd05d",
+  "short_sha": "273f71e2ea",
+  "committed_at": "2026-10-09T23:48:28Z",
+  "message": "docs: correct the README's install steps, settings and protocol claim",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/273f71e2eaba0bf600959ac9cf3e4211a9ecd05d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
