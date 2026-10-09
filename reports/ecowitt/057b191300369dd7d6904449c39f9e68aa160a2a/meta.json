@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "057b191300369dd7d6904449c39f9e68aa160a2a",
+  "short_sha": "057b191300",
+  "committed_at": "2026-10-09T09:35:54Z",
+  "message": "style: name the unused argument in a test stand-in",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/057b191300369dd7d6904449c39f9e68aa160a2a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
