@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "569bac666b24773f324adc83c4a0398212137aab",
+  "short_sha": "569bac666b",
+  "committed_at": "2026-10-09T10:55:32Z",
+  "message": "fix: pass page script test files to node by name, as Node 22 requires",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/569bac666b24773f324adc83c4a0398212137aab",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
