@@ -1,0 +1,25 @@
+{
+  "project": "ecowitt",
+  "sha": "754766e92bee203451c173e66b56bbe7ded36718",
+  "short_sha": "754766e92b",
+  "committed_at": "2026-10-09T01:39:41Z",
+  "message": "docs: document the two listeners and the station setup",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/754766e92bee203451c173e66b56bbe7ded36718",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
