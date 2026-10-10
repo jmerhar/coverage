@@ -1,0 +1,41 @@
+{
+  "project": "ecowitt",
+  "sha": "1f87d88b9d92319ef8fe9c959c633350fd8381b8",
+  "short_sha": "1f87d88b9d",
+  "committed_at": "2026-10-10T16:38:22Z",
+  "message": "style: lay out the dashboard's station section in three columns",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1f87d88b9d92319ef8fe9c959c633350fd8381b8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
