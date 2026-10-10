@@ -1,0 +1,41 @@
+{
+  "project": "ecowitt",
+  "sha": "77e723b4995321631596ca90c0b741d90681331d",
+  "short_sha": "77e723b499",
+  "committed_at": "2026-10-10T11:41:59Z",
+  "message": "feat: set up the database on the setup page, and spool rows instead of line protocol",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/77e723b4995321631596ca90c0b741d90681331d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
