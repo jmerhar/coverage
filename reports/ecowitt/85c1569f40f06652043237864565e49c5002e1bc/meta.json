@@ -1,0 +1,49 @@
+{
+  "project": "ecowitt",
+  "sha": "85c1569f40f06652043237864565e49c5002e1bc",
+  "short_sha": "85c1569f40",
+  "committed_at": "2026-10-10T22:46:35Z",
+  "message": "fix: keep conditions out of alert values, and send airing advice daily",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/85c1569f40f06652043237864565e49c5002e1bc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
