@@ -1,0 +1,41 @@
+{
+  "project": "ecowitt",
+  "sha": "cdaf76d647a7549ba33cfe7a5d1fe2b0e1be96f7",
+  "short_sha": "cdaf76d647",
+  "committed_at": "2026-10-10T16:35:50Z",
+  "message": "feat: show the station's settings on the dashboard, with links between station and browser time",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/cdaf76d647a7549ba33cfe7a5d1fe2b0e1be96f7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
