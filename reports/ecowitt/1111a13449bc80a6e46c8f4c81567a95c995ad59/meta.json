@@ -1,0 +1,33 @@
+{
+  "project": "ecowitt",
+  "sha": "1111a13449bc80a6e46c8f4c81567a95c995ad59",
+  "short_sha": "1111a13449",
+  "committed_at": "2026-10-10T00:12:04Z",
+  "message": "fix: keep the Adopt button inside the setup page's pending-station table",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1111a13449bc80a6e46c8f4c81567a95c995ad59",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
