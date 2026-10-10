@@ -1,0 +1,49 @@
+{
+  "project": "ecowitt",
+  "sha": "d6c77eeb75f1ce5e338b5bc777cec0ca870777c7",
+  "short_sha": "d6c77eeb75",
+  "committed_at": "2026-10-10T23:36:36Z",
+  "message": "feat: name the console's fixed sensors on the dashboard, and plan InfluxDB 2.x reads",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d6c77eeb75f1ce5e338b5bc777cec0ca870777c7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
