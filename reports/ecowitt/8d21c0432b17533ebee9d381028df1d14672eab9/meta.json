@@ -1,0 +1,49 @@
+{
+  "project": "ecowitt",
+  "sha": "8d21c0432b17533ebee9d381028df1d14672eab9",
+  "short_sha": "8d21c0432b",
+  "committed_at": "2026-10-10T18:27:13Z",
+  "message": "feat: package the dashboard as its own image",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/8d21c0432b17533ebee9d381028df1d14672eab9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
