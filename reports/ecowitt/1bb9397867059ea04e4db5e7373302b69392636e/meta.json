@@ -1,0 +1,41 @@
+{
+  "project": "ecowitt",
+  "sha": "1bb9397867059ea04e4db5e7373302b69392636e",
+  "short_sha": "1bb9397867",
+  "committed_at": "2026-10-10T11:09:20Z",
+  "message": "refactor: write through a generic Store interface instead of the InfluxDB writer",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1bb9397867059ea04e4db5e7373302b69392636e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
