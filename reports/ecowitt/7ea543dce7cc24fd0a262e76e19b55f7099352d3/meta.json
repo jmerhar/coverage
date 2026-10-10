@@ -1,0 +1,49 @@
+{
+  "project": "ecowitt",
+  "sha": "7ea543dce7cc24fd0a262e76e19b55f7099352d3",
+  "short_sha": "7ea543dce7",
+  "committed_at": "2026-10-10T22:51:44Z",
+  "message": "feat: set the dashboard up in two steps, choosing stations from those the database has",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/7ea543dce7cc24fd0a262e76e19b55f7099352d3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
