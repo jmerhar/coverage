@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "cb168c2b1706ecc27bf45bc4c8c7dc7c83068834",
+  "short_sha": "cb168c2b17",
+  "committed_at": "2026-10-11T11:55:23Z",
+  "message": "feat: highlight what deserves attention on the dashboard, and give its cards icons",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/cb168c2b1706ecc27bf45bc4c8c7dc7c83068834",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
