@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "a0f53e65a1c02d3e916ef2cd4ccd5b5c79ffd7cf",
+  "short_sha": "a0f53e65a1",
+  "committed_at": "2026-10-11T18:52:30Z",
+  "message": "feat: say which model differences are beyond the usual, and tidy the status and setup pages",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/a0f53e65a1c02d3e916ef2cd4ccd5b5c79ffd7cf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
