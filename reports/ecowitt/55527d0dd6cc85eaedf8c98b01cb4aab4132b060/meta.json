@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "55527d0dd6cc85eaedf8c98b01cb4aab4132b060",
+  "short_sha": "55527d0dd6",
+  "committed_at": "2026-10-11T10:34:36Z",
+  "message": "feat: put airing advice for the whole house on top, and show what airing would do per room",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/55527d0dd6cc85eaedf8c98b01cb4aab4132b060",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
