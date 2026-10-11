@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "3f5be30161ab6a0d468438b68a35d34db434ab6e",
+  "short_sha": "3f5be30161",
+  "committed_at": "2026-10-11T19:39:38Z",
+  "message": "style: name the weather model in Grafana's station settings, and draw its wind in blue",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/3f5be30161ab6a0d468438b68a35d34db434ab6e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
