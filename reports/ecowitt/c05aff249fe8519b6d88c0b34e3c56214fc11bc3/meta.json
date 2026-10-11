@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "c05aff249fe8519b6d88c0b34e3c56214fc11bc3",
+  "short_sha": "c05aff249f",
+  "committed_at": "2026-10-11T01:31:07Z",
+  "message": "fix: day-first 24-hour times, readable records, and a chart that says loading while it loads",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/c05aff249fe8519b6d88c0b34e3c56214fc11bc3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
