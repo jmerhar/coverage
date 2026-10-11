@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "ea35a06db0e7511196c83f651a655359442eb4d0",
+  "short_sha": "ea35a06db0",
+  "committed_at": "2026-10-11T12:56:22Z",
+  "message": "feat: make the collector's status page about whether everything works",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/ea35a06db0e7511196c83f651a655359442eb4d0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
