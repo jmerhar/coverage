@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f02dd0a4d223d1d2d57a318544fef88e917a141d",
+  "short_sha": "f02dd0a4d2",
+  "committed_at": "2026-10-11T12:19:55Z",
+  "message": "feat: highlight cold from 5 \u00b0C and very humid or dry air, and give records and chart tabs icons",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f02dd0a4d223d1d2d57a318544fef88e917a141d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.1%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
