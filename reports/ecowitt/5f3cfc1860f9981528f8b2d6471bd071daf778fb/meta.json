@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "5f3cfc1860f9981528f8b2d6471bd071daf778fb",
+  "short_sha": "5f3cfc1860",
+  "committed_at": "2026-10-11T01:42:23Z",
+  "message": "fix: refresh the dashboard's charts and records with its current conditions",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/5f3cfc1860f9981528f8b2d6471bd071daf778fb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
