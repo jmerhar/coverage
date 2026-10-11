@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "931814bfb85bcc2a65e98d38b2b8ad19ea0240b5",
+  "short_sha": "931814bfb8",
+  "committed_at": "2026-10-11T20:37:15Z",
+  "message": "feat: let the dashboard be added to a home screen as an app",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/931814bfb85bcc2a65e98d38b2b8ad19ea0240b5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
