@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "78e38ff2ae2a16da9a5925325567b7252da24631",
+  "short_sha": "78e38ff2ae",
+  "committed_at": "2026-10-11T17:03:36Z",
+  "message": "feat: choose each station's weather model on the setup page, and compare it on the status page",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/78e38ff2ae2a16da9a5925325567b7252da24631",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
