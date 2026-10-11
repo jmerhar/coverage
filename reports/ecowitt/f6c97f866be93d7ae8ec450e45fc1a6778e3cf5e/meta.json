@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f6c97f866be93d7ae8ec450e45fc1a6778e3cf5e",
+  "short_sha": "f6c97f866b",
+  "committed_at": "2026-10-11T12:36:26Z",
+  "message": "style: call the dashboard's extremes section 'Highs and lows'",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f6c97f866be93d7ae8ec450e45fc1a6778e3cf5e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.1%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
