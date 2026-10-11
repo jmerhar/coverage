@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "9c00384495c0b49fe2cb370e7aab11b00d76ad5f",
+  "short_sha": "9c00384495",
+  "committed_at": "2026-10-11T20:49:59Z",
+  "message": "fix: send the dashboard's query parameters from Safari before 17",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/9c00384495c0b49fe2cb370e7aab11b00d76ad5f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
