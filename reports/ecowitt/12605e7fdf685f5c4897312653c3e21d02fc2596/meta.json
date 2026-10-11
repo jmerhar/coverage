@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "12605e7fdf685f5c4897312653c3e21d02fc2596",
+  "short_sha": "12605e7fdf",
+  "committed_at": "2026-10-11T15:15:24Z",
+  "message": "style: show each room's highs and lows as a tile, like the outdoor ones",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/12605e7fdf685f5c4897312653c3e21d02fc2596",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
