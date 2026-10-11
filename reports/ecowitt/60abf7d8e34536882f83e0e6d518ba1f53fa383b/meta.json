@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "60abf7d8e34536882f83e0e6d518ba1f53fa383b",
+  "short_sha": "60abf7d8e3",
+  "committed_at": "2026-10-11T01:36:12Z",
+  "message": "docs: document the public dashboard, and add it to the compose file",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/60abf7d8e34536882f83e0e6d518ba1f53fa383b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
