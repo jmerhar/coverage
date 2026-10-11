@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "30a2805d6e00e77bcde68f6eaff42aa047823d9e",
+  "short_sha": "30a2805d6e",
+  "committed_at": "2026-10-11T16:23:11Z",
+  "message": "feat: store a weather model's values beside each located station",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/30a2805d6e00e77bcde68f6eaff42aa047823d9e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
