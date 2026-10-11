@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "537aa83326a9a98c6dc1d2d5e8e3b3d6490340e0",
+  "short_sha": "537aa83326",
+  "committed_at": "2026-10-11T11:11:53Z",
+  "message": "fix: fit the rooms table on a phone",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/537aa83326a9a98c6dc1d2d5e8e3b3d6490340e0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
