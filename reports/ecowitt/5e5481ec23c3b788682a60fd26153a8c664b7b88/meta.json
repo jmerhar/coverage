@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "5e5481ec23c3b788682a60fd26153a8c664b7b88",
+  "short_sha": "5e5481ec23",
+  "committed_at": "2026-10-11T14:54:54Z",
+  "message": "feat: name the console's radio band and its region, and give the admin pages an icon",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/5e5481ec23c3b788682a60fd26153a8c664b7b88",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
