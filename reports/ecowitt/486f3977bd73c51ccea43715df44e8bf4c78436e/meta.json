@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "486f3977bd73c51ccea43715df44e8bf4c78436e",
+  "short_sha": "486f3977bd",
+  "committed_at": "2026-10-11T01:05:40Z",
+  "message": "feat: serve the dashboard's pages from its API, and build them into its image",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/486f3977bd73c51ccea43715df44e8bf4c78436e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
