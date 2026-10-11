@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f8b2e3f1ff02f427cf0d044a1c7f58b20f4be43b",
+  "short_sha": "f8b2e3f1ff",
+  "committed_at": "2026-10-11T01:58:36Z",
+  "message": "fix: stop flagging the rain gauge and light sensor as not updating on a dry night",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f8b2e3f1ff02f427cf0d044a1c7f58b20f4be43b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
