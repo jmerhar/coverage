@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "e7160fe3456f4d2baa9ed5abdab4b828fccc3ab6",
+  "short_sha": "e7160fe345",
+  "committed_at": "2026-10-11T20:15:05Z",
+  "message": "feat: show the weather model's sky and lines on the dashboard page",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/e7160fe3456f4d2baa9ed5abdab4b828fccc3ab6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "89.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
