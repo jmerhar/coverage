@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "12b3fffd19327d96da7c802c7efe7b0dea8a1541",
+  "short_sha": "12b3fffd19",
+  "committed_at": "2026-10-12T10:24:45Z",
+  "message": "feat: pick out one chart line with a plain click on its legend entry",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/12b3fffd19327d96da7c802c7efe7b0dea8a1541",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
