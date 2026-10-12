@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "2ae08c593ac72f47202ce4a1fc9dc3a0b8dbe3ef",
+  "short_sha": "2ae08c593a",
+  "committed_at": "2026-10-12T16:30:47Z",
+  "message": "docs: say when the dashboard advises keeping the windows closed",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2ae08c593ac72f47202ce4a1fc9dc3a0b8dbe3ef",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
