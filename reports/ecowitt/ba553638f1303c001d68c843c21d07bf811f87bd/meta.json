@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "ba553638f1303c001d68c843c21d07bf811f87bd",
+  "short_sha": "ba553638f1",
+  "committed_at": "2026-10-12T13:04:59Z",
+  "message": "style: show what airing would do to indoor humidity in large numbers",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/ba553638f1303c001d68c843c21d07bf811f87bd",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
