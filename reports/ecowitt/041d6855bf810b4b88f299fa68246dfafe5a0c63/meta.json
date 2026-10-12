@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "041d6855bf810b4b88f299fa68246dfafe5a0c63",
+  "short_sha": "041d6855bf",
+  "committed_at": "2026-10-12T18:27:49Z",
+  "message": "fix: mark wind and rain by the last ten minutes, and say plainly what airing would do",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/041d6855bf810b4b88f299fa68246dfafe5a0c63",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
