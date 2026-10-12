@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "8ef1d8487b9a74e64c92c502eaac6119b03adbff",
+  "short_sha": "8ef1d8487b",
+  "committed_at": "2026-10-12T16:27:34Z",
+  "message": "fix: advise keeping the windows closed only when airing would do harm",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/8ef1d8487b9a74e64c92c502eaac6119b03adbff",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
