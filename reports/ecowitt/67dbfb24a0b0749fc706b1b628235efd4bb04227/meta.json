@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "67dbfb24a0b0749fc706b1b628235efd4bb04227",
+  "short_sha": "67dbfb24a0",
+  "committed_at": "2026-10-13T19:22:06Z",
+  "message": "feat: offer 1, 3, 6 and 12 hour chart ranges",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/67dbfb24a0b0749fc706b1b628235efd4bb04227",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
