@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "47e888c9aaa56550a04b584305535fcf4260c8f4",
+  "short_sha": "47e888c9aa",
+  "committed_at": "2026-10-13T21:30:53Z",
+  "message": "fix(lib): return 0 explicitly from the core library's early exits",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/47e888c9aaa56550a04b584305535fcf4260c8f4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.3%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.3%"
+      }
+    }
+  ]
+}
