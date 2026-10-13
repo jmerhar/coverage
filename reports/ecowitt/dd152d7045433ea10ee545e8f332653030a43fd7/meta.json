@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "dd152d7045433ea10ee545e8f332653030a43fd7",
+  "short_sha": "dd152d7045",
+  "committed_at": "2026-10-13T12:16:13Z",
+  "message": "feat: show and alert on wind at 10 m in Grafana, and compare it with the model",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/dd152d7045433ea10ee545e8f332653030a43fd7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
