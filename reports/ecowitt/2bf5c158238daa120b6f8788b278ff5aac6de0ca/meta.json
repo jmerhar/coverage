@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "2bf5c158238daa120b6f8788b278ff5aac6de0ca",
+  "short_sha": "2bf5c15823",
+  "committed_at": "2026-10-13T20:38:50Z",
+  "message": "docs: plan the forecast continuing the charts' lines past now",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2bf5c158238daa120b6f8788b278ff5aac6de0ca",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
