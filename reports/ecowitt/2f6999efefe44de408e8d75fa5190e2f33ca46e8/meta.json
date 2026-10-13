@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "2f6999efefe44de408e8d75fa5190e2f33ca46e8",
+  "short_sha": "2f6999efef",
+  "committed_at": "2026-10-13T19:28:28Z",
+  "message": "style: fold the chart's range tabs into a dropdown on phones",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2f6999efefe44de408e8d75fa5190e2f33ca46e8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.3%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
