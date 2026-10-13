@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "0a4379e0e9294391ad9242a7300918f2511ac9d7",
+  "short_sha": "0a4379e0e9",
+  "committed_at": "2026-10-13T19:59:06Z",
+  "message": "feat: store each station's weather forecast, hourly and daily, with its lead",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/0a4379e0e9294391ad9242a7300918f2511ac9d7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.3%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.8%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.3%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
