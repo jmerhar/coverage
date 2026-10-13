@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "5c08388cf057aa27ef9528b08b98a42b7ed1ea85",
+  "short_sha": "5c08388cf0",
+  "committed_at": "2026-10-13T18:54:35Z",
+  "message": "feat: show outdoor humidity and dew point as bars coloured by level",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/5c08388cf057aa27ef9528b08b98a42b7ed1ea85",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
