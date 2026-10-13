@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "0d0439b90769aa252ed7668aafb4435f6feada22",
+  "short_sha": "0d0439b907",
+  "committed_at": "2026-10-13T11:59:13Z",
+  "message": "feat: store each report's wind estimated at 10 m, from the anemometer's height",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/0d0439b90769aa252ed7668aafb4435f6feada22",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
