@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "c30bf5426740e124fbae9303d524f64d470ae2e9",
+  "short_sha": "c30bf54267",
+  "committed_at": "2026-10-13T22:39:53Z",
+  "message": "feat(docker-live-upgrade): repair what live-restore did not carry across a daemon restart",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/c30bf5426740e124fbae9303d524f64d470ae2e9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.5%"
+      }
+    }
+  ]
+}
