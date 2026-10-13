@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "2fb77f48b84024cfe7911e2cc6da71ae5f6500de",
+  "short_sha": "2fb77f48b8",
+  "committed_at": "2026-10-13T12:34:50Z",
+  "message": "feat: recompute a station's 10 m wind over its history, on request",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/2fb77f48b84024cfe7911e2cc6da71ae5f6500de",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.7%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
