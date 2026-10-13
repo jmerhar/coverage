@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "0bd0e1cd4d2749d15d908fdacfb8662964a6d586",
+  "short_sha": "0bd0e1cd4d",
+  "committed_at": "2026-10-13T22:14:07Z",
+  "message": "feat: make storing the weather forecast a choice per station, off by default",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/0bd0e1cd4d2749d15d908fdacfb8662964a6d586",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.6%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
