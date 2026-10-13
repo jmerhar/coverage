@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "98b0e4abc50cc2b863bc35f55444c7e79070b033",
+  "short_sha": "98b0e4abc5",
+  "committed_at": "2026-10-13T12:10:41Z",
+  "message": "feat: lead the dashboard's wind with the estimate at 10 m",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/98b0e4abc50cc2b863bc35f55444c7e79070b033",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.9%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
