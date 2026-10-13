@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "3312212b1e399ae4f396bb8e1b9a0bb169fabb49",
+  "short_sha": "3312212b1e",
+  "committed_at": "2026-10-13T20:18:16Z",
+  "message": "feat: serve the weather forecast, and warn on the cards of what is coming",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/3312212b1e399ae4f396bb8e1b9a0bb169fabb49",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.3%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
