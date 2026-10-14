@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "0d8c5029f1207e125229fd15321aad7d8632efc6",
+  "short_sha": "0d8c5029f1",
+  "committed_at": "2026-10-14T10:38:28Z",
+  "message": "feat(docker-live-upgrade): restart containers tied to a restarted one",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/0d8c5029f1207e125229fd15321aad7d8632efc6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.5%"
+      }
+    }
+  ]
+}
