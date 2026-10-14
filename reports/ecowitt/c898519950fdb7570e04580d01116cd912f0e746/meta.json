@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "c898519950fdb7570e04580d01116cd912f0e746",
+  "short_sha": "c898519950",
+  "committed_at": "2026-10-14T09:56:46Z",
+  "message": "fix: advise keeping the windows closed only when airing would dampen the rooms by 5 points",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/c898519950fdb7570e04580d01116cd912f0e746",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.6%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
