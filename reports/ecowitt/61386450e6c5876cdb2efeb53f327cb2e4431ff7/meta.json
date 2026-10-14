@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "61386450e6c5876cdb2efeb53f327cb2e4431ff7",
+  "short_sha": "61386450e6",
+  "committed_at": "2026-10-14T10:43:36Z",
+  "message": "fix: send Close the windows only while no room would be dried by airing",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/61386450e6c5876cdb2efeb53f327cb2e4431ff7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.6%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
