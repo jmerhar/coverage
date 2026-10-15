@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "b396f705d11c4582f9daf02c8256efca7ed2fc71",
+  "short_sha": "b396f705d1",
+  "committed_at": "2026-10-15T12:52:53Z",
+  "message": "docs: say the Grafana page pushes the dashboard, the rules or both",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/b396f705d11c4582f9daf02c8256efca7ed2fc71",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
