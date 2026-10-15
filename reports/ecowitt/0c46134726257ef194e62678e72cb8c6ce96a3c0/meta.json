@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "0c46134726257ef194e62678e72cb8c6ce96a3c0",
+  "short_sha": "0c46134726",
+  "committed_at": "2026-10-15T15:55:14Z",
+  "message": "fix: close the gaps a review found in the dashboard page's localisation",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/0c46134726257ef194e62678e72cb8c6ce96a3c0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
