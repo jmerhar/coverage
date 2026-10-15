@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "8ea43a9d5fe7a8dc79c980ae8601e370e187b994",
+  "short_sha": "8ea43a9d5f",
+  "committed_at": "2026-10-15T14:21:05Z",
+  "message": "fix: space the forecast title's icon from its text in the legacy build",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/8ea43a9d5fe7a8dc79c980ae8601e370e187b994",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.1%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
