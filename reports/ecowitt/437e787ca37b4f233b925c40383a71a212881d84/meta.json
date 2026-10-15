@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "437e787ca37b4f233b925c40383a71a212881d84",
+  "short_sha": "437e787ca3",
+  "committed_at": "2026-10-15T09:56:41Z",
+  "message": "ci: let Dependabot update the page's npm packages and the Python dependencies",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/437e787ca37b4f233b925c40383a71a212881d84",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
