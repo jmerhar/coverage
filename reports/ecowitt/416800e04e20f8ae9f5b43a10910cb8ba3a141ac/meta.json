@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "416800e04e20f8ae9f5b43a10910cb8ba3a141ac",
+  "short_sha": "416800e04e",
+  "committed_at": "2026-10-15T14:03:48Z",
+  "message": "docs: describe the dashboard's full-screen switch as it works",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/416800e04e20f8ae9f5b43a10910cb8ba3a141ac",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.1%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
