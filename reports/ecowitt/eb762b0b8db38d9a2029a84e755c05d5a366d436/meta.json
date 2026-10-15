@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "eb762b0b8db38d9a2029a84e755c05d5a366d436",
+  "short_sha": "eb762b0b8d",
+  "committed_at": "2026-10-15T13:23:54Z",
+  "message": "fix: space a card title's icon from its text in the legacy build",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/eb762b0b8db38d9a2029a84e755c05d5a366d436",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.4%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
