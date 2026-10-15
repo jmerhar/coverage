@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "d95fd6d21ba6e01b613ca38260bc2f39d6508e19",
+  "short_sha": "d95fd6d21b",
+  "committed_at": "2026-10-15T16:23:37Z",
+  "message": "refactor: keep the Bruno collection in Bruno's YAML format",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d95fd6d21ba6e01b613ca38260bc2f39d6508e19",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
