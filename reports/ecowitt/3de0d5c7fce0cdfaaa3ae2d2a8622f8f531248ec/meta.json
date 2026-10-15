@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "3de0d5c7fce0cdfaaa3ae2d2a8622f8f531248ec",
+  "short_sha": "3de0d5c7fc",
+  "committed_at": "2026-10-15T13:12:14Z",
+  "message": "feat: name the Grafana data source by its name, not its uid",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/3de0d5c7fce0cdfaaa3ae2d2a8622f8f531248ec",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
