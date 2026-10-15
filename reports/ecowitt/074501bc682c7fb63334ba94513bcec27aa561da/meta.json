@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "074501bc682c7fb63334ba94513bcec27aa561da",
+  "short_sha": "074501bc68",
+  "committed_at": "2026-10-15T11:54:38Z",
+  "message": "feat: render the Grafana dashboard and alert rules for the units the collector stores",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/074501bc682c7fb63334ba94513bcec27aa561da",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
