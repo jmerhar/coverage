@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f4208b67b5ab8e12cd9921a8f504f7e4ea7db9c4",
+  "short_sha": "f4208b67b5",
+  "committed_at": "2026-10-15T12:38:19Z",
+  "message": "fix: let the pages' build step into the dashboard image's build context",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f4208b67b5ab8e12cd9921a8f504f7e4ea7db9c4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
