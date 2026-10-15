@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "d16bed2383627635773f444199f3d162dbbb5d5f",
+  "short_sha": "d16bed2383",
+  "committed_at": "2026-10-15T12:33:16Z",
+  "message": "docs: describe the dashboard's legacy build and its Chromium 59 check",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d16bed2383627635773f444199f3d162dbbb5d5f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
