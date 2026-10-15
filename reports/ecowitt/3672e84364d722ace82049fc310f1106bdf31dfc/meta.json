@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "3672e84364d722ace82049fc310f1106bdf31dfc",
+  "short_sha": "3672e84364",
+  "committed_at": "2026-10-15T09:39:15Z",
+  "message": "chore: correct the Makefile's targets and drop the unused dev compose file",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/3672e84364d722ace82049fc310f1106bdf31dfc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
