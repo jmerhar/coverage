@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "3f5c3bb54878009a04483236d67f5625cdfa39f4",
+  "short_sha": "3f5c3bb548",
+  "committed_at": "2026-10-15T17:30:21Z",
+  "message": "feat: open the dashboard's settings from a sliders icon",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/3f5c3bb54878009a04483236d67f5625cdfa39f4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
