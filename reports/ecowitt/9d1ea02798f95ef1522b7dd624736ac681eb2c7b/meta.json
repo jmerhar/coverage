@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "9d1ea02798f95ef1522b7dd624736ac681eb2c7b",
+  "short_sha": "9d1ea02798",
+  "committed_at": "2026-10-15T10:32:25Z",
+  "message": "fix: say what airing would do to each room in Good time to air, not its dew point",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/9d1ea02798f95ef1522b7dd624736ac681eb2c7b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
