@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "ece554cbac71e1161eb3df995dca478442179bea",
+  "short_sha": "ece554cbac",
+  "committed_at": "2026-10-15T13:33:56Z",
+  "message": "feat: let the dashboard's home-screen app open full screen",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/ece554cbac71e1161eb3df995dca478442179bea",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.0%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
