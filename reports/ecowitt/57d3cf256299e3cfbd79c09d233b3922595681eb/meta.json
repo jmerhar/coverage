@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "57d3cf256299e3cfbd79c09d233b3922595681eb",
+  "short_sha": "57d3cf2562",
+  "committed_at": "2026-10-15T17:03:32Z",
+  "message": "fix: hide WebKit's disclosure triangle where the page hides the marker",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/57d3cf256299e3cfbd79c09d233b3922595681eb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
