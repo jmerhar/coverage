@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "6aab91bd727c600e312334bcaba0e17e45682702",
+  "short_sha": "6aab91bd72",
+  "committed_at": "2026-10-15T15:14:12Z",
+  "message": "fix: keep the dashboard's chosen language in the browser's storage",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/6aab91bd727c600e312334bcaba0e17e45682702",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
