@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "45bce276f03bebfb8ffb4103e0d06e27b0a453c7",
+  "short_sha": "45bce276f0",
+  "committed_at": "2026-10-15T11:43:43Z",
+  "message": "feat: open the dashboard in the sun's last theme",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/45bce276f03bebfb8ffb4103e0d06e27b0a453c7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.7%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
