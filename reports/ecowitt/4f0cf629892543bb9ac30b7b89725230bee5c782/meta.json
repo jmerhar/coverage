@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "4f0cf629892543bb9ac30b7b89725230bee5c782",
+  "short_sha": "4f0cf62989",
+  "committed_at": "2026-10-15T12:14:23Z",
+  "message": "docs: describe the Grafana page and the rendered Grafana files",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/4f0cf629892543bb9ac30b7b89725230bee5c782",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.9%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
