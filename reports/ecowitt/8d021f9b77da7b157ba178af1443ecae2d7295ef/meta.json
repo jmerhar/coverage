@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "8d021f9b77da7b157ba178af1443ecae2d7295ef",
+  "short_sha": "8d021f9b77",
+  "committed_at": "2026-10-15T10:03:46Z",
+  "message": "ci: make latest the newest release and publish main as edge",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/8d021f9b77da7b157ba178af1443ecae2d7295ef",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.8%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
