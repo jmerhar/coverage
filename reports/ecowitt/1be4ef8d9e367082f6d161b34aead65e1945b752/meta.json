@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "1be4ef8d9e367082f6d161b34aead65e1945b752",
+  "short_sha": "1be4ef8d9e",
+  "committed_at": "2026-10-15T12:17:01Z",
+  "message": "docs: say the alert table is in the default units, and how to roll back past the Grafana page",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1be4ef8d9e367082f6d161b34aead65e1945b752",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "95.9%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.7%",
+        "branch": "89.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
