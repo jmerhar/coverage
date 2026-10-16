@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "fa35ef397d38573808afb35fffc7cae96b1a11ce",
+  "short_sha": "fa35ef397d",
+  "committed_at": "2026-10-16T18:37:14Z",
+  "message": "feat: mark open windows on the airing card",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/fa35ef397d38573808afb35fffc7cae96b1a11ce",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
