@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "cc53e64f4b0d95924c45c32f5e10335b1ae9b6aa",
+  "short_sha": "cc53e64f4b",
+  "committed_at": "2026-10-16T23:49:15Z",
+  "message": "fix: keep the admin pages' text boxes and links in the dark theme",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/cc53e64f4b0d95924c45c32f5e10335b1ae9b6aa",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
