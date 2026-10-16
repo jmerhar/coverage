@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "685b305a83441e56e02263c15e5c23c4804f3554",
+  "short_sha": "685b305a83",
+  "committed_at": "2026-10-16T23:14:39Z",
+  "message": "feat: cut a release with make release VERSION=X.Y.Z, and document the steps",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/685b305a83441e56e02263c15e5c23c4804f3554",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
