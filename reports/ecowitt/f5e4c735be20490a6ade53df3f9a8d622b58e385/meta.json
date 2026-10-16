@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f5e4c735be20490a6ade53df3f9a8d622b58e385",
+  "short_sha": "f5e4c735be",
+  "committed_at": "2026-10-16T22:46:11Z",
+  "message": "fix: judge misting windows by a room's lowest dew point of three hours",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f5e4c735be20490a6ade53df3f9a8d622b58e385",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
