@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "bbafeeabbdc152a645d4fe1eca6d94c63e5daec0",
+  "short_sha": "bbafeeabbd",
+  "committed_at": "2026-10-16T19:12:56Z",
+  "message": "fix: caption the open-window mark \"Windows open\"",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/bbafeeabbdc152a645d4fe1eca6d94c63e5daec0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
