@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "0ba2ac45e91fc380b5399f7578c8af6d3a19746b",
+  "short_sha": "0ba2ac45e9",
+  "committed_at": "2026-10-16T17:59:02Z",
+  "message": "feat: tell the airing card when the windows look open",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/0ba2ac45e91fc380b5399f7578c8af6d3a19746b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.7%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
