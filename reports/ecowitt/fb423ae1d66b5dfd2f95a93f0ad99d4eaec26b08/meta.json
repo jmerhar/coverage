@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "fb423ae1d66b5dfd2f95a93f0ad99d4eaec26b08",
+  "short_sha": "fb423ae1d6",
+  "committed_at": "2026-10-16T22:15:40Z",
+  "message": "fix: decide Damp room's advice in a math step the template can test",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/fb423ae1d66b5dfd2f95a93f0ad99d4eaec26b08",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
