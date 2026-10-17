@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "91c8cdb8b5188d47aa1761b2138585f598317650",
+  "short_sha": "91c8cdb8b5",
+  "committed_at": "2026-10-17T00:11:46Z",
+  "message": "fix: show notifications in a station's zone when it is found from coordinates",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/91c8cdb8b5188d47aa1761b2138585f598317650",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
