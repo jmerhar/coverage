@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "d0111a24063bc2836b8d1b9a23726941bb66d1aa",
+  "short_sha": "d0111a2406",
+  "committed_at": "2026-10-18T10:53:07Z",
+  "message": "docs: wrap two README lines at 100 columns",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d0111a24063bc2836b8d1b9a23726941bb66d1aa",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
