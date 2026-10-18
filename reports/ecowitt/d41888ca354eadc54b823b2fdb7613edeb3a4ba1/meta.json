@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "d41888ca354eadc54b823b2fdb7613edeb3a4ba1",
+  "short_sha": "d41888ca35",
+  "committed_at": "2026-10-18T10:52:41Z",
+  "message": "docs: plan winter airing, and complete the changelog's upgrade notes",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/d41888ca354eadc54b823b2fdb7613edeb3a4ba1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
