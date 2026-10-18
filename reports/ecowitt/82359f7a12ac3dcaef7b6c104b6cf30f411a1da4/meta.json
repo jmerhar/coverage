@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "82359f7a12ac3dcaef7b6c104b6cf30f411a1da4",
+  "short_sha": "82359f7a12",
+  "committed_at": "2026-10-18T10:02:00Z",
+  "message": "fix: read the house as aired when two thirds of its rooms share the outdoor air",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/82359f7a12ac3dcaef7b6c104b6cf30f411a1da4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
