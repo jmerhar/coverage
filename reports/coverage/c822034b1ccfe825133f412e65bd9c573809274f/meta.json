@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "c822034b1ccfe825133f412e65bd9c573809274f",
+  "short_sha": "c822034b1c",
+  "committed_at": "2026-10-20T18:22:47Z",
+  "message": "feat: share a kcov runner, configured on the suite in coverage.toml",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/c822034b1ccfe825133f412e65bd9c573809274f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.5%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "94.5%"
+      }
+    }
+  ]
+}
