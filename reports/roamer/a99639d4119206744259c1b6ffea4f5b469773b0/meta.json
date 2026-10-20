@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "a99639d4119206744259c1b6ffea4f5b469773b0",
+  "short_sha": "a99639d411",
+  "committed_at": "2026-10-20T18:29:01Z",
+  "message": "refactor: run the shell suite through the shared kcov runner",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/a99639d4119206744259c1b6ffea4f5b469773b0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
