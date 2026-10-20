@@ -1,0 +1,272 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > PreferencesRepositoryKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">si.merhar.roamer</a>
+</div>
+
+<h1>Coverage Summary for Class: PreferencesRepositoryKt (si.merhar.roamer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">PreferencesRepositoryKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76.7%
+  </span>
+  <span class="absValue">
+    (23/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package si.merhar.roamer
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import androidx.datastore.core.DataStore
+&nbsp;import androidx.datastore.preferences.core.MutablePreferences
+&nbsp;import androidx.datastore.preferences.core.Preferences
+&nbsp;import androidx.datastore.preferences.core.booleanPreferencesKey
+&nbsp;import androidx.datastore.preferences.core.edit
+&nbsp;import androidx.datastore.preferences.core.stringPreferencesKey
+&nbsp;import androidx.datastore.preferences.preferencesDataStore
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;import kotlinx.coroutines.flow.first
+&nbsp;import kotlinx.coroutines.flow.map
+&nbsp;
+<b class="nc">&nbsp;private val Context.dataStore: DataStore&lt;Preferences&gt; by preferencesDataStore(name = &quot;roamer_prefs&quot;)</b>
+&nbsp;
+&nbsp;/**
+&nbsp; * Sets one of the two mutually exclusive SIM-routing preferences, [key], to [value].
+&nbsp; *
+&nbsp; * Enabling one turns the other off within the same edit, so no reader ever sees both on.
+&nbsp; * Disabling leaves the other untouched.
+&nbsp; */
+&nbsp;internal fun MutablePreferences.setSimRouting(key: Preferences.Key&lt;Boolean&gt;, value: Boolean) {
+<b class="fc">&nbsp;    this[key] = value</b>
+<b class="fc">&nbsp;    if (!value) return</b>
+<b class="fc">&nbsp;    val other = if (key == PreferencesRepository.KEY_USE_LOCAL_SIM) {</b>
+<b class="fc">&nbsp;        PreferencesRepository.KEY_USE_NUMBER_COUNTRY_SIM</b>
+&nbsp;    } else {
+<b class="fc">&nbsp;        PreferencesRepository.KEY_USE_LOCAL_SIM</b>
+&nbsp;    }
+<b class="fc">&nbsp;    this[other] = false</b>
+&nbsp;}
+&nbsp;
+&nbsp;/**
+&nbsp; * Persists user preferences using Jetpack DataStore.
+&nbsp; */
+&nbsp;class PreferencesRepository(private val context: Context) {
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        val KEY_ENABLED = booleanPreferencesKey(&quot;enabled&quot;)
+&nbsp;        val KEY_MANUAL_COUNTRY = stringPreferencesKey(&quot;manual_country&quot;)
+&nbsp;        val KEY_USE_LOCAL_SIM = booleanPreferencesKey(&quot;use_local_sim&quot;)
+&nbsp;        val KEY_USE_NUMBER_COUNTRY_SIM = booleanPreferencesKey(&quot;use_number_country_sim&quot;)
+&nbsp;        val KEY_USE_FALLBACK_REWRITE = booleanPreferencesKey(&quot;use_fallback_rewrite&quot;)
+&nbsp;        val KEY_LAST_LOG = stringPreferencesKey(&quot;last_log&quot;)
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Whether call rewriting is enabled. */
+&nbsp;    val enabled: Flow&lt;Boolean&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_ENABLED] ?: true
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Manual country override (empty string means auto-detect). */
+&nbsp;    val manualCountry: Flow&lt;String&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_MANUAL_COUNTRY] ?: &quot;&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Whether to route local calls through a local SIM when roaming.
+&nbsp;     *
+&nbsp;     * Mutually exclusive with [useNumberCountrySim]; turning either on turns the other off.
+&nbsp;     */
+&nbsp;    val useLocalSim: Flow&lt;Boolean&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_USE_LOCAL_SIM] ?: false
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Whether to place each call through the SIM from the dialled number&#39;s country,
+&nbsp;     * wherever the device is.
+&nbsp;     *
+&nbsp;     * Mutually exclusive with [useLocalSim]; turning either on turns the other off.
+&nbsp;     */
+&nbsp;    val useNumberCountrySim: Flow&lt;Boolean&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_USE_NUMBER_COUNTRY_SIM] ?: false
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Whether to rewrite numbers Telecom could not parse for the visited country.
+&nbsp;     *
+&nbsp;     * Defaults to off: such a rewrite has to guess which country a local-format number
+&nbsp;     * belongs to, and guessing wrong dials a different number than intended.
+&nbsp;     */
+&nbsp;    val useFallbackRewrite: Flow&lt;Boolean&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_USE_FALLBACK_REWRITE] ?: false
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Recent rewrite log entries (newline-separated, most recent first). */
+&nbsp;    val rewriteLog: Flow&lt;String&gt; = context.dataStore.data.map { prefs -&gt;
+&nbsp;        prefs[KEY_LAST_LOG] ?: &quot;&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    suspend fun setEnabled(value: Boolean) {
+&nbsp;        context.dataStore.edit { it[KEY_ENABLED] = value }
+&nbsp;    }
+&nbsp;
+&nbsp;    suspend fun setManualCountry(countryIso: String) {
+&nbsp;        context.dataStore.edit { it[KEY_MANUAL_COUNTRY] = countryIso }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Sets [useLocalSim], turning [useNumberCountrySim] off when enabling. */
+&nbsp;    suspend fun setUseLocalSim(value: Boolean) {
+&nbsp;        context.dataStore.edit { it.setSimRouting(KEY_USE_LOCAL_SIM, value) }
+&nbsp;    }
+&nbsp;
+&nbsp;    /** Sets [useNumberCountrySim], turning [useLocalSim] off when enabling. */
+&nbsp;    suspend fun setUseNumberCountrySim(value: Boolean) {
+&nbsp;        context.dataStore.edit { it.setSimRouting(KEY_USE_NUMBER_COUNTRY_SIM, value) }
+&nbsp;    }
+&nbsp;
+&nbsp;    suspend fun setUseFallbackRewrite(value: Boolean) {
+&nbsp;        context.dataStore.edit { it[KEY_USE_FALLBACK_REWRITE] = value }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Prepends a log entry, keeping at most [maxEntries] lines.
+&nbsp;     *
+&nbsp;     * Retention is delegated to [RewriteLog.prepend] so the rules stay unit-testable.
+&nbsp;     */
+&nbsp;    suspend fun appendLog(entry: String, maxEntries: Int = RewriteLog.MAX_ENTRIES) {
+&nbsp;        context.dataStore.edit { prefs -&gt;
+&nbsp;            prefs[KEY_LAST_LOG] = RewriteLog.prepend(prefs[KEY_LAST_LOG] ?: &quot;&quot;, entry, maxEntries)
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Reads the current enabled state once.
+&nbsp;     *
+&nbsp;     * Suspends rather than blocking; the service wraps these single-shot reads in
+&nbsp;     * `runBlocking` because it must answer Telecom on the calling thread.
+&nbsp;     */
+&nbsp;    suspend fun isEnabled(): Boolean = enabled.first()
+&nbsp;
+&nbsp;    /** Reads the manual country override once. */
+&nbsp;    suspend fun getManualCountry(): String = manualCountry.first()
+&nbsp;
+&nbsp;    /** Reads the use-local-SIM preference once. */
+&nbsp;    suspend fun isUseLocalSim(): Boolean = useLocalSim.first()
+&nbsp;
+&nbsp;    /** Reads the number-country-SIM preference once. */
+&nbsp;    suspend fun isUseNumberCountrySim(): Boolean = useNumberCountrySim.first()
+&nbsp;
+&nbsp;    /** Reads the fallback-rewrite preference once. */
+&nbsp;    suspend fun isUseFallbackRewrite(): Boolean = useFallbackRewrite.first()
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-10-20 20:02</div>
+</div>
+</body>
+</html>
