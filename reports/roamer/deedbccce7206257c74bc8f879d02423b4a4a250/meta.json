@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "deedbccce7206257c74bc8f879d02423b4a4a250",
+  "short_sha": "deedbccce7",
+  "committed_at": "2026-10-20T17:23:04Z",
+  "message": "refactor: use a local kcov for shell coverage when one is installed",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/deedbccce7206257c74bc8f879d02423b4a4a250",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}

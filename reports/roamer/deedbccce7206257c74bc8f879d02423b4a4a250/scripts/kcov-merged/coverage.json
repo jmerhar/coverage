@@ -1,0 +1,12 @@
+{
+  "files": [
+    {"file": "/src/bin/release.sh", "percent_covered": "97.37", "covered_lines": "74", "total_lines": "76"}
+  ],
+  "percent_covered": "97.37",
+  "covered_lines": 74,
+  "total_lines": 76,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "",
+  "date": "2026-10-20 17:21:23"
+}
