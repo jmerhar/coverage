@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "61338ee89279029dc20e33cf9b4688a092136fe6",
+  "short_sha": "61338ee892",
+  "committed_at": "2026-10-20T19:44:16Z",
+  "message": "refactor: measure coverage through the shared kcov runner",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/61338ee89279029dc20e33cf9b4688a092136fe6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.5%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.5%"
+      }
+    }
+  ]
+}
