@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "b8f235a3026205870f5efda5235e3ee7615877e8",
+  "short_sha": "b8f235a302",
+  "committed_at": "2026-10-20T19:16:27Z",
+  "message": "feat: let a kcov suite insist on the container with local = false",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/b8f235a3026205870f5efda5235e3ee7615877e8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.5%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
