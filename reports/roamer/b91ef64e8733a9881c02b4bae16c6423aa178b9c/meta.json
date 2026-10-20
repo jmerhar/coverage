@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "b91ef64e8733a9881c02b4bae16c6423aa178b9c",
+  "short_sha": "b91ef64e87",
+  "committed_at": "2026-10-20T18:28:32Z",
+  "message": "chore: remove a stray copy of the coverage tooling",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/b91ef64e8733a9881c02b4bae16c6423aa178b9c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
