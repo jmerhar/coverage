@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "772e7155292032b6db9ace2de34ed92f587d3c2b",
+  "short_sha": "772e715529",
+  "committed_at": "2026-10-20T20:04:06Z",
+  "message": "chore: release v1.3",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/772e7155292032b6db9ace2de34ed92f587d3c2b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
