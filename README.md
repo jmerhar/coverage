@@ -146,6 +146,65 @@ hits — so only the report directory named by `report` and that `data/` are pub
 redirect at the suite root. Nothing to configure; point `report` at the merged `coverage.json` and
 `html` at the kcov output root.
 
+### Measuring shell with kcov
+
+A kcov suite can also say how to produce its report, and [`bin/run-kcov.sh`](bin/run-kcov.sh) — run
+by the `kcov` action in CI, or locally — does the rest: it uses a local kcov when it can, the pinned
+kcov container otherwise, runs your command, merges the per-invocation reports into `kcov-merged/`,
+and fails if no merged report results.
+
+```toml
+[suites.scripts]
+label    = "Shell scripts (bash)"
+format   = "kcov"
+report   = "coverage/kcov-merged/coverage.json"   # must be <html>/kcov-merged/coverage.json
+html     = "coverage"
+gate     = 95.0
+command  = "bats test/"         # run with COVERAGE_DIR set to html's absolute path
+packages = ["bats", "git"]      # installed with apt-get in the kcov container
+requires = ["bats"]             # commands a local run needs, besides kcov
+min_bash = 4                    # the bash a local kcov must trace with; else the container
+setup    = "bin/setup.sh"       # optional, run in the container before command
+```
+
+The command applies kcov itself, once per script it runs, reading `COVERAGE_DIR` — kcov wrapped around
+a test runner collects nothing, because the runner executes scripts in grandchild processes. Hand kcov
+the script, not `bash script`, or it instruments the bash binary:
+
+```bash
+run kcov --include-path="$REPO_ROOT/bin" "$COVERAGE_DIR" "$REPO_ROOT/bin/release.sh" "$@"
+```
+
+`JUNIT_DIR` is exported to the command when the action's `junit-dir` input (or the variable) is set;
+the command decides how to write JUnit there, for example
+`bats ${JUNIT_DIR:+--report-formatter junit --output "$JUNIT_DIR"} test/`.
+
+Set `min_bash` when your scripts need bash 4 or newer. Stock kcov on macOS traces every script with
+`/bin/bash` (3.2) whatever its shebang, and given `--bash-parser` it fails with `Failed to exchange
+stderr for pipe` whenever `ulimit -n` exceeds `kern.maxfilesperproc`; with `min_bash` set, a probe
+detects that and the run falls back to the container instead of failing on syntax 3.2 rejects. A kcov
+wrapper that passes `--bash-parser` and caps `ulimit -n` lets it run locally. `KCOV_FORCE_DOCKER=1`
+always takes the container.
+
+To run it locally, fetch the tooling beside each other, as `run-kcov.sh` looks for
+`coverage-report.py` in its own directory:
+
+```make
+COVERAGE_TOOLING := .coverage-tooling
+
+coverage-tooling:
+	@mkdir -p $(COVERAGE_TOOLING)
+	@for f in coverage-report.py run-kcov.sh; do \
+		curl -fsSL -z $(COVERAGE_TOOLING)/$$f -o $(COVERAGE_TOOLING)/$$f \
+			https://raw.githubusercontent.com/jmerhar/coverage/v1/bin/$$f \
+			|| test -f $(COVERAGE_TOOLING)/$$f; \
+	done
+
+coverage: coverage-tooling
+	bash $(COVERAGE_TOOLING)/run-kcov.sh
+	python3 $(COVERAGE_TOOLING)/coverage-report.py --gate
+```
+
 Suite names must be a single path segment (letters, digits, dots, underscores, dashes) since they
 become directory names and URL segments; a name containing a dot needs quoting in TOML
 (`[suites."v1.2"]`).
@@ -160,6 +219,11 @@ jobs:
       statuses: write        # only needed for the commit-status link
     steps:
       # … check out, install, and run your tests with coverage first …
+
+      # For a kcov suite with a `command` (see "Measuring shell with kcov" above).
+      - uses: jmerhar/coverage/.github/actions/kcov@v1
+        with:
+          junit-dir: junit
 
       - uses: jmerhar/coverage/.github/actions/summary@v1
 
@@ -225,7 +289,7 @@ python3 bin/coverage-report.py --config /path/to/project/coverage.toml --gate
 Run every test suite, and regenerate the site from a checkout of the `reports` branch:
 
 ```bash
-bin/test-all.sh                                        # all five suites
+bin/test-all.sh                                        # all six suites
 python3 bin/build-site.py <reports-checkout>/reports    # then open its reports/index.html
 ```
 
@@ -236,6 +300,7 @@ python3 bin/build-site.py <reports-checkout>/reports    # then open its reports/
 | `test-make-meta.py` | the `meta.json` contract |
 | `test-collect-coverage.sh` | what actually reaches the site, including the symlink and entry-point traps |
 | `test-add-report.sh` | publishing to the report branch, against a throwaway local repository |
+| `test-run-kcov.sh` | the local-or-container choice, the merge and the exit status of the kcov runner |
 
 **This repo publishes its own coverage** to the site it hosts, using its own actions, as two suites —
 the Python measured with coverage.py, the shell with kcov, both gated like any other project. To
@@ -245,7 +310,7 @@ measure locally:
 pip install coverage
 PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
 python3 -m coverage combine && python3 -m coverage json -o coverage/coverage.json
-bin/run-shell-coverage.sh          # local kcov if installed, else the pinned container
+bin/run-kcov.sh                    # local kcov if usable, else the pinned container
 python3 bin/coverage-report.py --format md
 ```
 

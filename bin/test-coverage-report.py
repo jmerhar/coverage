@@ -399,6 +399,94 @@ class CodecovTest(TempCwd):
         self.assertEqual(cr.render_codecov(cfg), SEP.join(("s", "lcov.info")))
 
 
+class KcovRunnerTest(TempCwd):
+    """The record bin/run-kcov.sh reads, and the keys that feed it."""
+
+    def kcov_suite(self, **runner):
+        spec = suite("kcov", "coverage/kcov-merged/coverage.json", html="coverage")
+        return {**spec, **runner}
+
+    def test_record_carries_every_runner_field_in_order(self):
+        cfg = config({"s": self.kcov_suite(command="bats test/", packages=["bats", "git"],
+                                           requires=["bats"], min_bash=4, setup="bin/setup.sh")})
+        self.assertEqual(cr.render_kcov(cfg),
+                         SEP.join(("s", "coverage", "bats test/", "bats,git", "bats", "4", "bin/setup.sh")))
+
+    def test_optional_fields_are_empty_but_present(self):
+        # run-kcov.sh reads the record positionally, so a missing field would shift the rest.
+        cfg = config({"s": self.kcov_suite(command="bats test/")})
+        self.assertEqual(cr.render_kcov(cfg).split(SEP), ["s", "coverage", "bats test/", "", "", "", ""])
+
+    def test_the_single_runnable_suite_is_chosen_without_naming_it(self):
+        cfg = config({"app": suite("kover", "r.xml"), "s": self.kcov_suite(command="bats test/")})
+        self.assertTrue(cr.render_kcov(cfg).startswith("s" + SEP))
+
+    def test_a_kcov_suite_without_a_command_is_not_runnable(self):
+        cfg = config({"s": self.kcov_suite()})
+        with self.assertRaises(SystemExit):
+            cr.render_kcov(cfg)
+
+    def test_several_runnable_suites_need_a_name(self):
+        cfg = config({"a": self.kcov_suite(command="x"), "b": self.kcov_suite(command="y")})
+        with self.assertRaises(SystemExit):
+            cr.render_kcov(cfg)
+        self.assertTrue(cr.render_kcov(cfg, "b").startswith("b" + SEP + "coverage" + SEP + "y"))
+
+    def test_naming_a_suite_that_is_not_runnable_exits(self):
+        cfg = config({"app": suite("kover", "r.xml", html="h"), "s": self.kcov_suite(command="x")})
+        for name in ("app", "absent"):
+            with self.assertRaises(SystemExit, msg=name):
+                cr.render_kcov(cfg, name)
+
+    def test_missing_html_exits(self):
+        cfg = config({"s": {**suite("kcov", "c/kcov-merged/coverage.json"), "command": "x"}})
+        with self.assertRaises(SystemExit):
+            cr.render_kcov(cfg)
+
+    def test_the_report_must_be_the_merged_one_the_runner_writes(self):
+        cfg = config({"s": {**suite("kcov", "coverage/s.sh.1/coverage.json", html="coverage"),
+                            "command": "x"}})
+        with self.assertRaises(SystemExit):
+            cr.render_kcov(cfg)
+        cfg["suites"]["s"]["report"] = "./coverage/kcov-merged/coverage.json"
+        self.assertTrue(cr.render_kcov(cfg).startswith("s" + SEP))
+
+    def write_kcov_config(self, extra, fmt="kcov"):
+        write("coverage.toml",
+              f'[suites.s]\nlabel="S"\nformat="{fmt}"\nreport="c/kcov-merged/coverage.json"\nhtml="c"\n{extra}\n')
+
+    def test_runner_keys_are_accepted_on_a_kcov_suite(self):
+        self.write_kcov_config('command="bats test/"\npackages=["bats"]\nrequires=["bats"]\n'
+                               'min_bash=4\nsetup="s.sh"')
+        self.assertEqual(cr.load_config("coverage.toml")["suites"]["s"]["min_bash"], 4)
+
+    def test_runner_keys_on_another_format_exit(self):
+        self.write_kcov_config('command="pytest"', fmt="coveragepy")
+        with self.assertRaises(SystemExit):
+            cr.load_config("coverage.toml")
+
+    def test_runner_keys_of_the_wrong_type_exit(self):
+        for extra in ('command=["bats"]', 'packages="bats"', 'min_bash="4"', 'min_bash=true',
+                      'requires=[4]', 'setup=1'):
+            self.write_kcov_config(extra)
+            with self.assertRaises(SystemExit, msg=extra):
+                cr.load_config("coverage.toml")
+
+    def test_separator_characters_in_runner_keys_exit(self):
+        # A list travels comma-joined and is split on whitespace again, so neither may appear in an
+        # item; no value may hold a newline or the record separator.
+        for extra in ('packages=["a,b"]', 'packages=["a b"]', 'requires=["a,b"]',
+                      'command="a\\nb"', f'command="a{cr.COLLECT_SEPARATOR}b"'):
+            self.write_kcov_config(extra)
+            with self.assertRaises(SystemExit, msg=extra):
+                cr.load_config("coverage.toml")
+
+    def test_a_command_may_contain_commas_and_spaces(self):
+        self.write_kcov_config('command="bats --filter a,b test/"')
+        cfg = cr.load_config("coverage.toml")
+        self.assertIn("bats --filter a,b test/", cr.render_kcov(cfg))
+
+
 class ConfigTest(TempCwd):
     def test_reads_a_toml_file(self):
         write("coverage.toml", '[suites.app]\nlabel="App"\nformat="istanbul"\nreport="c.json"\ngate=98.0\n')

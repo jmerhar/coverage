@@ -22,6 +22,9 @@ Usage (run from the project root, after the suites have produced their reports):
                       joined by US (0x1f). See COLLECT_SEPARATOR for why not a tab.
   --format codecov    One record per suite for the codecov action: ``key`` (used as the upload flag)
                       and the file Codecov parses, likewise US-joined.
+  --format kcov       One record for run-kcov.sh: the kcov suite's ``key``, ``html``, ``command``,
+                      ``packages,…``, ``requires,…``, ``min_bash`` and ``setup``, likewise US-joined.
+                      ``--suite`` names the suite when more than one kcov suite has a ``command``.
   --gate              Check each suite's LINE coverage against its ``gate`` and exit non-zero if any
                       suite is below its bound or has no report.
 
@@ -37,6 +40,17 @@ The ``coverage.toml`` schema::
     report = "frontend/coverage/coverage-summary.json"  # the machine-readable summary
     html   = "frontend/coverage"                        # HTML directory (collect-coverage.sh)
     gate   = 98.0                                       # omit to make the suite informational
+
+A kcov suite may also say how to produce its report, for bin/run-kcov.sh::
+
+    [suites.scripts]
+    format   = "kcov"
+    # … the five keys above, then:
+    command  = "bats test/"         # run with COVERAGE_DIR set to html's absolute path
+    packages = ["bats", "git"]      # installed with apt-get in the kcov container
+    requires = ["bats"]             # commands a local run needs, besides kcov itself
+    min_bash = 4                    # the bash a local kcov must trace with; else the container
+    setup    = "bin/coverage-setup.sh"  # optional, run in the container before command
 
 Every suite takes the same five keys whatever the tool. What each tool's output has to be assembled
 into for publishing is derived from ``format`` — see _publishing — rather than restated per project.
@@ -191,7 +205,36 @@ def load_config(path):
             value = spec.get(field, "")
             if any(c in value for c in (",", COLLECT_SEPARATOR, "\t", "\n")):
                 sys.exit(f"coverage-report: suite '{key}' has a separator character in {field}: {value!r}")
+        _validate_runner(key, spec)
     return config
+
+
+# Keys that tell bin/run-kcov.sh how to produce a kcov suite's report, with the type each must have.
+RUNNER_KEYS = {"command": str, "packages": list, "requires": list, "min_bash": int, "setup": str}
+
+
+def _validate_runner(key, spec):
+    """Check a suite's run-kcov.sh keys, which only a kcov suite may carry.
+
+    The values travel to the runner as one US-joined line with comma-joined lists, so a newline, the
+    separator, or (inside a list) a comma would split a value; refusing them here keeps that
+    encoding lossless.
+    """
+    present = [k for k in RUNNER_KEYS if k in spec]
+    if present and spec["format"] != "kcov":
+        sys.exit(f"coverage-report: suite '{key}' sets {', '.join(present)}, which only a kcov suite takes")
+    for field in present:
+        value = spec[field]
+        if not isinstance(value, RUNNER_KEYS[field]) or isinstance(value, bool):
+            sys.exit(f"coverage-report: suite '{key}' has {field} of the wrong type: {value!r}")
+        items = value if isinstance(value, list) else [value]
+        for item in items:
+            if isinstance(value, list) and not isinstance(item, str):
+                sys.exit(f"coverage-report: suite '{key}' has a non-string in {field}: {item!r}")
+            text = str(item)
+            bad = ("\n", COLLECT_SEPARATOR) + ((",", " ") if isinstance(value, list) else ())
+            if any(c in text for c in bad):
+                sys.exit(f"coverage-report: suite '{key}' has a separator character in {field}: {text!r}")
 
 
 def counts(config):
@@ -355,6 +398,35 @@ def render_collect(config):
     return "\n".join(lines)
 
 
+def render_kcov(config, suite=None):
+    """The record bin/run-kcov.sh reads: how to produce one kcov suite's report.
+
+    Without ``suite``, the project must have exactly one kcov suite with a ``command``, which is
+    the common case and saves every caller naming it.
+    """
+    runnable = [k for k, s in config["suites"].items() if s["format"] == "kcov" and "command" in s]
+    if suite is None:
+        if len(runnable) != 1:
+            sys.exit("coverage-report: --format kcov needs --suite when the number of kcov suites "
+                     f"with a command is not exactly one (found: {', '.join(runnable) or 'none'})")
+        suite = runnable[0]
+    if suite not in runnable:
+        sys.exit(f"coverage-report: '{suite}' is not a kcov suite with a command")
+    spec = config["suites"][suite]
+    if "html" not in spec:
+        sys.exit(f"coverage-report: suite '{suite}' is missing 'html', where run-kcov.sh writes the report")
+    # The runner always leaves the merged report in kcov-merged/, so a suite reading any other report
+    # would gate and publish something this run did not produce.
+    expected = os.path.join(spec["html"], "kcov-merged", "coverage.json")
+    if os.path.normpath(spec["report"]) != os.path.normpath(expected):
+        sys.exit(f"coverage-report: suite '{suite}' has a command, so its report must be '{expected}' "
+                 f"(found '{spec['report']}')")
+    return COLLECT_SEPARATOR.join((
+        suite, spec["html"], spec["command"], ",".join(spec.get("packages", [])),
+        ",".join(spec.get("requires", [])), str(spec.get("min_bash", "")), spec.get("setup", ""),
+    ))
+
+
 def line_percent(config, key):
     """A suite's LINE coverage as a float percent, or None if it has no report."""
     suite = counts(config)[key]
@@ -396,7 +468,8 @@ def run_gate(config):
 def main():
     ap = argparse.ArgumentParser(description="Summarise or gate per-suite coverage.")
     ap.add_argument("--config", default="coverage.toml", help="path to coverage.toml")
-    ap.add_argument("--format", choices=("md", "reports", "collect", "codecov"), default="md")
+    ap.add_argument("--format", choices=("md", "reports", "collect", "codecov", "kcov"), default="md")
+    ap.add_argument("--suite", help="with --format kcov: the kcov suite to describe")
     ap.add_argument("--gate", action="store_true",
                     help="check LINE coverage against each suite's gate; exit non-zero if below")
     args = ap.parse_args()
@@ -404,6 +477,9 @@ def main():
     config = load_config(args.config)
     if args.gate:
         raise SystemExit(run_gate(config))
+    if args.format == "kcov":
+        print(render_kcov(config, args.suite))
+        return
     renderers = {"md": render_markdown, "reports": render_reports,
                  "collect": render_collect, "codecov": render_codecov}
     print(renderers[args.format](config))

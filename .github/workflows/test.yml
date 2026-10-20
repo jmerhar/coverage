@@ -45,10 +45,11 @@ jobs:
           python3 -m coverage xml -o coverage/coverage.xml
           python3 -m coverage report --precision=1
 
-      # kcov has no Ubuntu 24.04 package, so this falls back to the pinned upstream image. It runs the
-      # shell suites, so their failures fail the build here.
-      - name: Tests (shell, under kcov)
-        run: JUNIT_DIR=junit bin/run-shell-coverage.sh
+      # The shell suites under kcov, as declared on the shell suite in coverage.toml. kcov has no Ubuntu
+      # 24.04 package, so this takes the pinned upstream image; the suites' failures fail the build here.
+      - uses: ./.github/actions/kcov
+        with:
+          junit-dir: junit
 
       # shellcheck is preinstalled on GitHub-hosted runners.
       - name: ShellCheck

@@ -1,0 +1,34 @@
+name: Coverage (kcov)
+description: Run the project's kcov suite from coverage.toml and leave its merged report for the summary, gate and publish steps.
+
+inputs:
+  config:
+    description: Path to the project's coverage.toml, relative to working-directory.
+    required: false
+    default: coverage.toml
+  suite:
+    description: The kcov suite to run, when more than one has a command.
+    required: false
+    default: ''
+  junit-dir:
+    description: Repo-relative directory exported to the suite's command as JUNIT_DIR, for Codecov's test analytics.
+    required: false
+    default: ''
+  working-directory:
+    description: Directory to run in. Paths in coverage.toml are resolved from here.
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    # kcov has no Ubuntu 24.04 package, so on a hosted runner this takes the pinned kcov container.
+    - name: Run the kcov suite
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        JUNIT_DIR: ${{ inputs.junit-dir }}
+        SUITE: ${{ inputs.suite }}
+      run: |
+        source "$GITHUB_ACTION_PATH/../lib/resolve.sh"
+        bash "$COVERAGE_BIN/run-kcov.sh" --config "${{ inputs.config }}" ${SUITE:+--suite "$SUITE"}

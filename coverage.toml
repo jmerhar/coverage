@@ -5,7 +5,7 @@
 # Two suites, because the tooling is half Python and half shell: measuring only the Python would
 # report a figure for about half the code. Produce both reports with:
 #   PYTHON_RUNNER="python3 -m coverage run -p" SKIP_SHELL_SUITES=1 bin/test-all.sh
-#   bin/run-shell-coverage.sh
+#   bin/run-kcov.sh
 
 [suites.python]
 label = "Tooling (Python)"
@@ -21,6 +21,10 @@ label = "Tooling (shell)"
 format = "kcov"
 report = "coverage/shell/kcov-merged/coverage.json"
 html = "coverage/shell"
+# The suites invoke their target through $SHELL_RUNNER. Test scripts are harness rather than the code
+# under test, so they are excluded; test-add-report.sh drives git, which the kcov image lacks.
+command = 'SHELL_RUNNER="kcov --include-path=$PWD/bin --exclude-pattern=/bin/test- $COVERAGE_DIR" SKIP_PYTHON_SUITES=1 bin/test-all.sh'
+packages = ["git"]
 # Lower than the Python because some lines are unreachable from a test: the refusing-to-publish guards
 # in collect-coverage.sh only fire if the stripping above them failed, and add-report.sh's GitHub
 # remote needs a real github.com target. The bound is what a passing suite can reach, so raising it

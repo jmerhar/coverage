@@ -10,6 +10,9 @@
 # Python suites then run under pytest, since unittest cannot write JUnit itself; without it nothing but
 # bash and python3 is needed.
 #
+# Set $SKIP_PYTHON_SUITES or $SKIP_SHELL_SUITES to run only the other half, as CI does when it
+# measures each half in its own step.
+#
 # Usage: bin/test-all.sh
 set -uo pipefail
 
@@ -17,7 +20,13 @@ here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON_RUNNER="${PYTHON_RUNNER:-python3}"
 
 PYTHON_SUITES=(test-coverage-report.py test-build-site.py test-make-meta.py)
-SHELL_SUITES=(test-collect-coverage.sh test-add-report.sh)
+SHELL_SUITES=(test-collect-coverage.sh test-add-report.sh test-run-kcov.sh)
+
+# Absolute, because the shell suites change into scratch directories before writing their reports.
+if [ -n "${JUNIT_DIR:-}" ]; then
+  mkdir -p "$JUNIT_DIR"
+  JUNIT_DIR="$(cd "$JUNIT_DIR" && pwd)"
+fi
 
 log="$(mktemp)"
 trap 'rm -f "$log"' EXIT
@@ -35,8 +44,9 @@ run() { # name, command...
   fi
 }
 
-if [ -n "${JUNIT_DIR:-}" ]; then
-  mkdir -p "$JUNIT_DIR"
+if [ -n "${SKIP_PYTHON_SUITES:-}" ]; then
+  :
+elif [ -n "${JUNIT_DIR:-}" ]; then
   # One pytest run over all three, so the measured run and the reported one are the same run. pytest
   # collects unittest.TestCase classes directly; each file's `unittest.main()` guard simply never fires.
   # shellcheck disable=SC2086  # PYTHON_RUNNER is a command with arguments, deliberately split
@@ -49,8 +59,8 @@ else
   done
 fi
 
-# CI runs these through bin/run-shell-coverage.sh instead, which drives them under kcov to measure
-# them; skipping here keeps them from running twice.
+# CI measures each half in its own step — the Python under coverage.py, the shell under kcov through
+# bin/run-kcov.sh (see coverage.toml) — so either half can be skipped to keep a suite from running twice.
 if [ -z "${SKIP_SHELL_SUITES:-}" ]; then
   for suite in "${SHELL_SUITES[@]}"; do
     if [ -n "${JUNIT_DIR:-}" ]; then
@@ -78,6 +88,7 @@ if [ ${#failed[@]} -gt 0 ]; then
   printf 'FAILED: %s\n' "${failed[*]}"
   exit 1
 fi
-ran=${#PYTHON_SUITES[@]}
+ran=0
+[ -z "${SKIP_PYTHON_SUITES:-}" ] && ran=$((ran + ${#PYTHON_SUITES[@]}))
 [ -z "${SKIP_SHELL_SUITES:-}" ] && ran=$((ran + ${#SHELL_SUITES[@]}))
 printf 'All %s suites passed.\n' "$ran"
