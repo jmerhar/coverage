@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "c086169c1b094cdfb72663b7fa4d070209598119",
+  "short_sha": "c086169c1b",
+  "committed_at": "2026-10-20T15:51:01Z",
+  "message": "chore: keep npm registry URLs out of the feedback Worker lockfile",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/c086169c1b094cdfb72663b7fa4d070209598119",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
