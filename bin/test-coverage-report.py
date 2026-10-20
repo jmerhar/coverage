@@ -408,14 +408,16 @@ class KcovRunnerTest(TempCwd):
 
     def test_record_carries_every_runner_field_in_order(self):
         cfg = config({"s": self.kcov_suite(command="bats test/", packages=["bats", "git"],
-                                           requires=["bats"], min_bash=4, setup="bin/setup.sh")})
-        self.assertEqual(cr.render_kcov(cfg),
-                         SEP.join(("s", "coverage", "bats test/", "bats,git", "bats", "4", "bin/setup.sh")))
+                                           requires=["bats"], min_bash=4, setup="bin/setup.sh",
+                                           local=False)})
+        self.assertEqual(cr.render_kcov(cfg), SEP.join(
+            ("s", "coverage", "bats test/", "bats,git", "bats", "4", "bin/setup.sh", "false")))
 
     def test_optional_fields_are_empty_but_present(self):
         # run-kcov.sh reads the record positionally, so a missing field would shift the rest.
         cfg = config({"s": self.kcov_suite(command="bats test/")})
-        self.assertEqual(cr.render_kcov(cfg).split(SEP), ["s", "coverage", "bats test/", "", "", "", ""])
+        self.assertEqual(cr.render_kcov(cfg).split(SEP),
+                         ["s", "coverage", "bats test/", "", "", "", "", "true"])
 
     def test_the_single_runnable_suite_is_chosen_without_naming_it(self):
         cfg = config({"app": suite("kover", "r.xml"), "s": self.kcov_suite(command="bats test/")})
@@ -457,7 +459,7 @@ class KcovRunnerTest(TempCwd):
 
     def test_runner_keys_are_accepted_on_a_kcov_suite(self):
         self.write_kcov_config('command="bats test/"\npackages=["bats"]\nrequires=["bats"]\n'
-                               'min_bash=4\nsetup="s.sh"')
+                               'min_bash=4\nsetup="s.sh"\nlocal=false')
         self.assertEqual(cr.load_config("coverage.toml")["suites"]["s"]["min_bash"], 4)
 
     def test_runner_keys_on_another_format_exit(self):
@@ -467,7 +469,7 @@ class KcovRunnerTest(TempCwd):
 
     def test_runner_keys_of_the_wrong_type_exit(self):
         for extra in ('command=["bats"]', 'packages="bats"', 'min_bash="4"', 'min_bash=true',
-                      'requires=[4]', 'setup=1'):
+                      'requires=[4]', 'setup=1', 'local="false"', 'local=0'):
             self.write_kcov_config(extra)
             with self.assertRaises(SystemExit, msg=extra):
                 cr.load_config("coverage.toml")

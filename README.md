@@ -165,6 +165,7 @@ packages = ["bats", "git"]      # installed with apt-get in the kcov container
 requires = ["bats"]             # commands a local run needs, besides kcov
 min_bash = 4                    # the bash a local kcov must trace with; else the container
 setup    = "bin/setup.sh"       # optional, run in the container before command
+local    = false                # optional, always measure in the container
 ```
 
 The command applies kcov itself, once per script it runs, reading `COVERAGE_DIR` — kcov wrapped around
@@ -185,6 +186,11 @@ stderr for pipe` whenever `ulimit -n` exceeds `kern.maxfilesperproc`; with `min_
 detects that and the run falls back to the container instead of failing on syntax 3.2 rejects. A kcov
 wrapper that passes `--bash-parser` and caps `ulimit -n` lets it run locally. `KCOV_FORCE_DOCKER=1`
 always takes the container.
+
+A local run and the container give the same figure only when the scripts behave the same on both. Set
+`local = false` when they branch on the platform, the coreutils flavour (GNU `date -d` against BSD
+`date -r`) or running as root: the container is Linux and runs as root, and its figure is the one CI
+gates and publishes, so measuring anywhere else would gate a different number.
 
 To run it locally, fetch the tooling beside each other, as `run-kcov.sh` looks for
 `coverage-report.py` in its own directory:

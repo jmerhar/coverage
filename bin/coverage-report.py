@@ -23,7 +23,8 @@ Usage (run from the project root, after the suites have produced their reports):
   --format codecov    One record per suite for the codecov action: ``key`` (used as the upload flag)
                       and the file Codecov parses, likewise US-joined.
   --format kcov       One record for run-kcov.sh: the kcov suite's ``key``, ``html``, ``command``,
-                      ``packages,…``, ``requires,…``, ``min_bash`` and ``setup``, likewise US-joined.
+                      ``packages,…``, ``requires,…``, ``min_bash``, ``setup`` and ``local``,
+                      likewise US-joined.
                       ``--suite`` names the suite when more than one kcov suite has a ``command``.
   --gate              Check each suite's LINE coverage against its ``gate`` and exit non-zero if any
                       suite is below its bound or has no report.
@@ -51,6 +52,7 @@ A kcov suite may also say how to produce its report, for bin/run-kcov.sh::
     requires = ["bats"]             # commands a local run needs, besides kcov itself
     min_bash = 4                    # the bash a local kcov must trace with; else the container
     setup    = "bin/coverage-setup.sh"  # optional, run in the container before command
+    local    = false                # measure in the container even when a local kcov would run
 
 Every suite takes the same five keys whatever the tool. What each tool's output has to be assembled
 into for publishing is derived from ``format`` — see _publishing — rather than restated per project.
@@ -210,7 +212,8 @@ def load_config(path):
 
 
 # Keys that tell bin/run-kcov.sh how to produce a kcov suite's report, with the type each must have.
-RUNNER_KEYS = {"command": str, "packages": list, "requires": list, "min_bash": int, "setup": str}
+RUNNER_KEYS = {"command": str, "packages": list, "requires": list, "min_bash": int, "setup": str,
+               "local": bool}
 
 
 def _validate_runner(key, spec):
@@ -225,7 +228,9 @@ def _validate_runner(key, spec):
         sys.exit(f"coverage-report: suite '{key}' sets {', '.join(present)}, which only a kcov suite takes")
     for field in present:
         value = spec[field]
-        if not isinstance(value, RUNNER_KEYS[field]) or isinstance(value, bool):
+        # bool is a subclass of int, so `min_bash = true` would otherwise pass as the number 1.
+        expected = RUNNER_KEYS[field]
+        if not isinstance(value, expected) or (expected is not bool and isinstance(value, bool)):
             sys.exit(f"coverage-report: suite '{key}' has {field} of the wrong type: {value!r}")
         items = value if isinstance(value, list) else [value]
         for item in items:
@@ -424,6 +429,7 @@ def render_kcov(config, suite=None):
     return COLLECT_SEPARATOR.join((
         suite, spec["html"], spec["command"], ",".join(spec.get("packages", [])),
         ",".join(spec.get("requires", [])), str(spec.get("min_bash", "")), spec.get("setup", ""),
+        "true" if spec.get("local", True) else "false",
     ))
 
 

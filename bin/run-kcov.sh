@@ -16,6 +16,7 @@
 #   requires = ["bats"]             # commands a local run needs, besides kcov
 #   min_bash = 4                    # the bash a local kcov must trace with
 #   setup    = "bin/setup.sh"       # optional, run in the container before command
+#   local    = false                # optional, always measure in the container
 #
 # The command applies kcov itself, per invocation, reading COVERAGE_DIR: kcov wrapped around a test
 # runner collects nothing, because the runner executes the scripts in grandchild processes (kcov issue
@@ -25,7 +26,9 @@
 # probe shows it traces with that bash or newer. Stock kcov on macOS traces with /bin/bash (3.2)
 # whatever the shebang, so a suite whose scripts need bash 4 falls back to the container there instead
 # of failing on syntax the scripts are allowed to use. kcov is not packaged for Ubuntu 24.04, so CI
-# always takes the container. Both produce the same figures.
+# always takes the container. Both produce the same figures for scripts that behave the same on macOS
+# and Linux; a suite whose scripts branch on the platform, the coreutils flavour or root sets
+# `local = false`, so its figure is always the one CI publishes.
 #
 # kcov writes kcov-merged/ only once a second script is traced into a directory, and the published
 # report is the merged one, so it is merged here whenever the run did not produce it.
@@ -72,6 +75,10 @@ local_toolchain_usable() {
   local tool version
   if [ -n "${KCOV_FORCE_DOCKER:-}" ]; then
     echo "KCOV_FORCE_DOCKER is set"
+    return 1
+  fi
+  if [ "$KCOV_LOCAL" = false ]; then
+    echo "the suite sets local = false"
     return 1
   fi
   for tool in "$KCOV_BIN" ${KCOV_REQUIRES//,/ }; do
@@ -134,8 +141,8 @@ if [ -z "${KCOV_IN_CONTAINER:-}" ]; then
   [ -f "$report_py" ] || die "coverage-report.py not found beside $self"
   record="$(python3 "$report_py" --config "$config" --format kcov ${suite:+--suite "$suite"})" || exit 2
   IFS=$'\x1f' read -r KCOV_SUITE KCOV_OUT KCOV_COMMAND KCOV_PACKAGES KCOV_REQUIRES KCOV_MIN_BASH \
-    KCOV_SETUP <<< "$record"
-  export KCOV_SUITE KCOV_OUT KCOV_COMMAND KCOV_PACKAGES KCOV_REQUIRES KCOV_MIN_BASH KCOV_SETUP
+    KCOV_SETUP KCOV_LOCAL <<< "$record"
+  export KCOV_SUITE KCOV_OUT KCOV_COMMAND KCOV_PACKAGES KCOV_REQUIRES KCOV_MIN_BASH KCOV_SETUP KCOV_LOCAL
 fi
 
 # Both are mounted into the container under /src, so only a path inside the project survives the trip.

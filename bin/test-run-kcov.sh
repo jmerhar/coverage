@@ -178,6 +178,14 @@ check_contains "an unreadable probe counts as too old" "traces with bash ?" <(ec
 STUB_KCOV_BASH=5 in_project "$work/p9"
 check_contains "a new enough bash runs locally" "under the local kcov" <(echo "$out")
 
+echo "== local = false always measures in the container"
+project "$work/p12" 'local = false'
+STUB_DOCKER_REPORT="$work/p12/cov" in_project "$work/p12"
+check "exits 0" 0 "$rc"
+check_contains "gives the reason" "the suite sets local = false" <(echo "$out")
+check "uses docker" 1 "$(grep -c '^docker' "$calls")"
+check "the suite does not run on the host" 0 "$(grep -c '^suite' "$calls")"
+
 echo "== container mode installs, sets up, runs and leaves its output readable"
 project "$work/p10" ""
 # shellcheck disable=SC2016  # $CALLS expands when the setup script runs
