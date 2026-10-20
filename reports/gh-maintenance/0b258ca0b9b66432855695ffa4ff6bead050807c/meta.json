@@ -1,0 +1,23 @@
+{
+  "project": "gh-maintenance",
+  "sha": "0b258ca0b9b66432855695ffa4ff6bead050807c",
+  "short_sha": "0b258ca0b9",
+  "committed_at": "2026-10-20T18:28:37Z",
+  "message": "refactor: run the suite through the shared kcov runner",
+  "commit_url": "https://github.com/jmerhar/gh-maintenance/commit/0b258ca0b9b66432855695ffa4ff6bead050807c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "100.0%"
+      }
+    }
+  ]
+}
