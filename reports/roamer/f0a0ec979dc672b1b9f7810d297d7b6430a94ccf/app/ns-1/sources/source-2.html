@@ -1,0 +1,422 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > NumberRewriter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">si.merhar.roamer</a>
+</div>
+
+<h1>Coverage Summary for Class: NumberRewriter (si.merhar.roamer)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">NumberRewriter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/37)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (248/248)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NumberRewriter$evaluate$$inlined$sortedByDescending$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">NumberRewriter$Result</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NumberRewriter$Result$PassThrough</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NumberRewriter$Result$Rewritten</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (36/36)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (40/40)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (271/271)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package si.merhar.roamer
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure logic for deciding whether and how to rewrite a phone number.
+&nbsp; *
+&nbsp; * This is a fallback, not the app&#39;s main mechanism. Telecom normalizes the dialled number
+&nbsp; * to E.164 against the visited network&#39;s country before the redirection service is called,
+&nbsp; * so a local number normally arrives already prefixed and is reported as
+&nbsp; * [Result.PassThrough] with reason &quot;Already international&quot;.
+&nbsp; *
+&nbsp; * Rewriting here only happens for numbers Telecom could not parse for that region and
+&nbsp; * therefore passed through untouched. Because a local-format number cannot be attributed
+&nbsp; * to a country with certainty, that rewrite is a guess, and it is gated behind
+&nbsp; * [fallbackEnabled] — off by default, since a home-country number in national format is
+&nbsp; * indistinguishable from a visited-country one and would be given the wrong prefix.
+&nbsp; */
+&nbsp;object NumberRewriter {
+&nbsp;
+&nbsp;    /** Maximum length of a number considered a &quot;short code&quot; (not rewritten). */
+&nbsp;    private const val SHORT_NUMBER_MAX_LENGTH = 5
+&nbsp;
+&nbsp;    /** Minimum length of a subscriber number (digits after the country code). */
+&nbsp;    private const val MIN_SUBSCRIBER_LENGTH = 6
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Maximum digits in an E.164 number, excluding the &#39;+&#39; (ITU-T E.164).
+&nbsp;     *
+&nbsp;     * A result longer than this cannot be a real number, so the input was not a national
+&nbsp;     * number and is left alone rather than dialled as something invalid.
+&nbsp;     */
+&nbsp;    private const val E164_MAX_DIGITS = 15
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Length below which a number beginning [SERVICE_NUMBER_PREFIX] is a service code.
+&nbsp;     *
+&nbsp;     * The 11x ranges hold short non-geographic services across Europe: the EU-harmonised
+&nbsp;     * 116xxx numbers of social value (116000 missing children, 116117 medical on-call) and
+&nbsp;     * national directory enquiries such as France&#39;s 118XYZ and Germany&#39;s 118xy. All are six
+&nbsp;     * digits or fewer and none is reachable in international format, so prefixing one breaks
+&nbsp;     * it. No geographic or mobile number in the supported countries is this short while also
+&nbsp;     * starting with 11 — the shortest such national numbers, in Hungary and Poland, run to
+&nbsp;     * eight and nine digits.
+&nbsp;     */
+&nbsp;    private const val SERVICE_NUMBER_MAX_LENGTH = 6
+&nbsp;    private const val SERVICE_NUMBER_PREFIX = &quot;11&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * International access prefix accepted regardless of the country dialled from.
+&nbsp;     *
+&nbsp;     * ITU-T E.164 recommends 00 and every supported country except the NANP uses it, so it is
+&nbsp;     * treated as international everywhere. Being liberal here is safe: the outcome is to pass
+&nbsp;     * the number through untouched.
+&nbsp;     */
+&nbsp;    private const val UNIVERSAL_INTERNATIONAL_PREFIX = &quot;00&quot;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Result of a rewrite attempt.
+&nbsp;     */
+<b class="fc">&nbsp;    sealed class Result {</b>
+&nbsp;        /** Number was rewritten to [newNumber]. */
+<b class="fc">&nbsp;        data class Rewritten(val newNumber: String, val reason: String) : Result()</b>
+&nbsp;
+&nbsp;        /** Number should be dialled as-is. */
+<b class="fc">&nbsp;        data class PassThrough(val reason: String) : Result()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks whether a number (in international format) is destined for the given country.
+&nbsp;     *
+&nbsp;     * Matches the country&#39;s dial code and then requires at least [MIN_SUBSCRIBER_LENGTH]
+&nbsp;     * digits after it, so a number too short to be a real subscriber number in that
+&nbsp;     * country is not taken for one. This matters most for single-digit dial codes, where
+&nbsp;     * the dial code alone is very weak evidence.
+&nbsp;     *
+&nbsp;     * The plain prefix match is sound only because no dial code in [CountryDialCodes] is a
+&nbsp;     * prefix of another; `CountryDialCodesTest` asserts that property, so adding a country
+&nbsp;     * that breaks it fails the build rather than silently mismatching numbers here.
+&nbsp;     *
+&nbsp;     * @param number The number to check (must start with &quot;+&quot;)
+&nbsp;     * @param countryIso ISO code of the target country
+&nbsp;     * @return true if [number] starts with the country&#39;s dial code and has a plausible
+&nbsp;     *   subscriber part
+&nbsp;     */
+&nbsp;    fun isDestinedForCountry(number: String, countryIso: String): Boolean {
+<b class="fc">&nbsp;        if (!number.startsWith(&quot;+&quot;)) return false</b>
+<b class="fc">&nbsp;        val dialCode = CountryDialCodes.getDialCode(countryIso) ?: return false</b>
+<b class="fc">&nbsp;        if (!number.startsWith(&quot;+$dialCode&quot;)) return false</b>
+&nbsp;        // Ensure the remaining part after +dialCode is a plausible subscriber number
+<b class="fc">&nbsp;        val subscriber = number.substring(1 + dialCode.length)</b>
+<b class="fc">&nbsp;        return subscriber.length &gt;= MIN_SUBSCRIBER_LENGTH</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Evaluates whether [number] should be rewritten given the current roaming context.
+&nbsp;     *
+&nbsp;     * @param number The dialled number (may include trunk prefix, international prefix, etc.)
+&nbsp;     * @param simCountryIso ISO code of the SIM&#39;s home country (e.g. &quot;nl&quot;)
+&nbsp;     * @param networkCountryIso ISO code of the currently connected network&#39;s country (e.g. &quot;pt&quot;)
+&nbsp;     * @param fallbackEnabled Whether the user opted into rewriting numbers Telecom left
+&nbsp;     *   unparsed. Every other outcome is reported regardless, so the log stays informative
+&nbsp;     *   about what a call did even while rewriting is off.
+&nbsp;     * @param manualCountryOverride Optional manual override for network country (used when on WiFi)
+&nbsp;     */
+&nbsp;    fun evaluate(
+&nbsp;        number: String,
+&nbsp;        simCountryIso: String,
+&nbsp;        networkCountryIso: String,
+<b class="fc">&nbsp;        fallbackEnabled: Boolean = true,</b>
+<b class="fc">&nbsp;        manualCountryOverride: String? = null</b>
+&nbsp;    ): Result {
+<b class="fc">&nbsp;        val cleaned = number.replace(&quot;[\\s\\-()]&quot;.toRegex(), &quot;&quot;)</b>
+&nbsp;
+&nbsp;        // Already in international form, by the universal prefix or an explicit &#39;+&#39;
+<b class="fc">&nbsp;        if (cleaned.startsWith(&quot;+&quot;) || cleaned.startsWith(UNIVERSAL_INTERNATIONAL_PREFIX)) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Already international&quot;)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // USSD/MMI codes (e.g., *100#, *123*456#, #31#)
+<b class="fc">&nbsp;        if (cleaned.startsWith(&quot;*&quot;) || cleaned.startsWith(&quot;#&quot;)) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;USSD/MMI code&quot;)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Short/service numbers (emergency, info lines)
+<b class="fc">&nbsp;        if (cleaned.length &lt;= SHORT_NUMBER_MAX_LENGTH) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Short number&quot;)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Harmonised and national service codes in the 11x ranges
+<b class="fc">&nbsp;        if (cleaned.length &lt;= SERVICE_NUMBER_MAX_LENGTH &amp;&amp;</b>
+<b class="fc">&nbsp;            cleaned.startsWith(SERVICE_NUMBER_PREFIX)</b>
+&nbsp;        ) {
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Service number&quot;)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        val effectiveNetworkCountry = (manualCountryOverride ?: networkCountryIso).lowercase()</b>
+<b class="fc">&nbsp;        val simCountry = simCountryIso.lowercase()</b>
+&nbsp;
+&nbsp;        // Not roaming
+<b class="fc">&nbsp;        if (simCountry == effectiveNetworkCountry) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Not roaming&quot;)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        val plan = CountryDialCodes.getPlan(effectiveNetworkCountry)</b>
+<b class="fc">&nbsp;            ?: return Result.PassThrough(&quot;Unknown country: $effectiveNetworkCountry&quot;)</b>
+&nbsp;
+&nbsp;        // International prefixes specific to where the call is dialled from. Needed for the
+&nbsp;        // NANP, where international is 011 and 00 means something else entirely.
+<b class="fc">&nbsp;        if (plan.internationalPrefixes.any { cleaned.startsWith(it) }) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Already international&quot;)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Everything below rewrites the number. Checked here rather than on entry so the
+&nbsp;        // outcomes above are still reported while the fallback is off.
+<b class="fc">&nbsp;        if (!fallbackEnabled) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Fallback rewrite off&quot;)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Drop the trunk prefix this country uses when dialling domestically. Longest first,
+&nbsp;        // so Hungary&#39;s 06 is preferred over a bare 0.
+<b class="fc">&nbsp;        val trunkPrefix = plan.trunkPrefixes</b>
+<b class="fc">&nbsp;            .sortedByDescending { it.length }</b>
+<b class="fc">&nbsp;            .firstOrNull { cleaned.startsWith(it) }</b>
+<b class="fc">&nbsp;        val nationalNumber = cleaned.removePrefix(trunkPrefix.orEmpty())</b>
+&nbsp;
+<b class="fc">&nbsp;        if (plan.dialCode.length + nationalNumber.length &gt; E164_MAX_DIGITS) {</b>
+<b class="fc">&nbsp;            return Result.PassThrough(&quot;Too long for E.164&quot;)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        val rewritten = &quot;+${plan.dialCode}$nationalNumber&quot;</b>
+<b class="fc">&nbsp;        return Result.Rewritten(</b>
+<b class="fc">&nbsp;            newNumber = rewritten,</b>
+<b class="fc">&nbsp;            reason = &quot;Roaming in ${effectiveNetworkCountry.uppercase()}: $number → $rewritten&quot;</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-10-22 11:51</div>
+</div>
+</body>
+</html>
