@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > RewriteLog</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">si.merhar.roamer</a>
+</div>
+
+<h1>Coverage Summary for Class: RewriteLog (si.merhar.roamer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">RewriteLog</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (63/63)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package si.merhar.roamer
+&nbsp;
+&nbsp;/**
+&nbsp; * Retention logic for the on-screen rewrite log.
+&nbsp; *
+&nbsp; * Kept separate from [PreferencesRepository] so the trimming rules are pure and testable
+&nbsp; * on the JVM, with no DataStore or Android context involved.
+&nbsp; */
+&nbsp;object RewriteLog {
+&nbsp;
+&nbsp;    /** Number of entries retained before the oldest are dropped. */
+&nbsp;    const val MAX_ENTRIES = 20
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns [existing] with [entry] prepended, keeping at most [maxEntries] lines.
+&nbsp;     *
+&nbsp;     * Newest first, because the UI shows the top of the log. Blank lines are dropped so a
+&nbsp;     * stored value that starts or ends with a newline does not consume retention slots.
+&nbsp;     *
+&nbsp;     * @param existing Current log contents, newline-separated
+&nbsp;     * @param entry New entry to prepend; ignored when blank
+&nbsp;     * @param maxEntries Maximum lines to retain
+&nbsp;     */
+<b class="fc">&nbsp;    fun prepend(existing: String, entry: String, maxEntries: Int = MAX_ENTRIES): String {</b>
+<b class="fc">&nbsp;        val lines = existing.lines().filter { it.isNotBlank() }</b>
+<b class="fc">&nbsp;        if (entry.isBlank()) return lines.take(maxEntries).joinToString(&quot;\n&quot;)</b>
+<b class="fc">&nbsp;        return (listOf(entry) + lines).take(maxEntries).joinToString(&quot;\n&quot;)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-10-22 11:51</div>
+</div>
+</body>
+</html>

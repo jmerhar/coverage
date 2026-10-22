@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage line-rate="0.974" lines-covered="74" lines-valid="76" branch-rate="1.0" branches-covered="1.0" branches-rate="1.0" complexity="1.0" version="1.9" timestamp="1792669923">
+	<sources>
+		<source>/src/bin/release.sh/</source>
+	</sources>
+	<packages>
+		<package name="" line-rate="0.974" lines-covered="74" lines-valid="76" branch-rate="1.0" complexity="1.0">
+			<classes>
+				<class name="release_sh__1" filename="/src/bin/release.sh" branch-rate="1.0" complexity="1.0" line-rate="0.974">
+					<lines>
+						<line number="18" hits="1"/>
+						<line number="20" hits="1"/>
+						<line number="21" hits="1"/>
+						<line number="24" hits="1"/>
+						<line number="25" hits="1"/>
+						<line number="30" hits="1"/>
+						<line number="31" hits="1"/>
+						<line number="33" hits="1"/>
+						<line number="35" hits="1"/>
+						<line number="36" hits="1"/>
+						<line number="37" hits="1"/>
+						<line number="38" hits="1"/>
+						<line number="39" hits="1"/>
+						<line number="43" hits="1"/>
+						<line number="46" hits="1"/>
+						<line number="50" hits="1"/>
+						<line number="51" hits="1"/>
+						<line number="54" hits="1"/>
+						<line number="55" hits="1"/>
+						<line number="60" hits="1"/>
+						<line number="62" hits="1"/>
+						<line number="65" hits="1"/>
+						<line number="67" hits="1"/>
+						<line number="68" hits="1"/>
+						<line number="70" hits="1"/>
+						<line number="71" hits="1"/>
+						<line number="74" hits="1"/>
+						<line number="75" hits="1"/>
+						<line number="79" hits="1"/>
+						<line number="81" hits="1"/>
+						<line number="85" hits="1"/>
+						<line number="86" hits="1"/>
+						<line number="92" hits="1"/>
+						<line number="93" hits="1"/>
+						<line number="95" hits="0"/>
+						<line number="99" hits="1"/>
+						<line number="100" hits="1"/>
+						<line number="102" hits="1"/>
+						<line number="107" hits="1"/>
+						<line number="108" hits="1"/>
+						<line number="110" hits="1"/>
+						<line number="112" hits="1"/>
+						<line number="113" hits="1"/>
+						<line number="114" hits="1"/>
+						<line number="118" hits="1"/>
+						<line number="119" hits="1"/>
+						<line number="121" hits="1"/>
+						<line number="126" hits="0"/>
+						<line number="128" hits="1"/>
+						<line number="129" hits="1"/>
+						<line number="131" hits="1"/>
+						<line number="133" hits="1"/>
+						<line number="136" hits="1"/>
+						<line number="137" hits="1"/>
+						<line number="144" hits="1"/>
+						<line number="146" hits="1"/>
+						<line number="147" hits="1"/>
+						<line number="149" hits="1"/>
+						<line number="151" hits="1"/>
+						<line number="153" hits="1"/>
+						<line number="154" hits="1"/>
+						<line number="155" hits="1"/>
+						<line number="159" hits="1"/>
+						<line number="161" hits="1"/>
+						<line number="162" hits="1"/>
+						<line number="163" hits="1"/>
+						<line number="166" hits="1"/>
+						<line number="171" hits="1"/>
+						<line number="175" hits="1"/>
+						<line number="176" hits="1"/>
+						<line number="177" hits="1"/>
+						<line number="178" hits="1"/>
+						<line number="179" hits="1"/>
+						<line number="182" hits="1"/>
+						<line number="183" hits="1"/>
+						<line number="184" hits="1"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

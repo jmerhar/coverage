@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "f0a0ec979dc672b1b9f7810d297d7b6430a94ccf",
+  "short_sha": "f0a0ec979d",
+  "committed_at": "2026-10-22T11:53:43Z",
+  "message": "chore(deps): bump org.jetbrains.kotlinx.kover (#14)",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/f0a0ec979dc672b1b9f7810d297d7b6430a94ccf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
