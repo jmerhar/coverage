@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "22235e42fa93e2adaa8504c67ce87ffdfd303564",
+  "short_sha": "22235e42fa",
+  "committed_at": "2026-10-22T08:18:09Z",
+  "message": "feat: keep the feedback Worker's Brevo key alive with a daily cron",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/22235e42fa93e2adaa8504c67ce87ffdfd303564",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.6%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.3%"
+      }
+    }
+  ]
+}
