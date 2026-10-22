@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a32d2dd37c7f8c2911892b0385525704bccccb69",
+  "short_sha": "a32d2dd37c",
+  "committed_at": "2026-10-22T08:38:54Z",
+  "message": "feat(docker-live-upgrade): restart containers left holding a replaced socket",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a32d2dd37c7f8c2911892b0385525704bccccb69",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
