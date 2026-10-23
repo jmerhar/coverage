@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "b7e9c153ad49b899e58a84a7461cc74253a44a9a",
+  "short_sha": "b7e9c153ad",
+  "committed_at": "2026-10-23T13:14:06Z",
+  "message": "feat(link-series): confirm releases that add a year the folder lacks",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/b7e9c153ad49b899e58a84a7461cc74253a44a9a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
