@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "9a7e873f598ed59bcb05a03f0ce3b8394b6a323a",
+  "short_sha": "9a7e873f59",
+  "committed_at": "2026-10-25T11:00:02Z",
+  "message": "chore(cron): re-enable the Airbnb availability and reviews jobs",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/9a7e873f598ed59bcb05a03f0ce3b8394b6a323a",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.7%"
+      }
+    }
+  ]
+}
