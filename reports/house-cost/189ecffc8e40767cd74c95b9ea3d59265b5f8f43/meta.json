@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "189ecffc8e40767cd74c95b9ea3d59265b5f8f43",
+  "short_sha": "189ecffc8e",
+  "committed_at": "2026-10-26T20:39:28Z",
+  "message": "fix: tidy the General settings, the phone's More menu and account name",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/189ecffc8e40767cd74c95b9ea3d59265b5f8f43",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.2%"
+      }
+    }
+  ]
+}
