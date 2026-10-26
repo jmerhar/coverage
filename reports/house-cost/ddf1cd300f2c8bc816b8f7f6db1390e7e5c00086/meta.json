@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "ddf1cd300f2c8bc816b8f7f6db1390e7e5c00086",
+  "short_sha": "ddf1cd300f",
+  "committed_at": "2026-10-26T20:24:48Z",
+  "message": "feat: choose light or dark appearance",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/ddf1cd300f2c8bc816b8f7f6db1390e7e5c00086",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.2%"
+      }
+    }
+  ]
+}
