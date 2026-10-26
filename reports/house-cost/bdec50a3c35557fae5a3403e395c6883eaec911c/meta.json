@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "bdec50a3c35557fae5a3403e395c6883eaec911c",
+  "short_sha": "bdec50a3c3",
+  "committed_at": "2026-10-26T19:53:03Z",
+  "message": "feat: icons throughout, and a quieter passkey login without one saved",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/bdec50a3c35557fae5a3403e395c6883eaec911c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.9%"
+      }
+    }
+  ]
+}
