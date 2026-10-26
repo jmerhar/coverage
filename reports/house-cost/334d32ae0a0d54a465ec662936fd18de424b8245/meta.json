@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "334d32ae0a0d54a465ec662936fd18de424b8245",
+  "short_sha": "334d32ae0a",
+  "committed_at": "2026-10-26T18:15:16Z",
+  "message": "chore(release): 0.8.0",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/334d32ae0a0d54a465ec662936fd18de424b8245",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.6%"
+      }
+    }
+  ]
+}
