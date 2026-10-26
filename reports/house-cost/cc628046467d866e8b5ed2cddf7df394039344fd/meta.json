@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "cc628046467d866e8b5ed2cddf7df394039344fd",
+  "short_sha": "cc62804646",
+  "committed_at": "2026-10-26T19:34:26Z",
+  "message": "fix: keep the footer clear of the login and setup card",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/cc628046467d866e8b5ed2cddf7df394039344fd",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.0%"
+      }
+    }
+  ]
+}
