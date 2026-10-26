@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "3cc6afad714d3875588aae9f68941eb540f15501",
+  "short_sha": "3cc6afad71",
+  "committed_at": "2026-10-26T19:23:39Z",
+  "message": "feat: make logging in with a fingerprint or face easy to find",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/3cc6afad714d3875588aae9f68941eb540f15501",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.0%"
+      }
+    }
+  ]
+}
