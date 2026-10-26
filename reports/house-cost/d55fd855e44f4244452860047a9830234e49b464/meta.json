@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "d55fd855e44f4244452860047a9830234e49b464",
+  "short_sha": "d55fd855e4",
+  "committed_at": "2026-10-26T20:59:02Z",
+  "message": "fix: a tidier appearance choice in the account menu",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/d55fd855e44f4244452860047a9830234e49b464",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.2%"
+      }
+    }
+  ]
+}
