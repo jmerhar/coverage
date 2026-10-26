@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "14d66d649c6aded2100bbaac4be43fc3f4c2a037",
+  "short_sha": "14d66d649c",
+  "committed_at": "2026-10-26T18:48:00Z",
+  "message": "fix: check the audit log for contacts by field, not by substring",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/14d66d649c6aded2100bbaac4be43fc3f4c2a037",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.5%"
+      }
+    }
+  ]
+}
