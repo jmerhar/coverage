@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "cfb4cee52a2df9af58ad35d6957edfdfdd80566a",
+  "short_sha": "cfb4cee52a",
+  "committed_at": "2026-10-26T21:48:04Z",
+  "message": "feat: set up the supplier and service from a first bill",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/cfb4cee52a2df9af58ad35d6957edfdfdd80566a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
