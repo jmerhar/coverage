@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "08004b9ac73be6782ac9ed3c9a7c81c1157ce03f",
+  "short_sha": "08004b9ac7",
+  "committed_at": "2026-10-26T20:50:41Z",
+  "message": "fix: let a renamed app reach the install prompt",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/08004b9ac73be6782ac9ed3c9a7c81c1157ce03f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.8%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "87.2%"
+      }
+    }
+  ]
+}
