@@ -2,7 +2,7 @@
   "project": "house-cost",
   "sha": "2ab28a55fbdebed67ea466559983e96f98d50a90",
   "short_sha": "2ab28a55fb",
-  "committed_at": "2026-10-26T19:07:33Z",
+  "committed_at": "2026-10-26T19:10:45Z",
   "message": "chore: cache Tesseract's packages between CI runs",
   "commit_url": "https://github.com/jmerhar/house-cost/commit/2ab28a55fbdebed67ea466559983e96f98d50a90",
   "reports": [
