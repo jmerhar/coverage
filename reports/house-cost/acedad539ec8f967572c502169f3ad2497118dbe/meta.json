@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "acedad539ec8f967572c502169f3ad2497118dbe",
+  "short_sha": "acedad539e",
+  "committed_at": "2026-10-27T08:40:40Z",
+  "message": "docs: note whether bill lines should have their own periods",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/acedad539ec8f967572c502169f3ad2497118dbe",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.7%"
+      }
+    }
+  ]
+}
