@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "b2d32a6ec362f148b53d5f18b7938a52c6485e18",
+  "short_sha": "b2d32a6ec3",
+  "committed_at": "2026-10-27T09:07:31Z",
+  "message": "fix: no links to deleted bills in the activity log; item years across New Year",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/b2d32a6ec362f148b53d5f18b7938a52c6485e18",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.7%"
+      }
+    }
+  ]
+}
