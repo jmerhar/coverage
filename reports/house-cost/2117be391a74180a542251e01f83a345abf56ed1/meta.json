@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "2117be391a74180a542251e01f83a345abf56ed1",
+  "short_sha": "2117be391a",
+  "committed_at": "2026-10-27T18:10:53Z",
+  "message": "feat: show notes in the lists of bills, documents and services",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/2117be391a74180a542251e01f83a345abf56ed1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
