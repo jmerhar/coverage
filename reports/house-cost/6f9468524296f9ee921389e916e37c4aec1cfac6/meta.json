@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "6f9468524296f9ee921389e916e37c4aec1cfac6",
+  "short_sha": "6f94685242",
+  "committed_at": "2026-10-27T11:30:19Z",
+  "message": "chore(deps): update fastapi requirement in /backend in the backend group (#2)",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/6f9468524296f9ee921389e916e37c4aec1cfac6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "86.7%"
+      }
+    }
+  ]
+}
