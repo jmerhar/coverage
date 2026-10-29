@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "ec7a88e24fc819b52f8594c316228e152239d577",
+  "short_sha": "ec7a88e24f",
+  "committed_at": "2026-10-29T13:02:49Z",
+  "message": "chore(deps): bump the gradle-minor-patch group with 3 updates (#15)",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/ec7a88e24fc819b52f8594c316228e152239d577",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
