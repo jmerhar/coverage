@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "e4a9e4305b5405e1cfbe8864536cfbbd6408fcbb",
+  "short_sha": "e4a9e4305b",
+  "committed_at": "2026-10-29T13:00:58Z",
+  "message": "chore(deps): bump the web group in /dashboard/web with 6 updates (#6)",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/e4a9e4305b5405e1cfbe8864536cfbbd6408fcbb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.7%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
