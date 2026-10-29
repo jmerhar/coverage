@@ -1,0 +1,326 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > SimRouting</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">si.merhar.roamer</a>
+</div>
+
+<h1>Coverage Summary for Class: SimRouting (si.merhar.roamer)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SimRouting</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (100/100)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SimRouting$Rule</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SimRouting$Sim</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SimRouting$Switch</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (142/142)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package si.merhar.roamer
+&nbsp;
+&nbsp;/**
+&nbsp; * Pure SIM-selection rules, kept out of [RoamerCallRedirectionService] so they are testable
+&nbsp; * without TelecomManager or a Context.
+&nbsp; */
+&nbsp;object SimRouting {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A call-capable SIM.
+&nbsp;     *
+&nbsp;     * @property account Opaque account identifier; a `PhoneAccountHandle` in the service.
+&nbsp;     * @property countryIso ISO country code of the SIM&#39;s home network (e.g. &quot;si&quot;)
+&nbsp;     */
+<b class="fc">&nbsp;    data class Sim&lt;T&gt;(val account: T, val countryIso: String)</b>
+&nbsp;
+&nbsp;    /** Which setting moved a call to another SIM. */
+&nbsp;    enum class Rule {
+&nbsp;        /** The SIM is from the country the dialled number belongs to. */
+<b class="fc">&nbsp;        NUMBER_COUNTRY,</b>
+&nbsp;
+&nbsp;        /** The device is roaming and the SIM is from the visited country. */
+<b class="fc">&nbsp;        LOCAL</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** A decision to place a call on [sim] instead of the account Telecom chose. */
+<b class="fc">&nbsp;    data class Switch&lt;T&gt;(val sim: Sim&lt;T&gt;, val rule: Rule)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Decides whether a call should move from [current] to another SIM.
+&nbsp;     *
+&nbsp;     * The number-country rule is tried first. When it finds a matching SIM — including
+&nbsp;     * [current] itself — its answer is final, so the local rule never moves a call that is
+&nbsp;     * already on a SIM from the number&#39;s country. The local rule applies only while roaming,
+&nbsp;     * to numbers destined for the visited country.
+&nbsp;     *
+&nbsp;     * @param number The number being dialled, in international form for any rule to match
+&nbsp;     * @param sims Call-capable SIMs with their home countries
+&nbsp;     * @param current The account Telecom chose for the call
+&nbsp;     * @param simCountryIso Home country of the default SIM, used to detect roaming
+&nbsp;     * @param networkCountryIso Country of the network the device is connected to
+&nbsp;     * @return the SIM to switch to, or null to keep [current]
+&nbsp;     */
+&nbsp;    fun &lt;T&gt; choose(
+&nbsp;        number: String,
+&nbsp;        sims: List&lt;Sim&lt;T&gt;&gt;,
+&nbsp;        current: T,
+&nbsp;        simCountryIso: String,
+&nbsp;        networkCountryIso: String,
+&nbsp;        useNumberCountrySim: Boolean,
+&nbsp;        useLocalSim: Boolean
+&nbsp;    ): Switch&lt;T&gt;? {
+<b class="fc">&nbsp;        if (useNumberCountrySim) {</b>
+<b class="fc">&nbsp;            val match = simForNumber(number, sims, current)</b>
+<b class="fc">&nbsp;            if (match != null) {</b>
+<b class="fc">&nbsp;                return if (match.account == current) null else Switch(match, Rule.NUMBER_COUNTRY)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (useLocalSim) {</b>
+<b class="fc">&nbsp;            val roaming = networkCountryIso.isNotBlank() &amp;&amp;</b>
+<b class="fc">&nbsp;                !simCountryIso.equals(networkCountryIso, ignoreCase = true)</b>
+<b class="fc">&nbsp;            if (roaming &amp;&amp; NumberRewriter.isDestinedForCountry(number, networkCountryIso)) {</b>
+<b class="fc">&nbsp;                val local = preferCurrent(</b>
+<b class="fc">&nbsp;                    sims.filter { it.countryIso.equals(networkCountryIso, ignoreCase = true) },</b>
+<b class="fc">&nbsp;                    current</b>
+&nbsp;                )
+<b class="fc">&nbsp;                if (local != null &amp;&amp; local.account != current) return Switch(local, Rule.LOCAL)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Picks the SIM whose country matches the country [number] is destined for.
+&nbsp;     *
+&nbsp;     * Matching uses [NumberRewriter.isDestinedForCountry], so [number] must be in
+&nbsp;     * international form. When several SIMs match (two SIMs from one country, or a US and a
+&nbsp;     * Canadian SIM sharing `+1`), [current] wins if it is one of them, so a call already on a
+&nbsp;     * suitable SIM is never moved.
+&nbsp;     *
+&nbsp;     * @return the matching SIM, or null if none matches
+&nbsp;     */
+&nbsp;    fun &lt;T&gt; simForNumber(number: String, sims: List&lt;Sim&lt;T&gt;&gt;, current: T): Sim&lt;T&gt;? =
+<b class="fc">&nbsp;        preferCurrent(sims.filter { NumberRewriter.isDestinedForCountry(number, it.countryIso) }, current)</b>
+&nbsp;
+&nbsp;    /** Returns the SIM for [current] if it is among [candidates], else the first candidate. */
+&nbsp;    private fun &lt;T&gt; preferCurrent(candidates: List&lt;Sim&lt;T&gt;&gt;, current: T): Sim&lt;T&gt;? =
+<b class="fc">&nbsp;        candidates.firstOrNull { it.account == current } ?: candidates.firstOrNull()</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-10-29 13:00</div>
+</div>
+</body>
+</html>

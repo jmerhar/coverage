@@ -1,0 +1,306 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > CountryDialCodes</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">si.merhar.roamer</a>
+</div>
+
+<h1>Coverage Summary for Class: CountryDialCodes (si.merhar.roamer)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">CountryDialCodes</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (48/48)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (640/640)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CountryDialCodes$allEntries$$inlined$sortedBy$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">CountryDialCodes$NumberingPlan</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (51/51)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (659/659)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package si.merhar.roamer
+&nbsp;
+&nbsp;/**
+&nbsp; * Numbering-plan data for EU/EEA countries and common travel destinations.
+&nbsp; *
+&nbsp; * Each country carries its E.164 dial code plus the two things needed to convert a locally
+&nbsp; * dialled number into international form: the trunk prefix to remove, and the international
+&nbsp; * access prefixes that mark a number as already international.
+&nbsp; *
+&nbsp; * Values follow each country&#39;s national numbering plan (ITU E.164 national plans; NANP for
+&nbsp; * US/Canada). Where a country deviates from the European norm of &quot;trunk 0, international
+&nbsp; * 00&quot; it is called out individually below.
+&nbsp; */
+&nbsp;object CountryDialCodes {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Trunk prefix used by most of Europe, and the fallback for countries whose plan defines
+&nbsp;     * none.
+&nbsp;     *
+&nbsp;     * A country with no trunk prefix cannot have a valid national number beginning with `0`,
+&nbsp;     * so a leading `0` there is a typing habit rather than data. Removing it recovers a valid
+&nbsp;     * number — dialling `0912345678` in Portugal yields `+351912345678` — which is why these
+&nbsp;     * countries keep the default rather than being listed as exceptions. Italy is the one
+&nbsp;     * country where a leading `0` is genuinely part of the subscriber number.
+&nbsp;     */
+<b class="fc">&nbsp;    private val DEFAULT_TRUNK_PREFIXES = listOf(&quot;0&quot;)</b>
+&nbsp;
+&nbsp;    /** International access code recommended by ITU-T E.164 and used across Europe. */
+<b class="fc">&nbsp;    private val DEFAULT_INTERNATIONAL_PREFIXES = listOf(&quot;00&quot;)</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * How numbers are dialled within one country.
+&nbsp;     *
+&nbsp;     * @property dialCode E.164 country calling code, without the leading `+`
+&nbsp;     * @property trunkPrefixes Prefixes that precede a national number when dialling
+&nbsp;     *   domestically and are dropped in international format. Matched longest-first; empty
+&nbsp;     *   means the country has none and a leading `0` must be preserved.
+&nbsp;     * @property internationalPrefixes Prefixes that introduce an international number when
+&nbsp;     *   dialling from inside this country.
+&nbsp;     */
+&nbsp;    data class NumberingPlan(
+<b class="fc">&nbsp;        val dialCode: String,</b>
+<b class="fc">&nbsp;        val trunkPrefixes: List&lt;String&gt; = DEFAULT_TRUNK_PREFIXES,</b>
+<b class="fc">&nbsp;        val internationalPrefixes: List&lt;String&gt; = DEFAULT_INTERNATIONAL_PREFIXES</b>
+&nbsp;    )
+&nbsp;
+<b class="fc">&nbsp;    private val plans = mapOf(</b>
+&nbsp;        // --- EU member states (trunk 0, international 00 unless noted) ---
+<b class="fc">&nbsp;        &quot;at&quot; to NumberingPlan(&quot;43&quot;),   // Austria</b>
+<b class="fc">&nbsp;        &quot;be&quot; to NumberingPlan(&quot;32&quot;),   // Belgium</b>
+<b class="fc">&nbsp;        &quot;bg&quot; to NumberingPlan(&quot;359&quot;),  // Bulgaria</b>
+<b class="fc">&nbsp;        &quot;hr&quot; to NumberingPlan(&quot;385&quot;),  // Croatia</b>
+<b class="fc">&nbsp;        &quot;cy&quot; to NumberingPlan(&quot;357&quot;),  // Cyprus — plan defines no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;cz&quot; to NumberingPlan(&quot;420&quot;),  // Czech Republic — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;dk&quot; to NumberingPlan(&quot;45&quot;),   // Denmark — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;ee&quot; to NumberingPlan(&quot;372&quot;),  // Estonia — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;fi&quot; to NumberingPlan(&quot;358&quot;),  // Finland</b>
+<b class="fc">&nbsp;        &quot;fr&quot; to NumberingPlan(&quot;33&quot;),   // France</b>
+<b class="fc">&nbsp;        &quot;de&quot; to NumberingPlan(&quot;49&quot;),   // Germany</b>
+<b class="fc">&nbsp;        &quot;gr&quot; to NumberingPlan(&quot;30&quot;),   // Greece — no trunk prefix</b>
+&nbsp;        // Hungary dials domestic long distance as 06 + national number, so both digits go.
+<b class="fc">&nbsp;        &quot;hu&quot; to NumberingPlan(&quot;36&quot;, trunkPrefixes = listOf(&quot;06&quot;, &quot;0&quot;)),</b>
+<b class="fc">&nbsp;        &quot;ie&quot; to NumberingPlan(&quot;353&quot;),  // Ireland</b>
+&nbsp;        // Italy has no trunk prefix and the leading 0 of a landline is part of the
+&nbsp;        // subscriber number: Rome is 06…, dialled internationally as +39 06….
+<b class="fc">&nbsp;        &quot;it&quot; to NumberingPlan(&quot;39&quot;, trunkPrefixes = emptyList()),</b>
+<b class="fc">&nbsp;        &quot;lv&quot; to NumberingPlan(&quot;371&quot;),  // Latvia — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;lt&quot; to NumberingPlan(&quot;370&quot;),  // Lithuania</b>
+<b class="fc">&nbsp;        &quot;lu&quot; to NumberingPlan(&quot;352&quot;),  // Luxembourg — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;mt&quot; to NumberingPlan(&quot;356&quot;),  // Malta — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;nl&quot; to NumberingPlan(&quot;31&quot;),   // Netherlands</b>
+<b class="fc">&nbsp;        &quot;pl&quot; to NumberingPlan(&quot;48&quot;),   // Poland — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;pt&quot; to NumberingPlan(&quot;351&quot;),  // Portugal — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;ro&quot; to NumberingPlan(&quot;40&quot;),   // Romania</b>
+<b class="fc">&nbsp;        &quot;sk&quot; to NumberingPlan(&quot;421&quot;),  // Slovakia</b>
+<b class="fc">&nbsp;        &quot;si&quot; to NumberingPlan(&quot;386&quot;),  // Slovenia</b>
+<b class="fc">&nbsp;        &quot;es&quot; to NumberingPlan(&quot;34&quot;),   // Spain — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;se&quot; to NumberingPlan(&quot;46&quot;),   // Sweden</b>
+&nbsp;
+&nbsp;        // --- EEA / closely associated ---
+<b class="fc">&nbsp;        &quot;is&quot; to NumberingPlan(&quot;354&quot;),  // Iceland — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;li&quot; to NumberingPlan(&quot;423&quot;),  // Liechtenstein — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;no&quot; to NumberingPlan(&quot;47&quot;),   // Norway — no trunk prefix</b>
+<b class="fc">&nbsp;        &quot;ch&quot; to NumberingPlan(&quot;41&quot;),   // Switzerland</b>
+&nbsp;
+&nbsp;        // --- Other common destinations ---
+<b class="fc">&nbsp;        &quot;gb&quot; to NumberingPlan(&quot;44&quot;),   // United Kingdom</b>
+&nbsp;        // NANP: long distance is dialled 1 + area code, and international is 011 + country
+&nbsp;        // code, so neither the European trunk 0 nor 00 applies.
+<b class="fc">&nbsp;        &quot;us&quot; to NumberingPlan(&quot;1&quot;, listOf(&quot;1&quot;), listOf(&quot;011&quot;, &quot;00&quot;)),</b>
+<b class="fc">&nbsp;        &quot;ca&quot; to NumberingPlan(&quot;1&quot;, listOf(&quot;1&quot;), listOf(&quot;011&quot;, &quot;00&quot;)),</b>
+&nbsp;        // Australia uses 0011 for international; it also begins 00, so both match.
+<b class="fc">&nbsp;        &quot;au&quot; to NumberingPlan(&quot;61&quot;, internationalPrefixes = listOf(&quot;0011&quot;, &quot;00&quot;)),</b>
+<b class="fc">&nbsp;        &quot;tr&quot; to NumberingPlan(&quot;90&quot;),   // Turkey</b>
+<b class="fc">&nbsp;        &quot;rs&quot; to NumberingPlan(&quot;381&quot;),  // Serbia</b>
+<b class="fc">&nbsp;        &quot;ba&quot; to NumberingPlan(&quot;387&quot;),  // Bosnia and Herzegovina</b>
+<b class="fc">&nbsp;        &quot;me&quot; to NumberingPlan(&quot;382&quot;),  // Montenegro</b>
+<b class="fc">&nbsp;        &quot;mk&quot; to NumberingPlan(&quot;389&quot;),  // North Macedonia</b>
+<b class="fc">&nbsp;        &quot;al&quot; to NumberingPlan(&quot;355&quot;),  // Albania</b>
+<b class="fc">&nbsp;        &quot;xk&quot; to NumberingPlan(&quot;383&quot;)   // Kosovo</b>
+&nbsp;    )
+&nbsp;
+&nbsp;    /** Returns the numbering plan for a given ISO country code, or null if unknown. */
+<b class="fc">&nbsp;    fun getPlan(countryIso: String): NumberingPlan? = plans[countryIso.lowercase()]</b>
+&nbsp;
+&nbsp;    /** Returns the E.164 dial code for a given ISO country code, or null if unknown. */
+<b class="fc">&nbsp;    fun getDialCode(countryIso: String): String? = getPlan(countryIso)?.dialCode</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns all supported country entries as a list of (iso, dialCode) pairs,
+&nbsp;     * sorted alphabetically by ISO code.
+&nbsp;     */
+&nbsp;    fun allEntries(): List&lt;Pair&lt;String, String&gt;&gt; =
+<b class="fc">&nbsp;        plans.entries.sortedBy { it.key }.map { it.key to it.value.dialCode }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-10-29 13:00</div>
+</div>
+</body>
+</html>
