@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "40d2334a6e5a4d871261f3cbe3ed3ef2fb55cd3e",
+  "short_sha": "40d2334a6e",
+  "committed_at": "2026-11-01T21:53:43Z",
+  "message": "refactor: build the collector's spool, delivery and heartbeat on jigkit",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/40d2334a6e5a4d871261f3cbe3ed3ef2fb55cd3e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
