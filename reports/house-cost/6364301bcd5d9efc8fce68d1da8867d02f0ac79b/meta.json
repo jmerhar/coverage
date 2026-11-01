@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "6364301bcd5d9efc8fce68d1da8867d02f0ac79b",
+  "short_sha": "6364301bcd",
+  "committed_at": "2026-11-01T19:44:36Z",
+  "message": "chore: drop npm min-release-age and shorten the Dependabot cooldown to 3 days",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/6364301bcd5d9efc8fce68d1da8867d02f0ac79b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
