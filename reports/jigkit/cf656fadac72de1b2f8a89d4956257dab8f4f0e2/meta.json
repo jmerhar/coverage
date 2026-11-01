@@ -1,0 +1,25 @@
+{
+  "project": "jigkit",
+  "sha": "cf656fadac72de1b2f8a89d4956257dab8f4f0e2",
+  "short_sha": "cf656fadac",
+  "committed_at": "2026-11-01T21:00:03Z",
+  "message": "fix: depend on tzdata so TZ validates without system zone data",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/cf656fadac72de1b2f8a89d4956257dab8f4f0e2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.8%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.8%"
+      }
+    }
+  ]
+}
