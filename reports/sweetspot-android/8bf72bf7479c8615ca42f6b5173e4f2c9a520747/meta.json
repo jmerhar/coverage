@@ -1,0 +1,45 @@
+{
+  "project": "sweetspot-android",
+  "sha": "8bf72bf7479c8615ca42f6b5173e4f2c9a520747",
+  "short_sha": "8bf72bf747",
+  "committed_at": "2026-11-01T19:50:00Z",
+  "message": "chore: drop npm min-release-age from the feedback Worker",
+  "commit_url": "https://github.com/jmerhar/sweetspot-android/commit/8bf72bf7479c8615ca42f6b5173e4f2c9a520747",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.0%",
+        "branch": "85.7%",
+        "instruction": "97.9%"
+      }
+    },
+    {
+      "name": "shared",
+      "path": "shared",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "91.2%",
+        "instruction": "97.8%"
+      }
+    },
+    {
+      "name": "app",
+      "path": "app",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "78.9%",
+        "instruction": "98.4%"
+      }
+    },
+    {
+      "name": "wear",
+      "path": "wear",
+      "metrics": {
+        "line": "95.4%",
+        "branch": "71.2%",
+        "instruction": "93.1%"
+      }
+    }
+  ]
+}
