@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "9c2cb28f0b275b50936d96d514d4aec27aea658d",
+  "short_sha": "9c2cb28f0b",
+  "committed_at": "2026-11-01T21:20:18Z",
+  "message": "chore: pin jigkit to its 0.1.0 release and let Dependabot move it",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/9c2cb28f0b275b50936d96d514d4aec27aea658d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.6%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
