@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "60ca894cf3c93ba6b20a469d33a7513e81d16b51",
+  "short_sha": "60ca894cf3",
+  "committed_at": "2026-11-02T09:59:26Z",
+  "message": "chore: take jigkit releases without the Dependabot cooldown",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/60ca894cf3c93ba6b20a469d33a7513e81d16b51",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
