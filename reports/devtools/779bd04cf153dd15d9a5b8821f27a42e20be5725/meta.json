@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "779bd04cf153dd15d9a5b8821f27a42e20be5725",
+  "short_sha": "779bd04cf1",
+  "committed_at": "2026-11-02T15:19:26Z",
+  "message": "fix: ignore import order in Alembic's generated migrations",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/779bd04cf153dd15d9a5b8821f27a42e20be5725",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "100.0%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "98.5%"
+      }
+    }
+  ]
+}
