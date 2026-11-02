@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "a7bcc05967fa3ed92d33e512853d82c220608de9",
+  "short_sha": "a7bcc05967",
+  "committed_at": "2026-11-02T09:18:42Z",
+  "message": "feat: guard writes and serve the app through jigkit.web",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/a7bcc05967fa3ed92d33e512853d82c220608de9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
