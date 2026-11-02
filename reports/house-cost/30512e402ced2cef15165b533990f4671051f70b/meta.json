@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "30512e402ced2cef15165b533990f4671051f70b",
+  "short_sha": "30512e402c",
+  "committed_at": "2026-11-02T13:43:31Z",
+  "message": "chore: take the shared build tooling from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/30512e402ced2cef15165b533990f4671051f70b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
