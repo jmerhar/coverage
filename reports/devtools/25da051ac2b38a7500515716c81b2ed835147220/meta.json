@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "25da051ac2b38a7500515716c81b2ed835147220",
+  "short_sha": "25da051ac2",
+  "committed_at": "2026-11-02T16:57:08Z",
+  "message": "chore: release 1.1.0",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/25da051ac2b38a7500515716c81b2ed835147220",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.0%"
+      }
+    }
+  ]
+}
