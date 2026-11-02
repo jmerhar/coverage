@@ -1,0 +1,25 @@
+{
+  "project": "jigkit",
+  "sha": "bef71bb96a1a604251e988f03699ef3ca99ea686",
+  "short_sha": "bef71bb96a",
+  "committed_at": "2026-11-02T17:06:14Z",
+  "message": "chore: take the build tooling from jmerhar/devtools, and lock the npm package",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/bef71bb96a1a604251e988f03699ef3ca99ea686",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    }
+  ]
+}
