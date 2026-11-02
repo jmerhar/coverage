@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "f0e9b189416cae40828f17ff8d759d811d040fcc",
+  "short_sha": "f0e9b18941",
+  "committed_at": "2026-11-02T14:12:13Z",
+  "message": "feat: keep logins as revocable database sessions, on jigkit.auth",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/f0e9b189416cae40828f17ff8d759d811d040fcc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "93.9%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
