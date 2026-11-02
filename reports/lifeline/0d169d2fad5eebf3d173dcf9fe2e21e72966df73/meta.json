@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "0d169d2fad5eebf3d173dcf9fe2e21e72966df73",
+  "short_sha": "0d169d2fad",
+  "committed_at": "2026-11-02T15:08:20Z",
+  "message": "feat: drop the first-run setup token",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/0d169d2fad5eebf3d173dcf9fe2e21e72966df73",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    }
+  ]
+}
