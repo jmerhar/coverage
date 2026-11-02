@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "19c1644480c602627b87f1634d310aadfcf336a7",
+  "short_sha": "19c1644480",
+  "committed_at": "2026-11-02T21:31:07Z",
+  "message": "refactor: take the login, setup and passkey screens from @jmerhar/jigkit",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/19c1644480c602627b87f1634d310aadfcf336a7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
