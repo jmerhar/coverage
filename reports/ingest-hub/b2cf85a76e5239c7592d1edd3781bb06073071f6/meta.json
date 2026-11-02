@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "b2cf85a76e5239c7592d1edd3781bb06073071f6",
+  "short_sha": "b2cf85a76e",
+  "committed_at": "2026-11-02T15:52:41Z",
+  "message": "docs: describe the Frank Energie source",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/b2cf85a76e5239c7592d1edd3781bb06073071f6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
