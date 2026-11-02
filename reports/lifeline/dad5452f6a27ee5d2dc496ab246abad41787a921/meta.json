@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "dad5452f6a27ee5d2dc496ab246abad41787a921",
+  "short_sha": "dad5452f6a",
+  "committed_at": "2026-11-02T19:49:14Z",
+  "message": "chore: take the lint, lockfile and contract scripts from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/dad5452f6a27ee5d2dc496ab246abad41787a921",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    }
+  ]
+}
