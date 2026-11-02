@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "34a60d181efc4a10fbb428ae4d630be99b3b5c5a",
+  "short_sha": "34a60d181e",
+  "committed_at": "2026-11-02T14:00:05Z",
+  "message": "refactor: take passwords, sessions, the throttle and the cookie from jigkit.auth",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/34a60d181efc4a10fbb428ae4d630be99b3b5c5a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "90.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "86.8%"
+      }
+    }
+  ]
+}
