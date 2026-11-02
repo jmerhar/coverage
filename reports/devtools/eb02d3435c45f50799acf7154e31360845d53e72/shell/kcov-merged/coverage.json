@@ -1,0 +1,24 @@
+{
+  "files": [
+    {"file": "/src/bin/test-bruno.sh", "percent_covered": "95.31", "covered_lines": "61", "total_lines": "64"},
+    {"file": "/src/fetch/devtools-fetch.sh", "percent_covered": "100.00", "covered_lines": "56", "total_lines": "56"},
+    {"file": "/src/bin/lockfile.sh", "percent_covered": "100.00", "covered_lines": "34", "total_lines": "34"},
+    {"file": "/src/bin/inspect.sh", "percent_covered": "100.00", "covered_lines": "32", "total_lines": "32"},
+    {"file": "/src/bin/check-lockfile.sh", "percent_covered": "97.14", "covered_lines": "34", "total_lines": "35"},
+    {"file": "/src/bin/dev.sh", "percent_covered": "100.00", "covered_lines": "17", "total_lines": "17"},
+    {"file": "/src/bin/release.sh", "percent_covered": "100.00", "covered_lines": "33", "total_lines": "33"},
+    {"file": "/src/bin/app-icons.sh", "percent_covered": "100.00", "covered_lines": "13", "total_lines": "13"},
+    {"file": "/src/bin/github-release.sh", "percent_covered": "100.00", "covered_lines": "15", "total_lines": "15"},
+    {"file": "/src/bin/openapi.sh", "percent_covered": "100.00", "covered_lines": "28", "total_lines": "28"},
+    {"file": "/src/bin/ci-ruff.sh", "percent_covered": "100.00", "covered_lines": "4", "total_lines": "4"},
+    {"file": "/src/bin/lint.sh", "percent_covered": "97.50", "covered_lines": "39", "total_lines": "40"},
+    {"file": "/src/bin/check-compose.sh", "percent_covered": "100.00", "covered_lines": "14", "total_lines": "14"}
+  ],
+  "percent_covered": "98.70",
+  "covered_lines": 380,
+  "total_lines": 385,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "dev.sh",
+  "date": "2026-11-02 19:43:02"
+}
