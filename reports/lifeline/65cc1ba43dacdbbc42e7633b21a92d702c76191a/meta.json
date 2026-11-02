@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "65cc1ba43dacdbbc42e7633b21a92d702c76191a",
+  "short_sha": "65cc1ba43d",
+  "committed_at": "2026-11-02T15:51:50Z",
+  "message": "build(deps): bump the backend group across 1 directory with 17 updates (#5)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/65cc1ba43dacdbbc42e7633b21a92d702c76191a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    }
+  ]
+}
