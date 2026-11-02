@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "422fee86da3911a8778f5a5306bc19dc868372af",
+  "short_sha": "422fee86da",
+  "committed_at": "2026-11-02T19:40:34Z",
+  "message": "style: redraw the status page's icon as an arrow into a database",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/422fee86da3911a8778f5a5306bc19dc868372af",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
