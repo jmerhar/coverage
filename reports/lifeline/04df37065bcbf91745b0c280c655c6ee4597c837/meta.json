@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "04df37065bcbf91745b0c280c655c6ee4597c837",
+  "short_sha": "04df37065b",
+  "committed_at": "2026-11-02T14:05:08Z",
+  "message": "chore: take the ruff rules from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/04df37065bcbf91745b0c280c655c6ee4597c837",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
