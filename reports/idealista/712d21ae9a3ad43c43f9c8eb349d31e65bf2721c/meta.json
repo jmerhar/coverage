@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "712d21ae9a3ad43c43f9c8eb349d31e65bf2721c",
+  "short_sha": "712d21ae9a",
+  "committed_at": "2026-11-02T21:46:19Z",
+  "message": "fix(scraper): keep cloakbrowser below 0.7, whose install needs a license key",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/712d21ae9a3ad43c43f9c8eb349d31e65bf2721c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
