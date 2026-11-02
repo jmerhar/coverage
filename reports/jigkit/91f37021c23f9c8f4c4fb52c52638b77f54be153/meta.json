@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "91f37021c23f9c8f4c4fb52c52638b77f54be153",
+  "short_sha": "91f37021c2",
+  "committed_at": "2026-11-02T20:23:16Z",
+  "message": "fix: polish the template's European Portuguese",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/91f37021c23f9c8f4c4fb52c52638b77f54be153",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
