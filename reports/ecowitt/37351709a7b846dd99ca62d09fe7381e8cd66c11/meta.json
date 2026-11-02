@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "37351709a7b846dd99ca62d09fe7381e8cd66c11",
+  "short_sha": "37351709a7",
+  "committed_at": "2026-11-02T19:13:48Z",
+  "message": "refactor: take the dashboard pages' helpers from @jmerhar/jigkit",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/37351709a7b846dd99ca62d09fe7381e8cd66c11",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
