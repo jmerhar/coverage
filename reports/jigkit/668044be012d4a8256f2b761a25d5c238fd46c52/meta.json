@@ -1,0 +1,25 @@
+{
+  "project": "jigkit",
+  "sha": "668044be012d4a8256f2b761a25d5c238fd46c52",
+  "short_sha": "668044be01",
+  "committed_at": "2026-11-02T16:10:34Z",
+  "message": "feat: add the npm package @jmerhar/jigkit",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/668044be012d4a8256f2b761a25d5c238fd46c52",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    }
+  ]
+}
