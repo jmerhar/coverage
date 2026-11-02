@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "a1ff71c9235e79f1ba73310f191bd4ed45866011",
+  "short_sha": "a1ff71c923",
+  "committed_at": "2026-11-02T21:36:14Z",
+  "message": "chore: take the lockfile, schema export and inspect scripts from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/a1ff71c9235e79f1ba73310f191bd4ed45866011",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
