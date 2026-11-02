@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "9725c3895639838506b0fc54d22b0b15d9621506",
+  "short_sha": "9725c38956",
+  "committed_at": "2026-11-02T09:25:52Z",
+  "message": "refactor: take the rate limiter from jigkit 0.3.0",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/9725c3895639838506b0fc54d22b0b15d9621506",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.4%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
