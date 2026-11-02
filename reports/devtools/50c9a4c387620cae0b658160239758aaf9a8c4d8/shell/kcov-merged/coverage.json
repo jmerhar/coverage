@@ -1,0 +1,15 @@
+{
+  "files": [
+    {"file": "/src/fetch/devtools-fetch.sh", "percent_covered": "100.00", "covered_lines": "56", "total_lines": "56"},
+    {"file": "/src/bin/dev.sh", "percent_covered": "100.00", "covered_lines": "17", "total_lines": "17"},
+    {"file": "/src/bin/ci-ruff.sh", "percent_covered": "100.00", "covered_lines": "4", "total_lines": "4"},
+    {"file": "/src/bin/check-compose.sh", "percent_covered": "100.00", "covered_lines": "14", "total_lines": "14"}
+  ],
+  "percent_covered": "100.00",
+  "covered_lines": 91,
+  "total_lines": 91,
+  "percent_low": 25,
+  "percent_high": 75,
+  "command": "dev.sh",
+  "date": "2026-11-02 13:34:19"
+}
