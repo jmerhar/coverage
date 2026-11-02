@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "cc063300f0ad612af0d02742313066b5848e5a4b",
+  "short_sha": "cc063300f0",
+  "committed_at": "2026-11-02T16:52:16Z",
+  "message": "fix: keep test-bruno's trap function clear of older ShellCheck's SC2317",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/cc063300f0ad612af0d02742313066b5848e5a4b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.0%"
+      }
+    }
+  ]
+}
