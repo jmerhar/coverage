@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "32e022284d2bfec25a1dd6d02de88343a452d565",
+  "short_sha": "32e022284d",
+  "committed_at": "2026-11-02T19:22:04Z",
+  "message": "feat: label streams on the status page, and give it an icon",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/32e022284d2bfec25a1dd6d02de88343a452d565",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
