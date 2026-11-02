@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "ab0c808164a721a9351a4aba1075627bdbba4416",
+  "short_sha": "ab0c808164",
+  "committed_at": "2026-11-02T19:27:04Z",
+  "message": "chore: take the release, lint and contract scripts from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/ab0c808164a721a9351a4aba1075627bdbba4416",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.8%"
+      }
+    }
+  ]
+}
