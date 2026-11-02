@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "7c94f29d46c8f3305257e07bfeb478caf2d50cf7",
+  "short_sha": "7c94f29d46",
+  "committed_at": "2026-11-02T19:14:51Z",
+  "message": "refactor: take the interface's helpers from @jmerhar/jigkit",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/7c94f29d46c8f3305257e07bfeb478caf2d50cf7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.7%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.8%"
+      }
+    }
+  ]
+}
