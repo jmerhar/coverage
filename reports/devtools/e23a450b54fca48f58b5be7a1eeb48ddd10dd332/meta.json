@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "e23a450b54fca48f58b5be7a1eeb48ddd10dd332",
+  "short_sha": "e23a450b54",
+  "committed_at": "2026-11-02T16:48:08Z",
+  "message": "docs: describe devtools in its own terms",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/e23a450b54fca48f58b5be7a1eeb48ddd10dd332",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.0%"
+      }
+    }
+  ]
+}
