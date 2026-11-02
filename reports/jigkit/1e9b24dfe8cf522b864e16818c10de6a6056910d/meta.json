@@ -1,0 +1,25 @@
+{
+  "project": "jigkit",
+  "sha": "1e9b24dfe8cf522b864e16818c10de6a6056910d",
+  "short_sha": "1e9b24dfe8",
+  "committed_at": "2026-11-02T16:29:16Z",
+  "message": "feat: read message variants in the npm package's catalogue check",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/1e9b24dfe8cf522b864e16818c10de6a6056910d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    }
+  ]
+}
