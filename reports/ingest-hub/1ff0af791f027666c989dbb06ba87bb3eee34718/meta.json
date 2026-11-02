@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "1ff0af791f027666c989dbb06ba87bb3eee34718",
+  "short_sha": "1ff0af791f",
+  "committed_at": "2026-11-02T15:19:38Z",
+  "message": "docs: describe the MQTT source and replacing another writer",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/1ff0af791f027666c989dbb06ba87bb3eee34718",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
