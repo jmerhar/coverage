@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "eea017fec0b98688d5baad32062174610e93e644",
+  "short_sha": "eea017fec0",
+  "committed_at": "2026-11-02T13:51:38Z",
+  "message": "chore: take the shared build tooling from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/eea017fec0b98688d5baad32062174610e93e644",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    }
+  ]
+}
