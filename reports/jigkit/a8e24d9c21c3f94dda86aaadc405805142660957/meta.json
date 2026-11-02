@@ -1,0 +1,25 @@
+{
+  "project": "jigkit",
+  "sha": "a8e24d9c21c3f94dda86aaadc405805142660957",
+  "short_sha": "a8e24d9c21",
+  "committed_at": "2026-11-02T16:29:47Z",
+  "message": "docs: list the npm package's modules one per line in the changelog",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/a8e24d9c21c3f94dda86aaadc405805142660957",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    }
+  ]
+}
