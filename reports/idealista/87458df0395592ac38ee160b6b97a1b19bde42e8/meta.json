@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "87458df0395592ac38ee160b6b97a1b19bde42e8",
+  "short_sha": "87458df039",
+  "committed_at": "2026-11-03T07:29:18Z",
+  "message": "chore: run ruff in make lint and CI",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/87458df0395592ac38ee160b6b97a1b19bde42e8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
