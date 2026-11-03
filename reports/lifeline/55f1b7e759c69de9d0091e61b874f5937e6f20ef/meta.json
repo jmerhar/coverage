@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "55f1b7e759c69de9d0091e61b874f5937e6f20ef",
+  "short_sha": "55f1b7e759",
+  "committed_at": "2026-11-03T07:22:47Z",
+  "message": "build: release lifeline by version, as a tagged image and a GitHub release",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/55f1b7e759c69de9d0091e61b874f5937e6f20ef",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    }
+  ]
+}
