@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "95aa633ccfce5ce65e708a51cc47dd725c82cc40",
+  "short_sha": "95aa633ccf",
+  "committed_at": "2026-11-03T18:49:18Z",
+  "message": "feat(docker-live-upgrade): turn live-restore on for the length of the run",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/95aa633ccfce5ce65e708a51cc47dd725c82cc40",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
