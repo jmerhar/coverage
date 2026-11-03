@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "baa1525f1c7821799996ce5316a56ca9d1ed279e",
+  "short_sha": "baa1525f1c",
+  "committed_at": "2026-11-03T07:49:31Z",
+  "message": "build: tag the main branch's image edge rather than latest",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/baa1525f1c7821799996ce5316a56ca9d1ed279e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
