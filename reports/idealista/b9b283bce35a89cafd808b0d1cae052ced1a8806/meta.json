@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "b9b283bce35a89cafd808b0d1cae052ced1a8806",
+  "short_sha": "b9b283bce3",
+  "committed_at": "2026-11-03T08:35:27Z",
+  "message": "chore: name the reformatting commit's current SHA in the blame ignore list",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/b9b283bce35a89cafd808b0d1cae052ced1a8806",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.3%",
+        "branch": "94.2%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
