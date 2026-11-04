@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "139c2fa69a4183357f563ea081d0da44a48a9bf4",
+  "short_sha": "139c2fa69a",
+  "committed_at": "2026-11-04T09:55:34Z",
+  "message": "docs: describe the Vaillant source",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/139c2fa69a4183357f563ea081d0da44a48a9bf4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
