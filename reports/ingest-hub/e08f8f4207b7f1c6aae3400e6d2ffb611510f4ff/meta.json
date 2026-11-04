@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "e08f8f4207b7f1c6aae3400e6d2ffb611510f4ff",
+  "short_sha": "e08f8f4207",
+  "committed_at": "2026-11-04T10:03:41Z",
+  "message": "fix: wait out Vaillant's quota at login too, and space out requests",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/e08f8f4207b7f1c6aae3400e6d2ffb611510f4ff",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
