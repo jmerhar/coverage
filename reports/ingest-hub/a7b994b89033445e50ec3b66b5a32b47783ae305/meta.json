@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "a7b994b89033445e50ec3b66b5a32b47783ae305",
+  "short_sha": "a7b994b890",
+  "committed_at": "2026-11-04T18:43:05Z",
+  "message": "feat: import Vaillant's EU Data Act exports from a drop folder",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/a7b994b89033445e50ec3b66b5a32b47783ae305",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
