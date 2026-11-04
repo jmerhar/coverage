@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "ffcb44e80673a700feb7b417348f216bcd679605",
+  "short_sha": "ffcb44e806",
+  "committed_at": "2026-11-04T19:38:35Z",
+  "message": "feat: import the controller state from Vaillant's data exports",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/ffcb44e80673a700feb7b417348f216bcd679605",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
