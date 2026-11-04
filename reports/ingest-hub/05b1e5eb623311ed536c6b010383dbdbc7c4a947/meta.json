@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "05b1e5eb623311ed536c6b010383dbdbc7c4a947",
+  "short_sha": "05b1e5eb62",
+  "committed_at": "2026-11-04T09:33:55Z",
+  "message": "chore(release): 0.2.0",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/05b1e5eb623311ed536c6b010383dbdbc7c4a947",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
