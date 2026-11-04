@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "acb1b1251a161b1071fd7122e618c9f9b7d1286c",
+  "short_sha": "acb1b1251a",
+  "committed_at": "2026-11-04T09:26:30Z",
+  "message": "fix(docker-live-upgrade): a summary that says at a glance whether all went well",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/acb1b1251a161b1071fd7122e618c9f9b7d1286c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.6%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
