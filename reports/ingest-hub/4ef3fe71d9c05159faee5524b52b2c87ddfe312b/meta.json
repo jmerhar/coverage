@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "4ef3fe71d9c05159faee5524b52b2c87ddfe312b",
+  "short_sha": "4ef3fe71d9",
+  "committed_at": "2026-11-04T15:01:25Z",
+  "message": "fix: keep the Vaillant source within its hourly request quota",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/4ef3fe71d9c05159faee5524b52b2c87ddfe312b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
