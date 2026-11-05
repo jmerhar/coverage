@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "90f0edb3a8c30e92b1f1ff2cfe0b542f7f3a053b",
+  "short_sha": "90f0edb3a8",
+  "committed_at": "2026-11-05T09:17:42Z",
+  "message": "feat: upload files to a source from the status page, and stop alerting on Vaillant quota waits",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/90f0edb3a8c30e92b1f1ff2cfe0b542f7f3a053b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
