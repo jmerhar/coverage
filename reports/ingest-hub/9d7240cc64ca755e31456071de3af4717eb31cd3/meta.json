@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "9d7240cc64ca755e31456071de3af4717eb31cd3",
+  "short_sha": "9d7240cc64",
+  "committed_at": "2026-11-05T09:33:12Z",
+  "message": "fix: name devices in exports without a topology, and show when an upload is imported",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/9d7240cc64ca755e31456071de3af4717eb31cd3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
