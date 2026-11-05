@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "a494160d13ebc475bd36897bed82f6367ea1618d",
+  "short_sha": "a494160d13",
+  "committed_at": "2026-11-05T17:49:25Z",
+  "message": "fix: keep the template's description out of Python source",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/a494160d13ebc475bd36897bed82f6367ea1618d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
