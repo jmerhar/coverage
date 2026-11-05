@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "7322aff383441a9cac1f023866a4597b57aa6378",
+  "short_sha": "7322aff383",
+  "committed_at": "2026-11-05T09:25:11Z",
+  "message": "fix: log what the Vaillant source had counted when the quota is refused",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/7322aff383441a9cac1f023866a4597b57aa6378",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
