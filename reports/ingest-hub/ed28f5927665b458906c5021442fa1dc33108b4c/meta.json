@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "ed28f5927665b458906c5021442fa1dc33108b4c",
+  "short_sha": "ed28f59276",
+  "committed_at": "2026-11-05T09:23:51Z",
+  "message": "fix: keep uploaded files private, and describe how often an export reports power",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/ed28f5927665b458906c5021442fa1dc33108b4c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
