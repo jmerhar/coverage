@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "1004138d91249517193eb8767fd774bf487d524a",
+  "short_sha": "1004138d91",
+  "committed_at": "2026-11-06T19:16:13Z",
+  "message": "ci: take the build tooling and workflows from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/1004138d91249517193eb8767fd774bf487d524a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
