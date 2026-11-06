@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "a07f549be66462f220e45d59f506c2f83b0499f1",
+  "short_sha": "a07f549be6",
+  "committed_at": "2026-11-06T19:11:08Z",
+  "message": "ci: take the build tooling and workflows from jmerhar/devtools",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/a07f549be66462f220e45d59f506c2f83b0499f1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
