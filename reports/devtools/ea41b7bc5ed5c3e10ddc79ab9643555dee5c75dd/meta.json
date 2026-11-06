@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "ea41b7bc5ed5c3e10ddc79ab9643555dee5c75dd",
+  "short_sha": "ea41b7bc5e",
+  "committed_at": "2026-11-06T16:29:31Z",
+  "message": "fix: push images only from the default branch and tags, and measure changes by tree",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/ea41b7bc5ed5c3e10ddc79ab9643555dee5c75dd",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.2%"
+      }
+    }
+  ]
+}
