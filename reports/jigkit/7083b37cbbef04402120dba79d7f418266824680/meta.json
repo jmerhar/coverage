@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "7083b37cbbef04402120dba79d7f418266824680",
+  "short_sha": "7083b37cbb",
+  "committed_at": "2026-11-06T17:03:13Z",
+  "message": "feat: the template takes the base stylesheet and a folding header",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/7083b37cbbef04402120dba79d7f418266824680",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
