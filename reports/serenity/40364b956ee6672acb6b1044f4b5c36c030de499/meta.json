@@ -1,0 +1,18 @@
+{
+  "project": "serenity",
+  "sha": "40364b956ee6672acb6b1044f4b5c36c030de499",
+  "short_sha": "40364b956e",
+  "committed_at": "2026-11-06T19:37:33Z",
+  "message": "chore: take the help target and generated configs from devtools",
+  "commit_url": "https://github.com/jmerhar/serenity/commit/40364b956ee6672acb6b1044f4b5c36c030de499",
+  "reports": [
+    {
+      "name": "serenity",
+      "path": "coverage",
+      "metrics": {
+        "line": "98.4%",
+        "methods": "91.5%"
+      }
+    }
+  ]
+}
