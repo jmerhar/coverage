@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "924add40bd5072892494afb0311422c495721d5b",
+  "short_sha": "924add40bd",
+  "committed_at": "2026-11-06T18:03:45Z",
+  "message": "feat: add the @jmerhar/frontend-config package",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/924add40bd5072892494afb0311422c495721d5b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.0%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.2%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
