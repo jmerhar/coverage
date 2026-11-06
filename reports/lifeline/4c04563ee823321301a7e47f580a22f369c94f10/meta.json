@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "4c04563ee823321301a7e47f580a22f369c94f10",
+  "short_sha": "4c04563ee8",
+  "committed_at": "2026-11-06T16:43:59Z",
+  "message": "ci: run CI through devtools' python-docker-app workflow",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/4c04563ee823321301a7e47f580a22f369c94f10",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
