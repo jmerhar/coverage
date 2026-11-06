@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "6f7f32c117abec38fc87b395714af0337be7faa0",
+  "short_sha": "6f7f32c117",
+  "committed_at": "2026-11-06T16:37:48Z",
+  "message": "ci: run CI through devtools' python-docker-app workflow",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/6f7f32c117abec38fc87b395714af0337be7faa0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
