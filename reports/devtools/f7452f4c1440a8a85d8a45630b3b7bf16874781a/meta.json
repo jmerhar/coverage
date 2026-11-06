@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "f7452f4c1440a8a85d8a45630b3b7bf16874781a",
+  "short_sha": "f7452f4c14",
+  "committed_at": "2026-11-06T18:25:28Z",
+  "message": "chore: release 1.4.0",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/f7452f4c1440a8a85d8a45630b3b7bf16874781a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
