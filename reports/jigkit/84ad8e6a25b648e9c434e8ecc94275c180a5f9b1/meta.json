@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "84ad8e6a25b648e9c434e8ecc94275c180a5f9b1",
+  "short_sha": "84ad8e6a25",
+  "committed_at": "2026-11-06T17:14:34Z",
+  "message": "ci: render new applications with devtools' python-docker-app workflow",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/84ad8e6a25b648e9c434e8ecc94275c180a5f9b1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
