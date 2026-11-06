@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "c484343207b9fa760519ceece51ab018e93b32c1",
+  "short_sha": "c484343207",
+  "committed_at": "2026-11-06T17:49:39Z",
+  "message": "fix: draw the menu's and the select's arrow as one chevron",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/c484343207b9fa760519ceece51ab018e93b32c1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
