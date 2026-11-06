@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "272f86ff941e28e6149f946c15f2a4b795d32ec7",
+  "short_sha": "272f86ff94",
+  "committed_at": "2026-11-06T18:36:25Z",
+  "message": "chore: generate dependabot.yml and codecov.yml with devtools-check",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/272f86ff941e28e6149f946c15f2a4b795d32ec7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
