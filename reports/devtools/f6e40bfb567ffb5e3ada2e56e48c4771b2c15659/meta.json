@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "f6e40bfb567ffb5e3ada2e56e48c4771b2c15659",
+  "short_sha": "f6e40bfb56",
+  "committed_at": "2026-11-06T18:16:30Z",
+  "message": "feat: check a repository is in step with devtools, generating dependabot.yml and codecov.yml",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/f6e40bfb567ffb5e3ada2e56e48c4771b2c15659",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
