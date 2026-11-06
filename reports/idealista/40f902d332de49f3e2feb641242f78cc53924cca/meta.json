@@ -1,0 +1,33 @@
+{
+  "project": "idealista",
+  "sha": "40f902d332de49f3e2feb641242f78cc53924cca",
+  "short_sha": "40f902d332",
+  "committed_at": "2026-11-06T17:05:59Z",
+  "message": "fix(ci): set the test database URL from the setup script",
+  "commit_url": "https://github.com/jmerhar/idealista/commit/40f902d332de49f3e2feb641242f78cc53924cca",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "92.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "97.4%",
+        "branch": "94.3%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.7%",
+        "branch": "90.9%"
+      }
+    }
+  ]
+}
