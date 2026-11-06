@@ -1,0 +1,30 @@
+{
+  "project": "devtools",
+  "sha": "fc9f21bd12053a3572a552baa358ee5755629357",
+  "short_sha": "fc9f21bd12",
+  "committed_at": "2026-11-06T16:08:17Z",
+  "message": "fix: leave links out of the suites' coverage archives",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/fc9f21bd12053a3572a552baa358ee5755629357",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.9%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.7%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.1%"
+      }
+    }
+  ]
+}
