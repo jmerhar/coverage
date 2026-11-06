@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "37de32e6faa5a07e7be7800e500acff9764bbaaf",
+  "short_sha": "37de32e6fa",
+  "committed_at": "2026-11-06T18:41:58Z",
+  "message": "chore: generate dependabot.yml and codecov.yml with devtools-check",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/37de32e6faa5a07e7be7800e500acff9764bbaaf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.1%",
+        "branch": "93.8%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
