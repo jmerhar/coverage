@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "c72037651a70d29fca4d9da71cd4fd3e28612ba4",
+  "short_sha": "c72037651a",
+  "committed_at": "2026-11-06T17:52:50Z",
+  "message": "chore(release): 0.12.0",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/c72037651a70d29fca4d9da71cd4fd3e28612ba4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
