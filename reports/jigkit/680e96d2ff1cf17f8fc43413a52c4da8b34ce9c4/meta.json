@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "680e96d2ff1cf17f8fc43413a52c4da8b34ce9c4",
+  "short_sha": "680e96d2ff",
+  "committed_at": "2026-11-06T16:56:05Z",
+  "message": "chore: keep the template on the released packages until the stylesheet is published",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/680e96d2ff1cf17f8fc43413a52c4da8b34ce9c4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
