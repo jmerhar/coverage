@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "ffefae6b1c631ce146e3a851fa144391b8b7639c",
+  "short_sha": "ffefae6b1c",
+  "committed_at": "2026-11-07T12:12:05Z",
+  "message": "fix: read the AlphaESS inverter temperature in whole degrees",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/ffefae6b1c631ce146e3a851fa144391b8b7639c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
