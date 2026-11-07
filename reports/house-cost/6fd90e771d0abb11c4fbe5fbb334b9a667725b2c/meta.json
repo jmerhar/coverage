@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "6fd90e771d0abb11c4fbe5fbb334b9a667725b2c",
+  "short_sha": "6fd90e771d",
+  "committed_at": "2026-11-07T13:02:06Z",
+  "message": "chore(deps): bump the backend group in /backend with 2 updates (#9)",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/6fd90e771d0abb11c4fbe5fbb334b9a667725b2c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
