@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "f03d5d74054c519302f5c86f83de1715be6425d4",
+  "short_sha": "f03d5d7405",
+  "committed_at": "2026-11-07T12:01:11Z",
+  "message": "feat: add a Zaptec charger source that reads through a login-holding bridge",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/f03d5d74054c519302f5c86f83de1715be6425d4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
