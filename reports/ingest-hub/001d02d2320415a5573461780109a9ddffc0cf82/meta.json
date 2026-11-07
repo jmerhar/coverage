@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "001d02d2320415a5573461780109a9ddffc0cf82",
+  "short_sha": "001d02d232",
+  "committed_at": "2026-11-07T12:13:33Z",
+  "message": "fix: keep the AlphaESS inverter temperature a float, with an as_float map option",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/001d02d2320415a5573461780109a9ddffc0cf82",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
