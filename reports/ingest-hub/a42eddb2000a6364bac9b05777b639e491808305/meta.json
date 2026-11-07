@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "a42eddb2000a6364bac9b05777b639e491808305",
+  "short_sha": "a42eddb200",
+  "committed_at": "2026-11-07T10:24:58Z",
+  "message": "fix: correct the AlphaESS map's meter voltages, cell voltages and dispatch powers",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/a42eddb2000a6364bac9b05777b639e491808305",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
