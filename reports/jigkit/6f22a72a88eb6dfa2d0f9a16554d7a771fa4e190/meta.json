@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "6f22a72a88eb6dfa2d0f9a16554d7a771fa4e190",
+  "short_sha": "6f22a72a88",
+  "committed_at": "2026-11-07T13:00:23Z",
+  "message": "chore(deps): bump actions/setup-node from 6 to 7 in the actions group (#1)",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/6f22a72a88eb6dfa2d0f9a16554d7a771fa4e190",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.2%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
