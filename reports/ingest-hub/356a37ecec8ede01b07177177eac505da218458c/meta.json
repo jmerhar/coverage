@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "356a37ecec8ede01b07177177eac505da218458c",
+  "short_sha": "356a37ecec",
+  "committed_at": "2026-11-07T12:17:51Z",
+  "message": "fix: read the AlphaESS inverter temperature in tenths of a degree",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/356a37ecec8ede01b07177177eac505da218458c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
