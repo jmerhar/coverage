@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "f104ca639d6b48761c0d8ecf8a5649b5d6f2e640",
+  "short_sha": "f104ca639d",
+  "committed_at": "2026-11-07T12:58:46Z",
+  "message": "feat: add an AlphaESS cloud source for history and daily totals",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/f104ca639d6b48761c0d8ecf8a5649b5d6f2e640",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
