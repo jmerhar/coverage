@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "52666953921d9e99d9b4df4d23395e5aefb23166",
+  "short_sha": "5266695392",
+  "committed_at": "2026-11-07T10:13:17Z",
+  "message": "feat: add a Modbus TCP source with register maps for AlphaESS and Hoymiles",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/52666953921d9e99d9b4df4d23395e5aefb23166",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
