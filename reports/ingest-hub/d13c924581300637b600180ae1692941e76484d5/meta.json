@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "d13c924581300637b600180ae1692941e76484d5",
+  "short_sha": "d13c924581",
+  "committed_at": "2026-11-08T17:03:31Z",
+  "message": "fix: skip zero readings of running totals and name errors without a message",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/d13c924581300637b600180ae1692941e76484d5",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
