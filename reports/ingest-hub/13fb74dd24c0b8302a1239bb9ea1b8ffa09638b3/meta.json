@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "13fb74dd24c0b8302a1239bb9ea1b8ffa09638b3",
+  "short_sha": "13fb74dd24",
+  "committed_at": "2026-11-08T20:13:55Z",
+  "message": "fix: spread a Frank account's history over rounds",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/13fb74dd24c0b8302a1239bb9ea1b8ffa09638b3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
