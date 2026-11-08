@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "d4892cd199bda7368fac8950a0fe09f8668ba122",
+  "short_sha": "d4892cd199",
+  "committed_at": "2026-11-08T20:07:27Z",
+  "message": "feat: read a Frank customer's account data in the frank source",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/d4892cd199bda7368fac8950a0fe09f8668ba122",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
