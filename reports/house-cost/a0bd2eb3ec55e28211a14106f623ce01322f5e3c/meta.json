@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "a0bd2eb3ec55e28211a14106f623ce01322f5e3c",
+  "short_sha": "a0bd2eb3ec",
+  "committed_at": "2026-11-09T16:19:05Z",
+  "message": "chore(deps): update anthropic requirement (#12)",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/a0bd2eb3ec55e28211a14106f623ce01322f5e3c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
