@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "fd781b39acde189b08f7b78d09a5cf0c702baf76",
+  "short_sha": "fd781b39ac",
+  "committed_at": "2026-11-09T10:50:43Z",
+  "message": "feat: a manifest route, and an installable template",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/fd781b39acde189b08f7b78d09a5cf0c702baf76",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.7%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.0%"
+      }
+    }
+  ]
+}
