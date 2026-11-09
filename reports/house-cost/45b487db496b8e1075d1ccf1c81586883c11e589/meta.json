@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "45b487db496b8e1075d1ccf1c81586883c11e589",
+  "short_sha": "45b487db49",
+  "committed_at": "2026-11-09T11:52:57Z",
+  "message": "refactor: serve the manifest with jigkit's manifest_router",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/45b487db496b8e1075d1ccf1c81586883c11e589",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.3%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "85.1%"
+      }
+    }
+  ]
+}
