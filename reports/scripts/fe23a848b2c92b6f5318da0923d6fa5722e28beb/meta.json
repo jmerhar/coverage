@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "fe23a848b2c92b6f5318da0923d6fa5722e28beb",
+  "short_sha": "fe23a848b2",
+  "committed_at": "2026-11-11T22:14:26Z",
+  "message": "feat(pg-backup): dump Postgres databases from their containers with a rotation",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/fe23a848b2c92b6f5318da0923d6fa5722e28beb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.7%"
+      }
+    }
+  ]
+}
