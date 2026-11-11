@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "512288bdfcaa4d9f194171ed5780cb6d68d8e846",
+  "short_sha": "512288bdfc",
+  "committed_at": "2026-11-11T20:02:20Z",
+  "message": "feat: fetch a Vaillant export only while yesterday is missing",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/512288bdfcaa4d9f194171ed5780cb6d68d8e846",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
