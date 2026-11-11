@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "f486e4ddc5e0098120b20888cdd7651d196b8a7f",
+  "short_sha": "f486e4ddc5",
+  "committed_at": "2026-11-11T19:43:18Z",
+  "message": "feat: answer --version in every script",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/f486e4ddc5e0098120b20888cdd7651d196b8a7f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.7%"
+      }
+    }
+  ]
+}
