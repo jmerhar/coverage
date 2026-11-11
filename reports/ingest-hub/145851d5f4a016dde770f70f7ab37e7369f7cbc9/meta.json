@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "145851d5f4a016dde770f70f7ab37e7369f7cbc9",
+  "short_sha": "145851d5f4",
+  "committed_at": "2026-11-11T19:47:23Z",
+  "message": "fix: read the portal's page rows and refuse an account without systems",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/145851d5f4a016dde770f70f7ab37e7369f7cbc9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
