@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "8017b19893f5170d4de8ff1ccdbeee5836ecf415",
+  "short_sha": "8017b19893",
+  "committed_at": "2026-11-12T10:46:02Z",
+  "message": "fix(pg-backup): publish to Homebrew too, and close four review findings",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/8017b19893f5170d4de8ff1ccdbeee5836ecf415",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.7%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.7%"
+      }
+    }
+  ]
+}
