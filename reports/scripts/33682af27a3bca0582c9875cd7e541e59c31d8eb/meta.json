@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "33682af27a3bca0582c9875cd7e541e59c31d8eb",
+  "short_sha": "33682af27a",
+  "committed_at": "2026-11-12T12:04:09Z",
+  "message": "feat(db-backup): back up, verify and restore Postgres, MariaDB, MongoDB and SQLite",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/33682af27a3bca0582c9875cd7e541e59c31d8eb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
