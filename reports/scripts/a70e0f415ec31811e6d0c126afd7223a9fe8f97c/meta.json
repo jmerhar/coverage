@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "a70e0f415ec31811e6d0c126afd7223a9fe8f97c",
+  "short_sha": "a70e0f415e",
+  "committed_at": "2026-11-12T14:06:16Z",
+  "message": "fix(db-backup): keep gzip's broken-pipe complaint out of the log under systemd",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/a70e0f415ec31811e6d0c126afd7223a9fe8f97c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
