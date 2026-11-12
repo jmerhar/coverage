@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "1ff73f34104826605d945f6b3556f28adc326730",
+  "short_sha": "1ff73f3410",
+  "committed_at": "2026-11-12T18:58:09Z",
+  "message": "fix: take an incomplete Frank usage day as it is after 7 days, not 30",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/1ff73f34104826605d945f6b3556f28adc326730",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
