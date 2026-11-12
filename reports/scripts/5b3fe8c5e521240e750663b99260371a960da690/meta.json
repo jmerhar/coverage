@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "5b3fe8c5e521240e750663b99260371a960da690",
+  "short_sha": "5b3fe8c5e5",
+  "committed_at": "2026-11-12T12:25:51Z",
+  "message": "fix(db-backup): keep decompressed SQLite copies off TMPDIR",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/5b3fe8c5e521240e750663b99260371a960da690",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
