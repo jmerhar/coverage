@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "1efb8118df4872307a7998086d0bed0b6dab87d0",
+  "short_sha": "1efb8118df",
+  "committed_at": "2026-11-12T17:03:17Z",
+  "message": "fix: judge a Vaillant export's completeness by its last hour, and fetch from noon",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/1efb8118df4872307a7998086d0bed0b6dab87d0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
