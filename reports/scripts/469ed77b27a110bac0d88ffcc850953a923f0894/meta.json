@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "469ed77b27a110bac0d88ffcc850953a923f0894",
+  "short_sha": "469ed77b27",
+  "committed_at": "2026-11-12T13:31:26Z",
+  "message": "refactor(db-backup): put scratch files under TMPDIR, keep renamed files beside their target",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/469ed77b27a110bac0d88ffcc850953a923f0894",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
