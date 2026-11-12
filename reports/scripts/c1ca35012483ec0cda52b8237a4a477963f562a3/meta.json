@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "c1ca35012483ec0cda52b8237a4a477963f562a3",
+  "short_sha": "c1ca350124",
+  "committed_at": "2026-11-12T18:20:32Z",
+  "message": "feat(db-backup): log exact table and row counts from verify",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/c1ca35012483ec0cda52b8237a4a477963f562a3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
