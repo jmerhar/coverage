@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "0b0774be1361f169e0c1d89e7bf990e5c7842c60",
+  "short_sha": "0b0774be13",
+  "committed_at": "2026-11-12T18:03:01Z",
+  "message": "fix(colors): make --no-color turn colour off in a terminal",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/0b0774be1361f169e0c1d89e7bf990e5c7842c60",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
