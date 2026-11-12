@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "cb4a498f8d2011262b18f713528a6ebe43b65cae",
+  "short_sha": "cb4a498f8d",
+  "committed_at": "2026-11-12T13:45:14Z",
+  "message": "fix: count only the days a Vaillant export holds completely",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/cb4a498f8d2011262b18f713528a6ebe43b65cae",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
