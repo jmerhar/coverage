@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "f9fbb63ea00131ada480d31cc1d694b69e519fc3",
+  "short_sha": "f9fbb63ea0",
+  "committed_at": "2026-11-13T22:35:06Z",
+  "message": "feat: import Google Health from Google Takeout exports (google_takeout)",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/f9fbb63ea00131ada480d31cc1d694b69e519fc3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
