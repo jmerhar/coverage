@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "faf97303abdbfde3357e7199395f8c0abe5ff3b8",
+  "short_sha": "faf97303ab",
+  "committed_at": "2026-11-13T21:35:15Z",
+  "message": "feat: import ResMed CPAP SD cards (resmed_sd)",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/faf97303abdbfde3357e7199395f8c0abe5ff3b8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
