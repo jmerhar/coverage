@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "9026a4e00b0d76ef0460d6ef0e1be00bc5baa9a8",
+  "short_sha": "9026a4e00b",
+  "committed_at": "2026-11-13T10:44:49Z",
+  "message": "feat(docker-live-upgrade): report a container replaced during the run as replaced",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/9026a4e00b0d76ef0460d6ef0e1be00bc5baa9a8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
