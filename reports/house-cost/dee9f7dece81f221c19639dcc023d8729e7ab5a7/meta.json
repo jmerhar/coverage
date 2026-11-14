@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "dee9f7dece81f221c19639dcc023d8729e7ab5a7",
+  "short_sha": "dee9f7dece",
+  "committed_at": "2026-11-14T11:25:54Z",
+  "message": "feat: jigkit's base stylesheet and navigation",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/dee9f7dece81f221c19639dcc023d8729e7ab5a7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
