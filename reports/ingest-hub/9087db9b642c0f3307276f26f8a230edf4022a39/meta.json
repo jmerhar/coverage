@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "9087db9b642c0f3307276f26f8a230edf4022a39",
+  "short_sha": "9087db9b64",
+  "committed_at": "2026-11-14T16:55:05Z",
+  "message": "feat: poll the Google Health API (google_health), and align google_takeout with it",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/9087db9b642c0f3307276f26f8a230edf4022a39",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
