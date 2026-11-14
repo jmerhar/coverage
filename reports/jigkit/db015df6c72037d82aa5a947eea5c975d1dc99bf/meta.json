@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "db015df6c72037d82aa5a947eea5c975d1dc99bf",
+  "short_sha": "db015df6c7",
+  "committed_at": "2026-11-14T11:18:21Z",
+  "message": "fix: keep a label's input at its own height beside a taller field",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/db015df6c72037d82aa5a947eea5c975d1dc99bf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.2%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    }
+  ]
+}
