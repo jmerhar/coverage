@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "53b901abda381b8f2cf3bc3f06e1ab5ab61fb9a3",
+  "short_sha": "53b901abda",
+  "committed_at": "2026-11-14T11:53:14Z",
+  "message": "fix: tighter cards with lists, and an optional field's input level with its neighbour",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/53b901abda381b8f2cf3bc3f06e1ab5ab61fb9a3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
