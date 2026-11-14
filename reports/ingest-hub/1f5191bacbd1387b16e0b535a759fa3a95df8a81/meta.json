@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "1f5191bacbd1387b16e0b535a759fa3a95df8a81",
+  "short_sha": "1f5191bacb",
+  "committed_at": "2026-11-14T18:11:20Z",
+  "message": "feat: show what to upload, and the size limit, on each upload card",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/1f5191bacbd1387b16e0b535a759fa3a95df8a81",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
