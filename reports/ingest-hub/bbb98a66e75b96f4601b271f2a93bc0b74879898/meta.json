@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "bbb98a66e75b96f4601b271f2a93bc0b74879898",
+  "short_sha": "bbb98a66e7",
+  "committed_at": "2026-11-14T18:18:58Z",
+  "message": "feat: put the upload help in a tooltip beside the upload button",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/bbb98a66e75b96f4601b271f2a93bc0b74879898",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
