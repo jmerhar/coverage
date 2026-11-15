@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "b13301c9007d18b49c4258757b58c0ea19df2562",
+  "short_sha": "b13301c900",
+  "committed_at": "2026-11-15T20:01:50Z",
+  "message": "chore(release): 0.1.0",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/b13301c9007d18b49c4258757b58c0ea19df2562",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
