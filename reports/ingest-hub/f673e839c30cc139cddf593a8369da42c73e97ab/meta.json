@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "f673e839c30cc139cddf593a8369da42c73e97ab",
+  "short_sha": "f673e839c3",
+  "committed_at": "2026-11-15T19:59:28Z",
+  "message": "fix: keep Vaillant's next energy poll where it was due across restarts",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/f673e839c30cc139cddf593a8369da42c73e97ab",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
