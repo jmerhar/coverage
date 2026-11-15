@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "b9eb9d9c4282801df469effdd3dd514ecf6d799b",
+  "short_sha": "b9eb9d9c42",
+  "committed_at": "2026-11-15T20:53:24Z",
+  "message": "feat: report each strategy's charge level at the end of a backtest",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/b9eb9d9c4282801df469effdd3dd514ecf6d799b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
