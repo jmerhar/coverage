@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "95de92874be1bc3a9f1cab1e6b70ed43ddff73a1",
+  "short_sha": "95de92874b",
+  "committed_at": "2026-11-15T18:23:38Z",
+  "message": "refactor: guard writes with jigkit's write guard",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/95de92874be1bc3a9f1cab1e6b70ed43ddff73a1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
