@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "22003666c1fcff50ed5b7dee0c20244840d9e6f4",
+  "short_sha": "22003666c1",
+  "committed_at": "2026-11-15T19:59:10Z",
+  "message": "fix: charge only to the vehicle's own limit when it is below evcc's",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/22003666c1fcff50ed5b7dee0c20244840d9e6f4",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
