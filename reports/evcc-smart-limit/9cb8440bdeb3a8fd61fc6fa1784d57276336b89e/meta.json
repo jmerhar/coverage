@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "9cb8440bdeb3a8fd61fc6fa1784d57276336b89e",
+  "short_sha": "9cb8440bde",
+  "committed_at": "2026-11-15T20:47:50Z",
+  "message": "ci: run the suites and image through devtools' shared python-docker-app workflow",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/9cb8440bdeb3a8fd61fc6fa1784d57276336b89e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
