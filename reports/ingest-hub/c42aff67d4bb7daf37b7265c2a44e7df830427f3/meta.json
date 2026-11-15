@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "c42aff67d4bb7daf37b7265c2a44e7df830427f3",
+  "short_sha": "c42aff67d4",
+  "committed_at": "2026-11-15T16:35:54Z",
+  "message": "feat: follow Home Connect appliances live (home_connect)",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/c42aff67d4bb7daf37b7265c2a44e7df830427f3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
