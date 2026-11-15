@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "93b53bceb9a28a61e2f8a0ecc8be3fb56495e2e8",
+  "short_sha": "93b53bceb9",
+  "committed_at": "2026-11-15T19:01:21Z",
+  "message": "refactor: run sources' timed work through a shared job schedule",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/93b53bceb9a28a61e2f8a0ecc8be3fb56495e2e8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
