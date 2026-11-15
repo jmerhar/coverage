@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "5383a95adc2ec530133474bbe2d9e0b19790d7a2",
+  "short_sha": "5383a95adc",
+  "committed_at": "2026-11-15T17:58:59Z",
+  "message": "fix: wait for the restart count in the cut-short-pause runtime test",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/5383a95adc2ec530133474bbe2d9e0b19790d7a2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
