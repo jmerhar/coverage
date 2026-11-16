@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "47dbd8fa6c2750112896d9de3319ca470bac3c7f",
+  "short_sha": "47dbd8fa6c",
+  "committed_at": "2026-11-16T20:51:10Z",
+  "message": "chore: move to current majors of React, Vite, Vitest, ESLint and the rest",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/47dbd8fa6c2750112896d9de3319ca470bac3c7f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    }
+  ]
+}
