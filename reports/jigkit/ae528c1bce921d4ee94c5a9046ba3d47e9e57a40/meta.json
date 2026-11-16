@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "ae528c1bce921d4ee94c5a9046ba3d47e9e57a40",
+  "short_sha": "ae528c1bce",
+  "committed_at": "2026-11-16T16:22:58Z",
+  "message": "chore: start 0.21.0 development; the template uses jigkit.refusals",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/ae528c1bce921d4ee94c5a9046ba3d47e9e57a40",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    }
+  ]
+}
