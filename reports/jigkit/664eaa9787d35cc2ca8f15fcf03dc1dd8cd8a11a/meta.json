@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "664eaa9787d35cc2ca8f15fcf03dc1dd8cd8a11a",
+  "short_sha": "664eaa9787",
+  "committed_at": "2026-11-16T16:57:07Z",
+  "message": "feat: ClientOptions.invalid and fieldMessages, for FastAPI's validation messages",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/664eaa9787d35cc2ca8f15fcf03dc1dd8cd8a11a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.3%"
+      }
+    }
+  ]
+}
