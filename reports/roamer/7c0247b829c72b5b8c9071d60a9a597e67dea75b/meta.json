@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "7c0247b829c72b5b8c9071d60a9a597e67dea75b",
+  "short_sha": "7c0247b829",
+  "committed_at": "2026-11-16T16:37:24Z",
+  "message": "fix: vendor the devtools fetcher outside bin/, which the shell coverage suite measures",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/7c0247b829c72b5b8c9071d60a9a597e67dea75b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
