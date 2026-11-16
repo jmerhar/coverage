@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "aeb41e74fad3c54b8013682288d6ccf57334b963",
+  "short_sha": "aeb41e74fa",
+  "committed_at": "2026-11-16T11:13:09Z",
+  "message": "fix(ci): retry the Pages deploy when the artifact is not yet listed",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/aeb41e74fad3c54b8013682288d6ccf57334b963",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "96.0%"
+      }
+    }
+  ]
+}
