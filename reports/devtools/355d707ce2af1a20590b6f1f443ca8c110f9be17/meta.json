@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "355d707ce2af1a20590b6f1f443ca8c110f9be17",
+  "short_sha": "355d707ce2",
+  "committed_at": "2026-11-16T16:40:22Z",
+  "message": "chore: hold TypeScript majors back from Dependabot",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/355d707ce2af1a20590b6f1f443ca8c110f9be17",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
