@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "9419cd1b5c8e4b7911a0edd69598e17f6d23abab",
+  "short_sha": "9419cd1b5c",
+  "committed_at": "2026-11-16T16:40:29Z",
+  "message": "chore: hold TypeScript majors back from Dependabot",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/9419cd1b5c8e4b7911a0edd69598e17f6d23abab",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
