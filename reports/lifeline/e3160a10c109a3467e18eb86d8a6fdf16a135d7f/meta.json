@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "e3160a10c109a3467e18eb86d8a6fdf16a135d7f",
+  "short_sha": "e3160a10c1",
+  "committed_at": "2026-11-16T16:53:53Z",
+  "message": "chore: hold back TypeScript majors in Dependabot's frontend updates",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/e3160a10c109a3467e18eb86d8a6fdf16a135d7f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
