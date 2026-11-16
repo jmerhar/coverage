@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "95049a899914e0db90c1883f1061d483a7197f92",
+  "short_sha": "95049a8999",
+  "committed_at": "2026-11-16T16:41:16Z",
+  "message": "refactor: use jigkit's RecordingSender in the tests",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/95049a899914e0db90c1883f1061d483a7197f92",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
