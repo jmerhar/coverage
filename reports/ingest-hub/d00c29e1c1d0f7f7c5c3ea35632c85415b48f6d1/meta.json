@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "d00c29e1c1d0f7f7c5c3ea35632c85415b48f6d1",
+  "short_sha": "d00c29e1c1",
+  "committed_at": "2026-11-16T11:32:19Z",
+  "message": "fix: read a Home Connect appliance again when its operation state changes",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/d00c29e1c1d0f7f7c5c3ea35632c85415b48f6d1",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
