@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "7fdc62da74e5c705d12caa0029779452f3e18019",
+  "short_sha": "7fdc62da74",
+  "committed_at": "2026-11-16T11:28:58Z",
+  "message": "fix: never publish a private repository's coverage report",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/7fdc62da74e5c705d12caa0029779452f3e18019",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "96.0%"
+      }
+    }
+  ]
+}
