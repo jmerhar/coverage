@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "56a76be30a8c8a3d3789da7b398cad5d40e098b0",
+  "short_sha": "56a76be30a",
+  "committed_at": "2026-11-16T16:22:23Z",
+  "message": "chore(release): 3.6.1",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/56a76be30a8c8a3d3789da7b398cad5d40e098b0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
