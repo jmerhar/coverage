@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "2d76f49188159edb6110ee86bdd21d3154d14178",
+  "short_sha": "2d76f49188",
+  "committed_at": "2026-11-16T16:41:12Z",
+  "message": "chore: hold TypeScript majors back from Dependabot",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/2d76f49188159edb6110ee86bdd21d3154d14178",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
