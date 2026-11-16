@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "7eaf0ae546309a45557dac2ed65a3336c501e213",
+  "short_sha": "7eaf0ae546",
+  "committed_at": "2026-11-16T13:23:29Z",
+  "message": "chore: generate dependabot.yml and codecov.yml from devtools",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/7eaf0ae546309a45557dac2ed65a3336c501e213",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.5%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
