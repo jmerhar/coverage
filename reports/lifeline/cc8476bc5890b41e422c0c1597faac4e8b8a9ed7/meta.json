@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "cc8476bc5890b41e422c0c1597faac4e8b8a9ed7",
+  "short_sha": "cc8476bc58",
+  "committed_at": "2026-11-16T13:23:20Z",
+  "message": "build: take the npm targets from devtools' npm.mk",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/cc8476bc5890b41e422c0c1597faac4e8b8a9ed7",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.6%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.7%"
+      }
+    }
+  ]
+}
