@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "33cbf4f94a54080431a29ae8adca85bfd815bc69",
+  "short_sha": "33cbf4f94a",
+  "committed_at": "2026-11-16T16:51:33Z",
+  "message": "chore: hold react-router-dom majors back from Dependabot",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/33cbf4f94a54080431a29ae8adca85bfd815bc69",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "99.4%",
+        "branch": "91.8%"
+      }
+    }
+  ]
+}
