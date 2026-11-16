@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "af0d85b31540634ac4399d5c73bbd3953d121961",
+  "short_sha": "af0d85b315",
+  "committed_at": "2026-11-16T11:04:49Z",
+  "message": "fix: restore Frank's usage progress when the source starts",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/af0d85b31540634ac4399d5c73bbd3953d121961",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
