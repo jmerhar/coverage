@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "72db0aee25137956053654da0b41832b65f2f84d",
+  "short_sha": "72db0aee25",
+  "committed_at": "2026-11-16T20:37:58Z",
+  "message": "chore: release frontend-config 0.1.0",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/72db0aee25137956053654da0b41832b65f2f84d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
