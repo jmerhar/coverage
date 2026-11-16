@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "68cb19d22c35724a78669ac6ae9527b04a94d2af",
+  "short_sha": "68cb19d22c",
+  "committed_at": "2026-11-16T12:51:18Z",
+  "message": "feat: share the npm install step, and let codecov.yml rewrite paths",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/68cb19d22c35724a78669ac6ae9527b04a94d2af",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
