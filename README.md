@@ -274,14 +274,16 @@ Notes:
   images provide it; add `actions/setup-python` if your job pins an older one.
 - `publish` **skips rather than fails** when `token` is empty, so the workflow stays green before the
   secret exists.
+- `publish` **skips private repositories**: the site and the `reports` branch are public, and an HTML
+  coverage report shows the measured source line by line. The summary, gate and Codecov steps still
+  run.
 - Useful inputs: `config` (default `coverage.toml`), `working-directory`, `project` (defaults to the
   repository name), `description` and `status-context` for the commit status, and
   `commit-status: false` to skip it. See
   [the action definitions](.github/actions) for the full list.
 - Pin to `@v1`. Referencing `@main` works but takes changes unreviewed.
 
-`idealista` is the reference implementation for two suites across separate CI jobs;
-`sweetspot-android` for several modules in one build.
+`sweetspot-android` is the reference implementation for several modules in one build.
 
 ## Local development
 

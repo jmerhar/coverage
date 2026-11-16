@@ -6,6 +6,9 @@ description: Assemble this commit's HTML coverage reports and publish them to th
 # A missing token is not an error: the step reports that it skipped, so a repository's workflow stays
 # green before the secret has been created.
 #
+# A private repository is never published: the site and its report branch are public, and the HTML
+# reports carry the measured source code line by line. The step skips with a notice instead.
+#
 # Posting the commit status needs `permissions: { statuses: write }` on the calling job.
 
 inputs:
@@ -55,7 +58,13 @@ runs:
       env:
         COVERAGE_PAGES_TOKEN: ${{ inputs.token }}
         PROJECT: ${{ inputs.project }}
+        REPO_PRIVATE: ${{ github.event.repository.private }}
       run: |
+        if [ "${REPO_PRIVATE}" != "false" ]; then
+          echo "::notice::$GITHUB_REPOSITORY is not public (or its visibility is unknown); skipping publish."
+          echo "published=false" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
         if [ -z "${COVERAGE_PAGES_TOKEN}" ]; then
           echo "::notice::No coverage token supplied; skipping publish."
           echo "published=false" >> "$GITHUB_OUTPUT"
