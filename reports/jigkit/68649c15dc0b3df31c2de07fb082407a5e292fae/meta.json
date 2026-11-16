@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "68649c15dc0b3df31c2de07fb082407a5e292fae",
+  "short_sha": "68649c15dc",
+  "committed_at": "2026-11-16T13:30:08Z",
+  "message": "chore: keep the template's refusal code as a string until jigkit.refusals is released",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/68649c15dc0b3df31c2de07fb082407a5e292fae",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.2%"
+      }
+    }
+  ]
+}
