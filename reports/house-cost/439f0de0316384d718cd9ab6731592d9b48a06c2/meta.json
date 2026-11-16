@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "439f0de0316384d718cd9ab6731592d9b48a06c2",
+  "short_sha": "439f0de031",
+  "committed_at": "2026-11-16T12:59:53Z",
+  "message": "chore: install and regenerate the frontend packages through devtools' npm targets",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/439f0de0316384d718cd9ab6731592d9b48a06c2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
