@@ -26,6 +26,10 @@ jobs:
         with:
           python-version: '3.12'
 
+      # The vendored fetcher and the generated dependabot.yml and codecov.yml match devtools.
+      - name: devtools-check
+        run: tools/devtools-fetch.sh && python3 .devtools/bin/devtools-check.py
+
       # pytest only to write the JUnit report Codecov's test analytics reads; the suites are unittest.
       - name: Install coverage.py and pytest
         run: python3 -m pip install --disable-pip-version-check --quiet coverage pytest

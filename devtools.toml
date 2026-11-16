@@ -1,0 +1,12 @@
+# Shared tooling from jmerhar/devtools, fetched into .devtools/ by tools/devtools-fetch.sh, a
+# vendored copy kept outside bin/, which this repository's ShellCheck and kcov runs cover.
+[fetch]
+ref = "v1"
+files = ["bin/devtools-check.py", "fetch/devtools-fetch.sh"]
+
+[check]
+fetcher = "tools/devtools-fetch.sh"
+
+# .github/dependabot.yml and codecov.yml are generated from this file and coverage.toml by
+# `python3 .devtools/bin/devtools-check.py --fix`; with no [dependabot] table, Dependabot updates
+# the GitHub Actions alone. CI runs the same script without --fix, which fails when they drift.
