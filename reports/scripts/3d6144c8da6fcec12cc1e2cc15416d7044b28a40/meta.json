@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "3d6144c8da6fcec12cc1e2cc15416d7044b28a40",
+  "short_sha": "3d6144c8da",
+  "committed_at": "2026-11-16T13:17:36Z",
+  "message": "chore: take the shared Makefile targets and generated configs from devtools",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/3d6144c8da6fcec12cc1e2cc15416d7044b28a40",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
