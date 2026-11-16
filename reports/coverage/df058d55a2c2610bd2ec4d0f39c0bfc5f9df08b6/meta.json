@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "df058d55a2c2610bd2ec4d0f39c0bfc5f9df08b6",
+  "short_sha": "df058d55a2",
+  "committed_at": "2026-11-16T16:43:30Z",
+  "message": "docs: point devtools users at devtools.mk for the coverage tooling",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/df058d55a2c2610bd2ec4d0f39c0bfc5f9df08b6",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.5%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
