@@ -182,7 +182,9 @@ the command decides how to write JUnit there, for example
 
 Set `min_bash` when your scripts need bash 4 or newer. Stock kcov on macOS traces every script with
 `/bin/bash` (3.2) whatever its shebang, and given `--bash-parser` it fails with `Failed to exchange
-stderr for pipe` whenever `ulimit -n` exceeds `kern.maxfilesperproc`; with `min_bash` set, a probe
+stderr for pipe` whenever `ulimit -n` exceeds `kern.maxfilesperproc`, and leaks its trace into the
+script's output whenever it exceeds 131072 (kcov's trace descriptor, a quarter of the limit, is then
+above the 32767 macOS stdio accepts); with `min_bash` set, a probe
 detects that and the run falls back to the container instead of failing on syntax 3.2 rejects. A kcov
 wrapper that passes `--bash-parser` and caps `ulimit -n` lets it run locally. `KCOV_FORCE_DOCKER=1`
 always takes the container.
@@ -193,7 +195,10 @@ A local run and the container give the same figure only when the scripts behave 
 gates and publishes, so measuring anywhere else would gate a different number.
 
 To run it locally, fetch the tooling beside each other, as `run-kcov.sh` looks for
-`coverage-report.py` in its own directory:
+`coverage-report.py` in its own directory. A repository using
+[jmerhar/devtools](https://github.com/jmerhar/devtools) gets this from its `devtools.mk` with
+`coverage = true` in `devtools.toml`, which fetches both into `.devtools/coverage/` and sets
+`COVERAGE_TOOLING`; anywhere else:
 
 ```make
 COVERAGE_TOOLING := .coverage-tooling
@@ -203,7 +208,7 @@ coverage-tooling:
 	@for f in coverage-report.py run-kcov.sh; do \
 		curl -fsSL -z $(COVERAGE_TOOLING)/$$f -o $(COVERAGE_TOOLING)/$$f \
 			https://raw.githubusercontent.com/jmerhar/coverage/v1/bin/$$f \
-			|| test -f $(COVERAGE_TOOLING)/$$f; \
+			|| test -f $(COVERAGE_TOOLING)/$$f || exit 1; \
 	done
 
 coverage: coverage-tooling
