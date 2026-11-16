@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
     steps:
       # The reports themselves — the whole branch, since every report is served.
       - uses: actions/checkout@v7
@@ -58,5 +58,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: reports
+      # deploy-pages can ask for the artifact before the API lists it ("No artifacts named
+      # github-pages were found"), and has no retry of its own. A second attempt after a pause
+      # gets past that; a failure that persists still fails the job.
       - id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+      - if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5
