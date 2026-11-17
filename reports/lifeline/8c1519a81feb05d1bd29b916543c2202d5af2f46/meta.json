@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "8c1519a81feb05d1bd29b916543c2202d5af2f46",
+  "short_sha": "8c1519a81f",
+  "committed_at": "2026-11-17T08:36:40Z",
+  "message": "refactor: build the API client on jigkit's ApiClient",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/8c1519a81feb05d1bd29b916543c2202d5af2f46",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
