@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "8a89a342f23be4bbcb98cc2e190c29df8eec509c",
+  "short_sha": "8a89a342f2",
+  "committed_at": "2026-11-17T08:52:51Z",
+  "message": "chore: send Dependabot's majors to a pull request of their own",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/8a89a342f23be4bbcb98cc2e190c29df8eec509c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
