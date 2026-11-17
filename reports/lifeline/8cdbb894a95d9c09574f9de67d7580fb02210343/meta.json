@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "8cdbb894a95d9c09574f9de67d7580fb02210343",
+  "short_sha": "8cdbb894a9",
+  "committed_at": "2026-11-17T10:31:58Z",
+  "message": "build: take the frontend's ESLint, TypeScript, Vite and Vitest settings from @jmerhar/frontend-config",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/8cdbb894a95d9c09574f9de67d7580fb02210343",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
