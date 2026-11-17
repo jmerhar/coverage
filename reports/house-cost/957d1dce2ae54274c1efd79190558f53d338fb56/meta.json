@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "957d1dce2ae54274c1efd79190558f53d338fb56",
+  "short_sha": "957d1dce2a",
+  "committed_at": "2026-11-17T10:00:12Z",
+  "message": "chore: decide every install script, and merge GitHub Actions majors when green",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/957d1dce2ae54274c1efd79190558f53d338fb56",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
