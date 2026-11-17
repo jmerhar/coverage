@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "a34c4b589b60be8916e495e16b621bddbb089223",
+  "short_sha": "a34c4b589b",
+  "committed_at": "2026-11-17T10:28:53Z",
+  "message": "build: take the ESLint, TypeScript and Vitest settings from @jmerhar/frontend-config",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/a34c4b589b60be8916e495e16b621bddbb089223",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
