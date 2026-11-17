@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "8f5fd7d3775aa3cdcf91658487134bad9bc59887",
+  "short_sha": "8f5fd7d377",
+  "committed_at": "2026-11-17T09:50:40Z",
+  "message": "feat: merge GitHub Actions majors when green, and require install-script decisions",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/8f5fd7d3775aa3cdcf91658487134bad9bc59887",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
