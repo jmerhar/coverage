@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "9a80ccb6aa8db070a732a55117665e2ee9d3debb",
+  "short_sha": "9a80ccb6aa",
+  "committed_at": "2026-11-17T08:50:55Z",
+  "message": "chore: send Dependabot's majors to a pull request of their own",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/9a80ccb6aa8db070a732a55117665e2ee9d3debb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.2%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
