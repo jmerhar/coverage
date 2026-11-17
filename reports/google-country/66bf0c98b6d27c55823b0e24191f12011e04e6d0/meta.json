@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "66bf0c98b6d27c55823b0e24191f12011e04e6d0",
+  "short_sha": "66bf0c98b6",
+  "committed_at": "2026-11-17T10:51:57Z",
+  "message": "chore(deps-dev): bump the npm group across 1 directory with 2 updates (#7)",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/66bf0c98b6d27c55823b0e24191f12011e04e6d0",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
