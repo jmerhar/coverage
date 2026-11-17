@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "364971c77bdf2e9f8e7236d435643083f3e39de8",
+  "short_sha": "364971c77b",
+  "committed_at": "2026-11-17T08:45:07Z",
+  "message": "chore: send Dependabot's majors to a pull request of their own",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/364971c77bdf2e9f8e7236d435643083f3e39de8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.1%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "96.0%"
+      }
+    }
+  ]
+}
