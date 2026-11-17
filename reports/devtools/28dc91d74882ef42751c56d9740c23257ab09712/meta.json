@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "28dc91d74882ef42751c56d9740c23257ab09712",
+  "short_sha": "28dc91d748",
+  "committed_at": "2026-11-17T08:40:00Z",
+  "message": "feat: send each Dependabot update's majors to a group of their own",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/28dc91d74882ef42751c56d9740c23257ab09712",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.1%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
