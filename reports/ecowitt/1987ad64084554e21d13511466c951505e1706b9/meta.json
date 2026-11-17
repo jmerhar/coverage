@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "1987ad64084554e21d13511466c951505e1706b9",
+  "short_sha": "1987ad6408",
+  "committed_at": "2026-11-17T10:34:12Z",
+  "message": "chore: take the dashboard page's TypeScript and Vitest settings from @jmerhar/frontend-config",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/1987ad64084554e21d13511466c951505e1706b9",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
