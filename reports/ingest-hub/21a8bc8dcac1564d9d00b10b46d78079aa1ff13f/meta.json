@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "21a8bc8dcac1564d9d00b10b46d78079aa1ff13f",
+  "short_sha": "21a8bc8dca",
+  "committed_at": "2026-11-17T10:53:36Z",
+  "message": "chore(deps): bump jigkit in /backend in the backend group (#4)",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/21a8bc8dcac1564d9d00b10b46d78079aa1ff13f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
