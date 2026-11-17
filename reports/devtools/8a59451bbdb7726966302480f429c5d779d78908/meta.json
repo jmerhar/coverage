@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "8a59451bbdb7726966302480f429c5d779d78908",
+  "short_sha": "8a59451bbd",
+  "committed_at": "2026-11-17T10:54:00Z",
+  "message": "chore(deps-dev): bump the python group across 1 directory with 2 updates (#6)",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/8a59451bbdb7726966302480f429c5d779d78908",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
