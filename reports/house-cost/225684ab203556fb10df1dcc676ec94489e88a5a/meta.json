@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "225684ab203556fb10df1dcc676ec94489e88a5a",
+  "short_sha": "225684ab20",
+  "committed_at": "2026-11-17T10:33:33Z",
+  "message": "build: take the interface's TypeScript, Vite and Vitest settings from @jmerhar/frontend-config",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/225684ab203556fb10df1dcc676ec94489e88a5a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
