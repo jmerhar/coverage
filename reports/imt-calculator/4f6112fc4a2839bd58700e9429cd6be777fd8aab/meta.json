@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "4f6112fc4a2839bd58700e9429cd6be777fd8aab",
+  "short_sha": "4f6112fc4a",
+  "committed_at": "2026-11-17T09:56:13Z",
+  "message": "chore: decide every install script, and merge GitHub Actions majors when green",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/4f6112fc4a2839bd58700e9429cd6be777fd8aab",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    }
+  ]
+}
