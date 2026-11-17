@@ -1,0 +1,38 @@
+{
+  "project": "devtools",
+  "sha": "e15c74ff22f957ee83bb2eebfd8e40d286d3fde2",
+  "short_sha": "e15c74ff22",
+  "committed_at": "2026-11-17T10:40:14Z",
+  "message": "docs: say the vite preset's licences file needs Vite 8",
+  "commit_url": "https://github.com/jmerhar/devtools/commit/e15c74ff22f957ee83bb2eebfd8e40d286d3fde2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.2%"
+      }
+    },
+    {
+      "name": "Shell (bats under kcov)",
+      "path": "shell",
+      "metrics": {
+        "line": "98.8%"
+      }
+    },
+    {
+      "name": "Python (pytest)",
+      "path": "python",
+      "metrics": {
+        "line": "99.3%"
+      }
+    },
+    {
+      "name": "frontend-config (JavaScript)",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}

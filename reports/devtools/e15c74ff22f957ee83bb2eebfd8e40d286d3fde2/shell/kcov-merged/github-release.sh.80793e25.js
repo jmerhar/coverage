@@ -1,0 +1,33 @@
+var data = {lines:[
+{"lineNum":"    1","line":"#!/usr/bin/env bash"},
+{"lineNum":"    2","line":"# Create the GitHub release for a pushed tag, from its CHANGELOG.md section, titled"},
+{"lineNum":"    3","line":"# \"<[release] title> X.Y.Z\" (see release.sh)."},
+{"lineNum":"    4","line":"#"},
+{"lineNum":"    5","line":"# Usage: .devtools/bin/github-release.sh vX.Y.Z    (from the repository root)"},
+{"lineNum":"    6","line":"#   Needs gh, authenticated with GH_TOKEN."},
+{"lineNum":"    7","line":"#   GH   the gh command (default: gh)"},
+{"lineNum":"    8","line":"set -euo pipefail","class":"lineCov","hits":"1","order":"219",},
+{"lineNum":"    9","line":""},
+{"lineNum":"   10","line":"here=\"$(dirname \"$0\")\"","class":"lineCov","hits":"1","order":"220",},
+{"lineNum":"   11","line":"[ -f \"$here/version.py\" ] || {","class":"lineCov","hits":"1","order":"222",},
+{"lineNum":"   12","line":"  echo \"github-release: needs $here/version.py; add bin/version.py to [fetch] files\" >&2","class":"lineCov","hits":"1","order":"224",},
+{"lineNum":"   13","line":"  exit 1","class":"lineCov","hits":"1","order":"225",},
+{"lineNum":"   14","line":"}"},
+{"lineNum":"   15","line":"gh=\"${GH:-gh}\"","class":"lineCov","hits":"1","order":"226",},
+{"lineNum":"   16","line":"tag=\"${1:?usage: .devtools/bin/github-release.sh vX.Y.Z}\"","class":"lineCov","hits":"1","order":"227",},
+{"lineNum":"   17","line":"version=\"${tag#v}\"","class":"lineCov","hits":"1","order":"228",},
+{"lineNum":"   18","line":""},
+{"lineNum":"   19","line":"title=$(python3 \"$here/devtools-config.py\" release.title)","class":"lineCov","hits":"1","order":"229",},
+{"lineNum":"   20","line":"python3 \"$here/version.py\" check \"$tag\"","class":"lineCov","hits":"1","order":"230",},
+{"lineNum":"   21","line":"# A re-run of the workflow finds the release already made, and leaves it."},
+{"lineNum":"   22","line":"if \"$gh\" release view \"$tag\" >/dev/null 2>&1; then","class":"lineCov","hits":"1","order":"231",},
+{"lineNum":"   23","line":"  echo \"github-release: $tag already has a release\"","class":"lineCov","hits":"1","order":"221",},
+{"lineNum":"   24","line":"  exit 0","class":"lineCov","hits":"1","order":"223",},
+{"lineNum":"   25","line":"fi"},
+{"lineNum":"   26","line":"notes=$(python3 \"$here/version.py\" notes \"$version\")","class":"lineCov","hits":"1","order":"218",},
+{"lineNum":"   27","line":"printf \'%s\\n\' \"$notes\" \\","class":"lineCov","hits":"1","order":"217",},
+{"lineNum":"   28","line":"  | \"$gh\" release create \"$tag\" --verify-tag --title \"$title $version\" --notes-file -"},
+]};
+var percent_low = 25;var percent_high = 75;
+var header = { "command" : "dev.sh", "date" : "2026-11-17 10:39:51", "instrumented" : 15, "covered" : 15,};
+var merged_data = [];
