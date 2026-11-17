@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "ea73588dc5bd10951a628c871bb3d4e9170a831d",
+  "short_sha": "ea73588dc5",
+  "committed_at": "2026-11-17T10:54:46Z",
+  "message": "build(deps-dev): bump eslint-plugin-react-refresh (#12)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/ea73588dc5bd10951a628c871bb3d4e9170a831d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
