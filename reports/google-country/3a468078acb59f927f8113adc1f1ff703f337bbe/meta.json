@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "3a468078acb59f927f8113adc1f1ff703f337bbe",
+  "short_sha": "3a468078ac",
+  "committed_at": "2026-11-17T09:57:35Z",
+  "message": "chore: install through devtools' npm targets, and decide every install script",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/3a468078acb59f927f8113adc1f1ff703f337bbe",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
