@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "864ee258bb3d4db20a2a826fe45458f546e1bb6e",
+  "short_sha": "864ee258bb",
+  "committed_at": "2026-11-17T09:58:06Z",
+  "message": "chore: decide every install script, and merge GitHub Actions majors when green",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/864ee258bb3d4db20a2a826fe45458f546e1bb6e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
