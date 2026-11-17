@@ -1,0 +1,25 @@
+{
+  "project": "google-country",
+  "sha": "558d84a407fe44494376e7cb596d662dd446ff76",
+  "short_sha": "558d84a407",
+  "committed_at": "2026-11-17T08:50:48Z",
+  "message": "chore: send Dependabot's majors to a pull request of their own",
+  "commit_url": "https://github.com/jmerhar/google-country/commit/558d84a407fe44494376e7cb596d662dd446ff76",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Extension (TypeScript)",
+      "path": "extension",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "96.6%"
+      }
+    }
+  ]
+}
