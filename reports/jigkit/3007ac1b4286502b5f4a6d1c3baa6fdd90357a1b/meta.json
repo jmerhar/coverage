@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "3007ac1b4286502b5f4a6d1c3baa6fdd90357a1b",
+  "short_sha": "3007ac1b42",
+  "committed_at": "2026-11-17T08:13:14Z",
+  "message": "fix: wait for the pinned release until pip itself can fetch it",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/3007ac1b4286502b5f4a6d1c3baa6fdd90357a1b",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.3%"
+      }
+    }
+  ]
+}
