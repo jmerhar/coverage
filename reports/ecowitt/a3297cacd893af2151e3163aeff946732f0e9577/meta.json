@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "a3297cacd893af2151e3163aeff946732f0e9577",
+  "short_sha": "a3297cacd8",
+  "committed_at": "2026-11-17T10:01:17Z",
+  "message": "chore: decide every install script, and merge GitHub Actions majors when green",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/a3297cacd893af2151e3163aeff946732f0e9577",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.6%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.1%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
