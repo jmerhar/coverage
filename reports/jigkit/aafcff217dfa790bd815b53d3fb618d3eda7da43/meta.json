@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "aafcff217dfa790bd815b53d3fb618d3eda7da43",
+  "short_sha": "aafcff217d",
+  "committed_at": "2026-11-17T09:56:04Z",
+  "message": "chore: decide every install script, and merge GitHub Actions majors when green",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/aafcff217dfa790bd815b53d3fb618d3eda7da43",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.3%"
+      }
+    }
+  ]
+}
