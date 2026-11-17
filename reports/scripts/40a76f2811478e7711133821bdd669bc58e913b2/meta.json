@@ -1,0 +1,23 @@
+{
+  "project": "scripts",
+  "sha": "40a76f2811478e7711133821bdd669bc58e913b2",
+  "short_sha": "40a76f2811",
+  "committed_at": "2026-11-17T10:04:44Z",
+  "message": "chore: merge GitHub Actions majors once their checks pass",
+  "commit_url": "https://github.com/jmerhar/scripts/commit/40a76f2811478e7711133821bdd669bc58e913b2",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "94.9%"
+      }
+    },
+    {
+      "name": "Shell scripts (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "94.9%"
+      }
+    }
+  ]
+}
