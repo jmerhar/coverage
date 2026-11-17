@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "4689d26b13cb4442eb5223c289ade8ddaa5ffe47",
+  "short_sha": "4689d26b13",
+  "committed_at": "2026-11-17T10:35:21Z",
+  "message": "chore: the template's interface builds from @jmerhar/frontend-config's presets",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/4689d26b13cb4442eb5223c289ade8ddaa5ffe47",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.3%"
+      }
+    }
+  ]
+}
