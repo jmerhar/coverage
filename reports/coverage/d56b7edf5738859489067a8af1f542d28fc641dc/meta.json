@@ -1,0 +1,30 @@
+{
+  "project": "coverage",
+  "sha": "d56b7edf5738859489067a8af1f542d28fc641dc",
+  "short_sha": "d56b7edf57",
+  "committed_at": "2026-11-17T09:57:17Z",
+  "message": "chore: merge GitHub Actions majors once their checks pass",
+  "commit_url": "https://github.com/jmerhar/coverage/commit/d56b7edf5738859489067a8af1f542d28fc641dc",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "97.5%"
+      }
+    },
+    {
+      "name": "Tooling (Python)",
+      "path": "python",
+      "metrics": {
+        "line": "99.4%"
+      }
+    },
+    {
+      "name": "Tooling (shell)",
+      "path": "shell",
+      "metrics": {
+        "line": "94.6%"
+      }
+    }
+  ]
+}
