@@ -1,0 +1,25 @@
+{
+  "project": "imt-calculator",
+  "sha": "b3f85da86ddd9bd3646abccdce65a7b321b2c879",
+  "short_sha": "b3f85da86d",
+  "committed_at": "2026-11-17T10:31:29Z",
+  "message": "chore: take ESLint, TypeScript and Vitest settings from @jmerhar/frontend-config",
+  "commit_url": "https://github.com/jmerhar/imt-calculator/commit/b3f85da86ddd9bd3646abccdce65a7b321b2c879",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    },
+    {
+      "name": "App (TypeScript)",
+      "path": "app",
+      "metrics": {
+        "line": "98.5%",
+        "branch": "90.6%"
+      }
+    }
+  ]
+}
