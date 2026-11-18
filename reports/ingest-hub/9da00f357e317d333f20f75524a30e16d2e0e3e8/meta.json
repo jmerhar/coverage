@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "9da00f357e317d333f20f75524a30e16d2e0e3e8",
+  "short_sha": "9da00f357e",
+  "committed_at": "2026-11-18T10:10:30Z",
+  "message": "fix: reopen a Home Connect stream that drops after delivering, without a restart",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/9da00f357e317d333f20f75524a30e16d2e0e3e8",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
