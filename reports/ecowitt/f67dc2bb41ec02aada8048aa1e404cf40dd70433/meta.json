@@ -1,0 +1,57 @@
+{
+  "project": "ecowitt",
+  "sha": "f67dc2bb41ec02aada8048aa1e404cf40dd70433",
+  "short_sha": "f67dc2bb41",
+  "committed_at": "2026-11-19T15:46:19Z",
+  "message": "chore(deps): update fastapi requirement in /collector (#18)",
+  "commit_url": "https://github.com/jmerhar/ecowitt/commit/f67dc2bb41ec02aada8048aa1e404cf40dd70433",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "96.5%"
+      }
+    },
+    {
+      "name": "Core (Python)",
+      "path": "core",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Collector (Python)",
+      "path": "collector",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "99.7%"
+      }
+    },
+    {
+      "name": "Dashboard API (Python)",
+      "path": "dashboard",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Dashboard pages (TypeScript)",
+      "path": "web",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "92.0%"
+      }
+    },
+    {
+      "name": "Collector page scripts (JavaScript)",
+      "path": "pages",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
