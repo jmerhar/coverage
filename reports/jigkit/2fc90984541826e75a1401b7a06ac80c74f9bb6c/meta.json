@@ -1,0 +1,33 @@
+{
+  "project": "jigkit",
+  "sha": "2fc90984541826e75a1401b7a06ac80c74f9bb6c",
+  "short_sha": "2fc9098454",
+  "committed_at": "2026-11-20T23:23:07Z",
+  "message": "chore: lint the template's interface with ESLint, through frontend-config's Svelte preset",
+  "commit_url": "https://github.com/jmerhar/jigkit/commit/2fc90984541826e75a1401b7a06ac80c74f9bb6c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "98.3%"
+      }
+    },
+    {
+      "name": "Python package",
+      "path": "python",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "99.3%"
+      }
+    },
+    {
+      "name": "npm package",
+      "path": "js",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "97.3%"
+      }
+    }
+  ]
+}
