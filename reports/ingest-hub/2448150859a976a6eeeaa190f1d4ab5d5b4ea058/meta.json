@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "2448150859a976a6eeeaa190f1d4ab5d5b4ea058",
+  "short_sha": "2448150859",
+  "committed_at": "2026-11-20T11:29:35Z",
+  "message": "fix: hold a Frank usage day open until its electricity usage is in",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/2448150859a976a6eeeaa190f1d4ab5d5b4ea058",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
