@@ -1,0 +1,33 @@
+{
+  "project": "house-cost",
+  "sha": "33e1144626c233e053536a1fa681f6fdaa905bbf",
+  "short_sha": "33e1144626",
+  "committed_at": "2026-11-20T23:20:17Z",
+  "message": "build: lint the interface with ESLint, through frontend-config's presets",
+  "commit_url": "https://github.com/jmerhar/house-cost/commit/33e1144626c233e053536a1fa681f6fdaa905bbf",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "89.1%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "99.9%",
+        "branch": "98.6%"
+      }
+    },
+    {
+      "name": "Interface (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "99.8%",
+        "branch": "84.8%"
+      }
+    }
+  ]
+}
