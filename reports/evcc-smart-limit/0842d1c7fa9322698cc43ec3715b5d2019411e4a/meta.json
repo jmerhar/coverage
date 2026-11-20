@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "0842d1c7fa9322698cc43ec3715b5d2019411e4a",
+  "short_sha": "0842d1c7fa",
+  "committed_at": "2026-11-20T18:54:20Z",
+  "message": "feat: add urgency, widening the limit towards any price as the charge level falls",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/0842d1c7fa9322698cc43ec3715b5d2019411e4a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
