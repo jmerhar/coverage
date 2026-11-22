@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "408ee931efdd5e39bdb39f339e26951201d99c26",
+  "short_sha": "408ee931ef",
+  "committed_at": "2026-11-22T14:35:09Z",
+  "message": "build(deps-dev): update pytest-asyncio requirement in /backend (#17)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/408ee931efdd5e39bdb39f339e26951201d99c26",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
