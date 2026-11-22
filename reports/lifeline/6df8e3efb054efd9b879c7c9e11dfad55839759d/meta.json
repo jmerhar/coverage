@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "6df8e3efb054efd9b879c7c9e11dfad55839759d",
+  "short_sha": "6df8e3efb0",
+  "committed_at": "2026-11-22T14:35:43Z",
+  "message": "build(deps): update sqlalchemy requirement in /backend (#16)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/6df8e3efb054efd9b879c7c9e11dfad55839759d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
