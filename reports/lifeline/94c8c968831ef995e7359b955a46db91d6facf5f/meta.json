@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "94c8c968831ef995e7359b955a46db91d6facf5f",
+  "short_sha": "94c8c96883",
+  "committed_at": "2026-11-22T14:35:49Z",
+  "message": "build(deps): update fastapi requirement in /backend (#15)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/94c8c968831ef995e7359b955a46db91d6facf5f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
