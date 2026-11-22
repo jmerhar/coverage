@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "28b48816e6a807e03e21193f71bca56b4170cefb",
+  "short_sha": "28b48816e6",
+  "committed_at": "2026-11-22T14:35:03Z",
+  "message": "build(deps-dev): update ruff requirement in /backend (#19)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/28b48816e6a807e03e21193f71bca56b4170cefb",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
