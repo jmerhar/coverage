@@ -1,0 +1,33 @@
+{
+  "project": "lifeline",
+  "sha": "8b4a354f60a6450a632ad28b0531895875050f11",
+  "short_sha": "8b4a354f60",
+  "committed_at": "2026-11-22T14:35:26Z",
+  "message": "build(deps): update playwright requirement in /backend (#18)",
+  "commit_url": "https://github.com/jmerhar/lifeline/commit/8b4a354f60a6450a632ad28b0531895875050f11",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "98.3%",
+        "branch": "94.5%"
+      }
+    },
+    {
+      "name": "Frontend (TypeScript)",
+      "path": "frontend",
+      "metrics": {
+        "line": "98.2%",
+        "branch": "94.4%"
+      }
+    }
+  ]
+}
