@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "0a0b93d0ca8eadf2d7fe373aa961b63fda469316",
+  "short_sha": "0a0b93d0ca",
+  "committed_at": "2026-11-23T00:05:25Z",
+  "message": "feat: tag Tuya points with the home their device is in",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/0a0b93d0ca8eadf2d7fe373aa961b63fda469316",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
