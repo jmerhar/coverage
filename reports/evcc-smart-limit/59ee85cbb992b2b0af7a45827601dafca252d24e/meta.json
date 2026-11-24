@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "59ee85cbb992b2b0af7a45827601dafca252d24e",
+  "short_sha": "59ee85cbb9",
+  "committed_at": "2026-11-24T19:39:12Z",
+  "message": "test: date the stand-in evcc's prices from the clock in the command tests",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/59ee85cbb992b2b0af7a45827601dafca252d24e",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
