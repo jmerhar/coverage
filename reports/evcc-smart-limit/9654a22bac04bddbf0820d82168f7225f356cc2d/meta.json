@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "9654a22bac04bddbf0820d82168f7225f356cc2d",
+  "short_sha": "9654a22bac",
+  "committed_at": "2026-11-25T20:11:13Z",
+  "message": "fix: harden the controller and rework the docs for a first public release",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/9654a22bac04bddbf0820d82168f7225f356cc2d",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
