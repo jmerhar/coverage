@@ -1,0 +1,32 @@
+{
+  "project": "roamer",
+  "sha": "a52c8524d0cdfdb8459395696b40e4f1495e813c",
+  "short_sha": "a52c8524d0",
+  "committed_at": "2026-11-26T16:56:27Z",
+  "message": "chore(deps): bump the gradle group with 2 updates (#19)",
+  "commit_url": "https://github.com/jmerhar/roamer/commit/a52c8524d0cdfdb8459395696b40e4f1495e813c",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "98.5%"
+      }
+    },
+    {
+      "name": "App (Kotlin)",
+      "path": "app",
+      "metrics": {
+        "line": "99.2%",
+        "branch": "100.0%",
+        "instruction": "99.4%"
+      }
+    },
+    {
+      "name": "Release script (bash)",
+      "path": "scripts",
+      "metrics": {
+        "line": "97.4%"
+      }
+    }
+  ]
+}
