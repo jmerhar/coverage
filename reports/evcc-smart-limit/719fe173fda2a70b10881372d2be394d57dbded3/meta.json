@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "719fe173fda2a70b10881372d2be394d57dbded3",
+  "short_sha": "719fe173fd",
+  "committed_at": "2026-11-27T13:53:20Z",
+  "message": "docs: explain the one-minute checks and how to stop the tool setting a limit",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/719fe173fda2a70b10881372d2be394d57dbded3",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
