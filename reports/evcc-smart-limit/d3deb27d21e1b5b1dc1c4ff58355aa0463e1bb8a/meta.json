@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "d3deb27d21e1b5b1dc1c4ff58355aa0463e1bb8a",
+  "short_sha": "d3deb27d21",
+  "committed_at": "2026-11-27T18:25:50Z",
+  "message": "docs: make the expected-result field optional and point general questions at evcc's Need help? category",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/d3deb27d21e1b5b1dc1c4ff58355aa0463e1bb8a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
