@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "a1c7f6209f70fe130ac84f7e52b6733410c4f086",
+  "short_sha": "a1c7f6209f",
+  "committed_at": "2026-11-27T18:20:35Z",
+  "message": "docs: list the verified setups and add a setup report form",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/a1c7f6209f70fe130ac84f7e52b6733410c4f086",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
