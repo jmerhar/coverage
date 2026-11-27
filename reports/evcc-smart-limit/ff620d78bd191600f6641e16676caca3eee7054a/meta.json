@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "ff620d78bd191600f6641e16676caca3eee7054a",
+  "short_sha": "ff620d78bd",
+  "committed_at": "2026-11-27T12:43:37Z",
+  "message": "feat: look at evcc every minute and let removing the limit hand control back",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/ff620d78bd191600f6641e16676caca3eee7054a",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
