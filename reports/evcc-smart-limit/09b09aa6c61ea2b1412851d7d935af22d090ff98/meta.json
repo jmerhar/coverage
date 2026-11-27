@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "09b09aa6c61ea2b1412851d7d935af22d090ff98",
+  "short_sha": "09b09aa6c6",
+  "committed_at": "2026-11-27T18:35:30Z",
+  "message": "docs: split the issue form into a bug report and a setup report",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/09b09aa6c61ea2b1412851d7d935af22d090ff98",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
