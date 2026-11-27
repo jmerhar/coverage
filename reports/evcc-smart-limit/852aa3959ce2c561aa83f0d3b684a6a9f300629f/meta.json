@@ -1,0 +1,25 @@
+{
+  "project": "evcc-smart-limit",
+  "sha": "852aa3959ce2c561aa83f0d3b684a6a9f300629f",
+  "short_sha": "852aa3959c",
+  "committed_at": "2026-11-27T18:29:02Z",
+  "message": "docs: ask what happened in the bug form, and make what you expected optional",
+  "commit_url": "https://github.com/jmerhar/evcc-smart-limit/commit/852aa3959ce2c561aa83f0d3b684a6a9f300629f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
