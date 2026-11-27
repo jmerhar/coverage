@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "8e2e45d26ee154d5fddf0b002cccff12d060e80f",
+  "short_sha": "8e2e45d26e",
+  "committed_at": "2026-11-27T11:59:42Z",
+  "message": "fix: count a Frank usage day complete when gas lacks a single hour",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/8e2e45d26ee154d5fddf0b002cccff12d060e80f",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
