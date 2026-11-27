@@ -1,0 +1,25 @@
+{
+  "project": "ingest-hub",
+  "sha": "3a5b997b41baaa06b3e48294f15e0fa005ad0e74",
+  "short_sha": "3a5b997b41",
+  "committed_at": "2026-11-27T12:22:00Z",
+  "message": "fix: hold a Frank usage day open until every carrier the site is supplied has hours",
+  "commit_url": "https://github.com/jmerhar/ingest-hub/commit/3a5b997b41baaa06b3e48294f15e0fa005ad0e74",
+  "reports": [
+    {
+      "name": "total",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    },
+    {
+      "name": "Backend (Python)",
+      "path": "backend",
+      "metrics": {
+        "line": "100.0%",
+        "branch": "100.0%"
+      }
+    }
+  ]
+}
